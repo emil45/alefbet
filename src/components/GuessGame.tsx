@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import letters from '../data/letters';
-import LetterCard from './LetterCard';
+import ItemCard from './ItemCard';
 
 const GuessGame: React.FC = () => {
-  const [currentLetter, setCurrentLetter] = useState(
-    letters[Math.floor(Math.random() * letters.length)]
-  );
+  const getRandomItem = () => {
+    return letters[Math.floor(Math.random() * letters.length)];
+  };
 
-  const getRandomLetter = () => {
-    const randomLetter = letters[Math.floor(Math.random() * letters.length)];
-    setCurrentLetter(randomLetter);
+  const [currentItem, setCurrentItem] = useState(getRandomItem());
+
+  const handleNextItem = () => {
+    setCurrentItem(getRandomItem());
   };
 
   return (
     <Box sx={{ textAlign: 'center', marginTop: 4 }}>
       <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 4 }}>
-        <LetterCard letter={currentLetter} />
+        <ItemCard
+          name={currentItem.letterName}
+          color={currentItem.color}
+          soundFile={currentItem.soundFile}
+          itemCaption={currentItem.letterNumber}
+        />
       </Box>
-      <Button variant="contained" color="primary" onClick={getRandomLetter}>
+      <Button variant="contained" color="primary" onClick={handleNextItem}>
         אות הבאה
       </Button>
     </Box>

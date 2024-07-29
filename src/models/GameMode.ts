@@ -1,4 +1,5 @@
 export enum GameMode {
-  NORMAL,
+  LETTERS,
+  NUMBERS,
   GUESS,
 }
