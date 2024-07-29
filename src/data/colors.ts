@@ -22,11 +22,6 @@ const letters: ColorModel[] = [
     color: 'yellow',
   },
   {
-    colorName: 'לילך',
-    soundFile: '/letters/dalet.mp3',
-    color: 'violet',
-  },
-  {
     colorName: 'כתום',
     soundFile: '/letters/hey.mp3',
     color: 'orange',
@@ -40,12 +35,7 @@ const letters: ColorModel[] = [
     colorName: 'חום',
     soundFile: '/letters/zayin.mp3',
     color: 'brown',
-  }, 
-  {
-    colorName: 'תכלת',
-    soundFile: '/letters/zayin.mp3',
-    color: 'lightBlue',
-  }, 
+  },
   {
     colorName: 'שחור',
     soundFile: '/letters/chet.mp3',
