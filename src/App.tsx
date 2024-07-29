@@ -1,91 +1,123 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Grid, Button, Typography } from '@mui/material'; // Import Typography for the footer text
 import ItemCard from './components/ItemCard';
 import GuessGame from './components/GuessGame';
 import letters from './data/letters';
 import numbers from './data/numbers';
+import colors from './data/colors';
 import { GameMode } from './models/GameMode';
 import { TEXTS } from './data/texts';
+import CursorFollower from './components/CursorFollower';
+import FunButton from './components/FunButton';
 
 const App: React.FC = () => {
   const [gameMode, setGameMode] = useState<GameMode>(GameMode.LETTERS);
+  const [isTouchDevice, setIsTouchDevice] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkTouchDevice = () => {
+      const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      setIsTouchDevice(touch);
+    };
+
+    checkTouchDevice();
+
+    return () => {};
+  }, []);
 
   const handleGameModeChange = (mode: GameMode) => {
     setGameMode(mode);
   };
 
   return (
-    <Box
-      sx={{
-        padding: '20px',
-        direction: 'rtl',
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-      }}
-    >
-      <div>
-        <Box sx={{ display: 'flex', marginBottom: '35px', justifyContent: 'flex-start', gap: '10px' }}>
-          <Button
-            variant="contained"
-            color={gameMode === GameMode.LETTERS ? 'secondary' : 'primary'}
-            onClick={() => handleGameModeChange(GameMode.LETTERS)}
-          >
-            {TEXTS.LETTERS_BUTTON}
-          </Button>
-          <Button
-            variant="contained"
-            color={gameMode === GameMode.NUMBERS ? 'secondary' : 'primary'}
-            onClick={() => handleGameModeChange(GameMode.NUMBERS)}
-          >
-            {TEXTS.NUMBERS_BUTTON}
-          </Button>
-          <Button
-            variant="contained"
-            color={gameMode === GameMode.GUESS ? 'secondary' : 'primary'}
-            onClick={() => handleGameModeChange(GameMode.GUESS)}
-          >
-            {TEXTS.GUESS_GAME_BUTTON}
-          </Button>
-        </Box>
+    <div>
+      <Box
+        sx={{
+          padding: '20px',
+          direction: 'rtl',
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+        }}
+      >
+        <div>
+          <Box sx={{ display: 'flex', mb: '35px', justifyContent: 'flex-start', gap: '25px' }}>
+            <FunButton
+              selected={gameMode === GameMode.LETTERS}
+              onClick={() => handleGameModeChange(GameMode.LETTERS)}
+              text={TEXTS.LETTERS_BUTTON}
+            />
+            <FunButton
+              selected={gameMode === GameMode.NUMBERS}
+              onClick={() => handleGameModeChange(GameMode.NUMBERS)}
+              text={TEXTS.NUMBERS_BUTTON}
+            />
+            <FunButton
+              selected={gameMode === GameMode.COLORS}
+              onClick={() => handleGameModeChange(GameMode.COLORS)}
+              text={TEXTS.COLORS_BUTTON}
+            />
+            <FunButton
+              selected={gameMode === GameMode.GUESS}
+              onClick={() => handleGameModeChange(GameMode.GUESS)}
+              text={TEXTS.GUESS_GAME_BUTTON}
+            />
+          </Box>
 
-        {gameMode === GameMode.GUESS && <GuessGame />}
-        {gameMode === GameMode.LETTERS && (
-          <Grid container spacing={4} justifyContent="center">
-            {letters.map((letter, index) => (
-              <Grid item key={index}>
-                <ItemCard
-                  name={letter.letterName}
-                  color={letter.color}
-                  soundFile={letter.soundFile}
-                  itemCaption={letter.letterNumber}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        )}
-        {gameMode === GameMode.NUMBERS && (
-          <Grid container spacing={4} justifyContent="center">
-            {numbers.map((number, index) => (
-              <Grid item key={index}>
-                <ItemCard
-                  name={number.numberName}
-                  color={number.color}
-                  soundFile={number.soundFile}
-                  itemCaption={number.numberLetter}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        )}
-      </div>
-      <Box sx={{ textAlign: 'center', direction: 'ltr' }}>
-        <Typography variant="body2" color="textSecondary">
-          {TEXTS.FOOTER_TEXT}
-        </Typography>
+          {gameMode === GameMode.GUESS && <GuessGame />}
+          {gameMode === GameMode.LETTERS && (
+            <Grid container spacing={4} justifyContent="center">
+              {letters.map((letter, index) => (
+                <Grid item key={index}>
+                  <ItemCard
+                    name={letter.letterName}
+                    textColor={letter.color}
+                    soundFile={letter.soundFile}
+                    itemCaption={letter.letterNumber}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          )}
+          {gameMode === GameMode.NUMBERS && (
+            <Grid container spacing={4} justifyContent="center">
+              {numbers.map((number, index) => (
+                <Grid item key={index}>
+                  <ItemCard
+                    name={number.numberName}
+                    textColor={number.color}
+                    soundFile={number.soundFile}
+                    itemCaption={number.numberLetter}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          )}
+          {gameMode === GameMode.COLORS && (
+            <Grid container spacing={4} justifyContent="center">
+              {colors.map((color, index) => (
+                <Grid item key={index}>
+                  <ItemCard
+                    name=""
+                    textColor={color.color}
+                    backgroundColor={color.color}
+                    soundFile={color.soundFile}
+                    itemCaption={color.colorName}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          )}
+        </div>
+        <Box sx={{ textAlign: 'center', direction: 'ltr', mt: '25px' }}>
+          <Typography variant="body2" color="textSecondary">
+            {TEXTS.FOOTER_TEXT}
+          </Typography>
+        </Box>
       </Box>
-    </Box>
+      {!isTouchDevice && <CursorFollower />}
+    </div>
   );
 };
 

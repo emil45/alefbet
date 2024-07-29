@@ -4,11 +4,12 @@ import { Box, Typography } from '@mui/material';
 interface ItemCardProps {
   name: string;
   soundFile: string;
-  color: string;
+  textColor: string;
+  backgroundColor?: string;
   itemCaption?: string;
 }
 
-const ItemCard: React.FC<ItemCardProps> = ({ name, soundFile, color, itemCaption }) => {
+const ItemCard: React.FC<ItemCardProps> = ({ name, soundFile, textColor, backgroundColor, itemCaption }) => {
   const playSound = () => {
     const audio = new Audio(soundFile);
     audio.play();
@@ -20,7 +21,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ name, soundFile, color, itemCaption
       sx={{
         cursor: 'pointer',
         padding: '20px',
-        backgroundColor: '#ecebff',
+        backgroundColor: backgroundColor || '#ecebff',
         borderRadius: '8px',
         boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
         transition: 'transform 0.3s, backgroundColor 0.3s',
@@ -38,7 +39,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ name, soundFile, color, itemCaption
         position: 'relative', // Ensure the number can be positioned absolutely
       }}
     >
-      <Typography variant="h1" sx={{ color, fontSize: '124px', fontWeight: 'bold' }}>
+      <Typography variant="h1" sx={{ color: textColor, fontSize: '124px', fontWeight: 'bold' }}>
         {name}
       </Typography>
       {itemCaption && (

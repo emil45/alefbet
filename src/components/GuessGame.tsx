@@ -19,7 +19,7 @@ const GuessGame: React.FC = () => {
       <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 4 }}>
         <ItemCard
           name={currentItem.letterName}
-          color={currentItem.color}
+          textColor={currentItem.color}
           soundFile={currentItem.soundFile}
           itemCaption={currentItem.letterNumber}
         />
