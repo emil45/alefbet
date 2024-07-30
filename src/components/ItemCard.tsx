@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, SvgIcon, Typography, useTheme } from '@mui/material';
 
 interface ItemCardProps {
   name: string;
@@ -7,9 +7,12 @@ interface ItemCardProps {
   textColor: string;
   backgroundColor?: string;
   itemCaption?: string;
+  element?: React.ReactNode;
 }
 
-const ItemCard: React.FC<ItemCardProps> = ({ name, soundFile, textColor, backgroundColor, itemCaption }) => {
+const ItemCard: React.FC<ItemCardProps> = ({ name, soundFile, textColor, backgroundColor, itemCaption, element }) => {
+  const theme = useTheme();
+
   const playSound = () => {
     const audio = new Audio(soundFile);
     audio.play();
@@ -18,10 +21,10 @@ const ItemCard: React.FC<ItemCardProps> = ({ name, soundFile, textColor, backgro
   return (
     <Box
       onClick={playSound}
-      sx={{
+      sx={(theme) => ({
         cursor: 'pointer',
-        padding: '20px',
-        backgroundColor: backgroundColor || '#ecebff',
+        padding: '30px',
+        backgroundColor: backgroundColor || theme.palette.colors.beigePastel,
         borderRadius: '8px',
         boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
         transition: 'transform 0.3s, backgroundColor 0.3s',
@@ -36,12 +39,16 @@ const ItemCard: React.FC<ItemCardProps> = ({ name, soundFile, textColor, backgro
         justifyContent: 'center',
         height: '150px',
         width: '150px',
-        position: 'relative', // Ensure the number can be positioned absolutely
-      }}
+        position: 'relative',
+      })}
     >
-      <Typography variant="h1" sx={{ color: textColor, fontSize: '124px', fontWeight: 'bold' }}>
-        {name}
-      </Typography>
+      {element ? (
+        <SvgIcon sx={{ fontSize: 100, color: textColor }}>{element}</SvgIcon>
+      ) : (
+        <Typography variant="h1" sx={{ color: textColor, fontSize: '124px', fontWeight: 'bold' }}>
+          {name}
+        </Typography>
+      )}
       {itemCaption && (
         <Typography
           variant="caption"

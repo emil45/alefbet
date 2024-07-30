@@ -3,64 +3,64 @@ import { ColorModel } from '../models/ColorModel';
 const letters: ColorModel[] = [
   {
     colorName: 'אדום',
-    soundFile: '/letters/aleph.mp3',
+    soundFile: '/colors/red.mp3',
     color: 'red',
   },
   {
     colorName: 'ירוק',
-    soundFile: '/letters/bet.mp3',
+    soundFile: '/colors/green.mp3',
     color: 'green',
   },
   {
     colorName: 'כחול',
-    soundFile: '/letters/gimel.mp3',
+    soundFile: '/colors/blue.mp3',
     color: 'blue',
   },
   {
     colorName: 'צהוב',
-    soundFile: '/letters/dalet.mp3',
+    soundFile: '/colors/yellow.mp3',
     color: 'yellow',
   },
   {
     colorName: 'כתום',
-    soundFile: '/letters/hey.mp3',
+    soundFile: '/colors/orange.mp3',
     color: 'orange',
-  }, 
+  },
   {
     colorName: 'טורקיז',
-    soundFile: '/letters/vav.mp3',
+    soundFile: '/colors/cyan.mp3',
     color: 'cyan',
-  }, 
+  },
   {
     colorName: 'חום',
-    soundFile: '/letters/zayin.mp3',
+    soundFile: '/colors/brown.mp3',
     color: 'brown',
   },
   {
     colorName: 'שחור',
-    soundFile: '/letters/chet.mp3',
+    soundFile: '/colors/black.mp3',
     color: 'black',
   },
   {
     colorName: 'לבן',
-    soundFile: '/letters/chet.mp3',
+    soundFile: '/colors/white.mp3',
     color: 'white',
   },
   {
     colorName: 'ורוד',
-    soundFile: '/letters/chet.mp3',
+    soundFile: '/colors/pink.mp3',
     color: 'pink',
   },
   {
     colorName: 'סגול',
-    soundFile: '/letters/chet.mp3',
+    soundFile: '/colors/purple.mp3',
     color: 'purple',
   },
   {
     colorName: 'אפור',
-    soundFile: '/letters/chet.mp3',
+    soundFile: '/colors/gray.mp3',
     color: 'gray',
-  }
+  },
 ];
 
 export default letters;

@@ -9,6 +9,7 @@ import { GameMode } from './models/GameMode';
 import { TEXTS } from './data/texts';
 import CursorFollower from './components/CursorFollower';
 import FunButton from './components/FunButton';
+import shapes from './data/shapes';
 
 const App: React.FC = () => {
   const [gameMode, setGameMode] = useState<GameMode>(GameMode.LETTERS);
@@ -44,22 +45,27 @@ const App: React.FC = () => {
         <div>
           <Box sx={{ display: 'flex', mb: '35px', justifyContent: 'flex-start', gap: '25px' }}>
             <FunButton
-              selected={gameMode === GameMode.LETTERS}
+              // selected={gameMode === GameMode.LETTERS}
               onClick={() => handleGameModeChange(GameMode.LETTERS)}
               text={TEXTS.LETTERS_BUTTON}
             />
             <FunButton
-              selected={gameMode === GameMode.NUMBERS}
+              // selected={gameMode === GameMode.NUMBERS}
               onClick={() => handleGameModeChange(GameMode.NUMBERS)}
               text={TEXTS.NUMBERS_BUTTON}
             />
             <FunButton
-              selected={gameMode === GameMode.COLORS}
+              // selected={gameMode === GameMode.COLORS}
               onClick={() => handleGameModeChange(GameMode.COLORS)}
               text={TEXTS.COLORS_BUTTON}
             />
             <FunButton
-              selected={gameMode === GameMode.GUESS}
+              // selected={gameMode === GameMode.SHAPES}
+              onClick={() => handleGameModeChange(GameMode.SHAPES)}
+              text={TEXTS.SHAPES_BUTTON}
+            />
+            <FunButton
+              // selected={gameMode === GameMode.GUESS}
               onClick={() => handleGameModeChange(GameMode.GUESS)}
               text={TEXTS.GUESS_GAME_BUTTON}
             />
@@ -104,6 +110,21 @@ const App: React.FC = () => {
                     backgroundColor={color.color}
                     soundFile={color.soundFile}
                     itemCaption={color.colorName}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          )}
+          {gameMode === GameMode.SHAPES && (
+            <Grid container spacing={4} justifyContent="center">
+              {shapes.map((shape, index) => (
+                <Grid item key={index}>
+                  <ItemCard
+                    name=""
+                    element={shape.element}
+                    textColor={shape.color}
+                    soundFile={shape.soundFile}
+                    itemCaption={shape.shapeHebrewName}
                   />
                 </Grid>
               ))}
