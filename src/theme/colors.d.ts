@@ -9,6 +9,7 @@ declare module '@mui/material/styles' {
       greenPastel: string;
       bluePastel: string;
       orangePastel: string;
+      blackPastel: string;
     };
   }
   interface PaletteOptions {
@@ -19,6 +20,7 @@ declare module '@mui/material/styles' {
       greenPastel?: string;
       bluePastel?: string;
       orangePastel?: string;
+      blackPastel?: string;
     };
   }
 }

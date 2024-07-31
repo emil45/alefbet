@@ -19,6 +19,7 @@ const themeLight = createTheme({
       greenPastel: '#dee581',
       bluePastel: '#9ed6ea',
       orangePastel: '#ffcd36',
+      blackPastel: '#434243',
     },
   },
   typography: {

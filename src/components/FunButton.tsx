@@ -13,7 +13,7 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to }) => {
     <Button
       sx={(theme) => ({
         backgroundColor: theme.palette.colors.greenPastel, // Use pastel color
-        color: 'black', // Text color
+        color: theme.palette.colors.blackPastel,
         borderRadius: '4px', // Standard border radius
         fontSize: '28px', // Standard font size
         textTransform: 'none', // No text transformation

@@ -3,10 +3,11 @@ import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/system';
 import { TEXTS } from '../data/texts';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const BackButtonStyle = styled(Button)(({ theme }) => ({
   backgroundColor: theme.palette.colors.greenPastel,
-  color: 'black',
+  color: theme.palette.colors.blackPastel,
   borderRadius: '4px',
   padding: '8px 16px',
   fontSize: '16px',
@@ -23,6 +24,7 @@ const BackButton: React.FC = () => {
     <BackButtonStyle
       variant="contained"
       onClick={() => navigate(-1)}
+      startIcon={<ArrowBackIcon />}
     >
       {TEXTS.BACK_BUTTON}
     </BackButtonStyle>
