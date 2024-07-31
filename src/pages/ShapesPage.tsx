@@ -8,7 +8,7 @@ const ShapesPage: React.FC = () => {
   return (
     <>
     <BackButton />
-    <Grid container spacing={4} justifyContent="center">
+    <Grid container spacing={4} justifyContent="center" flexDirection='row-reverse'>
       {shapes.map((shape, index) => (
         <Grid item key={index}>
           <ItemCard

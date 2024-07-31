@@ -35,6 +35,7 @@ const App: React.FC = () => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
+          gap: '30px',
         }}
       >
         <Routes>
@@ -51,7 +52,7 @@ const App: React.FC = () => {
           </Typography>
         </Box>
       </Box>
-      {isTouchDevice && <CursorFollower />}
+      {/* {isTouchDevice && <CursorFollower />} */}
     </Router>
   );
 };

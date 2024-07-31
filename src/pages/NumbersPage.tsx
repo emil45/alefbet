@@ -8,7 +8,7 @@ const NumbersPage: React.FC = () => {
   return (
     <>
     <BackButton />
-    <Grid container spacing={4} justifyContent="center">
+    <Grid container spacing={4} justifyContent="center" flexDirection='row-reverse'>
       {numbers.map((number, index) => (
         <Grid item key={index}>
           <ItemCard

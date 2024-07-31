@@ -8,7 +8,7 @@ const ColorsPage: React.FC = () => {
   return (
     <>
     <BackButton />
-    <Grid container spacing={4} justifyContent="center">
+    <Grid container spacing={4} justifyContent="center" flexDirection='row-reverse'>
       {colors.map((color, index) => (
         <Grid item key={index}>
           <ItemCard

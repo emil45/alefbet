@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button } from '@mui/material';
 import letters from '../data/letters';
 import ItemCard from './ItemCard';
+import { TEXTS } from '../data/texts';
 
 const GuessGame: React.FC = () => {
   const getRandomItem = () => {
@@ -25,7 +26,7 @@ const GuessGame: React.FC = () => {
         />
       </Box>
       <Button variant="contained" color="primary" onClick={handleNextItem}>
-        אות הבאה
+        {TEXTS.GUESS_GAME_NEXT_TEXT}
       </Button>
     </Box>
   );
