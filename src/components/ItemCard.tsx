@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, SvgIcon, Typography, useTheme } from '@mui/material';
+import { Box, SvgIcon, Typography } from '@mui/material';
 
 interface ItemCardProps {
   name: string;
@@ -11,7 +11,6 @@ interface ItemCardProps {
 }
 
 const ItemCard: React.FC<ItemCardProps> = ({ name, soundFile, textColor, backgroundColor, itemCaption, element }) => {
-  const theme = useTheme();
 
   const playSound = () => {
     const audio = new Audio(soundFile);

@@ -21,7 +21,7 @@ const GuessGame: React.FC = () => {
           name={currentItem.letterName}
           textColor={currentItem.color}
           soundFile={currentItem.soundFile}
-          itemCaption={currentItem.letterNumber}
+          itemCaption={currentItem.letterFullName}
         />
       </Box>
       <Button variant="contained" color="primary" onClick={handleNextItem}>

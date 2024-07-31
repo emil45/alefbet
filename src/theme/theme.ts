@@ -16,6 +16,9 @@ const themeLight = createTheme({
       redPastel: '#f7c1bb',
       purplePastel: '#dbc3e2',
       beigePastel: '#f5ede1',
+      greenPastel: '#dee581',
+      bluePastel: '#9ed6ea',
+      orangePastel: '#ffcd36',
     },
   },
   typography: {

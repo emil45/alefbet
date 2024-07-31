@@ -3,13 +3,13 @@ import { NumberModel } from '../models/NumberModel';
 const numbers: NumberModel[] = [
   {
     numberName: '1',
-    numberLetter: 'אחד',
+    numberLetter: 'אחת',
     soundFile: '/numbers/one.mp3',
     color: '#FF5733',
   }, // bright red
   {
     numberName: '2',
-    numberLetter: 'שתיים',
+    numberLetter: 'שתים',
     soundFile: '/numbers/two.mp3',
     color: '#FF8D1A',
   }, // bright orange

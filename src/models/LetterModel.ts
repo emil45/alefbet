@@ -1,6 +1,6 @@
 export interface LetterModel {
   letterName: string;
-  letterNumber: string;
+  letterFullName: string;
   soundFile: string;
   color: string;
 }

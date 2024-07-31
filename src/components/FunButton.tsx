@@ -1,31 +1,33 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import { styled } from '@mui/system';
+import { Link as RouterLink } from 'react-router-dom';
 
-// Styled Button with pastel colors from the theme
-const FunButtonStyle = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.colors.redPastel, // Use pastel color
-  color: 'black', // Text color
-  borderRadius: '4px', // Standard border radius
-  padding: '8px 16px', // Standard padding
-  fontSize: '16px', // Standard font size
-  textTransform: 'none', // No text transformation
-  '&:hover': {
-    backgroundColor: theme.palette.colors.purplePastel, // Hover color
-  },
-}));
-
-// Fun Button Component with text and onClick
+// Fun Button Component with text, onClick, and optional to (for navigation)
 interface FunButtonProps {
   text: string;
-  onClick: () => void;
+  to: string; // Optional prop for navigation
 }
 
-const FunButton: React.FC<FunButtonProps> = ({ text, onClick }) => {
+const FunButton: React.FC<FunButtonProps> = ({ text, to }) => {
   return (
-    <FunButtonStyle variant="contained" onClick={onClick}>
+    <Button
+      sx={(theme) => ({
+        backgroundColor: theme.palette.colors.greenPastel, // Use pastel color
+        color: 'black', // Text color
+        borderRadius: '4px', // Standard border radius
+        fontSize: '28px', // Standard font size
+        textTransform: 'none', // No text transformation
+        '&:hover': {
+          backgroundColor: theme.palette.colors.purplePastel, // Hover color
+        },
+      })}
+      variant="contained"
+      size='large'
+      component={RouterLink}
+      to={to}
+    >
       {text}
-    </FunButtonStyle>
+    </Button>
   );
 };
 

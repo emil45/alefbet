@@ -6,6 +6,9 @@ declare module '@mui/material/styles' {
       redPastel: string;
       purplePastel: string;
       beigePastel: string;
+      greenPastel: string;
+      bluePastel: string;
+      orangePastel: string;
     };
   }
   interface PaletteOptions {
@@ -13,6 +16,9 @@ declare module '@mui/material/styles' {
       redPastel?: string;
       purplePastel?: string;
       beigePastel?: string;
+      greenPastel?: string;
+      bluePastel?: string;
+      orangePastel?: string;
     };
   }
 }
