@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import LettersPage from './pages/LettersPage';
@@ -12,6 +12,20 @@ import { TEXTS } from './data/texts';
 import { RoutesEnum } from './models/RoutesEnum';
 
 const App: React.FC = () => {
+  const [isTouchDevice, setIsTouchDevice] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkTouchDevice = () => {
+      const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      setIsTouchDevice(touch);
+    };
+
+    checkTouchDevice();
+
+    return () => {};
+  }, []);
+
+  
   return (
     <Router>
       <Box
@@ -37,7 +51,7 @@ const App: React.FC = () => {
           </Typography>
         </Box>
       </Box>
-      <CursorFollower />
+      {isTouchDevice && <CursorFollower />}
     </Router>
   );
 };
