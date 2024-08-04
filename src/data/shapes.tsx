@@ -44,14 +44,14 @@ const shapes: ShapeModel[] = [
     shapeHebrewName: 'אליפסה',
     soundFile: '/shapes/ellipse.mp3',
     color: '#f7dc6f',
-    element: <ellipse cx="12" cy="12" rx="10" ry="6" />,
+    element: <ellipse cx="12" cy="14" rx="12" ry="8" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
     shapeName: 'heart',
     shapeHebrewName: 'לב',
     soundFile: '/shapes/heart.mp3',
-    color: 'orange',
+    color: 'darkorange',
     element: (
       <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
     ),
@@ -77,7 +77,7 @@ const shapes: ShapeModel[] = [
     shapeName: 'moon',
     shapeHebrewName: 'ירח',
     soundFile: '/shapes/moon.mp3',
-    color: 'black',
+    color: '#f3b817',
     element: (
       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.37 0 2.67-0.27 3.88-0.75-2.35-1.37-4-3.87-4-6.75 0-3.5 2.57-6.4 6-7.5-0.83-1.63-2.23-3-4-3z" />
     ),
@@ -119,7 +119,7 @@ const shapes: ShapeModel[] = [
     shapeName: 'square',
     shapeHebrewName: 'ריבוע',
     soundFile: '/shapes/square.mp3',
-    color: 'lightBlue',
+    color: 'black',
     element: <rect x="2" y="4" width="20" height="20" />,
   },
   {
@@ -144,7 +144,37 @@ const shapes: ShapeModel[] = [
     shapeHebrewName: 'גל',
     soundFile: '/shapes/wave.mp3',
     color: 'olive',
-    element: <path d="M0 20 Q 10 10, 20 20 T 40 20 T 60 20 T 80 20 T 100 20" />,
+    element: (
+      <path
+        d="M0 11 Q 1.5 8.5, 3 11 T 6 11 T 9 11 T 12 11 T 15 11 T 18 11 T 21 11 T 24 11 T 27 11 T 30 11"
+        stroke="blue"
+        fill="none"
+      />
+    ),
+  },
+  {
+    type: ModelTypesEnum.SHAPES,
+    shapeName: 'octagon',
+    shapeHebrewName: 'מתומן',
+    soundFile: '/shapes/octagon.mp3',
+    color: 'tomato',
+    element: <polygon points="8 3, 16 3, 23 10, 23 17, 16 24, 8 24, 1 17, 1 10" />,
+  },
+  {
+    type: ModelTypesEnum.SHAPES,
+    shapeName: 'parallelogram',
+    shapeHebrewName: 'מקבילית',
+    soundFile: '/shapes/parallelogram.mp3',
+    color: 'violet',
+    element: <rect x="10" y="4" width="15" height="20" transform="skewX(-20)" />,
+  },
+  {
+    type: ModelTypesEnum.SHAPES,
+    shapeName: 'diamond',
+    shapeHebrewName: 'יהלום',
+    soundFile: '/shapes/diamond.mp3',
+    color: 'lightBlue',
+    element: <polygon points="6 3, 18 3, 23 8, 12 24, 1 8" />,
   },
 ];
 
