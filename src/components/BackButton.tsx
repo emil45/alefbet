@@ -6,14 +6,14 @@ import { TEXTS } from '../data/texts';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const BackButtonStyle = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.colors.greenPastel,
+  backgroundColor: 'white',
   color: theme.palette.colors.blackPastel,
   borderRadius: '4px',
   padding: '8px 16px',
   fontSize: '16px',
   textTransform: 'none',
   '&:hover': {
-    backgroundColor: theme.palette.colors.purplePastel,
+    backgroundColor: theme.palette.colors.orangePastel,
   },
 }));
 
@@ -21,11 +21,7 @@ const BackButton: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <BackButtonStyle
-      variant="contained"
-      onClick={() => navigate(-1)}
-      startIcon={<ArrowBackIcon />}
-    >
+    <BackButtonStyle variant="contained" onClick={() => navigate(-1)} startIcon={<ArrowBackIcon />}>
       {TEXTS.BACK_BUTTON}
     </BackButtonStyle>
   );

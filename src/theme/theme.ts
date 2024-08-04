@@ -13,6 +13,8 @@ const themeLight = createTheme({
       default: '#e8d1bb',
     },
     colors: {
+      white: '#ffffff',
+      black: '#000000',
       redPastel: '#f7c1bb',
       purplePastel: '#dbc3e2',
       beigePastel: '#f5ede1',

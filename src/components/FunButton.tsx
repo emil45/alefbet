@@ -1,32 +1,102 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Box, Typography } from '@mui/material';
 
-// Fun Button Component with text, onClick, and optional to (for navigation)
 interface FunButtonProps {
   text: string;
-  to: string; // Optional prop for navigation
+  to?: string; // Made optional
+  onClick?: () => void; // Made optional
 }
 
-const FunButton: React.FC<FunButtonProps> = ({ text, to }) => {
+const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick }) => {
+  const navigate = useNavigate();
+
+  const commonStyles = (theme: any) => ({
+    position: 'relative',
+    border: 'none',
+    background: 'transparent',
+    padding: '0',
+    cursor: 'pointer',
+    outlineOffset: '4px',
+    transition: 'filter 250ms',
+    '& .shadow': {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      borderRadius: '12px',
+      background: 'hsla(0, 0%, 0%, 0.25)',
+      willChange: 'transform',
+      transform: 'translateY(2px)',
+      transition: 'transform 600ms cubic-bezier(.3, .7, .4, 1)',
+    },
+    '& .edge': {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      borderRadius: '12px',
+      background: 'linear-gradient(to left, #52001b 0%, #a30036 8%, #a30036 92%, #52001b 100%)',
+    },
+    '& .front': {
+      display: 'block',
+      position: 'relative',
+      color: theme.palette.colors.white,
+      fontWeight: 'bold',
+      fontSize: '30px',
+      padding: '12px 30px',
+      borderRadius: '12px',
+      background: 'hsl(345deg 100% 47%)',
+      willChange: 'transform',
+      transform: 'translateY(-4px)',
+      transition: 'transform 600ms cubic-bezier(.3, .7, .4, 1)',
+    },
+    '&:hover': {
+      backgroundColor: 'transparent',
+      filter: 'brightness(110%)',
+      '& .front': {
+        transform: 'translateY(-6px)',
+        transition: 'transform 250ms cubic-bezier(.3, .7, .4, 1.5)',
+      },
+      '& .shadow': {
+        transform: 'translateY(4px)',
+        transition: 'transform 250ms cubic-bezier(.3, .7, .4, 1.5)',
+      },
+    },
+    '&:active': {
+      '& .front': {
+        transform: 'translateY(-2px)',
+        transition: 'transform 34ms',
+      },
+      '& .shadow': {
+        transform: 'translateY(1px)',
+        transition: 'transform 34ms',
+      },
+    },
+    '&:focus:not(:focus-visible)': {
+      outline: 'none',
+    },
+  });
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    if (to) {
+      setTimeout(() => {
+        navigate(to);
+      }, 500);
+    } else if (onClick) {
+      onClick();
+    }
+  };
+
   return (
-    <Button
-      sx={(theme) => ({
-        backgroundColor: theme.palette.colors.greenPastel, // Use pastel color
-        color: theme.palette.colors.blackPastel,
-        borderRadius: '4px', // Standard border radius
-        fontSize: '28px', // Standard font size
-        textTransform: 'none', // No text transformation
-        '&:hover': {
-          backgroundColor: theme.palette.colors.purplePastel, // Hover color
-        },
-      })}
-      variant="contained"
-      size='large'
-      component={RouterLink}
-      to={to}
-    >
-      {text}
+    <Button disableElevation sx={commonStyles} onClick={handleClick}>
+      <span className="shadow" />
+      <span className="edge" />
+      <Typography className="front">{text}</Typography>
     </Button>
   );
 };

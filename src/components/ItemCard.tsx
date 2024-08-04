@@ -5,13 +5,21 @@ interface ItemCardProps {
   name: string;
   soundFile: string;
   textColor: string;
+  cardSize?: number;
   backgroundColor?: string;
   itemCaption?: string;
   element?: React.ReactNode;
 }
 
-const ItemCard: React.FC<ItemCardProps> = ({ name, soundFile, textColor, backgroundColor, itemCaption, element }) => {
-
+const ItemCard: React.FC<ItemCardProps> = ({
+  name,
+  soundFile,
+  textColor,
+  backgroundColor,
+  itemCaption,
+  element,
+  cardSize = 1,
+}) => {
   const playSound = () => {
     const audio = new Audio(soundFile);
     audio.play();
@@ -36,15 +44,15 @@ const ItemCard: React.FC<ItemCardProps> = ({ name, soundFile, textColor, backgro
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '150px',
-        width: '150px',
+        height: `${150 * cardSize}px`,
+        width: `${150 * cardSize}px`,
         position: 'relative',
       })}
     >
       {element ? (
-        <SvgIcon sx={{ fontSize: 100, color: textColor }}>{element}</SvgIcon>
+        <SvgIcon sx={{ fontSize: 100 * cardSize, color: textColor }}>{element}</SvgIcon>
       ) : (
-        <Typography variant="h1" sx={{ color: textColor, fontSize: '124px', fontWeight: 'bold' }}>
+        <Typography variant="h1" sx={{ color: textColor, fontSize: `${124 * cardSize}px`, fontWeight: 'bold' }}>
           {name}
         </Typography>
       )}

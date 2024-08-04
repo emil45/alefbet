@@ -1,5 +1,5 @@
 export const TEXTS = {
-  HOME_CHOOSE_GAME_TEXT: 'לימדו והכירו',
+  HOME_CHOOSE_GAME_TEXT: 'לומדים ונהנים',
   GUESS_GAME_BUTTON: 'משחק הניחושים',
   LETTERS_BUTTON: '🅰️ 🅱️ אותיות',
   NUMBERS_BUTTON: 'מספרים 1️⃣ 2️⃣',

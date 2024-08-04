@@ -10,10 +10,14 @@ declare module '@mui/material/styles' {
       bluePastel: string;
       orangePastel: string;
       blackPastel: string;
+      black: string;
+      white: string;
     };
   }
   interface PaletteOptions {
     colors?: {
+      black?: string;
+      white?: string;
       redPastel?: string;
       purplePastel?: string;
       beigePastel?: string;

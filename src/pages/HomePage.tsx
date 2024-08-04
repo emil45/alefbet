@@ -13,7 +13,10 @@ const HomePage: React.FC = () => {
         alignItems: 'center',
       }}
     >
-      <Typography variant="h2" sx={theme => ({ mb: 3, color: theme.palette.colors.blackPastel })}>
+      <Typography
+        variant="h2"
+        sx={(theme) => ({ mb: 3, color: 'black', backgroundColor: theme.palette.colors.greenPastel })}
+      >
         {TEXTS.HOME_CHOOSE_GAME_TEXT}
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
