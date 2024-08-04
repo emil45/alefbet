@@ -40,7 +40,7 @@ const App: React.FC = () => {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: { md: 'center center', xs: '-170px center' },
-        backgroundAttachment: { xs: 'fixed' },
+        backgroundAttachment: 'fixed',
         height: '100%',
       }}
     >

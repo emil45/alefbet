@@ -16,7 +16,7 @@ const themeLight = createTheme({
       funRed: '#f0003c',
       white: '#ffffff',
       black: '#000000',
-      redPastel: '#f7c1bb',
+      redPastel: '#eeaea8',
       purplePastel: '#dbc3e2',
       beigePastel: '#f5ede1',
       greenPastel: '#dee581',
