@@ -49,7 +49,7 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick }) => {
       fontSize: '30px',
       padding: '12px 30px',
       borderRadius: '12px',
-      background: 'hsl(345deg 100% 47%)',
+      background: '#f0003c',
       willChange: 'transform',
       transform: 'translateY(-4px)',
       transition: 'transform 600ms cubic-bezier(.3, .7, .4, 1)',
@@ -94,9 +94,11 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick }) => {
 
   return (
     <Button disableElevation sx={commonStyles} onClick={handleClick}>
-      <span className="shadow" />
-      <span className="edge" />
-      <Typography className="front">{text}</Typography>
+      <Box className="shadow" />
+      <Box className="edge" />
+      <Typography className="front" sx={{ minWidth: '100%' }}>
+        {text}
+      </Typography>
     </Button>
   );
 };

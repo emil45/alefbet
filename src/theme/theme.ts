@@ -10,9 +10,10 @@ const themeLight = createTheme({
       main: '#dc004e',
     },
     background: {
-      default: '#e8d1bb',
+      // default: '#e8d1bb',
     },
     colors: {
+      funRed: '#f0003c',
       white: '#ffffff',
       black: '#000000',
       redPastel: '#f7c1bb',

@@ -3,6 +3,7 @@ import '@mui/material/styles';
 declare module '@mui/material/styles' {
   interface Palette {
     colors: {
+      funRed: string;
       redPastel: string;
       purplePastel: string;
       beigePastel: string;
@@ -16,6 +17,7 @@ declare module '@mui/material/styles' {
   }
   interface PaletteOptions {
     colors?: {
+      funRed?: string;
       black?: string;
       white?: string;
       redPastel?: string;

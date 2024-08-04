@@ -13,13 +13,10 @@ const HomePage: React.FC = () => {
         alignItems: 'center',
       }}
     >
-      <Typography
-        variant="h2"
-        sx={(theme) => ({ mb: 3, color: 'black', backgroundColor: theme.palette.colors.greenPastel })}
-      >
+      <Typography variant="h2" sx={(theme) => ({ mb: 3, color: 'black' })}>
         {TEXTS.HOME_CHOOSE_GAME_TEXT}
       </Typography>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
         <FunButton to={RoutesEnum.LETTERS} text={TEXTS.LETTERS_BUTTON} />
         <FunButton to={RoutesEnum.NUMBERS} text={TEXTS.NUMBERS_BUTTON} />
         <FunButton to={RoutesEnum.COLORS} text={TEXTS.COLORS_BUTTON} />
