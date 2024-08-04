@@ -39,7 +39,8 @@ const App: React.FC = () => {
         backgroundImage: 'url("/images/background.jpg")',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
+        backgroundPosition: { md: 'center center', xs: '-170px center' },
+        backgroundAttachment: { xs: 'fixed' },
         height: '100%',
       }}
     >

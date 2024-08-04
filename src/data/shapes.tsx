@@ -1,6 +1,6 @@
-import React from 'react';
 import { ShapeModel } from '../models/ShapeModel';
 import { ModelTypesEnum } from '../models/ModelsTypesEnum';
+import themeLight from '../theme/theme';
 
 const shapes: ShapeModel[] = [
   {
@@ -16,11 +16,11 @@ const shapes: ShapeModel[] = [
     shapeName: 'cone',
     shapeHebrewName: 'חרוט',
     soundFile: '/shapes/cone.mp3',
-    color: 'green',
+    color: 'lightgreen',
     element: (
       <>
-        <polygon points="12,2 22,22 2,22" />
-        <ellipse cx="12" cy="22" rx="10" ry="3" />
+        <polygon points="12 2, 20 19.9, 4 19.9" stroke="black" stroke-width="0.2" />
+        <ellipse cx="12" cy="20" rx="8" ry="2.5" stroke="black" stroke-width="0.2" />
       </>
     ),
   },
@@ -29,13 +29,13 @@ const shapes: ShapeModel[] = [
     shapeName: 'cylinder',
     shapeHebrewName: 'גליל',
     soundFile: '/shapes/cylinder.mp3',
-    color: 'blue',
+    color: '#bbbbff',
     element: (
-      <g>
-        <ellipse cx="12" cy="6" rx="10" ry="3" />
-        <rect x="2" y="6" width="20" height="14" />
-        <ellipse cx="12" cy="20" rx="10" ry="3" />
-      </g>
+      <>
+        <rect x="5" y="6" width="14" height="14" stroke="black" stroke-width="0.2" />
+        <ellipse cx="12" cy="6" rx="7" ry="3" stroke="black" stroke-width="0.2" />
+        <ellipse cx="12" cy="20" rx="7" ry="3" stroke="black" stroke-width="0.2" />
+      </>
     ),
   },
   {
@@ -44,7 +44,7 @@ const shapes: ShapeModel[] = [
     shapeHebrewName: 'אליפסה',
     soundFile: '/shapes/ellipse.mp3',
     color: '#f7dc6f',
-    element: <ellipse cx="12" cy="14" rx="12" ry="8" />,
+    element: <ellipse cx="12" cy="14" rx="12" ry="8" stroke="black" stroke-width="0.03" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
@@ -61,8 +61,8 @@ const shapes: ShapeModel[] = [
     shapeName: 'hexagon',
     shapeHebrewName: 'משושה',
     soundFile: '/shapes/hexagon.mp3',
-    color: 'cyan',
-    element: <polygon points="12 2, 20 7, 20 17, 12 22, 4 17, 4 7" />,
+    color: '#88b7b7',
+    element: <polygon points="12 2, 20 7, 20 17, 12 22, 4 17, 4 7" stroke="black" stroke-width="0.02" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
@@ -79,7 +79,10 @@ const shapes: ShapeModel[] = [
     soundFile: '/shapes/moon.mp3',
     color: '#f3b817',
     element: (
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.37 0 2.67-0.27 3.88-0.75-2.35-1.37-4-3.87-4-6.75 0-3.5 2.57-6.4 6-7.5-0.83-1.63-2.23-3-4-3z" />
+      <>
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="18" cy="12" r="10" fill={themeLight.palette.colors.components.itemCardBackground} />
+      </>
     ),
   },
   {
@@ -88,7 +91,7 @@ const shapes: ShapeModel[] = [
     shapeHebrewName: 'מחומש',
     soundFile: '/shapes/pentagon.mp3',
     color: 'white',
-    element: <polygon points="12 2, 22 10, 18 22, 6 22, 2 10" />,
+    element: <polygon points="12 2, 22 10, 18 22, 6 22, 2 10" stroke="black" stroke-width="0.03" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
@@ -96,7 +99,16 @@ const shapes: ShapeModel[] = [
     shapeHebrewName: 'פירמידה',
     soundFile: '/shapes/pyramid.mp3',
     color: 'pink',
-    element: <polygon points="12 2, 22 22, 2 22" />, // Simplified 2D representation
+    element: (
+      <>
+        <polygon points="12 2, 24 16, 17 23, 1 20" />
+        <line x1="12" y1="2.1" x2="17" y2="23" stroke="black" stroke-width="0.3px" />
+        <line x1="12" y1="2.1" x2="1" y2="20" stroke="black" stroke-width="0.3px" />
+        <line x1="1" y1="20" x2="17" y2="23" stroke="black" stroke-width="0.3px" />
+        <line x1="17" y1="23" x2="24" y2="16" stroke="black" stroke-width="0.3px" />
+        <line x1="12" y1="2.1" x2="24" y2="16" stroke="black" stroke-width="0.3px" />
+      </>
+    ),
   },
   {
     type: ModelTypesEnum.SHAPES,
@@ -174,7 +186,16 @@ const shapes: ShapeModel[] = [
     shapeHebrewName: 'יהלום',
     soundFile: '/shapes/diamond.mp3',
     color: 'lightBlue',
-    element: <polygon points="6 3, 18 3, 23 8, 12 24, 1 8" />,
+    element: (
+      <>
+        <polygon points="6 3, 18 3, 23 8, 12 24, 1 8" stroke="black" stroke-width="0.1px" />
+        <line x1="1" y1="8" x2="23" y2="8" stroke="black" stroke-width="0.1px" />
+        <line x1="8" y1="8" x2="12" y2="24" stroke="black" stroke-width="0.1px" />
+        <line x1="16" y1="8" x2="12" y2="24" stroke="black" stroke-width="0.1px" />
+        <line x1="8" y1="8" x2="12" y2="3" stroke="black" stroke-width="0.1px" />
+        <line x1="16" y1="8" x2="12" y2="3" stroke="black" stroke-width="0.1px" />
+      </>
+    ),
   },
 ];
 

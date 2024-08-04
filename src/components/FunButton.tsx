@@ -49,7 +49,7 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick }) => {
       fontSize: '30px',
       padding: '12px 30px',
       borderRadius: '12px',
-      background: '#f0003c',
+      background: '#ed2859', // original '#f0003c'
       willChange: 'transform',
       transform: 'translateY(-4px)',
       transition: 'transform 600ms cubic-bezier(.3, .7, .4, 1)',

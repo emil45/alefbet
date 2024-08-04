@@ -23,7 +23,11 @@ const themeLight = createTheme({
       bluePastel: '#9ed6ea',
       orangePastel: '#ffcd36',
       blackPastel: '#434243',
+      components: {
+        itemCardBackground: '#f5ede1',  // beigePastel
+      },
     },
+    
   },
   typography: {
     fontFamily: 'Roboto, Arial, sans-serif',

@@ -31,7 +31,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
       sx={(theme) => ({
         cursor: 'pointer',
         padding: '30px',
-        backgroundColor: backgroundColor || theme.palette.colors.beigePastel,
+        backgroundColor: backgroundColor || theme.palette.colors.components.itemCardBackground,
         borderRadius: '8px',
         boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
         transition: 'transform 0.3s, backgroundColor 0.3s',

@@ -2,6 +2,9 @@ import '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Palette {
+    componentsColor: {
+      itemCardBackground: string
+    },
     colors: {
       funRed: string;
       redPastel: string;
@@ -13,6 +16,9 @@ declare module '@mui/material/styles' {
       blackPastel: string;
       black: string;
       white: string;
+      components: {
+        itemCardBackground?: string
+      },
     };
   }
   interface PaletteOptions {
@@ -27,6 +33,9 @@ declare module '@mui/material/styles' {
       bluePastel?: string;
       orangePastel?: string;
       blackPastel?: string;
+      components: {
+        itemCardBackground?: string
+      },
     };
   }
 }

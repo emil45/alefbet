@@ -6,14 +6,14 @@ import { TEXTS } from '../data/texts';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const BackButtonStyle = styled(Button)(({ theme }) => ({
-  backgroundColor: 'white',
+  backgroundColor: theme.palette.colors.greenPastel,
   color: theme.palette.colors.blackPastel,
   borderRadius: '4px',
   padding: '8px 16px',
   fontSize: '16px',
   textTransform: 'none',
   '&:hover': {
-    backgroundColor: theme.palette.colors.orangePastel,
+    backgroundColor: theme.palette.colors.greenPastel,
   },
 }));
 
