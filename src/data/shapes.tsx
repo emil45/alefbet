@@ -8,8 +8,68 @@ const shapes: ShapeModel[] = [
     shapeName: 'circle',
     shapeHebrewName: 'עיגול',
     soundFile: '/shapes/circle.mp3',
-    color: 'red',
-    element: <circle cx="12" cy="12" r="10" />,
+    color: '#eb4747',
+    element: <circle cx="12" cy="12" r="10" stroke="black" stroke-width="0.1" />,
+  },
+  {
+    type: ModelTypesEnum.SHAPES,
+    shapeName: 'square',
+    shapeHebrewName: 'ריבוע',
+    soundFile: '/shapes/square.mp3',
+    color: '#68d3ee',
+    element: <rect x="2" y="4" width="20" height="20" stroke="black" stroke-width="0.1" />,
+  },
+  {
+    type: ModelTypesEnum.SHAPES,
+    shapeName: 'heart',
+    shapeHebrewName: 'לב',
+    soundFile: '/shapes/heart.mp3',
+    color: 'darkorange',
+    element: (
+      <path
+        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+        stroke="black"
+        stroke-width="0.1"
+      />
+    ),
+  },
+  {
+    type: ModelTypesEnum.SHAPES,
+    shapeName: 'ellipse',
+    shapeHebrewName: 'אליפסה',
+    soundFile: '/shapes/ellipse.mp3',
+    color: '#f7dc6f',
+    element: <ellipse cx="12" cy="14" rx="12" ry="8" stroke="black" stroke-width="0.1" />,
+  },
+  {
+    type: ModelTypesEnum.SHAPES,
+    shapeName: 'rectangle',
+    shapeHebrewName: 'מלבן',
+    soundFile: '/shapes/rectangle.mp3',
+    color: 'purple',
+    element: <rect x="2" y="5" width="20" height="14" stroke="black" stroke-width="0.1" />,
+  },
+  {
+    type: ModelTypesEnum.SHAPES,
+    shapeName: 'star',
+    shapeHebrewName: 'כוכב',
+    soundFile: '/shapes/star.mp3',
+    color: 'lightCoral',
+    element: (
+      <polygon
+        points="12,2 14.85,8.47 22,9.24 17,14.14 18.18,21 12,17.27 5.82,21 7,14.14 2,9.24 9.15,8.47"
+        stroke="black"
+        stroke-width="0.1"
+      />
+    ),
+  },
+  {
+    type: ModelTypesEnum.SHAPES,
+    shapeName: 'triangle',
+    shapeHebrewName: 'משולש',
+    soundFile: '/shapes/triangle.mp3',
+    color: 'teal',
+    element: <polygon points="12 2, 22 22, 2 22" stroke="black" stroke-width="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
@@ -24,45 +84,14 @@ const shapes: ShapeModel[] = [
       </>
     ),
   },
-  {
-    type: ModelTypesEnum.SHAPES,
-    shapeName: 'cylinder',
-    shapeHebrewName: 'גליל',
-    soundFile: '/shapes/cylinder.mp3',
-    color: '#bbbbff',
-    element: (
-      <>
-        <rect x="5" y="6" width="14" height="14" stroke="black" stroke-width="0.2" />
-        <ellipse cx="12" cy="6" rx="7" ry="3" stroke="black" stroke-width="0.2" />
-        <ellipse cx="12" cy="20" rx="7" ry="3" stroke="black" stroke-width="0.2" />
-      </>
-    ),
-  },
-  {
-    type: ModelTypesEnum.SHAPES,
-    shapeName: 'ellipse',
-    shapeHebrewName: 'אליפסה',
-    soundFile: '/shapes/ellipse.mp3',
-    color: '#f7dc6f',
-    element: <ellipse cx="12" cy="14" rx="12" ry="8" stroke="black" stroke-width="0.03" />,
-  },
-  {
-    type: ModelTypesEnum.SHAPES,
-    shapeName: 'heart',
-    shapeHebrewName: 'לב',
-    soundFile: '/shapes/heart.mp3',
-    color: 'darkorange',
-    element: (
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-    ),
-  },
+
   {
     type: ModelTypesEnum.SHAPES,
     shapeName: 'hexagon',
     shapeHebrewName: 'משושה',
     soundFile: '/shapes/hexagon.mp3',
     color: '#88b7b7',
-    element: <polygon points="12 2, 20 7, 20 17, 12 22, 4 17, 4 7" stroke="black" stroke-width="0.02" />,
+    element: <polygon points="12 2, 20 7, 20 17, 12 22, 4 17, 4 7" stroke="black" stroke-width="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
@@ -70,7 +99,7 @@ const shapes: ShapeModel[] = [
     shapeHebrewName: 'דלתון',
     soundFile: '/shapes/kite.mp3',
     color: 'brown',
-    element: <polygon points="12 2, 20 9, 12 24, 4 9" />,
+    element: <polygon points="12 2, 20 9, 12 24, 4 9" stroke="black" stroke-width="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
@@ -80,7 +109,7 @@ const shapes: ShapeModel[] = [
     color: '#f3b817',
     element: (
       <>
-        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="10" stroke="black" stroke-width="0.1" />
         <circle cx="18" cy="12" r="10" fill={themeLight.palette.colors.components.itemCardBackground} />
       </>
     ),
@@ -91,7 +120,15 @@ const shapes: ShapeModel[] = [
     shapeHebrewName: 'מחומש',
     soundFile: '/shapes/pentagon.mp3',
     color: 'white',
-    element: <polygon points="12 2, 22 10, 18 22, 6 22, 2 10" stroke="black" stroke-width="0.03" />,
+    element: <polygon points="12 2, 22 10, 18 22, 6 22, 2 10" stroke="black" stroke-width="0.1" />,
+  },
+  {
+    type: ModelTypesEnum.SHAPES,
+    shapeName: 'trapezoid',
+    shapeHebrewName: 'טרפז',
+    soundFile: '/shapes/trapezoid.mp3',
+    color: '#b4ca6d',
+    element: <polygon points="17 4, 23 22, 1 22, 7 4" stroke="black" stroke-width="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
@@ -110,46 +147,16 @@ const shapes: ShapeModel[] = [
       </>
     ),
   },
-  {
-    type: ModelTypesEnum.SHAPES,
-    shapeName: 'rectangle',
-    shapeHebrewName: 'מלבן',
-    soundFile: '/shapes/rectangle.mp3',
-    color: 'purple',
-    element: <rect x="2" y="5" width="20" height="14" />,
-  },
+
   {
     type: ModelTypesEnum.SHAPES,
     shapeName: 'rhombus',
     shapeHebrewName: 'מעוין',
     soundFile: '/shapes/rhombus.mp3',
     color: 'gray',
-    element: <polygon points="12 0, 22 12, 12 24, 2 12" />,
+    element: <polygon points="12 0, 22 12, 12 24, 2 12" stroke="black" stroke-width="0.1" />,
   },
-  {
-    type: ModelTypesEnum.SHAPES,
-    shapeName: 'square',
-    shapeHebrewName: 'ריבוע',
-    soundFile: '/shapes/square.mp3',
-    color: 'black',
-    element: <rect x="2" y="4" width="20" height="20" />,
-  },
-  {
-    type: ModelTypesEnum.SHAPES,
-    shapeName: 'star',
-    shapeHebrewName: 'כוכב',
-    soundFile: '/shapes/star.mp3',
-    color: 'lightCoral',
-    element: <polygon points="12,2 14.85,8.47 22,9.24 17,14.14 18.18,21 12,17.27 5.82,21 7,14.14 2,9.24 9.15,8.47" />,
-  },
-  {
-    type: ModelTypesEnum.SHAPES,
-    shapeName: 'triangle',
-    shapeHebrewName: 'משולש',
-    soundFile: '/shapes/triangle.mp3',
-    color: 'teal',
-    element: <polygon points="12 2, 22 22, 2 22" />,
-  },
+
   {
     type: ModelTypesEnum.SHAPES,
     shapeName: 'wave',
@@ -166,11 +173,25 @@ const shapes: ShapeModel[] = [
   },
   {
     type: ModelTypesEnum.SHAPES,
+    shapeName: 'cylinder',
+    shapeHebrewName: 'גליל',
+    soundFile: '/shapes/cylinder.mp3',
+    color: '#bbbbff',
+    element: (
+      <>
+        <rect x="5" y="6" width="14" height="14" stroke="black" stroke-width="0.2" />
+        <ellipse cx="12" cy="6" rx="7" ry="3" stroke="black" stroke-width="0.2" />
+        <ellipse cx="12" cy="20" rx="7" ry="3" stroke="black" stroke-width="0.2" />
+      </>
+    ),
+  },
+  {
+    type: ModelTypesEnum.SHAPES,
     shapeName: 'octagon',
     shapeHebrewName: 'מתומן',
     soundFile: '/shapes/octagon.mp3',
     color: 'tomato',
-    element: <polygon points="8 3, 16 3, 23 10, 23 17, 16 24, 8 24, 1 17, 1 10" />,
+    element: <polygon points="8 3, 16 3, 23 10, 23 17, 16 24, 8 24, 1 17, 1 10" stroke="black" stroke-width="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
@@ -178,7 +199,7 @@ const shapes: ShapeModel[] = [
     shapeHebrewName: 'מקבילית',
     soundFile: '/shapes/parallelogram.mp3',
     color: 'violet',
-    element: <rect x="10" y="4" width="15" height="20" transform="skewX(-20)" />,
+    element: <rect x="10" y="4" width="15" height="20" transform="skewX(-20)" stroke="black" stroke-width="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,

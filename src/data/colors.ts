@@ -30,7 +30,7 @@ const letters: ColorModel[] = [
     color: 'orange',
   },
   {type: ModelTypesEnum.COLORS,
-    colorName: 'טורקיז',
+    colorName: 'תכלת',
     soundFile: '/colors/cyan.mp3',
     color: 'cyan',
   },

@@ -27,7 +27,7 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick }) => {
       width: '100%',
       height: '100%',
       borderRadius: '12px',
-      background: 'hsla(0, 0%, 0%, 0.25)',
+      background: '#00000040',
       willChange: 'transform',
       transform: 'translateY(2px)',
       transition: 'transform 600ms cubic-bezier(.3, .7, .4, 1)',
@@ -39,7 +39,7 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick }) => {
       width: '100%',
       height: '100%',
       borderRadius: '12px',
-      background: 'linear-gradient(to left, #52001b 0%, #a30036 8%, #a30036 92%, #52001b 100%)',
+      background: 'linear-gradient(to left, #5e1c32 0%, #a82f57 8%, #a82f57 92%, #5e1c32 100%)', // original linear-gradient(to left, #52001b 0%, #a30036 8%, #a30036 92%, #52001b 100%)
     },
     '& .front': {
       display: 'block',
@@ -49,7 +49,7 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick }) => {
       fontSize: { xs: '30px', sm: '40px', md: '50px' },
       padding: '12px 30px',
       borderRadius: '12px',
-      background: '#f0003c', // original '#f0003c'
+      background: '#f74572', // original '#f0003c'
       willChange: 'transform',
       transform: 'translateY(-4px)',
       transition: 'transform 600ms cubic-bezier(.3, .7, .4, 1)',
@@ -78,6 +78,15 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick }) => {
     },
     '&:focus:not(:focus-visible)': {
       outline: 'none',
+    },
+    '& .MuiTouchRipple-root': {
+      color: 'red',
+      borderRadius: '10px',
+      marginBottom: '2px',
+      opacity: 0.6,
+    },
+    '&& .MuiTouchRipple-rippleVisible': {
+      animationDuration: '600ms',
     },
   });
 
