@@ -2,6 +2,8 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
+import { logEvent } from '../utils/amplitude';
+import { AmplitudeEventsEnum } from '../models/amplitudeEvents';
 
 interface FunButtonProps {
   text: string;
@@ -93,6 +95,7 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick }) => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (to) {
+      logEvent(AmplitudeEventsEnum.BUTTON_CLICK, { buttonName: to });
       setTimeout(() => {
         navigate(to);
       }, 500);

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import LettersPage from './pages/LettersPage';
 import NumbersPage from './pages/NumbersPage';
@@ -9,22 +9,11 @@ import GuessGamePage from './pages/GuessGamePage';
 import { Box, Typography } from '@mui/material';
 import { TEXTS } from './data/texts';
 import { RoutesEnum } from './models/RoutesEnum';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import TransitionWrapper from './components/TransitionWrapper';
+import { initAmplitude } from './utils/amplitude';
 
 const App: React.FC = () => {
-  const location = useLocation();
-  const [isTouchDevice, setIsTouchDevice] = useState<boolean>(false);
-
   useEffect(() => {
-    const checkTouchDevice = () => {
-      const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      setIsTouchDevice(touch);
-    };
-
-    checkTouchDevice();
-
-    return () => {};
+    initAmplitude();
   }, []);
 
   return (
