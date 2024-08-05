@@ -13,6 +13,7 @@ import { initAmplitude } from './utils/amplitude';
 
 const App: React.FC = () => {
   useEffect(() => {
+    console.log(process.env.REACT_APP_ENV as string);
     initAmplitude();
   }, []);
 

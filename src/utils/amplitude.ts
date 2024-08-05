@@ -4,7 +4,6 @@ import { AmplitudeEventProperties, AmplitudeEventsEnum } from '../models/amplitu
 const API_KEY = process.env.REACT_APP_AMPLITUDE_API_KEY as string;
 
 export const initAmplitude = () => {
-  console.log(API_KEY);
   amplitude.init(API_KEY, {defaultTracking: true},);
 };
 
