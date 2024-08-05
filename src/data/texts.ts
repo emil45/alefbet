@@ -7,5 +7,5 @@ export const TEXTS = {
   SHAPES_BUTTON: '🟣 🔶 צורות',
   BACK_BUTTON: 'אחורה',
   GUESS_GAME_NEXT_TEXT: 'הבא',
-  FOOTER_TEXT: 'נעה © 2024. All rights reserved.',
+  FOOTER_TEXT: 'Noa © 2024. All rights reserved.',
 };
