@@ -24,10 +24,11 @@ const themeLight = createTheme({
       orangePastel: '#ffcd36',
       blackPastel: '#434243',
       components: {
-        itemCardBackground: '#f5ede1',  // beigePastel
+        itemCardBackground: '#f5ede1', // beigePastel
+        memoryMatchCardBack: '#a7d2dd',
+        memoryMatchCardBackIcon: '#f5de97',
       },
     },
-    
   },
   typography: {
     fontFamily: 'Roboto, Arial, sans-serif',

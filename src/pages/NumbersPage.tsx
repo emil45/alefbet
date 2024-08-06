@@ -7,19 +7,19 @@ import BackButton from '../components/BackButton';
 const NumbersPage: React.FC = () => {
   return (
     <>
-    <BackButton />
-    <Grid container spacing={4} justifyContent="center" flexDirection='row-reverse'>
-      {numbers.map((number, index) => (
-        <Grid item key={index}>
-          <ItemCard
-            name={number.numberName}
-            textColor={number.color}
-            soundFile={number.soundFile}
-            itemCaption={number.numberLetter}
-          />
-        </Grid>
-      ))}
-    </Grid>
+      <BackButton />
+      <Grid container spacing={4} justifyContent="center" flexDirection="row-reverse">
+        {numbers.map((number, index) => (
+          <Grid item key={index}>
+            <ItemCard
+              name={number.numberName}
+              textColor={number.color}
+              soundFile={number.soundFile}
+              itemCaption={number.numberLetter}
+            />
+          </Grid>
+        ))}
+      </Grid>
     </>
   );
 };

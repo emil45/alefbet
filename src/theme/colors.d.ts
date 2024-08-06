@@ -3,8 +3,8 @@ import '@mui/material/styles';
 declare module '@mui/material/styles' {
   interface Palette {
     componentsColor: {
-      itemCardBackground: string
-    },
+      itemCardBackground: string;
+    };
     colors: {
       funRed: string;
       redPastel: string;
@@ -17,8 +17,10 @@ declare module '@mui/material/styles' {
       black: string;
       white: string;
       components: {
-        itemCardBackground?: string
-      },
+        itemCardBackground: string;
+        memoryMatchCardBack: string;
+        memoryMatchCardBackIcon: string;
+      };
     };
   }
   interface PaletteOptions {
@@ -34,8 +36,10 @@ declare module '@mui/material/styles' {
       orangePastel?: string;
       blackPastel?: string;
       components: {
-        itemCardBackground?: string
-      },
+        itemCardBackground?: string;
+        memoryMatchCardBack?: string;
+        memoryMatchCardBackIcon?: string;
+      };
     };
   }
 }

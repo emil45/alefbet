@@ -1,4 +1,4 @@
-import { ModelTypesEnum } from "./ModelsTypesEnum";
+import { ModelTypesEnum } from './ModelsTypesEnum';
 
 export interface NumberModel {
   type: ModelTypesEnum;

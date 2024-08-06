@@ -7,19 +7,19 @@ import BackButton from '../components/BackButton';
 const LettersPage: React.FC = () => {
   return (
     <>
-    <BackButton />
-    <Grid container spacing={4} justifyContent="center" flexDirection='row-reverse'>
-      {letters.map((letter, index) => (
-        <Grid item key={index}>
-          <ItemCard
-            name={letter.letterName}
-            textColor={letter.color}
-            soundFile={letter.soundFile}
-            itemCaption={letter.letterFullName}
-          />
-        </Grid>
-      ))}
-    </Grid>
+      <BackButton />
+      <Grid container spacing={4} justifyContent="center" flexDirection="row-reverse">
+        {letters.map((letter, index) => (
+          <Grid item key={index}>
+            <ItemCard
+              name={letter.letterName}
+              textColor={letter.color}
+              soundFile={letter.soundFile}
+              itemCaption={letter.letterFullName}
+            />
+          </Grid>
+        ))}
+      </Grid>
     </>
   );
 };

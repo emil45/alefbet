@@ -1,17 +1,20 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import { logEvent } from '../utils/amplitude';
 import { AmplitudeEventsEnum } from '../models/amplitudeEvents';
 
 interface FunButtonProps {
   text: string;
-  to?: string; // Made optional
-  onClick?: () => void; // Made optional
+  to?: string;
+  onClick?: () => void;
+  fontSize?: number;
+  backgroundColor?: string;
+  paddingX?: number;
 }
 
-const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick }) => {
+const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick, fontSize, backgroundColor, paddingX }) => {
   const navigate = useNavigate();
 
   const commonStyles = (theme: any) => ({
@@ -48,10 +51,10 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick }) => {
       position: 'relative',
       color: theme.palette.colors.white,
       fontWeight: 'bold',
-      fontSize: { xs: '30px', sm: '40px', md: '50px' },
-      padding: '12px 30px',
+      fontSize: fontSize ? `${fontSize}px` : { xs: '30px', sm: '40px', md: '50px' },
+      padding: `12px ${paddingX || 30}px`,
       borderRadius: '12px',
-      background: '#f74572', // original '#f0003c'
+      background: backgroundColor || '#f74572', // original '#f0003c'
       willChange: 'transform',
       transform: 'translateY(-4px)',
       transition: 'transform 600ms cubic-bezier(.3, .7, .4, 1)',

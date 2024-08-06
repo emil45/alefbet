@@ -6,6 +6,7 @@ import NumbersPage from './pages/NumbersPage';
 import ColorsPage from './pages/ColorsPage';
 import ShapesPage from './pages/ShapesPage';
 import GuessGamePage from './pages/GuessGamePage';
+import MemoryMatchGamePage from './pages/MemoryMatchGamePage';
 import { Box, Typography } from '@mui/material';
 import { TEXTS } from './data/texts';
 import { RoutesEnum } from './models/RoutesEnum';
@@ -42,6 +43,7 @@ const App: React.FC = () => {
         <Route path={RoutesEnum.COLORS} element={<ColorsPage />} />
         <Route path={RoutesEnum.SHAPES} element={<ShapesPage />} />
         <Route path={RoutesEnum.GUESS_GAME} element={<GuessGamePage />} />
+        <Route path={RoutesEnum.MEMORY_MATCH_GAME} element={<MemoryMatchGamePage />} />
       </Routes>
       {/* </TransitionWrapper> */}
       <Box sx={{ textAlign: 'center', mt: '25px' }}>
