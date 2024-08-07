@@ -1,12 +1,13 @@
 export const TEXTS = {
   HOME_CHOOSE_GAME_TEXT: 'לומדים ונהנים',
 
-  GUESS_GAME_BUTTON: 'משחק הניחושים',
   LETTERS_BUTTON: '🅰️ 🅱️ אותיות',
   NUMBERS_BUTTON: 'מספרים 1️⃣ 2️⃣',
   COLORS_BUTTON: '🖌️ 🎨 צבעים',
   SHAPES_BUTTON: '🟣 🔶 צורות',
-  MEMORY_MATCH_GAME_BUTTON: 'משחק הזיכרון',
+  GAMES_BUTTON: '🧩 🎲 משחקים',
+  GUESS_GAME_BUTTON: '🎴 משחק הניחושים',
+  MEMORY_MATCH_GAME_BUTTON: '🧩 משחק הזיכרון',
 
   BACK_BUTTON: '👈  אחורה',
 

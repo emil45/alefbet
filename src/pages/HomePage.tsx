@@ -21,8 +21,7 @@ const HomePage: React.FC = () => {
         <FunButton to={RoutesEnum.NUMBERS} text={TEXTS.NUMBERS_BUTTON} />
         <FunButton to={RoutesEnum.COLORS} text={TEXTS.COLORS_BUTTON} />
         <FunButton to={RoutesEnum.SHAPES} text={TEXTS.SHAPES_BUTTON} />
-        <FunButton to={RoutesEnum.GUESS_GAME} text={TEXTS.GUESS_GAME_BUTTON} />
-        <FunButton to={RoutesEnum.MEMORY_MATCH_GAME} text={TEXTS.MEMORY_MATCH_GAME_BUTTON} />
+        <FunButton to={RoutesEnum.GAMES} text={TEXTS.GAMES_BUTTON} />
       </Box>
     </Box>
   );

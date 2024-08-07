@@ -37,8 +37,22 @@
   </url>
 
   <url>
-    <loc>https://www.lepdy.com/guess-game</loc>
-    <lastmod>2024-07-31</lastmod>
+    <loc>https://www.lepdy.com/games</loc>
+    <lastmod>2024-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/games/guess-game</loc>
+    <lastmod>2024-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/games/memory-match-game</loc>
+    <lastmod>2024-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -11,6 +11,7 @@ import { Box, Typography } from '@mui/material';
 import { TEXTS } from './data/texts';
 import { RoutesEnum } from './models/RoutesEnum';
 import { initAmplitude } from './utils/amplitude';
+import GamesPage from './pages/GamesPage';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -42,6 +43,7 @@ const App: React.FC = () => {
         <Route path={RoutesEnum.NUMBERS} element={<NumbersPage />} />
         <Route path={RoutesEnum.COLORS} element={<ColorsPage />} />
         <Route path={RoutesEnum.SHAPES} element={<ShapesPage />} />
+        <Route path={RoutesEnum.GAMES} element={<GamesPage />} />
         <Route path={RoutesEnum.GUESS_GAME} element={<GuessGamePage />} />
         <Route path={RoutesEnum.MEMORY_MATCH_GAME} element={<MemoryMatchGamePage />} />
       </Routes>

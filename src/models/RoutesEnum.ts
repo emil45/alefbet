@@ -4,6 +4,7 @@ export enum RoutesEnum {
   NUMBERS = '/numbers',
   COLORS = '/colors',
   SHAPES = '/shapes',
-  GUESS_GAME = '/guess-game',
-  MEMORY_MATCH_GAME = '/memory-match-game',
+  GAMES = '/games',
+  GUESS_GAME = '/games/guess-game',
+  MEMORY_MATCH_GAME = '/games/memory-match-game',
 }

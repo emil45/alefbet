@@ -25,7 +25,7 @@ const themeLight = createTheme({
       blackPastel: '#434243',
       components: {
         itemCardBackground: '#f5ede1', // beigePastel
-        memoryMatchCardBack: '#a7d2dd',
+        memoryMatchCardBack: '#8fd4e6',
         memoryMatchCardBackIcon: '#f5de97',
       },
     },
