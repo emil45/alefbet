@@ -1,22 +1,28 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { TEXTS } from '../data/texts';
-import FunButton from './FunButton';
+import { useLocation, useNavigate } from 'react-router-dom';
+import RoundFunButton from './RoundFunButton';
+import { Box } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-interface BackButtonProps {
-  paddingX?: number;
-}
-
-const BackButton: React.FC<BackButtonProps> = ({ paddingX }) => {
+const BackButton: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClick = () => {
     setTimeout(() => {
-      navigate(-1);
+      if (location.key === 'default') {
+        navigate('/');
+      } else {
+        navigate(-1);
+      }
     }, 500);
   };
 
-  return <FunButton text={TEXTS.BACK_BUTTON} fontSize={16} onClick={handleClick} paddingX={paddingX} />;
+  return (<Box>
+    <RoundFunButton onClick={handleClick} >
+      <ArrowBackIcon />
+    </RoundFunButton>
+  </Box>);
 };
 
 export default BackButton;

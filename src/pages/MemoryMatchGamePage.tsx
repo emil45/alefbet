@@ -7,7 +7,6 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
-  Button,
   Typography,
   Modal,
 } from '@mui/material';
@@ -21,8 +20,8 @@ import { MemoryMatchCardModel } from '../models/MemoryMatchCardModel';
 import Confetti from 'react-confetti';
 import { TEXTS } from '../data/texts';
 import FunButton from '../components/FunButton';
-import { useNavigate } from 'react-router-dom';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import RoundFunButton from '../components/RoundFunButton';
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 const generateCards = (numCards: number): MemoryMatchCardModel[] => {
   const items: Omit<MemoryMatchCardModel, 'id' | 'matched'>[] = [
@@ -55,21 +54,30 @@ const generateCards = (numCards: number): MemoryMatchCardModel[] => {
 };
 
 const MemoryMatchGamePage: React.FC = () => {
-  const navigate = useNavigate();
   const [numCards, setNumCards] = useState<number>(10);
   const [cards, setCards] = useState<MemoryMatchCardModel[]>(() => generateCards(numCards));
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [isGameWon, setIsGameWon] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
 
   const resetGame = useCallback(() => {
-    setCards(generateCards(numCards));
-    setFlippedCards([]);
+    setIsResetting(true);
     setIsGameWon(false);
+
+    setCards(prevCards => prevCards.map(card => ({ ...card, matched: false })));
+    setFlippedCards([]);  
+
+    setTimeout(() => {
+      setCards(generateCards(numCards));
+      setIsResetting(false);
+    }, 600); 
+
+    // setCards(generateCards(numCards));
   }, [numCards]);
 
   useEffect(() => {
     resetGame();
-  }, [numCards, resetGame]);
+  }, [resetGame]);
 
   useEffect(() => {
     if (cards.length > 0 && cards.every((card) => card.matched)) {
@@ -86,8 +94,11 @@ const MemoryMatchGamePage: React.FC = () => {
             index === firstCard || index === secondCard ? { ...card, matched: true } : card
           )
         );
+        setFlippedCards([]);
+      } else {
+        setTimeout(() => setFlippedCards([]), 1000);
       }
-      setTimeout(() => setFlippedCards([]), 1000);
+      
     }
   }, [flippedCards, cards]);
 
@@ -137,13 +148,21 @@ const MemoryMatchGamePage: React.FC = () => {
 
   const showConfetti = () => {
     return isGameWon ? (
-      <Confetti
-        width={window.innerWidth}
-        height={window.innerHeight}
-        recycle={false}
-        numberOfPieces={1000}
-        friction={1}
-      />
+      <Box sx={{position: 'fixed',
+        top: 0,
+        left: 0,
+        // width: '100%',
+        // height: '100%',
+        zIndex: 1400, 
+        pointerEvents: 'none',}}>
+        <Confetti
+          // width={window.innerWidth}
+          // height={window.innerHeight}
+          recycle={false}
+          numberOfPieces={2000}
+          gravity={0.05}
+        />
+      </Box>
     ) : null;
   };
 
@@ -155,8 +174,8 @@ const MemoryMatchGamePage: React.FC = () => {
             <MemoryMatchCard
               card={card}
               flipped={flippedCards.includes(index) || card.matched}
-              onClick={() => handleCardClick(index)}
-            />
+              onClick={() => !isResetting && handleCardClick(index)}
+              />
           </Grid>
         ))}
       </Grid>
@@ -166,7 +185,7 @@ const MemoryMatchGamePage: React.FC = () => {
   const showHeaders = () => {
     return (
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-        <BackButton paddingX={15} />
+        <BackButton />
         <FormControl sx={{ width: 100 }}>
           <InputLabel id="num-cards-label">{TEXTS.MEMORY_MATCH_GAME_CARDS_NUMBER}</InputLabel>
           <Select
@@ -177,6 +196,7 @@ const MemoryMatchGamePage: React.FC = () => {
             label={TEXTS.MEMORY_MATCH_GAME_CARDS_NUMBER}
             onChange={handleNumCardsChange}
           >
+            <MenuItem value={2}>2</MenuItem>
             <MenuItem value={6}>6</MenuItem>
             <MenuItem value={10}>10</MenuItem>
             <MenuItem value={20}>20</MenuItem>
@@ -185,7 +205,9 @@ const MemoryMatchGamePage: React.FC = () => {
             <MenuItem value={100}>100</MenuItem>
           </Select>
         </FormControl>
-        <FunButton text={TEXTS.MEMORY_MATCH_GAME_RESET} onClick={resetGame} fontSize={16} paddingX={15} />
+        <RoundFunButton onClick={resetGame}>
+        <RefreshIcon/>
+        </RoundFunButton>
       </Box>
     );
   };

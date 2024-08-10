@@ -17,7 +17,7 @@ const shapes: ShapeModel[] = [
     shapeHebrewName: 'ריבוע',
     soundFile: '/shapes/square.mp3',
     color: '#68d3ee',
-    element: <rect x="2" y="4" width="20" height="20" stroke="black" strokeWidth="0.1" />,
+    element: <rect x="2" y="3" width="20" height="20" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
@@ -199,7 +199,7 @@ const shapes: ShapeModel[] = [
     shapeHebrewName: 'מקבילית',
     soundFile: '/shapes/parallelogram.mp3',
     color: 'violet',
-    element: <rect x="10" y="4" width="15" height="20" transform="skewX(-20)" stroke="black" strokeWidth="0.1" />,
+    element: <rect x="10" y="3.3" width="15" height="20" transform="skewX(-20)" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,

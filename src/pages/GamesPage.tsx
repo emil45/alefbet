@@ -10,16 +10,16 @@ const GamesPage: React.FC = () => {
     <>
       <BackButton />
       <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-        <FunButton to={RoutesEnum.GUESS_GAME} text={TEXTS.GUESS_GAME_BUTTON} />
-        <FunButton to={RoutesEnum.MEMORY_MATCH_GAME} text={TEXTS.MEMORY_MATCH_GAME_BUTTON} />
-      </Box>
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
+          <FunButton to={RoutesEnum.GUESS_GAME} text={TEXTS.GUESS_GAME_BUTTON} />
+          <FunButton to={RoutesEnum.MEMORY_MATCH_GAME} text={TEXTS.MEMORY_MATCH_GAME_BUTTON} />
+        </Box>
       </Box>
     </>
   );

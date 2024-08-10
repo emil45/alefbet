@@ -5,19 +5,21 @@ import { Box, Typography } from '@mui/material';
 import { logEvent } from '../utils/amplitude';
 import { AmplitudeEventsEnum } from '../models/amplitudeEvents';
 
-interface FunButtonProps {
-  text: string;
+
+interface RoundFunButtonProps {
   to?: string;
   onClick?: () => void;
-  fontSize?: number;
   backgroundColor?: string;
-  paddingX?: number;
+  children: React.ReactNode;
 }
 
-const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick, fontSize, backgroundColor, paddingX }) => {
+const RoundFunButton: React.FC<RoundFunButtonProps> = (props) => {
   const navigate = useNavigate();
 
   const commonStyles = (theme: any) => ({
+    color: 'white',
+    height: '50px',
+    width: '50px',
     position: 'relative',
     border: 'none',
     background: 'transparent',
@@ -25,13 +27,12 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick, fontSize, back
     cursor: 'pointer',
     outlineOffset: '4px',
     transition: 'filter 250ms',
+    minWidth: 0,
     '& .shadow': {
       position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      borderRadius: '12px',
+      width: 'inherit',
+      height: 'inherit',
+      borderRadius: `50%`,
       background: '#00000040',
       willChange: 'transform',
       transform: 'translateY(2px)',
@@ -39,22 +40,17 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick, fontSize, back
     },
     '& .edge': {
       position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      borderRadius: '12px',
+      width: 'inherit',
+      height: 'inherit',
+      borderRadius: `50%`,
       background: 'linear-gradient(to left, #5e1c32 0%, #a82f57 8%, #a82f57 92%, #5e1c32 100%)', // original linear-gradient(to left, #52001b 0%, #a30036 8%, #a30036 92%, #52001b 100%)
     },
     '& .front': {
-      display: 'block',
-      position: 'relative',
-      color: theme.palette.colors.white,
-      fontWeight: 'bold',
-      fontSize: fontSize ? `${fontSize}px` : { xs: '30px', md: '40px' },
-      padding: `12px ${paddingX || 30}px`,
-      borderRadius: '12px',
-      background: backgroundColor || '#f74572', // original '#f0003c'
+      width: 'inherit',
+      height: 'inherit',
+      pt: `15px`,
+      borderRadius: `50%`,
+      background: props.backgroundColor || '#f74572', // original '#f0003c'
       willChange: 'transform',
       transform: 'translateY(-4px)',
       transition: 'transform 600ms cubic-bezier(.3, .7, .4, 1)',
@@ -86,7 +82,7 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick, fontSize, back
     },
     '& .MuiTouchRipple-root': {
       color: 'red',
-      borderRadius: '10px',
+      borderRadius: `50%`,
       marginBottom: '2px',
       opacity: 0.6,
     },
@@ -97,13 +93,13 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick, fontSize, back
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    if (to) {
-      logEvent(AmplitudeEventsEnum.BUTTON_CLICK, { buttonName: to });
+    if (props.to) {
+      // logEvent(AmplitudeEventsEnum.BUTTON_CLICK, { buttonName: to });
       setTimeout(() => {
-        navigate(to);
+        navigate(props.to!);
       }, 500);
-    } else if (onClick) {
-      onClick();
+    } else if (props.onClick) {
+      props.onClick();
     }
   };
 
@@ -111,11 +107,11 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick, fontSize, back
     <Button disableElevation sx={commonStyles} onClick={handleClick}>
       <Box className="shadow" />
       <Box className="edge" />
-      <Typography className="front" sx={{ minWidth: '100%' }}>
-        {text}
+      <Typography className="front">
+        {props.children}
       </Typography>
     </Button>
   );
 };
 
-export default FunButton;
+export default RoundFunButton;

@@ -9,8 +9,6 @@ export const TEXTS = {
   GUESS_GAME_BUTTON: '🎴 משחק הניחושים',
   MEMORY_MATCH_GAME_BUTTON: '🧩 משחק הזיכרון',
 
-  BACK_BUTTON: '👈  אחורה',
-
   GUESS_GAME_NEXT_TEXT: 'הבא',
 
   MEMORY_MATCH_GAME_RESET: 'משחק חדש',

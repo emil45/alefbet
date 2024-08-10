@@ -2,6 +2,8 @@ import React from 'react';
 import { Box, SvgIcon, Typography } from '@mui/material';
 import { MemoryMatchCardModel } from '../models/MemoryMatchCardModel';
 import StarIcon from '@mui/icons-material/Star';
+import { range } from '../utils/common';
+import { ModelTypesEnum } from '../models/ModelsTypesEnum';
 
 interface MemoryMatchCardProps {
   card: MemoryMatchCardModel;
@@ -10,6 +12,19 @@ interface MemoryMatchCardProps {
 }
 
 const MemoryMatchCard: React.FC<MemoryMatchCardProps> = React.memo(({ card, flipped, onClick }) => {
+  const showStarsBackground = () => {
+    return <Box sx={{transform: 'rotate(-20deg)'}}>
+      {range(1, 26).map((num) => (
+      <StarIcon 
+        sx={(theme) => ({
+          fontSize: {xs: '20px', sm: '30px'},
+          color: theme.palette.colors.components.memoryMatchCardBackIcon,
+        })}
+      />
+    ))}
+    </Box>;
+  };
+
   return (
     <Box
       onClick={onClick}
@@ -50,14 +65,10 @@ const MemoryMatchCard: React.FC<MemoryMatchCardProps> = React.memo(({ card, flip
             justifyContent: 'center',
             backgroundColor: theme.palette.colors.components.memoryMatchCardBack,
             borderRadius: '8px',
+            overflow: 'hidden',
           })}
         >
-          <StarIcon
-            sx={(theme) => ({
-              fontSize: { xs: '90px', sm: '120px' },
-              color: theme.palette.colors.components.memoryMatchCardBackIcon,
-            })}
-          />
+          {showStarsBackground()}
         </Box>
         <Box
           sx={(theme) => ({
@@ -82,6 +93,7 @@ const MemoryMatchCard: React.FC<MemoryMatchCardProps> = React.memo(({ card, flip
                 color: card.textColor,
                 fontSize: { xs: '100px', sm: '124px' },
                 fontWeight: 'bold',
+                pb: card.type == ModelTypesEnum.LETTERS ? '10px' : ''
               }}
             >
               {card.name}

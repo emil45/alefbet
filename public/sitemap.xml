@@ -3,57 +3,57 @@
 
   <url>
     <loc>https://www.lepdy.com/</loc>
-    <lastmod>2024-07-31</lastmod>
+    <lastmod>2024-08-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://www.lepdy.com/letters</loc>
-    <lastmod>2024-07-31</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2024-08-11</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.lepdy.com/numbers</loc>
-    <lastmod>2024-07-31</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2024-08-11</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.lepdy.com/colors</loc>
-    <lastmod>2024-07-31</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2024-08-11</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.lepdy.com/shapes</loc>
-    <lastmod>2024-07-31</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2024-08-11</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.lepdy.com/games</loc>
-    <lastmod>2024-08-07</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2024-08-11</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.lepdy.com/games/guess-game</loc>
-    <lastmod>2024-08-07</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2024-08-11</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.lepdy.com/games/memory-match-game</loc>
-    <lastmod>2024-08-07</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2024-08-11</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
