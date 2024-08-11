@@ -14,7 +14,7 @@ interface FunButtonProps {
   paddingX?: number;
 }
 
-const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick, fontSize, backgroundColor, paddingX }) => {
+const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick, fontSize, backgroundColor, paddingX, ...rest }) => {
   const navigate = useNavigate();
 
   const commonStyles = (theme: any) => ({
@@ -108,7 +108,7 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick, fontSize, back
   };
 
   return (
-    <Button disableElevation sx={commonStyles} onClick={handleClick}>
+    <Button disableElevation sx={commonStyles} onClick={handleClick} {...rest}>
       <Box className="shadow" />
       <Box className="edge" />
       <Typography className="front" sx={{ minWidth: '100%' }}>

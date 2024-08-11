@@ -22,6 +22,7 @@ import { TEXTS } from '../data/texts';
 import FunButton from '../components/FunButton';
 import RoundFunButton from '../components/RoundFunButton';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import { AudioSounds, playSound } from '../utils/audio';
 
 const generateCards = (numCards: number): MemoryMatchCardModel[] => {
   const items: Omit<MemoryMatchCardModel, 'id' | 'matched'>[] = [
@@ -64,13 +65,13 @@ const MemoryMatchGamePage: React.FC = () => {
     setIsResetting(true);
     setIsGameWon(false);
 
-    setCards(prevCards => prevCards.map(card => ({ ...card, matched: false })));
-    setFlippedCards([]);  
+    setCards((prevCards) => prevCards.map((card) => ({ ...card, matched: false })));
+    setFlippedCards([]);
 
     setTimeout(() => {
       setCards(generateCards(numCards));
       setIsResetting(false);
-    }, 600); 
+    }, 600);
 
     // setCards(generateCards(numCards));
   }, [numCards]);
@@ -82,6 +83,7 @@ const MemoryMatchGamePage: React.FC = () => {
   useEffect(() => {
     if (cards.length > 0 && cards.every((card) => card.matched)) {
       setIsGameWon(true);
+      playSound(AudioSounds.BONUS);
     }
   }, [cards]);
 
@@ -98,7 +100,6 @@ const MemoryMatchGamePage: React.FC = () => {
       } else {
         setTimeout(() => setFlippedCards([]), 1000);
       }
-      
     }
   }, [flippedCards, cards]);
 
@@ -148,13 +149,17 @@ const MemoryMatchGamePage: React.FC = () => {
 
   const showConfetti = () => {
     return isGameWon ? (
-      <Box sx={{position: 'fixed',
-        top: 0,
-        left: 0,
-        // width: '100%',
-        // height: '100%',
-        zIndex: 1400, 
-        pointerEvents: 'none',}}>
+      <Box
+        sx={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          // width: '100%',
+          // height: '100%',
+          zIndex: 1400,
+          pointerEvents: 'none',
+        }}
+      >
         <Confetti
           // width={window.innerWidth}
           // height={window.innerHeight}
@@ -175,7 +180,7 @@ const MemoryMatchGamePage: React.FC = () => {
               card={card}
               flipped={flippedCards.includes(index) || card.matched}
               onClick={() => !isResetting && handleCardClick(index)}
-              />
+            />
           </Grid>
         ))}
       </Grid>
@@ -206,7 +211,7 @@ const MemoryMatchGamePage: React.FC = () => {
           </Select>
         </FormControl>
         <RoundFunButton onClick={resetGame}>
-        <RefreshIcon/>
+          <RefreshIcon />
         </RoundFunButton>
       </Box>
     );

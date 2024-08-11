@@ -13,16 +13,19 @@ interface MemoryMatchCardProps {
 
 const MemoryMatchCard: React.FC<MemoryMatchCardProps> = React.memo(({ card, flipped, onClick }) => {
   const showStarsBackground = () => {
-    return <Box sx={{transform: 'rotate(-20deg)'}}>
-      {range(1, 26).map((num) => (
-      <StarIcon 
-        sx={(theme) => ({
-          fontSize: {xs: '20px', sm: '30px'},
-          color: theme.palette.colors.components.memoryMatchCardBackIcon,
-        })}
-      />
-    ))}
-    </Box>;
+    return (
+      <Box sx={{ transform: 'rotate(-20deg)' }}>
+        {range(1, 26).map((num) => (
+          <StarIcon
+            key={num}
+            sx={(theme) => ({
+              fontSize: { xs: '20px', sm: '30px' },
+              color: theme.palette.colors.components.memoryMatchCardBackIcon,
+            })}
+          />
+        ))}
+      </Box>
+    );
   };
 
   return (
@@ -93,7 +96,7 @@ const MemoryMatchCard: React.FC<MemoryMatchCardProps> = React.memo(({ card, flip
                 color: card.textColor,
                 fontSize: { xs: '100px', sm: '124px' },
                 fontWeight: 'bold',
-                pb: card.type == ModelTypesEnum.LETTERS ? '10px' : ''
+                pb: card.type === ModelTypesEnum.LETTERS ? '10px' : '',
               }}
             >
               {card.name}

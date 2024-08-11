@@ -12,6 +12,7 @@ import { TEXTS } from './data/texts';
 import { RoutesEnum } from './models/RoutesEnum';
 import { initAmplitude } from './utils/amplitude';
 import GamesPage from './pages/GamesPage';
+import SimonGamePage from './pages/SimonGamePage';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -46,6 +47,7 @@ const App: React.FC = () => {
         <Route path={RoutesEnum.GAMES} element={<GamesPage />} />
         <Route path={RoutesEnum.GUESS_GAME} element={<GuessGamePage />} />
         <Route path={RoutesEnum.MEMORY_MATCH_GAME} element={<MemoryMatchGamePage />} />
+        <Route path={RoutesEnum.SIMON_GAME} element={<SimonGamePage />} />
       </Routes>
       {/* </TransitionWrapper> */}
       <Box sx={{ textAlign: 'center', mt: '25px' }}>
