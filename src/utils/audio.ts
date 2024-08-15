@@ -31,13 +31,19 @@ export const playSound = (sound: AudioSounds) => {
 };
 
 export const preloadSounds = () => {
-    for (const key in audioRefs) {
-      const audio = audioRefs[key as unknown as AudioSounds];
-      audio.play().catch(() => {});
+  for (const key in audioRefs) {
+    const audio = audioRefs[key as unknown as AudioSounds];
+    audio.load();
+    audio.volume = 0;
+    audio.play().then(() => {
       audio.pause();
+      audio.volume = 1;
       audio.currentTime = 0;
-    }
-  };
+    }).catch(() => {
+      console.log('Audio preload failed for:', key);
+    });
+  }
+};
 
   export const stopAllSounds = () => {
     for (const key in audioRefs) {

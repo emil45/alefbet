@@ -171,11 +171,15 @@ const SimonPageGame: React.FC = () => {
               style={{
                 filter: activeColor === color ? 'brightness(160%)' : 'brightness(100%)',
               }}
-              onTouchStart={(e) => {
+              // onTouchStart={(e) => {
+              //   e.preventDefault();
+              //   handleColorClick(color);
+              // }}
+              // onClick={() => handleColorClick(color)}
+              onPointerDown={(e) => {
                 e.preventDefault();
                 handleColorClick(color);
               }}
-              onClick={() => handleColorClick(color)}
               disabled={gameState !== GameState.USER_INPUT}
               aria-label={color}
             />
