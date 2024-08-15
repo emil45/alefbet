@@ -11,14 +11,14 @@ export enum AudioSounds {
 
 // Ensure the audioRefs keys match the enum values
 export const audioRefs: { [key in AudioSounds]: HTMLAudioElement } = {
-    [AudioSounds.GREEN]: new Audio('/sounds/simon-green.mp3'),
-    [AudioSounds.RED]: new Audio('/sounds/simon-red.mp3'),
-    [AudioSounds.YELLOW]: new Audio('/sounds/simon-yellow.mp3'),
-    [AudioSounds.BLUE]: new Audio('/sounds/simon-blue.mp3'),
-    [AudioSounds.GAME_START]: new Audio('/sounds/game-start.mp3'),
-    [AudioSounds.GAME_OVER]: new Audio('/sounds/game-over-arcade.mp3'),
-    [AudioSounds.SUCCESS]: new Audio('/sounds/short-success.mp3'),
-    [AudioSounds.BONUS]: new Audio('/sounds/game-bonus.mp3'),
+    [AudioSounds.GREEN]: new Audio('/audio/common/simon-green.mp3'),
+    [AudioSounds.RED]: new Audio('/audio/common/simon-red.mp3'),
+    [AudioSounds.YELLOW]: new Audio('/audio/common/simon-yellow.mp3'),
+    [AudioSounds.BLUE]: new Audio('/audio/common/simon-blue.mp3'),
+    [AudioSounds.GAME_START]: new Audio('/audio/common/game-start.mp3'),
+    [AudioSounds.GAME_OVER]: new Audio('/audio/common/game-over-arcade.mp3'),
+    [AudioSounds.SUCCESS]: new Audio('/audio/common/short-success.mp3'),
+    [AudioSounds.BONUS]: new Audio('/audio/common/game-bonus.mp3'),
 };
 
 // Function to play sound
@@ -38,3 +38,11 @@ export const preloadSounds = () => {
       audio.currentTime = 0;
     }
   };
+
+  export const stopAllSounds = () => {
+    for (const key in audioRefs) {
+        const audio = audioRefs[key as unknown as AudioSounds];
+        audio.pause();
+        audio.currentTime = 0;
+    }
+};

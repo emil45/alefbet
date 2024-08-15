@@ -1,9 +1,9 @@
 // SimonPageGame.tsx
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import BackButton from '../components/BackButton';
-import { preloadSounds, playSound, AudioSounds } from '../utils/audio';
+import { preloadSounds, playSound, AudioSounds, stopAllSounds } from '../utils/audio';
 import { TEXTS } from '../data/texts';
 import FunButton from '../components/FunButton';
 import { Color, COLORS, colorToAudioSound, GameState } from '../models/SimonGameModels';
@@ -61,8 +61,20 @@ const SimonPageGame: React.FC = () => {
   const [highScore, setHighScore] = useState(0);
   const [activeColor, setActiveColor] = useState<Color | null>(null);
 
+  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
+
+  const clearAllTimeouts = () => {
+    timeoutsRef.current.forEach((timeout) => clearTimeout(timeout));
+    timeoutsRef.current = [];
+  };
+
   useEffect(() => {
     preloadSounds();
+
+    return () => {
+      clearAllTimeouts();
+      stopAllSounds();
+    };
   }, []);
 
   const getSequenceDelay = useCallback(() => {
@@ -72,7 +84,8 @@ const SimonPageGame: React.FC = () => {
   const lightUp = useCallback((color: Color, duration: number) => {
     setActiveColor(color);
     playSound(colorToAudioSound[color]);
-    setTimeout(() => setActiveColor(null), duration);
+    const timeout = setTimeout(() => setActiveColor(null), duration);
+    timeoutsRef.current.push(timeout);
   }, []);
 
   const addToSequence = useCallback(() => {
@@ -84,22 +97,21 @@ const SimonPageGame: React.FC = () => {
     setGameState(GameState.SEQUENCE);
     const sequenceDelay = getSequenceDelay();
     sequence.forEach((color, index) => {
-      setTimeout(
-        () => {
-          lightUp(color, sequenceDelay);
-        },
-        INITIAL_DELAY + index * sequenceDelay * 2
-      );
+      const timeout = setTimeout(() => lightUp(color, sequenceDelay), INITIAL_DELAY + index * sequenceDelay * 2);
+      timeoutsRef.current.push(timeout);
     });
-    setTimeout(
+
+    const endTimeout = setTimeout(
       () => {
         setGameState(GameState.USER_INPUT);
       },
       INITIAL_DELAY + sequence.length * sequenceDelay * 2
     );
+    timeoutsRef.current.push(endTimeout);
   }, [sequence, lightUp, getSequenceDelay]);
 
   const startGame = useCallback(() => {
+    clearAllTimeouts();
     setSequence([]);
     setUserSequence([]);
     setScore(0);
@@ -158,6 +170,10 @@ const SimonPageGame: React.FC = () => {
               key={color}
               style={{
                 filter: activeColor === color ? 'brightness(160%)' : 'brightness(100%)',
+              }}
+              onTouchStart={(e) => {
+                e.preventDefault();
+                handleColorClick(color);
               }}
               onClick={() => handleColorClick(color)}
               disabled={gameState !== GameState.USER_INPUT}

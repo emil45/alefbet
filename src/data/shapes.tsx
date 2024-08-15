@@ -7,7 +7,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'circle',
     shapeHebrewName: 'עיגול',
-    soundFile: '/shapes/circle.mp3',
+    soundFile: '/audio/shapes/he/circle.mp3',
     color: '#eb4747',
     element: <circle cx="12" cy="12" r="10" stroke="black" strokeWidth="0.1" />,
   },
@@ -15,7 +15,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'square',
     shapeHebrewName: 'ריבוע',
-    soundFile: '/shapes/square.mp3',
+    soundFile: '/audio/shapes/he/square.mp3',
     color: '#68d3ee',
     element: <rect x="2" y="3" width="20" height="20" stroke="black" strokeWidth="0.1" />,
   },
@@ -23,7 +23,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'heart',
     shapeHebrewName: 'לב',
-    soundFile: '/shapes/heart.mp3',
+    soundFile: '/audio/shapes/he/heart.mp3',
     color: 'darkorange',
     element: (
       <path
@@ -37,7 +37,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'ellipse',
     shapeHebrewName: 'אליפסה',
-    soundFile: '/shapes/ellipse.mp3',
+    soundFile: '/audio/shapes/he/ellipse.mp3',
     color: '#f7dc6f',
     element: <ellipse cx="12" cy="14" rx="12" ry="8" stroke="black" strokeWidth="0.1" />,
   },
@@ -45,7 +45,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'rectangle',
     shapeHebrewName: 'מלבן',
-    soundFile: '/shapes/rectangle.mp3',
+    soundFile: '/audio/shapes/he/rectangle.mp3',
     color: 'purple',
     element: <rect x="2" y="5" width="20" height="14" stroke="black" strokeWidth="0.1" />,
   },
@@ -53,7 +53,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'star',
     shapeHebrewName: 'כוכב',
-    soundFile: '/shapes/star.mp3',
+    soundFile: '/audio/shapes/he/star.mp3',
     color: 'lightCoral',
     element: (
       <polygon
@@ -67,7 +67,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'triangle',
     shapeHebrewName: 'משולש',
-    soundFile: '/shapes/triangle.mp3',
+    soundFile: '/audio/shapes/he/triangle.mp3',
     color: 'teal',
     element: <polygon points="12 2, 22 22, 2 22" stroke="black" strokeWidth="0.1" />,
   },
@@ -75,7 +75,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'cone',
     shapeHebrewName: 'חרוט',
-    soundFile: '/shapes/cone.mp3',
+    soundFile: '/audio/shapes/he/cone.mp3',
     color: 'lightgreen',
     element: (
       <>
@@ -89,7 +89,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'hexagon',
     shapeHebrewName: 'משושה',
-    soundFile: '/shapes/hexagon.mp3',
+    soundFile: '/audio/shapes/he/hexagon.mp3',
     color: '#88b7b7',
     element: <polygon points="12 2, 20 7, 20 17, 12 22, 4 17, 4 7" stroke="black" strokeWidth="0.1" />,
   },
@@ -97,7 +97,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'kite',
     shapeHebrewName: 'דלתון',
-    soundFile: '/shapes/kite.mp3',
+    soundFile: '/audio/shapes/he/kite.mp3',
     color: 'brown',
     element: <polygon points="12 2, 20 9, 12 24, 4 9" stroke="black" strokeWidth="0.1" />,
   },
@@ -105,7 +105,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'moon',
     shapeHebrewName: 'ירח',
-    soundFile: '/shapes/moon.mp3',
+    soundFile: '/audio/shapes/he/moon.mp3',
     color: '#f3b817',
     element: (
       <>
@@ -118,7 +118,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'pentagon',
     shapeHebrewName: 'מחומש',
-    soundFile: '/shapes/pentagon.mp3',
+    soundFile: '/audio/shapes/he/pentagon.mp3',
     color: 'white',
     element: <polygon points="12 2, 22 10, 18 22, 6 22, 2 10" stroke="black" strokeWidth="0.1" />,
   },
@@ -126,7 +126,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'trapezoid',
     shapeHebrewName: 'טרפז',
-    soundFile: '/shapes/trapezoid.mp3',
+    soundFile: '/audio/shapes/he/trapezoid.mp3',
     color: '#b4ca6d',
     element: <polygon points="17 4, 23 22, 1 22, 7 4" stroke="black" strokeWidth="0.1" />,
   },
@@ -134,7 +134,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'pyramid',
     shapeHebrewName: 'פירמידה',
-    soundFile: '/shapes/pyramid.mp3',
+    soundFile: '/audio/shapes/he/pyramid.mp3',
     color: 'pink',
     element: (
       <>
@@ -152,7 +152,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'rhombus',
     shapeHebrewName: 'מעוין',
-    soundFile: '/shapes/rhombus.mp3',
+    soundFile: '/audio/shapes/he/rhombus.mp3',
     color: 'gray',
     element: <polygon points="12 0, 22 12, 12 24, 2 12" stroke="black" strokeWidth="0.1" />,
   },
@@ -161,7 +161,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'wave',
     shapeHebrewName: 'גל',
-    soundFile: '/shapes/wave.mp3',
+    soundFile: '/audio/shapes/he/wave.mp3',
     color: 'olive',
     element: (
       <path
@@ -175,7 +175,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'cylinder',
     shapeHebrewName: 'גליל',
-    soundFile: '/shapes/cylinder.mp3',
+    soundFile: '/audio/shapes/he/cylinder.mp3',
     color: '#bbbbff',
     element: (
       <>
@@ -189,7 +189,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'octagon',
     shapeHebrewName: 'מתומן',
-    soundFile: '/shapes/octagon.mp3',
+    soundFile: '/audio/shapes/he/octagon.mp3',
     color: 'tomato',
     element: <polygon points="8 3, 16 3, 23 10, 23 17, 16 24, 8 24, 1 17, 1 10" stroke="black" strokeWidth="0.1" />,
   },
@@ -197,7 +197,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'parallelogram',
     shapeHebrewName: 'מקבילית',
-    soundFile: '/shapes/parallelogram.mp3',
+    soundFile: '/audio/shapes/he/parallelogram.mp3',
     color: 'violet',
     element: <rect x="10" y="3.3" width="15" height="20" transform="skewX(-20)" stroke="black" strokeWidth="0.1" />,
   },
@@ -205,7 +205,7 @@ const shapes: ShapeModel[] = [
     type: ModelTypesEnum.SHAPES,
     shapeName: 'diamond',
     shapeHebrewName: 'יהלום',
-    soundFile: '/shapes/diamond.mp3',
+    soundFile: '/audio/shapes/he/diamond.mp3',
     color: 'lightBlue',
     element: (
       <>
