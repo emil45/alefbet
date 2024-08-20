@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useTransition } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import LettersPage from './pages/LettersPage';
@@ -8,13 +8,15 @@ import ShapesPage from './pages/ShapesPage';
 import GuessGamePage from './pages/GuessGamePage';
 import MemoryMatchGamePage from './pages/MemoryMatchGamePage';
 import { Box, Typography } from '@mui/material';
-import { TEXTS } from './data/texts';
 import { RoutesEnum } from './models/RoutesEnum';
 import { initAmplitude } from './utils/amplitude';
 import GamesPage from './pages/GamesPage';
 import SimonGamePage from './pages/SimonGamePage';
+import { useTranslation } from 'react-i18next';
 
 const App: React.FC = () => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     console.log(process.env.REACT_APP_ENV as string);
     initAmplitude();
@@ -52,7 +54,7 @@ const App: React.FC = () => {
       {/* </TransitionWrapper> */}
       <Box sx={{ textAlign: 'center', mt: '25px' }}>
         <Typography variant="body2" color="textSecondary">
-          {TEXTS.FOOTER_TEXT}
+          {t('footer.text')}
         </Typography>
       </Box>
     </Box>
