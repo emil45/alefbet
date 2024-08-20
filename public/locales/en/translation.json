@@ -1,0 +1,43 @@
+{
+    "home": {
+      "chooseGameText": "Learning Letters & Numbers",
+      "buttons": {
+        "letters": "Letters 🅰️ 🅱️",
+        "numbers": "Numbers 1️⃣ 2️⃣",
+        "colors": "Colors 🖌️ 🎨",
+        "shapes": "Shapes 🟣 🔶",
+        "games": "Games 🧩 🎲"
+        },
+        "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "voices": "Voices: Noa",
+        "code": "Code: Emanuel"
+      }
+    },
+    "games": {
+        "buttons": {
+            "guessGame": "Guessing Game 🎴",
+            "memoryMatchGame": "Memory Match 🧩",
+            "simon": "Simon 🚦"
+        },
+        "guessGame": {
+            "next": "Next"
+        },
+        "memoryMatchGame": {
+            "reset": "New Game",
+            "cardsNumber": "Cards",
+            "winMessage": "You Won, Well Done"
+        },
+        "simonGame": {
+            "score": "Score",
+            "highScore": "High Score",
+            "startGame": "Start Game",
+            "playAgain": "Play Again"
+        }
+    },
+    "footer": {
+      "text": "Noa © 2024. All rights reserved."
+    }
+  }
+  

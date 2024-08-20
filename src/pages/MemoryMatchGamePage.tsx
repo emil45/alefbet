@@ -18,11 +18,11 @@ import { shuffle } from '../utils/common';
 import MemoryMatchCard from '../components/MemoryMatchCard';
 import { MemoryMatchCardModel } from '../models/MemoryMatchCardModel';
 import Confetti from 'react-confetti';
-import { TEXTS } from '../data/texts';
 import FunButton from '../components/FunButton';
 import RoundFunButton from '../components/RoundFunButton';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { AudioSounds, playSound } from '../utils/audio';
+import { useTranslation } from 'react-i18next';
 
 const generateCards = (numCards: number): MemoryMatchCardModel[] => {
   const items: Omit<MemoryMatchCardModel, 'id' | 'matched'>[] = [
@@ -55,6 +55,7 @@ const generateCards = (numCards: number): MemoryMatchCardModel[] => {
 };
 
 const MemoryMatchGamePage: React.FC = () => {
+  const { t } = useTranslation();
   const [numCards, setNumCards] = useState<number>(10);
   const [cards, setCards] = useState<MemoryMatchCardModel[]>(() => generateCards(numCards));
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
@@ -139,9 +140,9 @@ const MemoryMatchGamePage: React.FC = () => {
           })}
         >
           <Typography id="congratulations-modal" variant="h5" component="h1" sx={{ mb: 4 }}>
-            🥳 {TEXTS.MEMORY_MATCH_GAME_WIN}
+            🥳 {t('games.memoryMatchGame.winMessage')}
           </Typography>
-          <FunButton onClick={resetGame} text={TEXTS.MEMORY_MATCH_GAME_RESET} fontSize={18} />
+          <FunButton onClick={resetGame} text={t('games.memoryMatchGame.reset')} fontSize={18} />
         </Box>
       </Modal>
     );
@@ -192,16 +193,15 @@ const MemoryMatchGamePage: React.FC = () => {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
         <BackButton />
         <FormControl sx={{ width: 100 }}>
-          <InputLabel id="num-cards-label">{TEXTS.MEMORY_MATCH_GAME_CARDS_NUMBER}</InputLabel>
+          <InputLabel id="num-cards-label">{t('games.memoryMatchGame.cardsNumber')}</InputLabel>
           <Select
             dir="rtl"
             labelId="num-cards-label"
             id="num-cards-select"
             value={numCards}
-            label={TEXTS.MEMORY_MATCH_GAME_CARDS_NUMBER}
+            label={t('games.memoryMatchGame.cardsNumber')}
             onChange={handleNumCardsChange}
           >
-            <MenuItem value={2}>2</MenuItem>
             <MenuItem value={6}>6</MenuItem>
             <MenuItem value={10}>10</MenuItem>
             <MenuItem value={20}>20</MenuItem>

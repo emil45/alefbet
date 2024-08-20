@@ -1,11 +1,13 @@
 import React from 'react';
 import BackButton from '../components/BackButton';
-import { TEXTS } from '../data/texts';
 import { RoutesEnum } from '../models/RoutesEnum';
 import FunButton from '../components/FunButton';
 import { Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const GamesPage: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <BackButton />
@@ -17,9 +19,9 @@ const GamesPage: React.FC = () => {
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-          <FunButton to={RoutesEnum.GUESS_GAME} text={TEXTS.GUESS_GAME_BUTTON} />
-          <FunButton to={RoutesEnum.MEMORY_MATCH_GAME} text={TEXTS.MEMORY_MATCH_GAME_BUTTON} />
-          <FunButton to={RoutesEnum.SIMON_GAME} text={TEXTS.SIMON_GAME_BUTTON} />
+          <FunButton to={RoutesEnum.GUESS_GAME} text={t('games.buttons.guessGame')} />
+          <FunButton to={RoutesEnum.MEMORY_MATCH_GAME} text={t('games.buttons.memoryMatchGame')} />
+          <FunButton to={RoutesEnum.SIMON_GAME} text={t('games.buttons.simon')} />
         </Box>
       </Box>
     </>

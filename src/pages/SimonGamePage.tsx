@@ -4,9 +4,9 @@ import { Box, Button, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import BackButton from '../components/BackButton';
 import { preloadSounds, playSound, AudioSounds, stopAllSounds } from '../utils/audio';
-import { TEXTS } from '../data/texts';
 import FunButton from '../components/FunButton';
 import { Color, COLORS, colorToAudioSound, GameState } from '../models/SimonGameModels';
+import { useTranslation } from 'react-i18next';
 
 export const INITIAL_DELAY = 1000;
 export const INITIAL_SEQUENCE_DELAY = 500;
@@ -54,6 +54,7 @@ const SimonContainer = styled(Box)(({ theme }) => ({
 }));
 
 const SimonPageGame: React.FC = () => {
+  const { t } = useTranslation();
   const [sequence, setSequence] = useState<Color[]>([]);
   const [userSequence, setUserSequence] = useState<Color[]>([]);
   const [gameState, setGameState] = useState<GameState>(GameState.IDLE);
@@ -162,7 +163,7 @@ const SimonPageGame: React.FC = () => {
       <BackButton />
       <Box display="flex" flexDirection="column" alignItems="center" mb={4}>
         <Typography variant="h4" align="center" sx={{ mb: 4 }}>
-          {TEXTS.SIMON_GAME_SCORE}: {score} | {TEXTS.SIMON_GAME_HIGH_SCORE}: {highScore}
+          {t('games.simonGame.score')}: {score} | {t('games.simonGame.highScore')}: {highScore}
         </Typography>
         <SimonContainer>
           {COLORS.map((color) => (
@@ -187,7 +188,7 @@ const SimonPageGame: React.FC = () => {
         </SimonContainer>
         <Box mt={4}>
           <FunButton
-            text={gameState === GameState.GAME_OVER ? TEXTS.SIMON_GAME_PLAY_AGAIN : TEXTS.SIMON_GAME_START_GAME}
+            text={gameState === GameState.GAME_OVER ? t('games.simonGame.playAgain') : t('games.simonGame.startGame')}
             onClick={startGame}
             // disabled={gameState === GameState.SEQUENCE}
           />

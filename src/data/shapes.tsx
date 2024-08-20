@@ -1,6 +1,5 @@
 import { ShapeModel } from '../models/ShapeModel';
 import { ModelTypesEnum } from '../models/ModelsTypesEnum';
-import themeLight from '../theme/theme';
 
 const shapes: ShapeModel[] = [
   {
@@ -110,7 +109,7 @@ const shapes: ShapeModel[] = [
     element: (
       <>
         <circle cx="12" cy="12" r="10" stroke="black" strokeWidth="0.1" />
-        <circle cx="18" cy="12" r="10" fill={themeLight.palette.colors.components.itemCardBackground} />
+        <circle cx="18" cy="12" r="10" fill="#f5ede1" />
       </>
     ),
   },

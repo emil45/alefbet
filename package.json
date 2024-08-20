@@ -16,9 +16,13 @@
     "@types/node": "^16.18.104",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "i18next": "^23.14.0",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "i18next-http-backend": "^2.6.0",
     "react": "^18.3.1",
     "react-confetti": "^6.1.0",
     "react-dom": "^18.3.1",
+    "react-i18next": "^15.0.1",
     "react-router-dom": "^6.25.1",
     "react-scripts": "5.0.1",
     "react-transition-group": "^4.4.5",
@@ -51,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-i18next": "^8.1.0",
     "prettier": "^3.3.3"
   }
 }

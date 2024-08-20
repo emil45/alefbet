@@ -1,17 +1,18 @@
-import { createTheme } from '@mui/material/styles';
+import { ThemeOptions } from '@mui/material/styles';
 
-const themeLight = createTheme({
-  direction: 'rtl',
+// Function that generates the theme based on direction (and other future settings)
+export const getTheme = (direction: 'ltr' | 'rtl'): ThemeOptions => ({
+  direction,
   palette: {
+    mode: 'light', // Set 'dark' mode when you introduce dark theme
     primary: {
-      main: '#1976d2',
+      main: '#f0003c',
+      light: '#3b0e0a',
     },
     secondary: {
-      main: '#dc004e',
+      main: '#858483',
     },
-    background: {
-      // default: '#e8d1bb',
-    },
+    background: {},
     colors: {
       funRed: '#f0003c',
       white: '#ffffff',
@@ -34,5 +35,3 @@ const themeLight = createTheme({
     fontFamily: 'Roboto, Arial, sans-serif',
   },
 });
-
-export default themeLight;

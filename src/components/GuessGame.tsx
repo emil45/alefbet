@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Box, Button } from '@mui/material';
 import letters from '../data/letters';
 import ItemCard from './ItemCard';
-import { TEXTS } from '../data/texts';
 import shapes from '../data/shapes';
 import numbers from '../data/numbers';
 import { ModelTypesEnum } from '../models/ModelsTypesEnum';
@@ -12,8 +11,10 @@ import { ShapeModel } from '../models/ShapeModel';
 import { ColorModel } from '../models/ColorModel';
 import { NumberModel } from '../models/NumberModel';
 import FunButton from './FunButton';
+import { useTranslation } from 'react-i18next';
 
 const GuessGame: React.FC = () => {
+  const { t } = useTranslation();
   const allItems = [...letters, ...shapes, ...colors, ...numbers];
 
   const getRandomItem = () => {
@@ -68,7 +69,7 @@ const GuessGame: React.FC = () => {
           />
         )}
       </Box>
-      <FunButton onClick={handleNextItem} text={TEXTS.GUESS_GAME_NEXT_TEXT} />
+      <FunButton onClick={handleNextItem} text={t('games.guessGame.next')} />
     </Box>
   );
 };
