@@ -18,7 +18,7 @@
     "games": {
       "buttons": {
         "guessGame": "🎴 משחק הניחושים",
-        "memoryMatch": "🧩 משחק הזיכרון",
+        "memoryMatchGame": "🧩 משחק הזיכרון",
         "simon": "🚦 סיימון"
       },
       "guessGame": {
