@@ -107,6 +107,7 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
         >
           <Typography color="secondary.main">{t('home.settings.voices')}</Typography>
           <Typography color="secondary.main">{t('home.settings.code')}</Typography>
+          <Typography color="secondary.main">{t('home.settings.contact')}</Typography>
         </Box>
       </Box>
     </Drawer>
