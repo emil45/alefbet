@@ -24,7 +24,7 @@
       "guessGame": {
         "next": "הבא"
       },
-      "memoryMatchGames": {
+      "memoryMatchGame": {
         "reset": "משחק חדש",
         "cardsNumber": "מספר הקלפים",
         "winMessage": "ניצחתם, כל הכבוד"
