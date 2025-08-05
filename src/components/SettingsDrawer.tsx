@@ -89,6 +89,7 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
             sx={{
               textAlign: direction === 'rtl' ? 'right' : 'left',
               width: '100%',
+              alignSelf: direction === 'rtl' ? 'flex-end' : 'flex-start',
             }}
           >
             {t('home.settings.language')}
@@ -99,6 +100,11 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
               flexDirection: 'column',
               gap: 1,
               alignItems: direction === 'rtl' ? 'flex-end' : 'flex-start',
+              width: '100%',
+              direction: direction,
+              '& > *': {
+                alignSelf: direction === 'rtl' ? 'flex-end' : 'flex-start',
+              },
             }}
           >
             <Button
@@ -108,6 +114,9 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
               sx={{
                 minWidth: '120px',
                 textAlign: 'center',
+                alignSelf: direction === 'rtl' ? 'flex-end' : 'flex-start',
+                marginLeft: direction === 'rtl' ? 'auto' : 0,
+                marginRight: direction === 'rtl' ? 0 : 'auto',
               }}
             >
               English
@@ -119,6 +128,9 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
               sx={{
                 minWidth: '120px',
                 textAlign: 'center',
+                alignSelf: direction === 'rtl' ? 'flex-end' : 'flex-start',
+                marginLeft: direction === 'rtl' ? 'auto' : 0,
+                marginRight: direction === 'rtl' ? 0 : 'auto',
               }}
             >
               עברית
@@ -130,6 +142,9 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
               sx={{
                 minWidth: '120px',
                 textAlign: 'center',
+                alignSelf: direction === 'rtl' ? 'flex-end' : 'flex-start',
+                marginLeft: direction === 'rtl' ? 'auto' : 0,
+                marginRight: direction === 'rtl' ? 0 : 'auto',
               }}
             >
               Русский
