@@ -3,7 +3,6 @@ import { initReactI18next } from 'react-i18next';
 import HttpApi from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-
 i18n
   .use(HttpApi)
   .use(LanguageDetector)
@@ -11,7 +10,7 @@ i18n
   .init({
     fallbackLng: 'he',
     lng: 'he',
-    supportedLngs: ['en', 'he'],
+    supportedLngs: ['en', 'he', 'ru'],
     interpolation: {
       escapeValue: false,
     },

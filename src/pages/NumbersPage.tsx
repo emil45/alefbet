@@ -19,7 +19,7 @@ const NumbersPage: React.FC = () => {
             <ItemCard
               name={t(`numbers.${number.id}.name`)}
               textColor={number.color}
-              soundFile={`/audio/numbers/${currentLanguage}/${number.audioFiles[currentLanguage as 'he' | 'en']}`}
+              soundFile={`/audio/numbers/${currentLanguage}/${number.audioFiles[currentLanguage as 'he' | 'en' | 'ru'] || number.audioFiles.en}`}
               itemCaption={t(`numbers.${number.id}.fullName`)}
               isRTL={isRTL}
             />

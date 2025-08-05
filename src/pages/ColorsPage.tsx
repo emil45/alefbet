@@ -20,7 +20,7 @@ const ColorsPage: React.FC = () => {
               name=""
               textColor={color.color}
               backgroundColor={color.color}
-              soundFile={`/audio/colors/${currentLanguage}/${color.audioFiles[currentLanguage as 'he' | 'en']}`}
+              soundFile={`/audio/colors/${currentLanguage}/${color.audioFiles[currentLanguage as 'he' | 'en' | 'ru'] || color.audioFiles.en}`}
               itemCaption={t(`colors.${color.id}.name`)}
               isRTL={isRTL}
             />

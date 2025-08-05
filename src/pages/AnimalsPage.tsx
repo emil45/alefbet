@@ -19,7 +19,7 @@ const AnimalsPage: React.FC = () => {
             <ItemCard
               name={animal.imageUrl}
               textColor={animal.color}
-              soundFile={`/audio/animals/${currentLanguage}/${animal.audioFiles[currentLanguage as 'he' | 'en']}`}
+              soundFile={`/audio/animals/${currentLanguage}/${animal.audioFiles[currentLanguage as 'he' | 'en' | 'ru'] || animal.audioFiles.en}`}
               itemCaption={t(`animals.${animal.id}.name`)}
               isRTL={isRTL}
             />

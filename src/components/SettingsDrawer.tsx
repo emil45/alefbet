@@ -57,10 +57,14 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
             width: '100%',
           }}
         >
-          <Typography color="primary.light" variant="h6" sx={{ 
-            textAlign: direction === 'rtl' ? 'right' : 'left',
-            width: '100%'
-          }}>
+          <Typography
+            color="primary.light"
+            variant="h6"
+            sx={{
+              textAlign: direction === 'rtl' ? 'right' : 'left',
+              width: '100%',
+            }}
+          >
             {t('home.settings.title')}
           </Typography>
           <IconButton onClick={handleClose}>
@@ -78,42 +82,59 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
             width: '100%',
           }}
         >
-          <Typography 
-            fontWeight="bold" 
-            variant="button" 
+          <Typography
+            fontWeight="bold"
+            variant="button"
             color="secondary.main"
-            sx={{ 
+            sx={{
               textAlign: direction === 'rtl' ? 'right' : 'left',
-              width: '100%'
+              width: '100%',
             }}
           >
             {t('home.settings.language')}
           </Typography>
-          <ButtonGroup
-            size="large"
-            variant="outlined"
-            sx={{ 
-              mt: 1, 
-              alignSelf: 'flex-start',
-              flexDirection: direction === 'rtl' ? 'row-reverse' : 'row',
-              '& .MuiButtonGroup-grouped': {
-                direction: direction
-              }
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 1,
+              alignItems: direction === 'rtl' ? 'flex-end' : 'flex-start',
             }}
           >
             <Button
+              size="medium"
               variant={i18n.language === 'en' ? 'contained' : 'outlined'}
               onClick={() => handleLanguageChange('en')}
+              sx={{
+                minWidth: '120px',
+                textAlign: 'center',
+              }}
             >
               English
             </Button>
             <Button
+              size="medium"
               variant={i18n.language === 'he' ? 'contained' : 'outlined'}
               onClick={() => handleLanguageChange('he')}
+              sx={{
+                minWidth: '120px',
+                textAlign: 'center',
+              }}
             >
               עברית
             </Button>
-          </ButtonGroup>
+            <Button
+              size="medium"
+              variant={i18n.language === 'ru' ? 'contained' : 'outlined'}
+              onClick={() => handleLanguageChange('ru')}
+              sx={{
+                minWidth: '120px',
+                textAlign: 'center',
+              }}
+            >
+              Русский
+            </Button>
+          </Box>
         </Box>
         <Divider sx={{ my: 2 }} />
         <Box
@@ -124,29 +145,29 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
             width: '100%',
           }}
         >
-          <Typography 
+          <Typography
             color="secondary.main"
-            sx={{ 
+            sx={{
               textAlign: direction === 'rtl' ? 'right' : 'left',
-              width: '100%'
+              width: '100%',
             }}
           >
             {t('home.settings.voices')}
           </Typography>
-          <Typography 
+          <Typography
             color="secondary.main"
-            sx={{ 
+            sx={{
               textAlign: direction === 'rtl' ? 'right' : 'left',
-              width: '100%'
+              width: '100%',
             }}
           >
             {t('home.settings.code')}
           </Typography>
-          <Typography 
+          <Typography
             color="secondary.main"
-            sx={{ 
+            sx={{
               textAlign: direction === 'rtl' ? 'right' : 'left',
-              width: '100%'
+              width: '100%',
             }}
           >
             {t('home.settings.contact')}

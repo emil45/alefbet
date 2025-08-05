@@ -15,6 +15,7 @@ import letters from '../data/letters';
 import numbers from '../data/numbers';
 import shapes from '../data/shapes';
 import animals from '../data/animals';
+import food from '../data/food';
 import { shuffle } from '../utils/common';
 import MemoryMatchCard from '../components/MemoryMatchCard';
 import { MemoryMatchCardModel } from '../models/MemoryMatchCardModel';
@@ -45,9 +46,15 @@ const generateCards = (numCards: number, t: any, currentLanguage: string): Memor
     })),
     ...animals.map((animal) => ({
       type: animal.type,
-      name: t(`animals.${animal.id}.name`),
+      name: animal.imageUrl, // Use emoji for display
       textColor: animal.color,
       imageUrl: animal.imageUrl,
+    })),
+    ...food.map((foodItem) => ({
+      type: foodItem.type,
+      name: foodItem.imageUrl, // Use emoji for display
+      textColor: foodItem.color,
+      imageUrl: foodItem.imageUrl,
     })),
   ];
 

@@ -20,7 +20,7 @@ const ShapesPage: React.FC = () => {
               name=""
               element={shape.element}
               textColor={shape.color}
-              soundFile={`/audio/shapes/${currentLanguage}/${shape.audioFiles[currentLanguage as 'he' | 'en']}`}
+              soundFile={`/audio/shapes/${currentLanguage}/${shape.audioFiles[currentLanguage as 'he' | 'en' | 'ru'] || shape.audioFiles.en}`}
               itemCaption={t(`shapes.${shape.id}.name`)}
               isRTL={isRTL}
             />

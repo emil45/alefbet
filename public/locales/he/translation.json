@@ -171,118 +171,83 @@
     }
   },
   "colors": {
-    "color_1": {
-      "name": "אדום",
-      "fullName": "אדום"
-    },
-    "color_2": {
-      "name": "ירוק",
-      "fullName": "ירוק"
-    },
-    "color_3": {
-      "name": "כחול",
-      "fullName": "כחול"
-    },
-    "color_4": {
-      "name": "צהוב",
-      "fullName": "צהוב"
-    },
-    "color_5": {
-      "name": "כתום",
-      "fullName": "כתום"
-    },
-    "color_6": {
-      "name": "תכלת",
-      "fullName": "תכלת"
-    },
-    "color_7": {
-      "name": "חום",
-      "fullName": "חום"
-    },
-    "color_8": {
-      "name": "שחור",
-      "fullName": "שחור"
-    },
-    "color_9": {
-      "name": "לבן",
-      "fullName": "לבן"
-    },
-    "color_10": {
-      "name": "ורוד",
-      "fullName": "ורוד"
-    },
-    "color_11": {
-      "name": "סגול",
-      "fullName": "סגול"
-    },
-    "color_12": {
-      "name": "אפור",
-      "fullName": "אפור"
-    }
+    "red": { "name": "אדום", "fullName": "אדום" },
+    "green": { "name": "ירוק", "fullName": "ירוק" },
+    "blue": { "name": "כחול", "fullName": "כחול" },
+    "yellow": { "name": "צהוב", "fullName": "צהוב" },
+    "orange": { "name": "כתום", "fullName": "כתום" },
+    "cyan": { "name": "תכלת", "fullName": "תכלת" },
+    "brown": { "name": "חום", "fullName": "חום" },
+    "black": { "name": "שחור", "fullName": "שחור" },
+    "white": { "name": "לבן", "fullName": "לבן" },
+    "pink": { "name": "ורוד", "fullName": "ורוד" },
+    "purple": { "name": "סגול", "fullName": "סגול" },
+    "gray": { "name": "אפור", "fullName": "אפור" }
   },
   "shapes": {
-    "shape_1": { "name": "עיגול", "fullName": "עיגול" },
-    "shape_2": { "name": "ריבוע", "fullName": "ריבוע" },
-    "shape_3": { "name": "לב", "fullName": "לב" },
-    "shape_4": { "name": "אליפסה", "fullName": "אליפסה" },
-    "shape_5": { "name": "מלבן", "fullName": "מלבן" },
-    "shape_6": { "name": "כוכב", "fullName": "כוכב" },
-    "shape_7": { "name": "משולש", "fullName": "משולש" },
-    "shape_8": { "name": "חרוט", "fullName": "חרוט" },
-    "shape_9": { "name": "משושה", "fullName": "משושה" },
-    "shape_10": { "name": "דלתון", "fullName": "דלתון" },
-    "shape_11": { "name": "ירח", "fullName": "ירח" },
-    "shape_12": { "name": "מחומש", "fullName": "מחומש" },
-    "shape_13": { "name": "טרפז", "fullName": "טרפז" },
-    "shape_14": { "name": "פירמידה", "fullName": "פירמידה" },
-    "shape_15": { "name": "מעוין", "fullName": "מעוין" },
-    "shape_16": { "name": "גל", "fullName": "גל" },
-    "shape_17": { "name": "גליל", "fullName": "גליל" },
-    "shape_18": { "name": "מתומן", "fullName": "מתומן" },
-    "shape_19": { "name": "מקבילית", "fullName": "מקבילית" },
-    "shape_20": { "name": "יהלום", "fullName": "יהלום" }
+    "circle": { "name": "עיגול", "fullName": "עיגול" },
+    "square": { "name": "ריבוע", "fullName": "ריבוע" },
+    "heart": { "name": "לב", "fullName": "לב" },
+    "ellipse": { "name": "אליפסה", "fullName": "אליפסה" },
+    "rectangle": { "name": "מלבן", "fullName": "מלבן" },
+    "star": { "name": "כוכב", "fullName": "כוכב" },
+    "triangle": { "name": "משולש", "fullName": "משולש" },
+    "cone": { "name": "חרוט", "fullName": "חרוט" },
+    "hexagon": { "name": "משושה", "fullName": "משושה" },
+    "kite": { "name": "דלתון", "fullName": "דלתון" },
+    "moon": { "name": "ירח", "fullName": "ירח" },
+    "pentagon": { "name": "מחומש", "fullName": "מחומש" },
+    "trapezoid": { "name": "טרפז", "fullName": "טרפז" },
+    "pyramid": { "name": "פירמידה", "fullName": "פירמידה" },
+    "rhombus": { "name": "מעוין", "fullName": "מעוין" },
+    "wave": { "name": "גל", "fullName": "גל" },
+    "cylinder": { "name": "גליל", "fullName": "גליל" },
+    "octagon": { "name": "מתומן", "fullName": "מתומן" },
+    "parallelogram": { "name": "מקבילית", "fullName": "מקבילית" },
+    "diamond": { "name": "יהלום", "fullName": "יהלום" },
+    "triangular_prism": { "name": "מנסרה משולשת", "fullName": "מנסרה משולשת" }
   },
   "animals": {
-    "animal_1": { "name": "פרה", "fullName": "פרה" },
-    "animal_2": { "name": "חזיר", "fullName": "חזיר" },
-    "animal_3": { "name": "כבש", "fullName": "כבש" },
-    "animal_4": { "name": "תרנגולת", "fullName": "תרנגולת" },
-    "animal_5": { "name": "סוס", "fullName": "סוס" },
-    "animal_6": { "name": "כלב", "fullName": "כלב" },
-    "animal_7": { "name": "חתול", "fullName": "חתול" },
-    "animal_8": { "name": "דבורה", "fullName": "דבורה" },
-    "animal_9": { "name": "עז", "fullName": "עז" },
-    "animal_10": { "name": "ציפור", "fullName": "ציפור" },
-    "animal_11": { "name": "אריה", "fullName": "אריה" },
-    "animal_12": { "name": "פיל", "fullName": "פיל" },
-    "animal_13": { "name": "קוף", "fullName": "קוף" },
-    "animal_14": { "name": "ברווז", "fullName": "ברווז" },
-    "animal_15": { "name": "זאב", "fullName": "זאב" },
-    "animal_16": { "name": "שועל", "fullName": "שועל" },
-    "animal_17": { "name": "נמר", "fullName": "נמר" },
-    "animal_18": { "name": "צרצר", "fullName": "צרצר" },
-    "animal_19": { "name": "זברה", "fullName": "זברה" },
-    "animal_20": { "name": "צפרדע", "fullName": "צפרדע" }
+    "cow": { "name": "פרה", "fullName": "פרה" },
+    "pig": { "name": "חזיר", "fullName": "חזיר" },
+    "sheep": { "name": "כבש", "fullName": "כבש" },
+    "chicken": { "name": "תרנגולת", "fullName": "תרנגולת" },
+    "horse": { "name": "סוס", "fullName": "סוס" },
+    "dog": { "name": "כלב", "fullName": "כלב" },
+    "cat": { "name": "חתול", "fullName": "חתול" },
+    "bee": { "name": "דבורה", "fullName": "דבורה" },
+    "goat": { "name": "עז", "fullName": "עז" },
+    "bird": { "name": "ציפור", "fullName": "ציפור" },
+    "lion": { "name": "אריה", "fullName": "אריה" },
+    "elephant": { "name": "פיל", "fullName": "פיל" },
+    "monkey": { "name": "קוף", "fullName": "קוף" },
+    "duck": { "name": "ברווז", "fullName": "ברווז" },
+    "wolf": { "name": "זאב", "fullName": "זאב" },
+    "fox": { "name": "שועל", "fullName": "שועל" },
+    "tiger": { "name": "נמר", "fullName": "נמר" },
+    "cricket": { "name": "צרצר", "fullName": "צרצר" },
+    "zebra": { "name": "זברה", "fullName": "זברה" },
+    "frog": { "name": "צפרדע", "fullName": "צפרדע" }
   },
   "food": {
-    "food_1": { "name": "תפוח", "fullName": "תפוח" },
-    "food_2": { "name": "בננה", "fullName": "בננה" },
-    "food_3": { "name": "תפוז", "fullName": "תפוז" },
-    "food_4": { "name": "תות", "fullName": "תות" },
-    "food_5": { "name": "ענבים", "fullName": "ענבים" },
-    "food_6": { "name": "אבטיח", "fullName": "אבטיח" },
-    "food_7": { "name": "גזר", "fullName": "גזר" },
-    "food_8": { "name": "עגבנייה", "fullName": "עגבנייה" },
-    "food_9": { "name": "מלפפון", "fullName": "מלפפון" },
-    "food_10": { "name": "תירס", "fullName": "תירס" },
-    "food_11": { "name": "לחם", "fullName": "לחם" },
-    "food_12": { "name": "גבינה", "fullName": "גבינה" },
-    "food_13": { "name": "ביצה", "fullName": "ביצה" },
-    "food_14": { "name": "חלב", "fullName": "חלב" },
-    "food_15": { "name": "עוגה", "fullName": "עוגה" },
-    "food_16": { "name": "עוגייה", "fullName": "עוגייה" },
-    "food_17": { "name": "גלידה", "fullName": "גלידה" },
-    "food_18": { "name": "שוקולד", "fullName": "שוקולד" }
+    "apple": { "name": "תפוח", "fullName": "תפוח" },
+    "banana": { "name": "בננה", "fullName": "בננה" },
+    "orange": { "name": "תפוז", "fullName": "תפוז" },
+    "strawberry": { "name": "תות", "fullName": "תות" },
+    "grapes": { "name": "ענבים", "fullName": "ענבים" },
+    "watermelon": { "name": "אבטיח", "fullName": "אבטיח" },
+    "carrot": { "name": "גזר", "fullName": "גזר" },
+    "tomato": { "name": "עגבנייה", "fullName": "עגבנייה" },
+    "cucumber": { "name": "מלפפון", "fullName": "מלפפון" },
+    "pepper": { "name": "פלפל", "fullName": "פלפל" },
+    "broccoli": { "name": "ברוקולי", "fullName": "ברוקולי" },
+    "corn": { "name": "תירס", "fullName": "תירס" },
+    "bread": { "name": "לחם", "fullName": "לחם" },
+    "cheese": { "name": "גבינה", "fullName": "גבינה" },
+    "egg": { "name": "ביצה", "fullName": "ביצה" },
+    "cookie": { "name": "עוגייה", "fullName": "עוגייה" },
+    "icecream": { "name": "גלידה", "fullName": "גלידה" },
+    "chocolate": { "name": "שוקולד", "fullName": "שוקולד" }
   },
   "seo": {
     "pageTitle": "לימוד אותיות ומספרים לילדים - אתר חינוכי חינמי אונליין לגיל הרך",

@@ -7,6 +7,7 @@ interface LetterConfig {
   audioFiles: {
     he: string;
     en: string;
+    ru?: string;
   };
   color: string;
 }
@@ -18,7 +19,8 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_1',
     audioFiles: {
       he: 'aleph.mp3',
-      en: 'a.mp3'
+      en: 'a.mp3',
+      ru: 'a.mp3',
     },
     color: '#FF5733',
   },
@@ -28,7 +30,8 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_2',
     audioFiles: {
       he: 'bet.mp3',
-      en: 'b.mp3'
+      en: 'b.mp3',
+      ru: 'b.mp3',
     },
     color: '#FF8D1A',
   },
@@ -38,7 +41,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_3',
     audioFiles: {
       he: 'gimel.mp3',
-      en: 'c.mp3'
+      en: 'c.mp3',
     },
     color: '#FFC300',
   },
@@ -48,7 +51,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_4',
     audioFiles: {
       he: 'dalet.mp3',
-      en: 'd.mp3'
+      en: 'd.mp3',
     },
     color: '#b5eb50',
   },
@@ -58,7 +61,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_5',
     audioFiles: {
       he: 'hey.mp3',
-      en: 'e.mp3'
+      en: 'e.mp3',
     },
     color: '#33FF57',
   },
@@ -68,7 +71,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_6',
     audioFiles: {
       he: 'vav.mp3',
-      en: 'f.mp3'
+      en: 'f.mp3',
     },
     color: '#1AFF8D',
   },
@@ -78,7 +81,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_7',
     audioFiles: {
       he: 'zayin.mp3',
-      en: 'g.mp3'
+      en: 'g.mp3',
     },
     color: '#33FFF7',
   },
@@ -88,7 +91,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_8',
     audioFiles: {
       he: 'chet.mp3',
-      en: 'h.mp3'
+      en: 'h.mp3',
     },
     color: '#1A8DFF',
   },
@@ -98,7 +101,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_9',
     audioFiles: {
       he: 'tet.mp3',
-      en: 'i.mp3'
+      en: 'i.mp3',
     },
     color: '#5733FF',
   },
@@ -108,7 +111,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_10',
     audioFiles: {
       he: 'yud.mp3',
-      en: 'j.mp3'
+      en: 'j.mp3',
     },
     color: '#8D1AFF',
   },
@@ -118,7 +121,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_11',
     audioFiles: {
       he: 'kaf.mp3',
-      en: 'k.mp3'
+      en: 'k.mp3',
     },
     color: '#C300FF',
   },
@@ -128,7 +131,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_12',
     audioFiles: {
       he: 'lamed.mp3',
-      en: 'l.mp3'
+      en: 'l.mp3',
     },
     color: '#FF33F7',
   },
@@ -138,7 +141,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_13',
     audioFiles: {
       he: 'mem.mp3',
-      en: 'm.mp3'
+      en: 'm.mp3',
     },
     color: '#FF1A8D',
   },
@@ -148,7 +151,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_14',
     audioFiles: {
       he: 'nun.mp3',
-      en: 'n.mp3'
+      en: 'n.mp3',
     },
     color: '#DA1AFF',
   },
@@ -158,7 +161,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_15',
     audioFiles: {
       he: 'samech.mp3',
-      en: 'o.mp3'
+      en: 'o.mp3',
     },
     color: '#FF33C3',
   },
@@ -168,7 +171,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_16',
     audioFiles: {
       he: 'ayin.mp3',
-      en: 'p.mp3'
+      en: 'p.mp3',
     },
     color: '#FF5733',
   },
@@ -178,7 +181,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_17',
     audioFiles: {
       he: 'pey.mp3',
-      en: 'q.mp3'
+      en: 'q.mp3',
     },
     color: '#FF8D1A',
   },
@@ -188,7 +191,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_18',
     audioFiles: {
       he: 'tzadi.mp3',
-      en: 'r.mp3'
+      en: 'r.mp3',
     },
     color: '#FFC300',
   },
@@ -198,7 +201,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_19',
     audioFiles: {
       he: 'kuf.mp3',
-      en: 's.mp3'
+      en: 's.mp3',
     },
     color: '#6aa103',
   },
@@ -208,7 +211,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_20',
     audioFiles: {
       he: 'resh.mp3',
-      en: 't.mp3'
+      en: 't.mp3',
     },
     color: '#33FF57',
   },
@@ -218,7 +221,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_21',
     audioFiles: {
       he: 'shin.mp3',
-      en: 'u.mp3'
+      en: 'u.mp3',
     },
     color: '#1AFF8D',
   },
@@ -228,7 +231,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_22',
     audioFiles: {
       he: 'tav.mp3',
-      en: 'v.mp3'
+      en: 'v.mp3',
     },
     color: '#33FFF7',
   },
@@ -238,7 +241,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_23',
     audioFiles: {
       he: 'tav.mp3',
-      en: 'w.mp3'
+      en: 'w.mp3',
     },
     color: '#FF5733',
   },
@@ -248,7 +251,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_24',
     audioFiles: {
       he: 'tav.mp3',
-      en: 'x.mp3'
+      en: 'x.mp3',
     },
     color: '#FF8D1A',
   },
@@ -258,7 +261,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_25',
     audioFiles: {
       he: 'tav.mp3',
-      en: 'y.mp3'
+      en: 'y.mp3',
     },
     color: '#FFC300',
   },
@@ -268,7 +271,7 @@ const letters: LetterConfig[] = [
     translationKey: 'letters.letter_26',
     audioFiles: {
       he: 'tav.mp3',
-      en: 'z.mp3'
+      en: 'z.mp3',
     },
     color: '#b5eb50',
   },

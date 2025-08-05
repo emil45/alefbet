@@ -7,6 +7,7 @@ interface AnimalConfig {
   audioFiles: {
     he: string;
     en: string;
+    ru?: string;
   };
   color: string;
   imageUrl: string;
@@ -16,8 +17,8 @@ const animals: AnimalConfig[] = [
   // Farm Animals
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_1',
-    translationKey: 'animals.animal_1',
+    id: 'cow',
+    translationKey: 'animals.cow',
     audioFiles: {
       he: 'cow.mp3',
       en: 'cow.mp3',
@@ -27,8 +28,8 @@ const animals: AnimalConfig[] = [
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_2',
-    translationKey: 'animals.animal_2',
+    id: 'pig',
+    translationKey: 'animals.pig',
     audioFiles: {
       he: 'pig.mp3',
       en: 'pig.mp3',
@@ -38,8 +39,8 @@ const animals: AnimalConfig[] = [
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_3',
-    translationKey: 'animals.animal_3',
+    id: 'sheep',
+    translationKey: 'animals.sheep',
     audioFiles: {
       he: 'sheep.mp3',
       en: 'sheep.mp3',
@@ -49,8 +50,8 @@ const animals: AnimalConfig[] = [
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_4',
-    translationKey: 'animals.animal_4',
+    id: 'chicken',
+    translationKey: 'animals.chicken',
     audioFiles: {
       he: 'chicken.mp3',
       en: 'chicken.mp3',
@@ -60,8 +61,8 @@ const animals: AnimalConfig[] = [
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_5',
-    translationKey: 'animals.animal_5',
+    id: 'horse',
+    translationKey: 'animals.horse',
     audioFiles: {
       he: 'horse.mp3',
       en: 'horse.mp3',
@@ -73,30 +74,30 @@ const animals: AnimalConfig[] = [
   // Pets
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_6',
-    translationKey: 'animals.animal_6',
+    id: 'dog',
+    translationKey: 'animals.dog',
     audioFiles: {
       he: 'dog.mp3',
       en: 'dog.mp3',
     },
-    color: '#D2691E',
-    imageUrl: '🐕',
+    color: '#8B4513',
+    imageUrl: '🐶',
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_7',
-    translationKey: 'animals.animal_7',
+    id: 'cat',
+    translationKey: 'animals.cat',
     audioFiles: {
       he: 'cat.mp3',
       en: 'cat.mp3',
     },
-    color: '#808080',
-    imageUrl: '🐈',
+    color: '#FFA500',
+    imageUrl: '🐱',
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_8',
-    translationKey: 'animals.animal_8',
+    id: 'bee',
+    translationKey: 'animals.bee',
     audioFiles: {
       he: 'bee.mp3',
       en: 'bee.mp3',
@@ -106,8 +107,8 @@ const animals: AnimalConfig[] = [
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_9',
-    translationKey: 'animals.animal_9',
+    id: 'goat',
+    translationKey: 'animals.goat',
     audioFiles: {
       he: 'goat.mp3',
       en: 'goat.mp3',
@@ -117,21 +118,21 @@ const animals: AnimalConfig[] = [
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_10',
-    translationKey: 'animals.animal_10',
+    id: 'bird',
+    translationKey: 'animals.bird',
     audioFiles: {
       he: 'bird.mp3',
       en: 'bird.mp3',
     },
-    color: '#87CEEB',
+    color: '#00BFFF',
     imageUrl: '🐦',
   },
 
   // Wild Animals
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_11',
-    translationKey: 'animals.animal_11',
+    id: 'lion',
+    translationKey: 'animals.lion',
     audioFiles: {
       he: 'lion.mp3',
       en: 'lion.mp3',
@@ -141,8 +142,8 @@ const animals: AnimalConfig[] = [
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_12',
-    translationKey: 'animals.animal_12',
+    id: 'elephant',
+    translationKey: 'animals.elephant',
     audioFiles: {
       he: 'elephant.mp3',
       en: 'elephant.mp3',
@@ -152,63 +153,63 @@ const animals: AnimalConfig[] = [
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_13',
-    translationKey: 'animals.animal_13',
+    id: 'monkey',
+    translationKey: 'animals.monkey',
     audioFiles: {
       he: 'monkey.mp3',
       en: 'monkey.mp3',
     },
     color: '#8B4513',
-    imageUrl: '🐒',
+    imageUrl: '🐵',
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_14',
-    translationKey: 'animals.animal_14',
+    id: 'duck',
+    translationKey: 'animals.duck',
     audioFiles: {
       he: 'duck.mp3',
       en: 'duck.mp3',
     },
-    color: '#FFA500',
+    color: '#FFD700',
     imageUrl: '🦆',
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_15',
-    translationKey: 'animals.animal_15',
+    id: 'wolf',
+    translationKey: 'animals.wolf',
     audioFiles: {
       he: 'wolf.mp3',
       en: 'wolf.mp3',
     },
-    color: '#696969',
+    color: '#808080',
     imageUrl: '🐺',
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_16',
-    translationKey: 'animals.animal_16',
+    id: 'fox',
+    translationKey: 'animals.fox',
     audioFiles: {
       he: 'fox.mp3',
       en: 'fox.mp3',
     },
-    color: '#FF6347',
+    color: '#FF4500',
     imageUrl: '🦊',
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_17',
-    translationKey: 'animals.animal_17',
+    id: 'tiger',
+    translationKey: 'animals.tiger',
     audioFiles: {
       he: 'tiger.mp3',
       en: 'tiger.mp3',
     },
     color: '#FF8C00',
-    imageUrl: '🐯',
+    imageUrl: '🐅',
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_18',
-    translationKey: 'animals.animal_18',
+    id: 'cricket',
+    translationKey: 'animals.cricket',
     audioFiles: {
       he: 'cricket.mp3',
       en: 'cricket.mp3',
@@ -218,8 +219,8 @@ const animals: AnimalConfig[] = [
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_19',
-    translationKey: 'animals.animal_19',
+    id: 'zebra',
+    translationKey: 'animals.zebra',
     audioFiles: {
       he: 'zebra.mp3',
       en: 'zebra.mp3',
@@ -229,13 +230,13 @@ const animals: AnimalConfig[] = [
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'animal_20',
-    translationKey: 'animals.animal_20',
+    id: 'frog',
+    translationKey: 'animals.frog',
     audioFiles: {
       he: 'frog.mp3',
       en: 'frog.mp3',
     },
-    color: '#32CD32',
+    color: '#228B22',
     imageUrl: '🐸',
   },
 ];

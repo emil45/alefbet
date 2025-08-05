@@ -19,7 +19,7 @@ const FoodPage: React.FC = () => {
             <ItemCard
               name={foodItem.imageUrl}
               textColor={foodItem.color}
-              soundFile={`/audio/food/${currentLanguage}/${foodItem.audioFiles[currentLanguage as 'he' | 'en']}`}
+              soundFile={`/audio/food/${currentLanguage}/${foodItem.audioFiles[currentLanguage as 'he' | 'en' | 'ru'] || foodItem.audioFiles.en}`}
               itemCaption={t(`food.${foodItem.id}.name`)}
               isRTL={isRTL}
             />

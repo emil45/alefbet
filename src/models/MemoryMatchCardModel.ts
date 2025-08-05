@@ -7,4 +7,5 @@ export interface MemoryMatchCardModel {
   textColor: string;
   matched: boolean;
   element?: React.ReactNode;
+  imageUrl?: string;
 }

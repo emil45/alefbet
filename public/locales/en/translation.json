@@ -187,118 +187,83 @@
     }
   },
   "colors": {
-    "color_1": {
-      "name": "Red",
-      "fullName": "Red"
-    },
-    "color_2": {
-      "name": "Green",
-      "fullName": "Green"
-    },
-    "color_3": {
-      "name": "Blue",
-      "fullName": "Blue"
-    },
-    "color_4": {
-      "name": "Yellow",
-      "fullName": "Yellow"
-    },
-    "color_5": {
-      "name": "Orange",
-      "fullName": "Orange"
-    },
-    "color_6": {
-      "name": "Cyan",
-      "fullName": "Cyan"
-    },
-    "color_7": {
-      "name": "Brown",
-      "fullName": "Brown"
-    },
-    "color_8": {
-      "name": "Black",
-      "fullName": "Black"
-    },
-    "color_9": {
-      "name": "White",
-      "fullName": "White"
-    },
-    "color_10": {
-      "name": "Pink",
-      "fullName": "Pink"
-    },
-    "color_11": {
-      "name": "Purple",
-      "fullName": "Purple"
-    },
-    "color_12": {
-      "name": "Gray",
-      "fullName": "Gray"
-    }
+    "red": { "name": "Red", "fullName": "Red" },
+    "green": { "name": "Green", "fullName": "Green" },
+    "blue": { "name": "Blue", "fullName": "Blue" },
+    "yellow": { "name": "Yellow", "fullName": "Yellow" },
+    "orange": { "name": "Orange", "fullName": "Orange" },
+    "cyan": { "name": "Cyan", "fullName": "Cyan" },
+    "brown": { "name": "Brown", "fullName": "Brown" },
+    "black": { "name": "Black", "fullName": "Black" },
+    "white": { "name": "White", "fullName": "White" },
+    "pink": { "name": "Pink", "fullName": "Pink" },
+    "purple": { "name": "Purple", "fullName": "Purple" },
+    "gray": { "name": "Gray", "fullName": "Gray" }
   },
   "shapes": {
-    "shape_1": { "name": "Circle", "fullName": "Circle" },
-    "shape_2": { "name": "Square", "fullName": "Square" },
-    "shape_3": { "name": "Heart", "fullName": "Heart" },
-    "shape_4": { "name": "Ellipse", "fullName": "Ellipse" },
-    "shape_5": { "name": "Rectangle", "fullName": "Rectangle" },
-    "shape_6": { "name": "Star", "fullName": "Star" },
-    "shape_7": { "name": "Triangle", "fullName": "Triangle" },
-    "shape_8": { "name": "Cone", "fullName": "Cone" },
-    "shape_9": { "name": "Hexagon", "fullName": "Hexagon" },
-    "shape_10": { "name": "Kite", "fullName": "Kite" },
-    "shape_11": { "name": "Moon", "fullName": "Moon" },
-    "shape_12": { "name": "Pentagon", "fullName": "Pentagon" },
-    "shape_13": { "name": "Trapezoid", "fullName": "Trapezoid" },
-    "shape_14": { "name": "Pyramid", "fullName": "Pyramid" },
-    "shape_15": { "name": "Rhombus", "fullName": "Rhombus" },
-    "shape_16": { "name": "Wave", "fullName": "Wave" },
-    "shape_17": { "name": "Cylinder", "fullName": "Cylinder" },
-    "shape_18": { "name": "Octagon", "fullName": "Octagon" },
-    "shape_19": { "name": "Parallelogram", "fullName": "Parallelogram" },
-    "shape_20": { "name": "Diamond", "fullName": "Diamond" }
+    "circle": { "name": "Circle", "fullName": "Circle" },
+    "square": { "name": "Square", "fullName": "Square" },
+    "heart": { "name": "Heart", "fullName": "Heart" },
+    "ellipse": { "name": "Ellipse", "fullName": "Ellipse" },
+    "rectangle": { "name": "Rectangle", "fullName": "Rectangle" },
+    "star": { "name": "Star", "fullName": "Star" },
+    "triangle": { "name": "Triangle", "fullName": "Triangle" },
+    "cone": { "name": "Cone", "fullName": "Cone" },
+    "hexagon": { "name": "Hexagon", "fullName": "Hexagon" },
+    "kite": { "name": "Kite", "fullName": "Kite" },
+    "moon": { "name": "Moon", "fullName": "Moon" },
+    "pentagon": { "name": "Pentagon", "fullName": "Pentagon" },
+    "trapezoid": { "name": "Trapezoid", "fullName": "Trapezoid" },
+    "pyramid": { "name": "Pyramid", "fullName": "Pyramid" },
+    "rhombus": { "name": "Rhombus", "fullName": "Rhombus" },
+    "wave": { "name": "Wave", "fullName": "Wave" },
+    "cylinder": { "name": "Cylinder", "fullName": "Cylinder" },
+    "octagon": { "name": "Octagon", "fullName": "Octagon" },
+    "parallelogram": { "name": "Parallelogram", "fullName": "Parallelogram" },
+    "diamond": { "name": "Diamond", "fullName": "Diamond" },
+    "triangular_prism": { "name": "Triangular Prism", "fullName": "Triangular Prism" }
   },
   "animals": {
-    "animal_1": { "name": "Cow", "fullName": "Cow" },
-    "animal_2": { "name": "Pig", "fullName": "Pig" },
-    "animal_3": { "name": "Sheep", "fullName": "Sheep" },
-    "animal_4": { "name": "Chicken", "fullName": "Chicken" },
-    "animal_5": { "name": "Horse", "fullName": "Horse" },
-    "animal_6": { "name": "Dog", "fullName": "Dog" },
-    "animal_7": { "name": "Cat", "fullName": "Cat" },
-    "animal_8": { "name": "Bee", "fullName": "Bee" },
-    "animal_9": { "name": "Goat", "fullName": "Goat" },
-    "animal_10": { "name": "Bird", "fullName": "Bird" },
-    "animal_11": { "name": "Lion", "fullName": "Lion" },
-    "animal_12": { "name": "Elephant", "fullName": "Elephant" },
-    "animal_13": { "name": "Monkey", "fullName": "Monkey" },
-    "animal_14": { "name": "Duck", "fullName": "Duck" },
-    "animal_15": { "name": "Wolf", "fullName": "Wolf" },
-    "animal_16": { "name": "Fox", "fullName": "Fox" },
-    "animal_17": { "name": "Tiger", "fullName": "Tiger" },
-    "animal_18": { "name": "Cricket", "fullName": "Cricket" },
-    "animal_19": { "name": "Zebra", "fullName": "Zebra" },
-    "animal_20": { "name": "Frog", "fullName": "Frog" }
+    "cow": { "name": "Cow", "fullName": "Cow" },
+    "pig": { "name": "Pig", "fullName": "Pig" },
+    "sheep": { "name": "Sheep", "fullName": "Sheep" },
+    "chicken": { "name": "Chicken", "fullName": "Chicken" },
+    "horse": { "name": "Horse", "fullName": "Horse" },
+    "dog": { "name": "Dog", "fullName": "Dog" },
+    "cat": { "name": "Cat", "fullName": "Cat" },
+    "bee": { "name": "Bee", "fullName": "Bee" },
+    "goat": { "name": "Goat", "fullName": "Goat" },
+    "bird": { "name": "Bird", "fullName": "Bird" },
+    "lion": { "name": "Lion", "fullName": "Lion" },
+    "elephant": { "name": "Elephant", "fullName": "Elephant" },
+    "monkey": { "name": "Monkey", "fullName": "Monkey" },
+    "duck": { "name": "Duck", "fullName": "Duck" },
+    "wolf": { "name": "Wolf", "fullName": "Wolf" },
+    "fox": { "name": "Fox", "fullName": "Fox" },
+    "tiger": { "name": "Tiger", "fullName": "Tiger" },
+    "cricket": { "name": "Cricket", "fullName": "Cricket" },
+    "zebra": { "name": "Zebra", "fullName": "Zebra" },
+    "frog": { "name": "Frog", "fullName": "Frog" }
   },
   "food": {
-    "food_1": { "name": "Apple", "fullName": "Apple" },
-    "food_2": { "name": "Banana", "fullName": "Banana" },
-    "food_3": { "name": "Orange", "fullName": "Orange" },
-    "food_4": { "name": "Strawberry", "fullName": "Strawberry" },
-    "food_5": { "name": "Grapes", "fullName": "Grapes" },
-    "food_6": { "name": "Watermelon", "fullName": "Watermelon" },
-    "food_7": { "name": "Carrot", "fullName": "Carrot" },
-    "food_8": { "name": "Tomato", "fullName": "Tomato" },
-    "food_9": { "name": "Cucumber", "fullName": "Cucumber" },
-    "food_10": { "name": "Corn", "fullName": "Corn" },
-    "food_11": { "name": "Bread", "fullName": "Bread" },
-    "food_12": { "name": "Cheese", "fullName": "Cheese" },
-    "food_13": { "name": "Egg", "fullName": "Egg" },
-    "food_14": { "name": "Milk", "fullName": "Milk" },
-    "food_15": { "name": "Cake", "fullName": "Cake" },
-    "food_16": { "name": "Cookie", "fullName": "Cookie" },
-    "food_17": { "name": "Ice Cream", "fullName": "Ice Cream" },
-    "food_18": { "name": "Chocolate", "fullName": "Chocolate" }
+    "apple": { "name": "Apple", "fullName": "Apple" },
+    "banana": { "name": "Banana", "fullName": "Banana" },
+    "orange": { "name": "Orange", "fullName": "Orange" },
+    "strawberry": { "name": "Strawberry", "fullName": "Strawberry" },
+    "grapes": { "name": "Grapes", "fullName": "Grapes" },
+    "watermelon": { "name": "Watermelon", "fullName": "Watermelon" },
+    "carrot": { "name": "Carrot", "fullName": "Carrot" },
+    "tomato": { "name": "Tomato", "fullName": "Tomato" },
+    "cucumber": { "name": "Cucumber", "fullName": "Cucumber" },
+    "pepper": { "name": "Pepper", "fullName": "Pepper" },
+    "broccoli": { "name": "Broccoli", "fullName": "Broccoli" },
+    "corn": { "name": "Corn", "fullName": "Corn" },
+    "bread": { "name": "Bread", "fullName": "Bread" },
+    "cheese": { "name": "Cheese", "fullName": "Cheese" },
+    "egg": { "name": "Egg", "fullName": "Egg" },
+    "cookie": { "name": "Cookie", "fullName": "Cookie" },
+    "icecream": { "name": "Ice Cream", "fullName": "Ice Cream" },
+    "chocolate": { "name": "Chocolate", "fullName": "Chocolate" }
   },
   "seo": {
     "pageTitle": "Learn Letters, Numbers, Colors & Shapes - Free Educational App for Kids Online",

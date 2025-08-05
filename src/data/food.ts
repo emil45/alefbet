@@ -7,6 +7,7 @@ interface FoodConfig {
   audioFiles: {
     he: string;
     en: string;
+    ru?: string;
   };
   color: string;
   imageUrl: string;
@@ -16,8 +17,8 @@ const food: FoodConfig[] = [
   // Fruits
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_1',
-    translationKey: 'food.food_1',
+    id: 'apple',
+    translationKey: 'food.apple',
     audioFiles: {
       he: 'apple.mp3',
       en: 'apple.mp3',
@@ -27,19 +28,19 @@ const food: FoodConfig[] = [
   },
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_2',
-    translationKey: 'food.food_2',
+    id: 'banana',
+    translationKey: 'food.banana',
     audioFiles: {
       he: 'banana.mp3',
       en: 'banana.mp3',
     },
-    color: '#FFE66D',
+    color: '#FFD93D',
     imageUrl: '🍌',
   },
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_3',
-    translationKey: 'food.food_3',
+    id: 'orange',
+    translationKey: 'food.orange',
     audioFiles: {
       he: 'orange.mp3',
       en: 'orange.mp3',
@@ -49,53 +50,54 @@ const food: FoodConfig[] = [
   },
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_4',
-    translationKey: 'food.food_4',
+    id: 'strawberry',
+    translationKey: 'food.strawberry',
     audioFiles: {
       he: 'strawberry.mp3',
       en: 'strawberry.mp3',
     },
-    color: '#FF69B4',
+    color: '#FF6B9D',
     imageUrl: '🍓',
   },
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_5',
-    translationKey: 'food.food_5',
+    id: 'grapes',
+    translationKey: 'food.grapes',
     audioFiles: {
       he: 'grapes.mp3',
       en: 'grapes.mp3',
     },
-    color: '#9B59B6',
+    color: '#8E44AD',
     imageUrl: '🍇',
   },
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_6',
-    translationKey: 'food.food_6',
+    id: 'watermelon',
+    translationKey: 'food.watermelon',
     audioFiles: {
       he: 'watermelon.mp3',
       en: 'watermelon.mp3',
     },
-    color: '#2ECC71',
+    color: '#27AE60',
     imageUrl: '🍉',
   },
+
   // Vegetables
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_7',
-    translationKey: 'food.food_7',
+    id: 'carrot',
+    translationKey: 'food.carrot',
     audioFiles: {
       he: 'carrot.mp3',
       en: 'carrot.mp3',
     },
-    color: '#E67E22',
+    color: '#F39C12',
     imageUrl: '🥕',
   },
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_8',
-    translationKey: 'food.food_8',
+    id: 'tomato',
+    translationKey: 'food.tomato',
     audioFiles: {
       he: 'tomato.mp3',
       en: 'tomato.mp3',
@@ -105,8 +107,8 @@ const food: FoodConfig[] = [
   },
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_9',
-    translationKey: 'food.food_9',
+    id: 'cucumber',
+    translationKey: 'food.cucumber',
     audioFiles: {
       he: 'cucumber.mp3',
       en: 'cucumber.mp3',
@@ -116,8 +118,30 @@ const food: FoodConfig[] = [
   },
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_10',
-    translationKey: 'food.food_10',
+    id: 'pepper',
+    translationKey: 'food.pepper',
+    audioFiles: {
+      he: 'pepper.mp3',
+      en: 'pepper.mp3',
+    },
+    color: '#E67E22',
+    imageUrl: '🌶️',
+  },
+  {
+    type: ModelTypesEnum.FOOD,
+    id: 'broccoli',
+    translationKey: 'food.broccoli',
+    audioFiles: {
+      he: 'broccoli.mp3',
+      en: 'broccoli.mp3',
+    },
+    color: '#27AE60',
+    imageUrl: '🥦',
+  },
+  {
+    type: ModelTypesEnum.FOOD,
+    id: 'corn',
+    translationKey: 'food.corn',
     audioFiles: {
       he: 'corn.mp3',
       en: 'corn.mp3',
@@ -125,89 +149,69 @@ const food: FoodConfig[] = [
     color: '#F1C40F',
     imageUrl: '🌽',
   },
+
   // Dairy & Proteins
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_11',
-    translationKey: 'food.food_11',
+    id: 'bread',
+    translationKey: 'food.bread',
     audioFiles: {
       he: 'bread.mp3',
       en: 'bread.mp3',
     },
-    color: '#D2691E',
+    color: '#D4AC0D',
     imageUrl: '🍞',
   },
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_12',
-    translationKey: 'food.food_12',
+    id: 'cheese',
+    translationKey: 'food.cheese',
     audioFiles: {
       he: 'cheese.mp3',
       en: 'cheese.mp3',
     },
-    color: '#FFD700',
+    color: '#F1C40F',
     imageUrl: '🧀',
   },
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_13',
-    translationKey: 'food.food_13',
+    id: 'egg',
+    translationKey: 'food.egg',
     audioFiles: {
       he: 'egg.mp3',
       en: 'egg.mp3',
     },
-    color: '#FFFACD',
+    color: '#F7DC6F',
     imageUrl: '🥚',
   },
+
+  // Sweet Treats
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_14',
-    translationKey: 'food.food_14',
-    audioFiles: {
-      he: 'milk.mp3',
-      en: 'milk.mp3',
-    },
-    color: '#F8F8FF',
-    imageUrl: '🥛',
-  },
-  // Sweet treats
-  {
-    type: ModelTypesEnum.FOOD,
-    id: 'food_15',
-    translationKey: 'food.food_15',
-    audioFiles: {
-      he: 'cake.mp3',
-      en: 'cake.mp3',
-    },
-    color: '#FFB6C1',
-    imageUrl: '🍰',
-  },
-  {
-    type: ModelTypesEnum.FOOD,
-    id: 'food_16',
-    translationKey: 'food.food_16',
+    id: 'cookie',
+    translationKey: 'food.cookie',
     audioFiles: {
       he: 'cookie.mp3',
       en: 'cookie.mp3',
     },
-    color: '#DEB887',
+    color: '#D4AC0D',
     imageUrl: '🍪',
   },
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_17',
-    translationKey: 'food.food_17',
+    id: 'icecream',
+    translationKey: 'food.icecream',
     audioFiles: {
-      he: 'ice_cream.mp3',
-      en: 'ice_cream.mp3',
+      he: 'icecream.mp3',
+      en: 'icecream.mp3',
     },
     color: '#FFC0CB',
     imageUrl: '🍦',
   },
   {
     type: ModelTypesEnum.FOOD,
-    id: 'food_18',
-    translationKey: 'food.food_18',
+    id: 'chocolate',
+    translationKey: 'food.chocolate',
     audioFiles: {
       he: 'chocolate.mp3',
       en: 'chocolate.mp3',

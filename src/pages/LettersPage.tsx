@@ -9,9 +9,10 @@ const LettersPage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language || 'he';
   const isRTL = currentLanguage === 'he';
-  
-  // Show only 22 letters for Hebrew, all 26 for English
-  const lettersToShow = currentLanguage === 'he' ? letters.slice(0, 22) : letters;
+
+  // Show only 22 letters for Hebrew, 26 for English, 33 for Russian
+  const lettersToShow =
+    currentLanguage === 'he' ? letters.slice(0, 22) : currentLanguage === 'ru' ? letters.slice(0, 33) : letters;
 
   return (
     <>
@@ -22,7 +23,7 @@ const LettersPage: React.FC = () => {
             <ItemCard
               name={t(`letters.${letter.id}.name`)}
               textColor={letter.color}
-              soundFile={`/audio/letters/${currentLanguage}/${letter.audioFiles[currentLanguage as 'he' | 'en']}`}
+              soundFile={`/audio/letters/${currentLanguage}/${letter.audioFiles[currentLanguage as 'he' | 'en' | 'ru'] || letter.audioFiles.en}`}
               itemCaption={t(`letters.${letter.id}.fullName`)}
               isRTL={isRTL}
             />

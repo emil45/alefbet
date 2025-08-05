@@ -7,6 +7,7 @@ interface ShapeConfig {
   audioFiles: {
     he: string;
     en: string;
+    ru?: string;
   };
   color: string;
   element: JSX.Element;
@@ -15,33 +16,33 @@ interface ShapeConfig {
 const shapes: ShapeConfig[] = [
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_1',
-    translationKey: 'shapes.shape_1',
+    id: 'circle',
+    translationKey: 'shapes.circle',
     audioFiles: {
       he: 'circle.mp3',
-      en: 'circle.mp3'
+      en: 'circle.mp3',
     },
     color: '#eb4747',
     element: <circle cx="12" cy="12" r="10" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_2',
-    translationKey: 'shapes.shape_2',
+    id: 'square',
+    translationKey: 'shapes.square',
     audioFiles: {
       he: 'square.mp3',
-      en: 'square.mp3'
+      en: 'square.mp3',
     },
     color: '#68d3ee',
     element: <rect x="2" y="3" width="20" height="20" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_3',
-    translationKey: 'shapes.shape_3',
+    id: 'heart',
+    translationKey: 'shapes.heart',
     audioFiles: {
       he: 'heart.mp3',
-      en: 'heart.mp3'
+      en: 'heart.mp3',
     },
     color: 'darkorange',
     element: (
@@ -54,33 +55,33 @@ const shapes: ShapeConfig[] = [
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_4',
-    translationKey: 'shapes.shape_4',
+    id: 'ellipse',
+    translationKey: 'shapes.ellipse',
     audioFiles: {
       he: 'ellipse.mp3',
-      en: 'ellipse.mp3'
+      en: 'ellipse.mp3',
     },
     color: '#f7dc6f',
     element: <ellipse cx="12" cy="14" rx="12" ry="8" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_5',
-    translationKey: 'shapes.shape_5',
+    id: 'rectangle',
+    translationKey: 'shapes.rectangle',
     audioFiles: {
       he: 'rectangle.mp3',
-      en: 'rectangle.mp3'
+      en: 'rectangle.mp3',
     },
     color: 'purple',
     element: <rect x="2" y="5" width="20" height="14" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_6',
-    translationKey: 'shapes.shape_6',
+    id: 'star',
+    translationKey: 'shapes.star',
     audioFiles: {
       he: 'star.mp3',
-      en: 'star.mp3'
+      en: 'star.mp3',
     },
     color: 'lightCoral',
     element: (
@@ -93,22 +94,22 @@ const shapes: ShapeConfig[] = [
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_7',
-    translationKey: 'shapes.shape_7',
+    id: 'triangle',
+    translationKey: 'shapes.triangle',
     audioFiles: {
       he: 'triangle.mp3',
-      en: 'triangle.mp3'
+      en: 'triangle.mp3',
     },
     color: 'teal',
     element: <polygon points="12 2, 22 22, 2 22" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_8',
-    translationKey: 'shapes.shape_8',
+    id: 'cone',
+    translationKey: 'shapes.cone',
     audioFiles: {
       he: 'cone.mp3',
-      en: 'cone.mp3'
+      en: 'cone.mp3',
     },
     color: 'lightgreen',
     element: (
@@ -121,33 +122,33 @@ const shapes: ShapeConfig[] = [
 
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_9',
-    translationKey: 'shapes.shape_9',
+    id: 'hexagon',
+    translationKey: 'shapes.hexagon',
     audioFiles: {
       he: 'hexagon.mp3',
-      en: 'hexagon.mp3'
+      en: 'hexagon.mp3',
     },
     color: '#88b7b7',
     element: <polygon points="12 2, 20 7, 20 17, 12 22, 4 17, 4 7" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_10',
-    translationKey: 'shapes.shape_10',
+    id: 'kite',
+    translationKey: 'shapes.kite',
     audioFiles: {
       he: 'kite.mp3',
-      en: 'kite.mp3'
+      en: 'kite.mp3',
     },
     color: 'brown',
     element: <polygon points="12 2, 20 9, 12 24, 4 9" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_11',
-    translationKey: 'shapes.shape_11',
+    id: 'moon',
+    translationKey: 'shapes.moon',
     audioFiles: {
       he: 'moon.mp3',
-      en: 'moon.mp3'
+      en: 'moon.mp3',
     },
     color: '#f3b817',
     element: (
@@ -159,33 +160,33 @@ const shapes: ShapeConfig[] = [
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_12',
-    translationKey: 'shapes.shape_12',
+    id: 'pentagon',
+    translationKey: 'shapes.pentagon',
     audioFiles: {
       he: 'pentagon.mp3',
-      en: 'pentagon.mp3'
+      en: 'pentagon.mp3',
     },
     color: 'white',
     element: <polygon points="12 2, 22 10, 18 22, 6 22, 2 10" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_13',
-    translationKey: 'shapes.shape_13',
+    id: 'trapezoid',
+    translationKey: 'shapes.trapezoid',
     audioFiles: {
       he: 'trapezoid.mp3',
-      en: 'trapezoid.mp3'
+      en: 'trapezoid.mp3',
     },
     color: '#b4ca6d',
     element: <polygon points="17 4, 23 22, 1 22, 7 4" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_14',
-    translationKey: 'shapes.shape_14',
+    id: 'pyramid',
+    translationKey: 'shapes.pyramid',
     audioFiles: {
       he: 'pyramid.mp3',
-      en: 'pyramid.mp3'
+      en: 'pyramid.mp3',
     },
     color: 'pink',
     element: (
@@ -202,11 +203,11 @@ const shapes: ShapeConfig[] = [
 
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_15',
-    translationKey: 'shapes.shape_15',
+    id: 'rhombus',
+    translationKey: 'shapes.rhombus',
     audioFiles: {
       he: 'rhombus.mp3',
-      en: 'rhombus.mp3'
+      en: 'rhombus.mp3',
     },
     color: 'gray',
     element: <polygon points="12 0, 22 12, 12 24, 2 12" stroke="black" strokeWidth="0.1" />,
@@ -214,11 +215,11 @@ const shapes: ShapeConfig[] = [
 
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_16',
-    translationKey: 'shapes.shape_16',
+    id: 'wave',
+    translationKey: 'shapes.wave',
     audioFiles: {
       he: 'wave.mp3',
-      en: 'wave.mp3'
+      en: 'wave.mp3',
     },
     color: 'olive',
     element: (
@@ -231,11 +232,11 @@ const shapes: ShapeConfig[] = [
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_17',
-    translationKey: 'shapes.shape_17',
+    id: 'cylinder',
+    translationKey: 'shapes.cylinder',
     audioFiles: {
       he: 'cylinder.mp3',
-      en: 'cylinder.mp3'
+      en: 'cylinder.mp3',
     },
     color: '#bbbbff',
     element: (
@@ -248,33 +249,33 @@ const shapes: ShapeConfig[] = [
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_18',
-    translationKey: 'shapes.shape_18',
+    id: 'octagon',
+    translationKey: 'shapes.octagon',
     audioFiles: {
       he: 'octagon.mp3',
-      en: 'octagon.mp3'
+      en: 'octagon.mp3',
     },
     color: 'tomato',
     element: <polygon points="8 3, 16 3, 23 10, 23 17, 16 24, 8 24, 1 17, 1 10" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_19',
-    translationKey: 'shapes.shape_19',
+    id: 'parallelogram',
+    translationKey: 'shapes.parallelogram',
     audioFiles: {
       he: 'parallelogram.mp3',
-      en: 'parallelogram.mp3'
+      en: 'parallelogram.mp3',
     },
     color: 'violet',
     element: <rect x="10" y="3.3" width="15" height="20" transform="skewX(-20)" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    id: 'shape_20',
-    translationKey: 'shapes.shape_20',
+    id: 'diamond',
+    translationKey: 'shapes.diamond',
     audioFiles: {
       he: 'diamond.mp3',
-      en: 'diamond.mp3'
+      en: 'diamond.mp3',
     },
     color: 'lightBlue',
     element: (
