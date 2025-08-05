@@ -9,7 +9,8 @@ import SettingsDrawer from '../components/SettingsDrawer';
 
 const HomePage: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = (i18n.language || 'he') === 'he';
 
   const toggleDrawer = (newOpen: boolean) => {
     setOpen(newOpen);
@@ -22,6 +23,8 @@ const HomePage: React.FC = () => {
         <FunButton to={RoutesEnum.NUMBERS} text={t('home.buttons.numbers')} />
         <FunButton to={RoutesEnum.COLORS} text={t('home.buttons.colors')} />
         <FunButton to={RoutesEnum.SHAPES} text={t('home.buttons.shapes')} />
+        <FunButton to={RoutesEnum.ANIMALS} text={t('home.buttons.animals')} />
+        <FunButton to={RoutesEnum.FOOD} text={t('home.buttons.food')} />
         <FunButton to={RoutesEnum.GAMES} text={t('home.buttons.games')} />
       </Box>
     );
@@ -37,9 +40,17 @@ const HomePage: React.FC = () => {
 
   const showSettingsButton = () => {
     return (
-      <RoundFunButton onClick={() => toggleDrawer(true)}>
-        <SettingsIcon />
-      </RoundFunButton>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '20px',
+          ...(isRTL ? { left: '20px' } : { right: '20px' }),
+        }}
+      >
+        <RoundFunButton onClick={() => toggleDrawer(true)}>
+          <SettingsIcon />
+        </RoundFunButton>
+      </Box>
     );
   };
 

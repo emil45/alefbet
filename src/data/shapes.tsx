@@ -1,28 +1,48 @@
-import { ShapeModel } from '../models/ShapeModel';
 import { ModelTypesEnum } from '../models/ModelsTypesEnum';
 
-const shapes: ShapeModel[] = [
+interface ShapeConfig {
+  type: ModelTypesEnum;
+  id: string;
+  translationKey: string;
+  audioFiles: {
+    he: string;
+    en: string;
+  };
+  color: string;
+  element: JSX.Element;
+}
+
+const shapes: ShapeConfig[] = [
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'circle',
-    shapeHebrewName: 'עיגול',
-    soundFile: '/audio/shapes/he/circle.mp3',
+    id: 'shape_1',
+    translationKey: 'shapes.shape_1',
+    audioFiles: {
+      he: 'circle.mp3',
+      en: 'circle.mp3'
+    },
     color: '#eb4747',
     element: <circle cx="12" cy="12" r="10" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'square',
-    shapeHebrewName: 'ריבוע',
-    soundFile: '/audio/shapes/he/square.mp3',
+    id: 'shape_2',
+    translationKey: 'shapes.shape_2',
+    audioFiles: {
+      he: 'square.mp3',
+      en: 'square.mp3'
+    },
     color: '#68d3ee',
     element: <rect x="2" y="3" width="20" height="20" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'heart',
-    shapeHebrewName: 'לב',
-    soundFile: '/audio/shapes/he/heart.mp3',
+    id: 'shape_3',
+    translationKey: 'shapes.shape_3',
+    audioFiles: {
+      he: 'heart.mp3',
+      en: 'heart.mp3'
+    },
     color: 'darkorange',
     element: (
       <path
@@ -34,25 +54,34 @@ const shapes: ShapeModel[] = [
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'ellipse',
-    shapeHebrewName: 'אליפסה',
-    soundFile: '/audio/shapes/he/ellipse.mp3',
+    id: 'shape_4',
+    translationKey: 'shapes.shape_4',
+    audioFiles: {
+      he: 'ellipse.mp3',
+      en: 'ellipse.mp3'
+    },
     color: '#f7dc6f',
     element: <ellipse cx="12" cy="14" rx="12" ry="8" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'rectangle',
-    shapeHebrewName: 'מלבן',
-    soundFile: '/audio/shapes/he/rectangle.mp3',
+    id: 'shape_5',
+    translationKey: 'shapes.shape_5',
+    audioFiles: {
+      he: 'rectangle.mp3',
+      en: 'rectangle.mp3'
+    },
     color: 'purple',
     element: <rect x="2" y="5" width="20" height="14" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'star',
-    shapeHebrewName: 'כוכב',
-    soundFile: '/audio/shapes/he/star.mp3',
+    id: 'shape_6',
+    translationKey: 'shapes.shape_6',
+    audioFiles: {
+      he: 'star.mp3',
+      en: 'star.mp3'
+    },
     color: 'lightCoral',
     element: (
       <polygon
@@ -64,17 +93,23 @@ const shapes: ShapeModel[] = [
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'triangle',
-    shapeHebrewName: 'משולש',
-    soundFile: '/audio/shapes/he/triangle.mp3',
+    id: 'shape_7',
+    translationKey: 'shapes.shape_7',
+    audioFiles: {
+      he: 'triangle.mp3',
+      en: 'triangle.mp3'
+    },
     color: 'teal',
     element: <polygon points="12 2, 22 22, 2 22" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'cone',
-    shapeHebrewName: 'חרוט',
-    soundFile: '/audio/shapes/he/cone.mp3',
+    id: 'shape_8',
+    translationKey: 'shapes.shape_8',
+    audioFiles: {
+      he: 'cone.mp3',
+      en: 'cone.mp3'
+    },
     color: 'lightgreen',
     element: (
       <>
@@ -86,25 +121,34 @@ const shapes: ShapeModel[] = [
 
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'hexagon',
-    shapeHebrewName: 'משושה',
-    soundFile: '/audio/shapes/he/hexagon.mp3',
+    id: 'shape_9',
+    translationKey: 'shapes.shape_9',
+    audioFiles: {
+      he: 'hexagon.mp3',
+      en: 'hexagon.mp3'
+    },
     color: '#88b7b7',
     element: <polygon points="12 2, 20 7, 20 17, 12 22, 4 17, 4 7" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'kite',
-    shapeHebrewName: 'דלתון',
-    soundFile: '/audio/shapes/he/kite.mp3',
+    id: 'shape_10',
+    translationKey: 'shapes.shape_10',
+    audioFiles: {
+      he: 'kite.mp3',
+      en: 'kite.mp3'
+    },
     color: 'brown',
     element: <polygon points="12 2, 20 9, 12 24, 4 9" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'moon',
-    shapeHebrewName: 'ירח',
-    soundFile: '/audio/shapes/he/moon.mp3',
+    id: 'shape_11',
+    translationKey: 'shapes.shape_11',
+    audioFiles: {
+      he: 'moon.mp3',
+      en: 'moon.mp3'
+    },
     color: '#f3b817',
     element: (
       <>
@@ -115,25 +159,34 @@ const shapes: ShapeModel[] = [
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'pentagon',
-    shapeHebrewName: 'מחומש',
-    soundFile: '/audio/shapes/he/pentagon.mp3',
+    id: 'shape_12',
+    translationKey: 'shapes.shape_12',
+    audioFiles: {
+      he: 'pentagon.mp3',
+      en: 'pentagon.mp3'
+    },
     color: 'white',
     element: <polygon points="12 2, 22 10, 18 22, 6 22, 2 10" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'trapezoid',
-    shapeHebrewName: 'טרפז',
-    soundFile: '/audio/shapes/he/trapezoid.mp3',
+    id: 'shape_13',
+    translationKey: 'shapes.shape_13',
+    audioFiles: {
+      he: 'trapezoid.mp3',
+      en: 'trapezoid.mp3'
+    },
     color: '#b4ca6d',
     element: <polygon points="17 4, 23 22, 1 22, 7 4" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'pyramid',
-    shapeHebrewName: 'פירמידה',
-    soundFile: '/audio/shapes/he/pyramid.mp3',
+    id: 'shape_14',
+    translationKey: 'shapes.shape_14',
+    audioFiles: {
+      he: 'pyramid.mp3',
+      en: 'pyramid.mp3'
+    },
     color: 'pink',
     element: (
       <>
@@ -149,18 +202,24 @@ const shapes: ShapeModel[] = [
 
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'rhombus',
-    shapeHebrewName: 'מעוין',
-    soundFile: '/audio/shapes/he/rhombus.mp3',
+    id: 'shape_15',
+    translationKey: 'shapes.shape_15',
+    audioFiles: {
+      he: 'rhombus.mp3',
+      en: 'rhombus.mp3'
+    },
     color: 'gray',
     element: <polygon points="12 0, 22 12, 12 24, 2 12" stroke="black" strokeWidth="0.1" />,
   },
 
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'wave',
-    shapeHebrewName: 'גל',
-    soundFile: '/audio/shapes/he/wave.mp3',
+    id: 'shape_16',
+    translationKey: 'shapes.shape_16',
+    audioFiles: {
+      he: 'wave.mp3',
+      en: 'wave.mp3'
+    },
     color: 'olive',
     element: (
       <path
@@ -172,9 +231,12 @@ const shapes: ShapeModel[] = [
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'cylinder',
-    shapeHebrewName: 'גליל',
-    soundFile: '/audio/shapes/he/cylinder.mp3',
+    id: 'shape_17',
+    translationKey: 'shapes.shape_17',
+    audioFiles: {
+      he: 'cylinder.mp3',
+      en: 'cylinder.mp3'
+    },
     color: '#bbbbff',
     element: (
       <>
@@ -186,25 +248,34 @@ const shapes: ShapeModel[] = [
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'octagon',
-    shapeHebrewName: 'מתומן',
-    soundFile: '/audio/shapes/he/octagon.mp3',
+    id: 'shape_18',
+    translationKey: 'shapes.shape_18',
+    audioFiles: {
+      he: 'octagon.mp3',
+      en: 'octagon.mp3'
+    },
     color: 'tomato',
     element: <polygon points="8 3, 16 3, 23 10, 23 17, 16 24, 8 24, 1 17, 1 10" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'parallelogram',
-    shapeHebrewName: 'מקבילית',
-    soundFile: '/audio/shapes/he/parallelogram.mp3',
+    id: 'shape_19',
+    translationKey: 'shapes.shape_19',
+    audioFiles: {
+      he: 'parallelogram.mp3',
+      en: 'parallelogram.mp3'
+    },
     color: 'violet',
     element: <rect x="10" y="3.3" width="15" height="20" transform="skewX(-20)" stroke="black" strokeWidth="0.1" />,
   },
   {
     type: ModelTypesEnum.SHAPES,
-    shapeName: 'diamond',
-    shapeHebrewName: 'יהלום',
-    soundFile: '/audio/shapes/he/diamond.mp3',
+    id: 'shape_20',
+    translationKey: 'shapes.shape_20',
+    audioFiles: {
+      he: 'diamond.mp3',
+      en: 'diamond.mp3'
+    },
     color: 'lightBlue',
     element: (
       <>

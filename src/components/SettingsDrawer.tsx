@@ -54,10 +54,13 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            flexDirection: direction === 'rtl' ? 'row-reverse' : 'row',
+            width: '100%',
           }}
         >
-          <Typography color="primary.light" variant="h6" sx={{ textAlign: direction === 'rtl' ? 'right' : 'left' }}>
+          <Typography color="primary.light" variant="h6" sx={{ 
+            textAlign: direction === 'rtl' ? 'right' : 'left',
+            width: '100%'
+          }}>
             {t('home.settings.title')}
           </Typography>
           <IconButton onClick={handleClose}>
@@ -72,18 +75,33 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
             alignItems: direction === 'rtl' ? 'flex-end' : 'flex-start',
             gap: 1,
             mb: 'auto',
+            width: '100%',
           }}
         >
-          <Typography fontWeight="bold" variant="button" color="secondary.main">
+          <Typography 
+            fontWeight="bold" 
+            variant="button" 
+            color="secondary.main"
+            sx={{ 
+              textAlign: direction === 'rtl' ? 'right' : 'left',
+              width: '100%'
+            }}
+          >
             {t('home.settings.language')}
           </Typography>
           <ButtonGroup
             size="large"
             variant="outlined"
-            sx={{ mt: 1, direction: direction === 'rtl' ? 'row-reverse' : 'row' }}
+            sx={{ 
+              mt: 1, 
+              alignSelf: 'flex-start',
+              flexDirection: direction === 'rtl' ? 'row-reverse' : 'row',
+              '& .MuiButtonGroup-grouped': {
+                direction: direction
+              }
+            }}
           >
             <Button
-              disabled
               variant={i18n.language === 'en' ? 'contained' : 'outlined'}
               onClick={() => handleLanguageChange('en')}
             >
@@ -103,11 +121,36 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
             display: 'flex',
             flexDirection: 'column',
             alignItems: direction === 'rtl' ? 'flex-end' : 'flex-start',
+            width: '100%',
           }}
         >
-          <Typography color="secondary.main">{t('home.settings.voices')}</Typography>
-          <Typography color="secondary.main">{t('home.settings.code')}</Typography>
-          <Typography color="secondary.main">{t('home.settings.contact')}</Typography>
+          <Typography 
+            color="secondary.main"
+            sx={{ 
+              textAlign: direction === 'rtl' ? 'right' : 'left',
+              width: '100%'
+            }}
+          >
+            {t('home.settings.voices')}
+          </Typography>
+          <Typography 
+            color="secondary.main"
+            sx={{ 
+              textAlign: direction === 'rtl' ? 'right' : 'left',
+              width: '100%'
+            }}
+          >
+            {t('home.settings.code')}
+          </Typography>
+          <Typography 
+            color="secondary.main"
+            sx={{ 
+              textAlign: direction === 'rtl' ? 'right' : 'left',
+              width: '100%'
+            }}
+          >
+            {t('home.settings.contact')}
+          </Typography>
         </Box>
       </Box>
     </Drawer>

@@ -9,6 +9,7 @@ interface ItemCardProps {
   backgroundColor?: string;
   itemCaption?: string;
   element?: React.ReactNode;
+  isRTL?: boolean;
 }
 
 const ItemCard: React.FC<ItemCardProps> = ({
@@ -19,6 +20,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
   itemCaption,
   element,
   cardSize = 1,
+  isRTL = true,
 }) => {
   const playSound = () => {
     const audio = new Audio(soundFile);
@@ -62,7 +64,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
           sx={{
             position: 'absolute',
             top: '8px',
-            right: '8px',
+            ...(isRTL ? { right: '8px' } : { left: '8px' }),
             color: '#000',
             backgroundColor: '#fff',
             borderRadius: '10%',
@@ -70,6 +72,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
             fontSize: '12px',
             fontWeight: 'bold',
             boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+            textAlign: isRTL ? 'right' : 'left',
           }}
         >
           {itemCaption}

@@ -3,5 +3,7 @@ export enum ModelTypesEnum {
   NUMBERS,
   COLORS,
   SHAPES,
+  ANIMALS,
+  FOOD,
   MEMORY_MATCH_CARD,
 }

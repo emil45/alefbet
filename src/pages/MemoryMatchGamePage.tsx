@@ -14,6 +14,7 @@ import BackButton from '../components/BackButton';
 import letters from '../data/letters';
 import numbers from '../data/numbers';
 import shapes from '../data/shapes';
+import animals from '../data/animals';
 import { shuffle } from '../utils/common';
 import MemoryMatchCard from '../components/MemoryMatchCard';
 import { MemoryMatchCardModel } from '../models/MemoryMatchCardModel';
@@ -24,23 +25,29 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import { AudioSounds, playSound } from '../utils/audio';
 import { useTranslation } from 'react-i18next';
 
-const generateCards = (numCards: number): MemoryMatchCardModel[] => {
+const generateCards = (numCards: number, t: any, currentLanguage: string): MemoryMatchCardModel[] => {
   const items: Omit<MemoryMatchCardModel, 'id' | 'matched'>[] = [
-    ...letters.map((letter) => ({
+    ...letters.slice(0, 22).map((letter) => ({
       type: letter.type,
-      name: letter.letterName,
+      name: t(`letters.${letter.id}.name`),
       textColor: letter.color,
     })),
     ...numbers.map((number) => ({
       type: number.type,
-      name: number.numberName,
+      name: t(`numbers.${number.id}.name`),
       textColor: number.color,
     })),
     ...shapes.map((shape) => ({
       type: shape.type,
-      name: shape.shapeName,
+      name: t(`shapes.${shape.id}.name`),
       textColor: shape.color,
       element: shape.element,
+    })),
+    ...animals.map((animal) => ({
+      type: animal.type,
+      name: t(`animals.${animal.id}.name`),
+      textColor: animal.color,
+      imageUrl: animal.imageUrl,
     })),
   ];
 
@@ -55,9 +62,10 @@ const generateCards = (numCards: number): MemoryMatchCardModel[] => {
 };
 
 const MemoryMatchGamePage: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language || 'he';
   const [numCards, setNumCards] = useState<number>(10);
-  const [cards, setCards] = useState<MemoryMatchCardModel[]>(() => generateCards(numCards));
+  const [cards, setCards] = useState<MemoryMatchCardModel[]>(() => generateCards(numCards, t, currentLanguage));
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [isGameWon, setIsGameWon] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
@@ -70,12 +78,12 @@ const MemoryMatchGamePage: React.FC = () => {
     setFlippedCards([]);
 
     setTimeout(() => {
-      setCards(generateCards(numCards));
+      setCards(generateCards(numCards, t, currentLanguage));
       setIsResetting(false);
     }, 600);
 
     // setCards(generateCards(numCards));
-  }, [numCards]);
+  }, [numCards, t, currentLanguage]);
 
   useEffect(() => {
     resetGame();

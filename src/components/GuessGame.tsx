@@ -4,18 +4,17 @@ import letters from '../data/letters';
 import ItemCard from './ItemCard';
 import shapes from '../data/shapes';
 import numbers from '../data/numbers';
+import animals from '../data/animals';
 import { ModelTypesEnum } from '../models/ModelsTypesEnum';
 import colors from '../data/colors';
-import { LetterModel } from '../models/LetterModel';
-import { ShapeModel } from '../models/ShapeModel';
-import { ColorModel } from '../models/ColorModel';
-import { NumberModel } from '../models/NumberModel';
 import FunButton from './FunButton';
 import { useTranslation } from 'react-i18next';
 
 const GuessGame: React.FC = () => {
-  const { t } = useTranslation();
-  const allItems = [...letters, ...shapes, ...colors, ...numbers];
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language || 'he';
+  const isRTL = currentLanguage === 'he';
+  const allItems = [...letters, ...shapes, ...colors, ...numbers, ...animals];
 
   const getRandomItem = () => {
     return allItems[Math.floor(Math.random() * allItems.length)];
@@ -32,21 +31,23 @@ const GuessGame: React.FC = () => {
       <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 4 }}>
         {currentItem.type === ModelTypesEnum.LETTERS && (
           <ItemCard
-            name={(currentItem as LetterModel).letterName}
+            name={t(`letters.${currentItem.id}.name`)}
             textColor={currentItem.color}
-            soundFile={currentItem.soundFile}
-            itemCaption={(currentItem as LetterModel).letterFullName}
+            soundFile={`/audio/letters/${currentLanguage}/${currentItem.audioFiles[currentLanguage as 'he' | 'en']}`}
+            itemCaption={t(`letters.${currentItem.id}.fullName`)}
             cardSize={2}
+            isRTL={isRTL}
           />
         )}
         {currentItem.type === ModelTypesEnum.SHAPES && (
           <ItemCard
             name=""
-            element={(currentItem as ShapeModel).element}
+            element={currentItem.element}
             textColor={currentItem.color}
-            soundFile={currentItem.soundFile}
-            itemCaption={(currentItem as ShapeModel).shapeHebrewName}
+            soundFile={`/audio/shapes/${currentLanguage}/${currentItem.audioFiles[currentLanguage as 'he' | 'en']}`}
+            itemCaption={t(`shapes.${currentItem.id}.name`)}
             cardSize={2}
+            isRTL={isRTL}
           />
         )}
         {currentItem.type === ModelTypesEnum.COLORS && (
@@ -54,18 +55,30 @@ const GuessGame: React.FC = () => {
             name=""
             textColor={currentItem.color}
             backgroundColor={currentItem.color}
-            soundFile={currentItem.soundFile}
-            itemCaption={(currentItem as ColorModel).colorName}
+            soundFile={`/audio/colors/${currentLanguage}/${currentItem.audioFiles[currentLanguage as 'he' | 'en']}`}
+            itemCaption={t(`colors.${currentItem.id}.name`)}
             cardSize={2}
+            isRTL={isRTL}
           />
         )}
         {currentItem.type === ModelTypesEnum.NUMBERS && (
           <ItemCard
-            name={(currentItem as NumberModel).numberName}
+            name={t(`numbers.${currentItem.id}.name`)}
             textColor={currentItem.color}
-            soundFile={currentItem.soundFile}
-            itemCaption={(currentItem as NumberModel).numberLetter}
+            soundFile={`/audio/numbers/${currentLanguage}/${currentItem.audioFiles[currentLanguage as 'he' | 'en']}`}
+            itemCaption={t(`numbers.${currentItem.id}.fullName`)}
             cardSize={2}
+            isRTL={isRTL}
+          />
+        )}
+        {currentItem.type === ModelTypesEnum.ANIMALS && (
+          <ItemCard
+            name={currentItem.imageUrl}
+            textColor={currentItem.color}
+            soundFile={`/audio/animals/${currentLanguage}/${currentItem.audioFiles[currentLanguage as 'he' | 'en']}`}
+            itemCaption={t(`animals.${currentItem.id}.name`)}
+            cardSize={2}
+            isRTL={isRTL}
           />
         )}
       </Box>

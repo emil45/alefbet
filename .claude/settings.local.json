@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm uninstall:*)",
+      "Bash(npm install:*)",
+      "Bash(mv:*)",
+      "Bash(npm run dev:*)",
+      "Bash(rm:*)",
+      "Bash(mkdir:*)",
+      "WebFetch(domain:freeanimalsounds.org)",
+      "Bash(curl:*)",
+      "WebFetch(domain:mixkit.co)",
+      "WebFetch(domain:pixabay.com)",
+      "Bash(ffmpeg:*)",
+      "Bash(cp:*)"
+    ],
+    "deny": []
+  }
+}

@@ -1,5 +1,39 @@
-# Allow all web crawlers to access all content
 User-agent: *
-Disallow: 
+Allow: /
 
-Sitemap: https://lepdy.com/sitemap.xml
+# Sitemaps
+Sitemap: https://www.alefbet.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Allow all educational content for search engines
+Allow: /letters
+Allow: /numbers
+Allow: /colors
+Allow: /shapes
+Allow: /animals
+Allow: /games
+
+# Block any admin or sensitive areas (if any exist in future)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.env
+Disallow: /*.json$
+
+# Additional directives for specific bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+# Host declaration
+Host: https://www.alefbet.com

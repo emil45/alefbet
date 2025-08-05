@@ -1,44 +1,291 @@
 {
-    "home": {
-      "chooseGameText": "לומדים אותיות ומספרים",
-      "buttons": {
-        "letters": "🅰️ 🅱️ אותיות",
-        "numbers": "מספרים 1️⃣ 2️⃣",
-        "colors": "🖌️ 🎨 צבעים",
-        "shapes": "🟣 🔶 צורות",
-        "games": "🧩 🎲 משחקים"
-      },
-      "settings": {
-        "title": "הגדרות",
-        "language": "שפה",
-        "voices": "קולות: נעה",
-        "code": "קוד: עמנואל",
-        "contact": "emil45@gmail.com :צור קשר"
-      }
+  "home": {
+    "chooseGameText": "לומדים אותיות ומספרים",
+    "buttons": {
+      "letters": "אותיות 🅰️ 🅱️",
+      "numbers": "מספרים 1️⃣ 2️⃣",
+      "colors": "צבעים 🖌️ 🎨",
+      "shapes": "צורות 🟣 🔶",
+      "animals": "חיות 🐶 🐱",
+      "food": "אוכל 🍎 🍌",
+      "games": "משחקים 🧩 🎲"
     },
-    "games": {
-      "buttons": {
-        "guessGame": "🎴 משחק הניחושים",
-        "memoryMatchGame": "🧩 משחק הזיכרון",
-        "simon": "🚦 סיימון"
-      },
-      "guessGame": {
-        "next": "הבא"
-      },
-      "memoryMatchGame": {
-        "reset": "משחק חדש",
-        "cardsNumber": "מספר הקלפים",
-        "winMessage": "ניצחתם, כל הכבוד"
-      },
-      "simonGame": {
-        "score": "ניקוד",
-        "highScore": "שיא",
-        "startGame": "התחל משחק",
-        "playAgain": "שחק שוב"
-      }
-    },
-    "footer": {
-      "text": "Noa © 2024. All rights reserved."
+    "settings": {
+      "title": "הגדרות",
+      "language": "שפה",
+      "voices": "קולות: נעה",
+      "code": "קוד: עמנואל",
+      "contact": "צור קשר: emil45@gmail.com"
     }
+  },
+  "games": {
+    "buttons": {
+      "guessGame": "🎴 משחק הניחושים",
+      "memoryMatchGame": "🧩 משחק הזיכרון",
+      "simon": "🚦 סיימון"
+    },
+    "guessGame": {
+      "next": "הבא"
+    },
+    "memoryMatchGame": {
+      "reset": "משחק חדש",
+      "cardsNumber": "מספר הקלפים",
+      "winMessage": "ניצחתם, כל הכבוד"
+    },
+    "simonGame": {
+      "score": "ניקוד",
+      "highScore": "שיא",
+      "startGame": "התחל משחק",
+      "playAgain": "שחק שוב"
+    }
+  },
+  "letters": {
+    "letter_1": {
+      "name": "א",
+      "fullName": "אָלֶף"
+    },
+    "letter_2": {
+      "name": "ב",
+      "fullName": "בֵּית"
+    },
+    "letter_3": {
+      "name": "ג",
+      "fullName": "גִּימֶל"
+    },
+    "letter_4": {
+      "name": "ד",
+      "fullName": "דָּלֶת"
+    },
+    "letter_5": {
+      "name": "ה",
+      "fullName": "הֵא"
+    },
+    "letter_6": {
+      "name": "ו",
+      "fullName": "וָיו"
+    },
+    "letter_7": {
+      "name": "ז",
+      "fullName": "זַיִן"
+    },
+    "letter_8": {
+      "name": "ח",
+      "fullName": "חֵית"
+    },
+    "letter_9": {
+      "name": "ט",
+      "fullName": "טֵית"
+    },
+    "letter_10": {
+      "name": "י",
+      "fullName": "יוֹד"
+    },
+    "letter_11": {
+      "name": "כ",
+      "fullName": "כָּף"
+    },
+    "letter_12": {
+      "name": "ל",
+      "fullName": "לָמֶד"
+    },
+    "letter_13": {
+      "name": "מ",
+      "fullName": "מֵם"
+    },
+    "letter_14": {
+      "name": "נ",
+      "fullName": "נוּן"
+    },
+    "letter_15": {
+      "name": "ס",
+      "fullName": "סָמֵך"
+    },
+    "letter_16": {
+      "name": "ע",
+      "fullName": "עַיִן"
+    },
+    "letter_17": {
+      "name": "פ",
+      "fullName": "פֵּא"
+    },
+    "letter_18": {
+      "name": "צ",
+      "fullName": "צָדִי"
+    },
+    "letter_19": {
+      "name": "ק",
+      "fullName": "קוּף"
+    },
+    "letter_20": {
+      "name": "ר",
+      "fullName": "רֵיש"
+    },
+    "letter_21": {
+      "name": "ש",
+      "fullName": "שִׁין"
+    },
+    "letter_22": {
+      "name": "ת",
+      "fullName": "תָּיו"
+    }
+  },
+  "numbers": {
+    "number_1": {
+      "name": "1",
+      "fullName": "אחת"
+    },
+    "number_2": {
+      "name": "2",
+      "fullName": "שתים"
+    },
+    "number_3": {
+      "name": "3",
+      "fullName": "שלוש"
+    },
+    "number_4": {
+      "name": "4",
+      "fullName": "ארבע"
+    },
+    "number_5": {
+      "name": "5",
+      "fullName": "חמש"
+    },
+    "number_6": {
+      "name": "6",
+      "fullName": "שש"
+    },
+    "number_7": {
+      "name": "7",
+      "fullName": "שבע"
+    },
+    "number_8": {
+      "name": "8",
+      "fullName": "שמונה"
+    },
+    "number_9": {
+      "name": "9",
+      "fullName": "תשע"
+    },
+    "number_10": {
+      "name": "10",
+      "fullName": "עשר"
+    }
+  },
+  "colors": {
+    "color_1": {
+      "name": "אדום",
+      "fullName": "אדום"
+    },
+    "color_2": {
+      "name": "ירוק",
+      "fullName": "ירוק"
+    },
+    "color_3": {
+      "name": "כחול",
+      "fullName": "כחול"
+    },
+    "color_4": {
+      "name": "צהוב",
+      "fullName": "צהוב"
+    },
+    "color_5": {
+      "name": "כתום",
+      "fullName": "כתום"
+    },
+    "color_6": {
+      "name": "תכלת",
+      "fullName": "תכלת"
+    },
+    "color_7": {
+      "name": "חום",
+      "fullName": "חום"
+    },
+    "color_8": {
+      "name": "שחור",
+      "fullName": "שחור"
+    },
+    "color_9": {
+      "name": "לבן",
+      "fullName": "לבן"
+    },
+    "color_10": {
+      "name": "ורוד",
+      "fullName": "ורוד"
+    },
+    "color_11": {
+      "name": "סגול",
+      "fullName": "סגול"
+    },
+    "color_12": {
+      "name": "אפור",
+      "fullName": "אפור"
+    }
+  },
+  "shapes": {
+    "shape_1": { "name": "עיגול", "fullName": "עיגול" },
+    "shape_2": { "name": "ריבוע", "fullName": "ריבוע" },
+    "shape_3": { "name": "לב", "fullName": "לב" },
+    "shape_4": { "name": "אליפסה", "fullName": "אליפסה" },
+    "shape_5": { "name": "מלבן", "fullName": "מלבן" },
+    "shape_6": { "name": "כוכב", "fullName": "כוכב" },
+    "shape_7": { "name": "משולש", "fullName": "משולש" },
+    "shape_8": { "name": "חרוט", "fullName": "חרוט" },
+    "shape_9": { "name": "משושה", "fullName": "משושה" },
+    "shape_10": { "name": "דלתון", "fullName": "דלתון" },
+    "shape_11": { "name": "ירח", "fullName": "ירח" },
+    "shape_12": { "name": "מחומש", "fullName": "מחומש" },
+    "shape_13": { "name": "טרפז", "fullName": "טרפז" },
+    "shape_14": { "name": "פירמידה", "fullName": "פירמידה" },
+    "shape_15": { "name": "מעוין", "fullName": "מעוין" },
+    "shape_16": { "name": "גל", "fullName": "גל" },
+    "shape_17": { "name": "גליל", "fullName": "גליל" },
+    "shape_18": { "name": "מתומן", "fullName": "מתומן" },
+    "shape_19": { "name": "מקבילית", "fullName": "מקבילית" },
+    "shape_20": { "name": "יהלום", "fullName": "יהלום" }
+  },
+  "animals": {
+    "animal_1": { "name": "פרה", "fullName": "פרה" },
+    "animal_2": { "name": "חזיר", "fullName": "חזיר" },
+    "animal_3": { "name": "כבש", "fullName": "כבש" },
+    "animal_4": { "name": "תרנגולת", "fullName": "תרנגולת" },
+    "animal_5": { "name": "סוס", "fullName": "סוס" },
+    "animal_6": { "name": "כלב", "fullName": "כלב" },
+    "animal_7": { "name": "חתול", "fullName": "חתול" },
+    "animal_8": { "name": "ארנב", "fullName": "ארנב" },
+    "animal_9": { "name": "דג", "fullName": "דג" },
+    "animal_10": { "name": "ציפור", "fullName": "ציפור" },
+    "animal_11": { "name": "אריה", "fullName": "אריה" },
+    "animal_12": { "name": "פיל", "fullName": "פיל" },
+    "animal_13": { "name": "קוף", "fullName": "קוף" },
+    "animal_14": { "name": "דב", "fullName": "דב" },
+    "animal_15": { "name": "זאב", "fullName": "זאב" },
+    "animal_16": { "name": "שועל", "fullName": "שועל" },
+    "animal_17": { "name": "נמר", "fullName": "נמר" },
+    "animal_18": { "name": "ג'ירפה", "fullName": "ג'ירפה" },
+    "animal_19": { "name": "זברה", "fullName": "זברה" },
+    "animal_20": { "name": "צפרדע", "fullName": "צפרדע" }
+  },
+  "food": {
+    "food_1": { "name": "תפוח", "fullName": "תפוח" },
+    "food_2": { "name": "בננה", "fullName": "בננה" },
+    "food_3": { "name": "תפוז", "fullName": "תפוז" },
+    "food_4": { "name": "תות", "fullName": "תות" },
+    "food_5": { "name": "ענבים", "fullName": "ענבים" },
+    "food_6": { "name": "אבטיח", "fullName": "אבטיח" },
+    "food_7": { "name": "גזר", "fullName": "גזר" },
+    "food_8": { "name": "עגבנייה", "fullName": "עגבנייה" },
+    "food_9": { "name": "מלפפון", "fullName": "מלפפון" },
+    "food_10": { "name": "תירס", "fullName": "תירס" },
+    "food_11": { "name": "לחם", "fullName": "לחם" },
+    "food_12": { "name": "גבינה", "fullName": "גבינה" },
+    "food_13": { "name": "ביצה", "fullName": "ביצה" },
+    "food_14": { "name": "חלב", "fullName": "חלב" },
+    "food_15": { "name": "עוגה", "fullName": "עוגה" },
+    "food_16": { "name": "עוגייה", "fullName": "עוגייה" },
+    "food_17": { "name": "גלידה", "fullName": "גלידה" },
+    "food_18": { "name": "שוקולד", "fullName": "שוקולד" }
+  },
+  "footer": {
+    "text": "Noa © 2024. All rights reserved."
   }
-  
+}
