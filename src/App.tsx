@@ -7,6 +7,8 @@ import ColorsPage from './pages/ColorsPage';
 import ShapesPage from './pages/ShapesPage';
 import AnimalsPage from './pages/AnimalsPage';
 import FoodPage from './pages/FoodPage';
+import SEOPage from './pages/SEOPage';
+import EducationalGuidePage from './pages/EducationalGuidePage';
 import GuessGamePage from './pages/GuessGamePage';
 import MemoryMatchGamePage from './pages/MemoryMatchGamePage';
 import { Box, Typography } from '@mui/material';
@@ -52,6 +54,8 @@ const App: React.FC = () => {
       {/* <TransitionWrapper> */}
       <Routes>
         <Route path={RoutesEnum.HOME} element={<HomePage />} />
+        <Route path={RoutesEnum.SEO} element={<SEOPage />} />
+        <Route path={RoutesEnum.GUIDE} element={<EducationalGuidePage />} />
         <Route path={RoutesEnum.LETTERS} element={<LettersPage />} />
         <Route path={RoutesEnum.NUMBERS} element={<NumbersPage />} />
         <Route path={RoutesEnum.COLORS} element={<ColorsPage />} />

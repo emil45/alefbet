@@ -5,11 +5,14 @@ import { useTranslation } from 'react-i18next';
 import { RoutesEnum } from '../models/RoutesEnum';
 import RoundFunButton from '../components/RoundFunButton';
 import SettingsIcon from '@mui/icons-material/Settings';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import SettingsDrawer from '../components/SettingsDrawer';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
   const [open, setOpen] = useState(false);
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const isRTL = (i18n.language || 'he') === 'he';
 
   const toggleDrawer = (newOpen: boolean) => {
@@ -30,21 +33,14 @@ const HomePage: React.FC = () => {
     );
   };
 
-  const showTitle = () => {
-    return (
-      <Typography textAlign="center" variant="h2" sx={{ mb: 3, color: 'primary.light' }}>
-        {t('home.chooseGameText')}
-      </Typography>
-    );
-  };
-
   const showSettingsButton = () => {
     return (
       <Box
         sx={{
           position: 'absolute',
-          top: '20px',
-          ...(isRTL ? { left: '20px' } : { right: '20px' }),
+          top: { xs: '10px', sm: '20px' }, // Less top margin on mobile
+          ...(isRTL ? { left: { xs: '10px', sm: '20px' } } : { right: { xs: '10px', sm: '20px' } }),
+          zIndex: 10, // Ensure it's above other content
         }}
       >
         <RoundFunButton onClick={() => toggleDrawer(true)}>
@@ -54,12 +50,34 @@ const HomePage: React.FC = () => {
     );
   };
 
+  const showLearnMoreButton = () => {
+    return (
+      <Box
+        sx={{
+          position: 'absolute',
+          top: { xs: '10px', sm: '20px' }, // Same positioning as settings
+          ...(isRTL ? { right: { xs: '10px', sm: '20px' } } : { left: { xs: '10px', sm: '20px' } }), // Opposite side
+          zIndex: 10, // Ensure it's above other content
+        }}
+      >
+        <RoundFunButton onClick={() => navigate(RoutesEnum.SEO)}>
+          <HelpOutlineIcon />
+        </RoundFunButton>
+      </Box>
+    );
+  };
+
   return (
     <Box>
       {showSettingsButton()}
+      {showLearnMoreButton()}
       <SettingsDrawer open={open} toggleDrawer={toggleDrawer} />
-      <Box display="flex" flexDirection="column" alignItems="center">
-        {showTitle()}
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        sx={{ pt: { xs: 8, sm: 6 } }} // Add top padding - more on mobile, less on desktop
+      >
         {showButtons()}
       </Box>
     </Box>

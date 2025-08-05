@@ -1,6 +1,5 @@
 {
   "home": {
-    "chooseGameText": "Learning Letters & Numbers",
     "buttons": {
       "letters": "Letters 🅰️ 🅱️",
       "numbers": "Numbers 1️⃣ 2️⃣",
@@ -267,17 +266,17 @@
     "animal_5": { "name": "Horse", "fullName": "Horse" },
     "animal_6": { "name": "Dog", "fullName": "Dog" },
     "animal_7": { "name": "Cat", "fullName": "Cat" },
-    "animal_8": { "name": "Rabbit", "fullName": "Rabbit" },
-    "animal_9": { "name": "Fish", "fullName": "Fish" },
+    "animal_8": { "name": "Bee", "fullName": "Bee" },
+    "animal_9": { "name": "Goat", "fullName": "Goat" },
     "animal_10": { "name": "Bird", "fullName": "Bird" },
     "animal_11": { "name": "Lion", "fullName": "Lion" },
     "animal_12": { "name": "Elephant", "fullName": "Elephant" },
     "animal_13": { "name": "Monkey", "fullName": "Monkey" },
-    "animal_14": { "name": "Bear", "fullName": "Bear" },
+    "animal_14": { "name": "Duck", "fullName": "Duck" },
     "animal_15": { "name": "Wolf", "fullName": "Wolf" },
     "animal_16": { "name": "Fox", "fullName": "Fox" },
     "animal_17": { "name": "Tiger", "fullName": "Tiger" },
-    "animal_18": { "name": "Giraffe", "fullName": "Giraffe" },
+    "animal_18": { "name": "Cricket", "fullName": "Cricket" },
     "animal_19": { "name": "Zebra", "fullName": "Zebra" },
     "animal_20": { "name": "Frog", "fullName": "Frog" }
   },
@@ -300,6 +299,143 @@
     "food_16": { "name": "Cookie", "fullName": "Cookie" },
     "food_17": { "name": "Ice Cream", "fullName": "Ice Cream" },
     "food_18": { "name": "Chocolate", "fullName": "Chocolate" }
+  },
+  "seo": {
+    "pageTitle": "Learn Letters, Numbers, Colors & Shapes - Free Educational App for Kids Online",
+    "metaDescription": "Free online educational app for kids to learn letters (ABC), numbers (123), colors, shapes, animals and food with audio. Interactive learning games for preschool and kindergarten children ages 3-8.",
+    "hero": {
+      "title": "Learning Made Fun & Interactive",
+      "subtitle": "Help your child discover letters, numbers, colors, shapes, animals and food through engaging audio-visual activities in Hebrew and English",
+      "cta": "Start Learning Now"
+    },
+    "why": {
+      "title": "Why Choose Our Educational App?"
+    },
+    "features": {
+      "audio": {
+        "title": "Rich Audio Experience",
+        "description": "Every letter, number, and word comes with clear, high-quality audio pronunciation in both Hebrew and English to enhance learning through listening."
+      },
+      "bilingual": {
+        "title": "Bilingual Learning",
+        "description": "Complete support for Hebrew and English languages, helping children develop multilingual skills from an early age."
+      },
+      "interactive": {
+        "title": "Interactive Games",
+        "description": "Memory games, guessing games, and Simon Says keep children engaged while reinforcing their learning through play."
+      },
+      "responsive": {
+        "title": "Works Everywhere",
+        "description": "Perfectly designed for phones, tablets, and computers - learn anytime, anywhere with a responsive design."
+      },
+      "family": {
+        "title": "Family Friendly",
+        "description": "Safe, ad-free environment designed specifically for children with parental guidance in mind."
+      },
+      "educational": {
+        "title": "Curriculum Aligned",
+        "description": "Content designed following early childhood education principles to support proper developmental milestones."
+      }
+    },
+    "topics": {
+      "title": "What Your Child Will Learn",
+      "letters": {
+        "title": "Hebrew & English Letters",
+        "description": "Learn the alphabet in both languages with proper pronunciation and visual recognition."
+      },
+      "numbers": {
+        "title": "Numbers 1-10",
+        "description": "Count and recognize numbers with audio guidance and interactive exercises."
+      },
+      "colors": {
+        "title": "Colors & Visual Recognition",
+        "description": "Identify and name colors while developing visual perception skills."
+      },
+      "shapes": {
+        "title": "Geometric Shapes",
+        "description": "Recognize basic shapes and understand spatial relationships through interactive activities."
+      },
+      "animals": {
+        "title": "Animal Sounds & Names",
+        "description": "Discover different animals, their sounds, and names in both languages."
+      },
+      "food": {
+        "title": "Food & Nutrition Basics",
+        "description": "Learn about different foods while building vocabulary for healthy eating habits."
+      }
+    },
+    "benefits": {
+      "title": "Educational Benefits for Your Child",
+      "description1": "Our interactive learning platform is designed to support early childhood development through multi-sensory engagement. Children learn best when they can see, hear, and interact with educational content, which is exactly what our app provides.",
+      "description2": "The combination of visual elements, audio pronunciation, and interactive games creates an immersive learning environment that helps children retain information better and develop crucial cognitive skills. The bilingual approach also enhances brain development and cultural awareness.",
+      "description3": "Parents can be confident that their children are engaged in meaningful, educational activities that prepare them for academic success while having fun. The app encourages independent learning while providing a safe, controlled environment for exploration."
+    },
+    "finalCta": {
+      "title": "Ready to Start Your Child's Learning Journey?",
+      "button": "Begin Learning Adventure"
+    }
+  },
+  "guide": {
+    "pageTitle": "Educational Guide for Parents - How to Teach Kids Letters, Numbers & More",
+    "metaDescription": "Expert parenting guide for teaching children letters, numbers, colors and shapes. Age-appropriate learning tips, developmental milestones, and educational activities for kids 2-6 years old.",
+    "hero": {
+      "title": "Complete Educational Guide for Parents",
+      "subtitle": "Evidence-based tips and strategies to help your child succeed in early learning. Discover age-appropriate activities, developmental milestones, and expert advice for teaching letters, numbers, and essential skills.",
+      "cta": "Try Our Learning App"
+    },
+    "tips": {
+      "title": "Expert Learning Tips for Parents",
+      "tip1": {
+        "title": "Make Learning Playful",
+        "content": "Children learn best through play. Use games, songs, and interactive activities to teach letters and numbers. Keep sessions short (10-15 minutes) and follow your child's interests to maintain engagement and enthusiasm."
+      },
+      "tip2": {
+        "title": "Create a Positive Environment",
+        "content": "Celebrate small victories and avoid pressure. Learning should be enjoyable, not stressful. Praise effort over perfection and create a comfortable, distraction-free space for educational activities."
+      },
+      "tip3": {
+        "title": "Use Multi-Sensory Approaches",
+        "content": "Combine visual, auditory, and tactile learning. Let children trace letters in sand, sing alphabet songs, or use colorful flashcards. Multiple senses enhance memory and understanding significantly."
+      },
+      "tip4": {
+        "title": "Be Consistent and Patient",
+        "content": "Regular practice is more effective than long, infrequent sessions. Set a daily routine for learning activities and remember that every child develops at their own pace. Consistency builds confidence and skills."
+      }
+    },
+    "whyEarly": {
+      "title": "Why Early Learning Matters",
+      "content": "The first six years of life are crucial for brain development. During this period, children form the foundation for all future learning. Quality early education significantly impacts academic success, social skills, and cognitive development.",
+      "benefit1": "Enhanced brain development and neural connections",
+      "benefit2": "Improved language and communication skills",
+      "benefit3": "Better school readiness and academic performance",
+      "benefit4": "Increased confidence and self-esteem",
+      "benefit5": "Stronger problem-solving and critical thinking abilities",
+      "benefit6": "Better social and emotional development"
+    },
+    "ageGuidelines": {
+      "title": "Age-Specific Learning Guidelines",
+      "ages2_3": {
+        "title": "Ages 2-3: Foundation Building",
+        "content": "Focus on basic concepts like colors, shapes, and simple counting. Use repetition, songs, and hands-on activities. Introduce letter sounds through play and everyday conversations."
+      },
+      "ages3_4": {
+        "title": "Ages 3-4: Skill Development",
+        "content": "Begin formal letter recognition and number concepts 1-10. Practice tracing and fine motor skills. Encourage storytelling and expand vocabulary through reading together daily."
+      },
+      "ages4_5": {
+        "title": "Ages 4-5: Pre-School Preparation",
+        "content": "Master alphabet recognition and letter sounds. Count to 20 and understand basic math concepts. Practice writing letters and numbers. Develop listening skills and following instructions."
+      },
+      "ages5_6": {
+        "title": "Ages 5-6: School Readiness",
+        "content": "Begin reading simple words and sentences. Master addition and subtraction basics. Develop independence in learning tasks. Practice social skills and classroom behaviors."
+      }
+    },
+    "finalCta": {
+      "title": "Ready to Start Your Child's Learning Journey?",
+      "subtitle": "Our interactive app provides age-appropriate activities, bilingual support, and engaging content designed by education experts.",
+      "button": "Begin Learning Adventure"
+    }
   },
   "footer": {
     "text": "Noa © 2024. All rights reserved."

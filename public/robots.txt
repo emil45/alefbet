@@ -2,17 +2,20 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://www.alefbet.com/sitemap.xml
+Sitemap: https://www.lepdy.com/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
 
 # Allow all educational content for search engines
+Allow: /learn
+Allow: /guide
 Allow: /letters
 Allow: /numbers
 Allow: /colors
 Allow: /shapes
 Allow: /animals
+Allow: /food
 Allow: /games
 
 # Block any admin or sensitive areas (if any exist in future)
@@ -36,4 +39,4 @@ User-agent: Twitterbot
 Allow: /
 
 # Host declaration
-Host: https://www.alefbet.com
+Host: https://www.lepdy.com

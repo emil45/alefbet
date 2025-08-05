@@ -1,5 +1,7 @@
 export enum RoutesEnum {
   HOME = '/',
+  SEO = '/learn',
+  GUIDE = '/guide',
   LETTERS = '/letters',
   NUMBERS = '/numbers',
   COLORS = '/colors',

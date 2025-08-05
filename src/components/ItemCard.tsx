@@ -1,6 +1,9 @@
 import React from 'react';
 import { Box, SvgIcon, Typography } from '@mui/material';
 
+// Global variable to track currently playing audio
+let currentlyPlayingAudio: HTMLAudioElement | null = null;
+
 interface ItemCardProps {
   name: string;
   soundFile: string;
@@ -23,8 +26,36 @@ const ItemCard: React.FC<ItemCardProps> = ({
   isRTL = true,
 }) => {
   const playSound = () => {
+    // Stop any currently playing audio
+    if (currentlyPlayingAudio) {
+      currentlyPlayingAudio.pause();
+      currentlyPlayingAudio.currentTime = 0;
+    }
+
+    // Create and play new audio
     const audio = new Audio(soundFile);
-    audio.play();
+    currentlyPlayingAudio = audio;
+
+    // Clear the reference when audio ends naturally
+    audio.addEventListener('ended', () => {
+      if (currentlyPlayingAudio === audio) {
+        currentlyPlayingAudio = null;
+      }
+    });
+
+    // Clear the reference if audio fails to load
+    audio.addEventListener('error', () => {
+      if (currentlyPlayingAudio === audio) {
+        currentlyPlayingAudio = null;
+      }
+    });
+
+    audio.play().catch((error) => {
+      console.error('Error playing audio:', soundFile, error);
+      if (currentlyPlayingAudio === audio) {
+        currentlyPlayingAudio = null;
+      }
+    });
   };
 
   return (
