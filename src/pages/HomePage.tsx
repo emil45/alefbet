@@ -8,6 +8,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import SettingsDrawer from '../components/SettingsDrawer';
 import { useNavigate } from 'react-router-dom';
+import { getLanguageSpecificRoute } from '../utils/languageRoutes';
 
 const HomePage: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -60,7 +61,7 @@ const HomePage: React.FC = () => {
           zIndex: 10, // Ensure it's above other content
         }}
       >
-        <RoundFunButton onClick={() => navigate(RoutesEnum.SEO)}>
+        <RoundFunButton onClick={() => navigate(getLanguageSpecificRoute(RoutesEnum.SEO, i18n.language))}>
           <HelpOutlineIcon />
         </RoundFunButton>
       </Box>

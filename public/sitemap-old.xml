@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage - Highest Priority -->
+  <url>
+    <loc>https://www.lepdy.com/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/" />
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/en/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/" />
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/ru/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/" />
+  </url>
+
+  <!-- SEO Landing Page - Very High Priority for Search Traffic -->
+  <url>
+    <loc>https://www.lepdy.com/learn</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/learn" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/learn" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/learn" />
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/en/learn</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/learn" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/learn" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/learn" />
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/ru/learn</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/learn" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/learn" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/learn" />
+  </url>
+
+  <!-- Educational Guide Page - High Priority for Parenting Content -->
+  <url>
+    <loc>https://www.lepdy.com/guide</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/guide" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/guide" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/guide" />
+  </url>
+
+  <!-- Educational Content Pages - High Priority -->
+  <url>
+    <loc>https://www.lepdy.com/letters</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/letters" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/letters" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/letters" />
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/numbers</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/numbers" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/numbers" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/numbers" />
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/colors</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/colors" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/colors" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/colors" />
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/shapes</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/shapes" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/shapes" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/shapes" />
+  </url>
+
+  <!-- Animals Section -->
+  <url>
+    <loc>https://www.lepdy.com/animals</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/animals" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/animals" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/animals" />
+  </url>
+
+  <!-- Food Section -->
+  <url>
+    <loc>https://www.lepdy.com/food</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/food" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/food" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/food" />
+  </url>
+
+  <!-- Games Section -->
+  <url>
+    <loc>https://www.lepdy.com/games</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/games" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/games" />
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/games/guess-game</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/guess-game" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/games/guess-game" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/games/guess-game" />
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/games/memory-match-game</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/memory-match-game" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/games/memory-match-game" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/games/memory-match-game" />
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/games/simon-game</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/simon-game" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/games/simon-game" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/games/simon-game" />
+  </url>
+
+</urlset>

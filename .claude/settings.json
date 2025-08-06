@@ -12,7 +12,8 @@
       "WebFetch(domain:mixkit.co)",
       "WebFetch(domain:pixabay.com)",
       "Bash(ffmpeg:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": []
   }

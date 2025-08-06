@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import { logEvent } from '../utils/amplitude';
 import { AmplitudeEventsEnum } from '../models/amplitudeEvents';
+import { useTranslation } from 'react-i18next';
+import { getLanguageSpecificRoute } from '../utils/languageRoutes';
 
 interface FunButtonProps {
   text: string;
@@ -16,6 +18,7 @@ interface FunButtonProps {
 
 const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick, fontSize, backgroundColor, paddingX, ...rest }) => {
   const navigate = useNavigate();
+  const { i18n } = useTranslation();
 
   const commonStyles = (theme: any) => ({
     position: 'relative',
@@ -98,9 +101,11 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick, fontSize, back
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (to) {
+      // Get the language-specific route
+      const languageRoute = getLanguageSpecificRoute(to as any, i18n.language);
       logEvent(AmplitudeEventsEnum.BUTTON_CLICK, { buttonName: to });
       setTimeout(() => {
-        navigate(to);
+        navigate(languageRoute);
       }, 500);
     } else if (onClick) {
       onClick();

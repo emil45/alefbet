@@ -245,6 +245,81 @@
     "zebra": { "name": "Zebra", "fullName": "Zebra" },
     "frog": { "name": "Frog", "fullName": "Frog" }
   },
+  "seo": {
+    "pageTitle": "Learn Hebrew Letters & Numbers for Kids - Free Educational Website Online",
+    "metaDescription": "Interactive learning website for children - Hebrew & English letters, numbers, colors, shapes, animals & food with audio. Online learning games for kindergarten & grade 1 ages 3-8.",
+    "hero": {
+      "title": "Fun and Interactive Learning",
+      "subtitle": "Help your child discover letters, numbers, colors, shapes, animals and food through engaging audio-visual activities in Hebrew and English",
+      "cta": "Let's Start Learning"
+    },
+    "why": {
+      "title": "Why Choose Our Educational App?"
+    },
+    "features": {
+      "audio": {
+        "title": "Rich Audio Experience",
+        "description": "Every letter, number and word comes with clear, quality pronunciation in Hebrew and English to enhance learning through listening."
+      },
+      "bilingual": {
+        "title": "Bilingual Learning",
+        "description": "Full support for Hebrew and English, helping children develop multilingual skills from a young age."
+      },
+      "interactive": {
+        "title": "Interactive Games",
+        "description": "Educational games and activities that make learning fun and engaging for children."
+      },
+      "responsive": {
+        "title": "Works Everywhere",
+        "description": "Optimized for tablets, phones and computers - learn anywhere, anytime."
+      },
+      "family": {
+        "title": "Family-Friendly",
+        "description": "Safe, ad-free environment designed specifically for children and families."
+      },
+      "educational": {
+        "title": "Pedagogically Sound",
+        "description": "Content developed based on proven educational methodologies for early childhood learning."
+      }
+    },
+    "topics": {
+      "title": "What Will Your Child Learn?",
+      "letters": {
+        "title": "Hebrew Letters",
+        "description": "Learn all 22 Hebrew letters with proper pronunciation and visual recognition."
+      },
+      "numbers": {
+        "title": "Numbers 1-10",
+        "description": "Count and recognize numbers with interactive activities and games."
+      },
+      "colors": {
+        "title": "Colors",
+        "description": "Discover and identify colors through fun, visual learning experiences."
+      },
+      "shapes": {
+        "title": "Shapes",
+        "description": "Explore geometric shapes and develop spatial awareness skills."
+      },
+      "animals": {
+        "title": "Animals",
+        "description": "Meet different animals and learn their sounds and characteristics."
+      },
+      "food": {
+        "title": "Food",
+        "description": "Learn about different foods and build vocabulary in Hebrew and English."
+      }
+    },
+    "benefits": {
+      "title": "Educational Benefits for Your Child",
+      "description1": "Our platform combines proven pedagogical methods with modern technology to create an optimal learning environment for young children. Research shows that multisensory learning approaches significantly improve retention and understanding in early childhood education.",
+      "description2": "The audio-visual combination helps children develop both visual recognition and auditory processing skills, while the interactive elements maintain engagement and motivation. The bilingual approach supports cognitive development and prepares children for our increasingly connected world.",
+      "description3": "All content is carefully designed to be age-appropriate, culturally sensitive, and educationally effective. Parents can feel confident that their children are learning in a safe, structured environment that promotes both academic growth and cultural understanding."
+    },
+    "finalCta": {
+      "title": "Ready to Begin the Learning Journey?",
+      "button": "Start Learning Now"
+    }
+  },
   "food": {
     "apple": { "name": "Apple", "fullName": "Apple" },
     "banana": { "name": "Banana", "fullName": "Banana" },
