@@ -493,23 +493,25 @@ const SpeedChallengePage: React.FC = () => {
       </Paper>
 
       {/* Item Display */}
-      {showItem && currentItem && (
-        <Paper
-          elevation={8}
-          sx={{
-            p: 6,
-            minHeight: 200,
-            minWidth: 300,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-            border: '4px solid #2196F3',
-            borderRadius: 4,
-            transform: 'scale(1.05)',
-            transition: 'all 0.3s ease',
-          }}
-        >
+      <Paper
+        elevation={8}
+        sx={{
+          p: 6,
+          minHeight: 200,
+          minWidth: 300,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: showItem 
+            ? 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'
+            : '#fff3e0',
+          border: showItem ? '4px solid #2196F3' : '4px solid #f57c00',
+          borderRadius: 4,
+          transform: 'scale(1.05)',
+          transition: 'all 0.3s ease',
+        }}
+      >
+        {showItem && currentItem ? (
           <Typography
             variant="h1"
             sx={{
@@ -529,16 +531,12 @@ const SpeedChallengePage: React.FC = () => {
               )) ||
               currentItem.name}
           </Typography>
-        </Paper>
-      )}
-
-      {!showItem && (
-        <Paper elevation={4} sx={{ p: 3, borderRadius: 3, backgroundColor: '#fff3e0' }}>
+        ) : (
           <Typography variant="h5" sx={{ color: '#f57c00', fontWeight: 'bold', textAlign: 'center' }}>
             🤔 {t('speedChallenge.whatWasThat')}
           </Typography>
-        </Paper>
-      )}
+        )}
+      </Paper>
 
       {/* Answer Options */}
       <Grid container spacing={3} sx={{ maxWidth: 700 }}>
