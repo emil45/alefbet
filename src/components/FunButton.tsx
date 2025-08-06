@@ -54,7 +54,7 @@ const FunButton: React.FC<FunButtonProps> = ({ text, to, onClick, fontSize, back
       position: 'relative',
       color: theme.palette.colors.white,
       fontWeight: 'bold',
-      fontSize: fontSize ? `${fontSize}px` : { xs: '30px', md: '40px' },
+      fontSize: fontSize ? `${fontSize}px` : { xs: '24px', sm: '30px', md: '40px' },
       padding: `12px ${paddingX || 30}px`,
       borderRadius: '12px',
       background: backgroundColor || '#f74572', // original '#f0003c'

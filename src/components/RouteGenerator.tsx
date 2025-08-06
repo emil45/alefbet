@@ -17,6 +17,7 @@ import EducationalGuidePage from '../pages/EducationalGuidePage';
 import GuessGamePage from '../pages/GuessGamePage';
 import MemoryMatchGamePage from '../pages/MemoryMatchGamePage';
 import SimonGamePage from '../pages/SimonGamePage';
+import SpeedChallengePage from '../pages/SpeedChallengePage';
 import GamesPage from '../pages/GamesPage';
 
 const ROUTE_COMPONENTS: Record<RoutesEnum, React.ComponentType> = {
@@ -33,6 +34,7 @@ const ROUTE_COMPONENTS: Record<RoutesEnum, React.ComponentType> = {
   [RoutesEnum.GUESS_GAME]: GuessGamePage,
   [RoutesEnum.MEMORY_MATCH_GAME]: MemoryMatchGamePage,
   [RoutesEnum.SIMON_GAME]: SimonGamePage,
+  [RoutesEnum.SPEED_CHALLENGE]: SpeedChallengePage,
 };
 
 /**

@@ -30,6 +30,12 @@ export const playSound = (sound: AudioSounds) => {
     }
 };
 
+// Function to play audio file by path
+export const playAudio = (audioPath: string) => {
+  const audio = new Audio(`/audio/${audioPath}`);
+  audio.play().catch((error) => console.error('Error playing audio:', error));
+};
+
 export const preloadSounds = () => {
   for (const key in audioRefs) {
     const audio = audioRefs[key as unknown as AudioSounds];

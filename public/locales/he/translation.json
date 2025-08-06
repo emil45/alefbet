@@ -21,7 +21,8 @@
     "buttons": {
       "guessGame": "🎴 משחק הניחושים",
       "memoryMatchGame": "🧩 משחק הזיכרון",
-      "simon": "🚦 סיימון"
+      "simon": "🚦 סיימון",
+      "speedChallenge": "⚡ אתגר המהירות"
     },
     "guessGame": {
       "next": "הבא"
@@ -37,6 +38,36 @@
       "startGame": "התחל משחק",
       "playAgain": "שחק שוב"
     }
+  },
+  "speedChallenge": {
+    "title": "אתגר המהירות",
+    "difficulty": "רמת קושי",
+    "category": "קטגוריה",
+    "baby": "תינוק",
+    "easy": "קל",
+    "medium": "בינוני",
+    "hard": "קשה",
+    "mixed": "מעורב",
+    "letters": "אותיות",
+    "numbers": "מספרים",
+    "shapes": "צורות",
+    "animals": "חיות",
+    "colors": "צבעים",
+    "start": "התחל",
+    "question": "שאלה",
+    "questions": "שאלות",
+    "streak": "רצף",
+    "whatWasThat": "מה זה היה?",
+    "gameComplete": "האתגר הושלם!",
+    "points": "נקודות",
+    "correct": "נכון",
+    "bestStreak": "רצף הטוב ביותר",
+    "timeBonus": "בונוס זמן",
+    "playAgain": "שחק שוב",
+    "quick": "מהיר",
+    "marathon": "מרתון",
+    "seconds": "שניות",
+    "questionsShort": "ש"
   },
   "letters": {
     "letter_1": {
