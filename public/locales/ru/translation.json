@@ -66,8 +66,7 @@
     "playAgain": "Играть Снова",
     "quick": "Быстро",
     "marathon": "Марафон",
-    "seconds": "сек",
-    "questionsShort": "В"
+    "seconds": "сек"
   },
   "letters": {
     "letter_1": { "name": "А", "fullName": "А" },
