@@ -98,15 +98,14 @@ const SpeedChallengePage: React.FC = () => {
   const getAllItems = useCallback((): GameItem[] => {
     const items: GameItem[] = [];
 
-    // Letters - Only first 22 for Hebrew, all 26 for English/Russian
-    const letterLimit = currentLanguage === 'he' ? 22 : 26;
-    letters.slice(0, letterLimit).forEach((letter) => {
+    // Letters - Always use Hebrew letters
+    letters.forEach((letter) => {
       items.push({
         id: letter.id,
         name: t(`letters.${letter.id}.name`),
         displayName: t(`letters.${letter.id}.fullName`),
         color: letter.color,
-        audioPath: `letters/${currentLanguage}/${letter.audioFiles[currentLanguage as keyof typeof letter.audioFiles] || letter.audioFiles.he}`,
+        audioPath: `letters/he/${letter.audioFile}`,
         type: ModelTypesEnum.LETTERS,
       });
     });
@@ -118,7 +117,7 @@ const SpeedChallengePage: React.FC = () => {
         name: t(`numbers.${number.id}.name`),
         displayName: t(`numbers.${number.id}.name`),
         color: number.color,
-        audioPath: `numbers/${currentLanguage}/${number.audioFiles[currentLanguage as keyof typeof number.audioFiles] || number.audioFiles.he}`,
+        audioPath: `numbers/he/${number.audioFile}`,
         type: ModelTypesEnum.NUMBERS,
       });
     });
@@ -130,7 +129,7 @@ const SpeedChallengePage: React.FC = () => {
         name: t(`shapes.${shape.id}.name`),
         displayName: t(`shapes.${shape.id}.name`),
         color: shape.color,
-        audioPath: `shapes/${currentLanguage}/${shape.audioFiles[currentLanguage as keyof typeof shape.audioFiles] || shape.audioFiles.he}`,
+        audioPath: `shapes/he/${shape.audioFile}`,
         type: ModelTypesEnum.SHAPES,
         element: shape.element,
       });
@@ -156,7 +155,7 @@ const SpeedChallengePage: React.FC = () => {
         name: t(`colors.${color.id}.name`),
         displayName: t(`colors.${color.id}.name`),
         color: color.color,
-        audioPath: `colors/${currentLanguage}/${color.audioFiles[currentLanguage as keyof typeof color.audioFiles] || color.audioFiles.he}`,
+        audioPath: `colors/he/${color.audioFile}`,
         type: ModelTypesEnum.COLORS,
       });
     });

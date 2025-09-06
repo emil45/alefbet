@@ -4,11 +4,13 @@ import ItemCard from '../components/ItemCard';
 import numbers from '../data/numbers';
 import BackButton from '../components/BackButton';
 import { useTranslation } from 'react-i18next';
+import { useThemeContext } from '../context/ThemeContext';
 
 const NumbersPage: React.FC = () => {
-  const { t, i18n } = useTranslation();
-  const currentLanguage = i18n.language || 'he';
-  const isRTL = currentLanguage === 'he';
+  const { t } = useTranslation();
+  const { direction } = useThemeContext();
+  // Numbers display according to UI language direction
+  const isRTL = direction === 'rtl';
 
   return (
     <>
@@ -19,7 +21,7 @@ const NumbersPage: React.FC = () => {
             <ItemCard
               name={t(`numbers.${number.id}.name`)}
               textColor={number.color}
-              soundFile={`/audio/numbers/${currentLanguage}/${number.audioFiles[currentLanguage as 'he' | 'en' | 'ru'] || number.audioFiles.en}`}
+              soundFile={`/audio/numbers/he/${number.audioFile}`}
               itemCaption={t(`numbers.${number.id}.fullName`)}
               isRTL={isRTL}
             />

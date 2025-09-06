@@ -25,6 +25,9 @@ const ItemCard: React.FC<ItemCardProps> = ({
   cardSize = 1,
   isRTL = true,
 }) => {
+  // Numbers should always be LTR, even in Hebrew UI
+  const isNumber = /^\d+$/.test(name);
+  const shouldUseLTR = isNumber || !isRTL;
   const playSound = () => {
     // Stop any currently playing audio
     if (currentlyPlayingAudio) {
@@ -85,7 +88,26 @@ const ItemCard: React.FC<ItemCardProps> = ({
       {element ? (
         <SvgIcon sx={{ fontSize: 100 * cardSize, color: textColor }}>{element}</SvgIcon>
       ) : (
-        <Typography variant="h1" sx={{ color: textColor, fontSize: `${124 * cardSize}px`, fontWeight: 'bold' }}>
+        <Typography 
+          variant="h1" 
+          sx={{ 
+            color: textColor, 
+            fontSize: `${124 * cardSize}px`, 
+            fontWeight: 'bold',
+            direction: shouldUseLTR ? 'ltr !important' : 'rtl !important',
+            unicodeBidi: shouldUseLTR ? 'normal' : 'bidi-override',
+            textAlign: shouldUseLTR ? 'center !important' : 'right !important',
+            writingMode: 'horizontal-tb',
+            // Force RTL at CSS level for Hebrew letters only
+            ...(!shouldUseLTR && {
+              transform: 'scaleX(1)',
+              '& *': {
+                direction: 'rtl !important',
+                unicodeBidi: 'bidi-override !important'
+              }
+            })
+          }}
+        >
           {name}
         </Typography>
       )}
@@ -95,7 +117,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
           sx={{
             position: 'absolute',
             top: '8px',
-            ...(isRTL ? { right: '8px' } : { left: '8px' }),
+            ...(shouldUseLTR ? { left: '8px' } : { right: '8px' }),
             color: '#000',
             backgroundColor: '#fff',
             borderRadius: '10%',
@@ -103,7 +125,16 @@ const ItemCard: React.FC<ItemCardProps> = ({
             fontSize: '12px',
             fontWeight: 'bold',
             boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-            textAlign: isRTL ? 'right' : 'left',
+            textAlign: shouldUseLTR ? 'left !important' : 'right !important',
+            direction: shouldUseLTR ? 'ltr !important' : 'rtl !important',
+            unicodeBidi: shouldUseLTR ? 'normal' : 'bidi-override',
+            // Force RTL at CSS level for Hebrew captions only
+            ...(!shouldUseLTR && {
+              '& *': {
+                direction: 'rtl !important',
+                unicodeBidi: 'bidi-override !important'
+              }
+            })
           }}
         >
           {itemCaption}

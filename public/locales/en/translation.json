@@ -70,108 +70,92 @@
   },
   "letters": {
     "letter_1": {
-      "name": "A",
-      "fullName": "A"
+      "name": "א",
+      "fullName": "אָלֶף"
     },
     "letter_2": {
-      "name": "B",
-      "fullName": "B"
+      "name": "ב",
+      "fullName": "בֵּית"
     },
     "letter_3": {
-      "name": "C",
-      "fullName": "C"
+      "name": "ג",
+      "fullName": "גִּימֶל"
     },
     "letter_4": {
-      "name": "D",
-      "fullName": "D"
+      "name": "ד",
+      "fullName": "דָּלֶת"
     },
     "letter_5": {
-      "name": "E",
-      "fullName": "E"
+      "name": "ה",
+      "fullName": "הֵא"
     },
     "letter_6": {
-      "name": "F",
-      "fullName": "F"
+      "name": "ו",
+      "fullName": "וָיו"
     },
     "letter_7": {
-      "name": "G",
-      "fullName": "G"
+      "name": "ז",
+      "fullName": "זַיִן"
     },
     "letter_8": {
-      "name": "H",
-      "fullName": "H"
+      "name": "ח",
+      "fullName": "חֵית"
     },
     "letter_9": {
-      "name": "I",
-      "fullName": "I"
+      "name": "ט",
+      "fullName": "טֵית"
     },
     "letter_10": {
-      "name": "J",
-      "fullName": "J"
+      "name": "י",
+      "fullName": "יוֹד"
     },
     "letter_11": {
-      "name": "K",
-      "fullName": "K"
+      "name": "כ",
+      "fullName": "כָּף"
     },
     "letter_12": {
-      "name": "L",
-      "fullName": "L"
+      "name": "ל",
+      "fullName": "לָמֶד"
     },
     "letter_13": {
-      "name": "M",
-      "fullName": "M"
+      "name": "מ",
+      "fullName": "מֵם"
     },
     "letter_14": {
-      "name": "N",
-      "fullName": "N"
+      "name": "נ",
+      "fullName": "נוּן"
     },
     "letter_15": {
-      "name": "O",
-      "fullName": "O"
+      "name": "ס",
+      "fullName": "סָמֵך"
     },
     "letter_16": {
-      "name": "P",
-      "fullName": "P"
+      "name": "ע",
+      "fullName": "עַיִן"
     },
     "letter_17": {
-      "name": "Q",
-      "fullName": "Q"
+      "name": "פ",
+      "fullName": "פֵּא"
     },
     "letter_18": {
-      "name": "R",
-      "fullName": "R"
+      "name": "צ",
+      "fullName": "צָדִי"
     },
     "letter_19": {
-      "name": "S",
-      "fullName": "S"
+      "name": "ק",
+      "fullName": "קוּף"
     },
     "letter_20": {
-      "name": "T",
-      "fullName": "T"
+      "name": "ר",
+      "fullName": "רֵיש"
     },
     "letter_21": {
-      "name": "U",
-      "fullName": "U"
+      "name": "ש",
+      "fullName": "שִׁין"
     },
     "letter_22": {
-      "name": "V",
-      "fullName": "V"
-    },
-    "letter_23": {
-      "name": "W",
-      "fullName": "W"
-    },
-    "letter_24": {
-      "name": "X",
-      "fullName": "X"
-    },
-    "letter_25": {
-      "name": "Y",
-      "fullName": "Y"
-    },
-    "letter_26": {
-      "name": "Z",
-      "fullName": "Z"
+      "name": "ת",
+      "fullName": "תָּיו"
     }
   },
   "numbers": {
@@ -277,23 +261,23 @@
   },
   "seo": {
     "pageTitle": "Learn Hebrew Letters & Numbers for Kids - Free Educational Website Online",
-    "metaDescription": "Interactive learning website for children - Hebrew & English letters, numbers, colors, shapes, animals & food with audio. Online learning games for kindergarten & grade 1 ages 3-8.",
+    "metaDescription": "Interactive Hebrew learning website for children - Hebrew letters, numbers, colors, shapes, animals & food with native audio. Hebrew learning games for kindergarten & grade 1 ages 3-8.",
     "hero": {
-      "title": "Fun and Interactive Learning",
-      "subtitle": "Help your child discover letters, numbers, colors, shapes, animals and food through engaging audio-visual activities in Hebrew and English",
-      "cta": "Let's Start Learning"
+      "title": "Learn Hebrew the Fun Way",
+      "subtitle": "Help your child master Hebrew letters, numbers, colors, shapes, animals and food through engaging audio-visual activities with authentic Hebrew pronunciation",
+      "cta": "Start Learning Hebrew"
     },
     "why": {
       "title": "Why Choose Our Educational App?"
     },
     "features": {
       "audio": {
-        "title": "Rich Audio Experience",
-        "description": "Every letter, number and word comes with clear, quality pronunciation in Hebrew and English to enhance learning through listening."
+        "title": "Hebrew Audio Learning",
+        "description": "Every Hebrew letter, number and word comes with clear, native pronunciation to enhance learning through authentic Hebrew audio."
       },
       "bilingual": {
-        "title": "Bilingual Learning",
-        "description": "Full support for Hebrew and English, helping children develop multilingual skills from a young age."
+        "title": "Hebrew-Focused Education",
+        "description": "Dedicated Hebrew learning experience with multilingual UI support, perfect for children beginning their Hebrew language journey."
       },
       "interactive": {
         "title": "Interactive Games",
@@ -315,34 +299,34 @@
     "topics": {
       "title": "What Will Your Child Learn?",
       "letters": {
-        "title": "Hebrew Letters",
-        "description": "Learn all 22 Hebrew letters with proper pronunciation and visual recognition."
+        "title": "Hebrew Aleph-Bet",
+        "description": "Master all 22 Hebrew letters with authentic pronunciation and proper right-to-left reading skills."
       },
       "numbers": {
-        "title": "Numbers 1-10",
-        "description": "Count and recognize numbers with interactive activities and games."
+        "title": "Hebrew Numbers 1-10",
+        "description": "Learn Hebrew counting from 1-10 with native pronunciation and number recognition skills."
       },
       "colors": {
-        "title": "Colors",
-        "description": "Discover and identify colors through fun, visual learning experiences."
+        "title": "Colors in Hebrew",
+        "description": "Discover and identify colors while learning their Hebrew names through interactive activities."
       },
       "shapes": {
-        "title": "Shapes",
-        "description": "Explore geometric shapes and develop spatial awareness skills."
+        "title": "Shapes in Hebrew",
+        "description": "Explore geometric shapes while learning their Hebrew names and developing spatial awareness."
       },
       "animals": {
-        "title": "Animals",
-        "description": "Meet different animals and learn their sounds and characteristics."
+        "title": "Animals in Hebrew",
+        "description": "Meet different animals and learn their Hebrew names along with authentic animal sounds."
       },
       "food": {
-        "title": "Food",
-        "description": "Learn about different foods and build vocabulary in Hebrew and English."
+        "title": "Food in Hebrew",
+        "description": "Discover various foods while building Hebrew vocabulary through interactive learning."
       }
     },
     "benefits": {
       "title": "Educational Benefits for Your Child",
       "description1": "Our platform combines proven pedagogical methods with modern technology to create an optimal learning environment for young children. Research shows that multisensory learning approaches significantly improve retention and understanding in early childhood education.",
-      "description2": "The audio-visual combination helps children develop both visual recognition and auditory processing skills, while the interactive elements maintain engagement and motivation. The bilingual approach supports cognitive development and prepares children for our increasingly connected world.",
+      "description2": "The audio-visual combination helps children develop both visual recognition and auditory processing skills, while the interactive elements maintain engagement and motivation. The Hebrew-focused approach supports cognitive development and introduces children to this beautiful ancient language.",
       "description3": "All content is carefully designed to be age-appropriate, culturally sensitive, and educationally effective. Parents can feel confident that their children are learning in a safe, structured environment that promotes both academic growth and cultural understanding."
     },
     "finalCta": {
@@ -370,144 +354,69 @@
     "icecream": { "name": "Ice Cream", "fullName": "Ice Cream" },
     "chocolate": { "name": "Chocolate", "fullName": "Chocolate" }
   },
-  "seo": {
-    "pageTitle": "Learn Letters, Numbers, Colors & Shapes - Free Educational App for Kids Online",
-    "metaDescription": "Free online educational app for kids to learn letters (ABC), numbers (123), colors, shapes, animals and food with audio. Interactive learning games for preschool and kindergarten children ages 3-8.",
-    "hero": {
-      "title": "Learning Made Fun & Interactive",
-      "subtitle": "Help your child discover letters, numbers, colors, shapes, animals and food through engaging audio-visual activities in Hebrew and English",
-      "cta": "Start Learning Now"
-    },
-    "why": {
-      "title": "Why Choose Our Educational App?"
-    },
-    "features": {
-      "audio": {
-        "title": "Rich Audio Experience",
-        "description": "Every letter, number, and word comes with clear, high-quality audio pronunciation in both Hebrew and English to enhance learning through listening."
-      },
-      "bilingual": {
-        "title": "Bilingual Learning",
-        "description": "Complete support for Hebrew and English languages, helping children develop multilingual skills from an early age."
-      },
-      "interactive": {
-        "title": "Interactive Games",
-        "description": "Memory games, guessing games, and Simon Says keep children engaged while reinforcing their learning through play."
-      },
-      "responsive": {
-        "title": "Works Everywhere",
-        "description": "Perfectly designed for phones, tablets, and computers - learn anytime, anywhere with a responsive design."
-      },
-      "family": {
-        "title": "Family Friendly",
-        "description": "Safe, ad-free environment designed specifically for children with parental guidance in mind."
-      },
-      "educational": {
-        "title": "Curriculum Aligned",
-        "description": "Content designed following early childhood education principles to support proper developmental milestones."
-      }
-    },
-    "topics": {
-      "title": "What Your Child Will Learn",
-      "letters": {
-        "title": "Hebrew & English Letters",
-        "description": "Learn the alphabet in both languages with proper pronunciation and visual recognition."
-      },
-      "numbers": {
-        "title": "Numbers 1-10",
-        "description": "Count and recognize numbers with audio guidance and interactive exercises."
-      },
-      "colors": {
-        "title": "Colors & Visual Recognition",
-        "description": "Identify and name colors while developing visual perception skills."
-      },
-      "shapes": {
-        "title": "Geometric Shapes",
-        "description": "Recognize basic shapes and understand spatial relationships through interactive activities."
-      },
-      "animals": {
-        "title": "Animal Sounds & Names",
-        "description": "Discover different animals, their sounds, and names in both languages."
-      },
-      "food": {
-        "title": "Food & Nutrition Basics",
-        "description": "Learn about different foods while building vocabulary for healthy eating habits."
-      }
-    },
-    "benefits": {
-      "title": "Educational Benefits for Your Child",
-      "description1": "Our interactive learning platform is designed to support early childhood development through multi-sensory engagement. Children learn best when they can see, hear, and interact with educational content, which is exactly what our app provides.",
-      "description2": "The combination of visual elements, audio pronunciation, and interactive games creates an immersive learning environment that helps children retain information better and develop crucial cognitive skills. The bilingual approach also enhances brain development and cultural awareness.",
-      "description3": "Parents can be confident that their children are engaged in meaningful, educational activities that prepare them for academic success while having fun. The app encourages independent learning while providing a safe, controlled environment for exploration."
-    },
-    "finalCta": {
-      "title": "Ready to Start Your Child's Learning Journey?",
-      "button": "Begin Learning Adventure"
-    }
-  },
   "guide": {
-    "pageTitle": "Educational Guide for Parents - How to Teach Kids Letters, Numbers & More",
-    "metaDescription": "Expert parenting guide for teaching children letters, numbers, colors and shapes. Age-appropriate learning tips, developmental milestones, and educational activities for kids 2-6 years old.",
+    "pageTitle": "Hebrew Learning Guide for Parents - How to Teach Kids Hebrew Letters, Numbers & More",
+    "metaDescription": "Complete guide for teaching children Hebrew letters, numbers, and vocabulary. Expert tips for Hebrew learning, pronunciation practice, and interactive activities for kids 2-6 years old.",
     "hero": {
-      "title": "Complete Educational Guide for Parents",
-      "subtitle": "Evidence-based tips and strategies to help your child succeed in early learning. Discover age-appropriate activities, developmental milestones, and expert advice for teaching letters, numbers, and essential skills.",
-      "cta": "Try Our Learning App"
+      "title": "Complete Hebrew Learning Guide for Parents",
+      "subtitle": "Evidence-based tips and strategies to help your child master Hebrew. Discover age-appropriate activities, Hebrew pronunciation techniques, and expert advice for teaching Hebrew letters, numbers, and vocabulary.",
+      "cta": "Start Learning Hebrew Now"
     },
     "tips": {
-      "title": "Expert Learning Tips for Parents",
+      "title": "Expert Hebrew Learning Tips for Parents",
       "tip1": {
-        "title": "Make Learning Playful",
-        "content": "Children learn best through play. Use games, songs, and interactive activities to teach letters and numbers. Keep sessions short (10-15 minutes) and follow your child's interests to maintain engagement and enthusiasm."
+        "title": "Make Hebrew Learning Playful",
+        "content": "Children learn Hebrew best through play. Use games, Hebrew songs, and interactive activities to teach Hebrew letters and numbers. Keep sessions short (10-15 minutes) and focus on Hebrew pronunciation and sounds."
       },
       "tip2": {
-        "title": "Create a Positive Environment",
-        "content": "Celebrate small victories and avoid pressure. Learning should be enjoyable, not stressful. Praise effort over perfection and create a comfortable, distraction-free space for educational activities."
+        "title": "Focus on Hebrew Sounds",
+        "content": "Hebrew has unique sounds that differ from English. Celebrate when your child pronounces Hebrew words correctly and avoid pressure. Create a Hebrew-rich environment with Hebrew audio and visual materials."
       },
       "tip3": {
-        "title": "Use Multi-Sensory Approaches",
-        "content": "Combine visual, auditory, and tactile learning. Let children trace letters in sand, sing alphabet songs, or use colorful flashcards. Multiple senses enhance memory and understanding significantly."
+        "title": "Use Multi-Sensory Hebrew Learning",
+        "content": "Combine visual Hebrew letters, Hebrew audio pronunciation, and tactile learning. Let children trace Hebrew letters in sand, listen to Hebrew sounds, or use Hebrew flashcards. Multiple senses enhance Hebrew memory significantly."
       },
       "tip4": {
-        "title": "Be Consistent and Patient",
-        "content": "Regular practice is more effective than long, infrequent sessions. Set a daily routine for learning activities and remember that every child develops at their own pace. Consistency builds confidence and skills."
+        "title": "Practice Hebrew Daily",
+        "content": "Regular Hebrew practice is more effective than long sessions. Set a daily routine for Hebrew learning activities. Remember that Hebrew reading goes right-to-left, which takes time to master."
       }
     },
     "whyEarly": {
-      "title": "Why Early Learning Matters",
-      "content": "The first six years of life are crucial for brain development. During this period, children form the foundation for all future learning. Quality early education significantly impacts academic success, social skills, and cognitive development.",
-      "benefit1": "Enhanced brain development and neural connections",
-      "benefit2": "Improved language and communication skills",
-      "benefit3": "Better school readiness and academic performance",
-      "benefit4": "Increased confidence and self-esteem",
-      "benefit5": "Stronger problem-solving and critical thinking abilities",
-      "benefit6": "Better social and emotional development"
+      "title": "Why Early Hebrew Learning Matters",
+      "content": "The first six years are crucial for language acquisition. During this period, children's brains are most receptive to new languages and sounds. Early Hebrew exposure creates lasting neural pathways for Hebrew comprehension and pronunciation.",
+      "benefit1": "Natural Hebrew sound recognition and pronunciation",
+      "benefit2": "Improved bilingual cognitive development",
+      "benefit3": "Better preparation for Hebrew reading and writing",
+      "benefit4": "Increased cultural awareness and identity",
+      "benefit5": "Enhanced memory through Hebrew memorization",
+      "benefit6": "Stronger connection to Hebrew heritage and traditions"
     },
     "ageGuidelines": {
-      "title": "Age-Specific Learning Guidelines",
+      "title": "Age-Specific Hebrew Learning Guidelines",
       "ages2_3": {
-        "title": "Ages 2-3: Foundation Building",
-        "content": "Focus on basic concepts like colors, shapes, and simple counting. Use repetition, songs, and hands-on activities. Introduce letter sounds through play and everyday conversations."
+        "title": "Ages 2-3: Hebrew Foundation Building",
+        "content": "Focus on Hebrew sounds, Hebrew colors, shapes, and Hebrew counting 1-5. Use Hebrew repetition, Hebrew songs, and hands-on activities. Introduce Hebrew letter sounds through play and daily Hebrew exposure."
       },
       "ages3_4": {
-        "title": "Ages 3-4: Skill Development",
-        "content": "Begin formal letter recognition and number concepts 1-10. Practice tracing and fine motor skills. Encourage storytelling and expand vocabulary through reading together daily."
+        "title": "Ages 3-4: Hebrew Skill Development",
+        "content": "Begin formal Hebrew letter recognition and Hebrew numbers 1-10. Practice tracing Hebrew letters and developing fine motor skills. Encourage Hebrew vocabulary expansion through daily Hebrew audio exposure."
       },
       "ages4_5": {
-        "title": "Ages 4-5: Pre-School Preparation",
-        "content": "Master alphabet recognition and letter sounds. Count to 20 and understand basic math concepts. Practice writing letters and numbers. Develop listening skills and following instructions."
+        "title": "Ages 4-5: Hebrew Pre-School Preparation",
+        "content": "Master Hebrew alphabet recognition and Hebrew letter sounds. Count to 10 in Hebrew and understand Hebrew vocabulary. Practice writing Hebrew letters right-to-left. Develop Hebrew listening skills."
       },
       "ages5_6": {
-        "title": "Ages 5-6: School Readiness",
-        "content": "Begin reading simple words and sentences. Master addition and subtraction basics. Develop independence in learning tasks. Practice social skills and classroom behaviors."
+        "title": "Ages 5-6: Hebrew Reading Readiness",
+        "content": "Begin reading simple Hebrew words. Master Hebrew numbers and basic Hebrew vocabulary. Develop independence in Hebrew learning tasks. Practice Hebrew pronunciation and comprehension skills."
       }
     },
     "finalCta": {
-      "title": "Ready to Start Your Child's Learning Journey?",
-      "subtitle": "Our interactive app provides age-appropriate activities, bilingual support, and engaging content designed by education experts.",
-      "button": "Begin Learning Adventure"
+      "title": "Ready to Start Your Child's Hebrew Learning Journey?",
+      "subtitle": "Our interactive Hebrew learning app provides age-appropriate Hebrew activities, authentic Hebrew pronunciation, and engaging Hebrew content designed by Hebrew education experts.",
+      "button": "Begin Hebrew Learning Adventure"
     }
   },
   "footer": {
-    "text": "Noa © 2024. All rights reserved."
+    "text": "Noa © {{year}}. All rights reserved."
   }
 }

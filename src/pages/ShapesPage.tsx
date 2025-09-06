@@ -4,11 +4,13 @@ import ItemCard from '../components/ItemCard';
 import shapes from '../data/shapes';
 import BackButton from '../components/BackButton';
 import { useTranslation } from 'react-i18next';
+import { useThemeContext } from '../context/ThemeContext';
 
 const ShapesPage: React.FC = () => {
-  const { t, i18n } = useTranslation();
-  const currentLanguage = i18n.language || 'he';
-  const isRTL = currentLanguage === 'he';
+  const { t } = useTranslation();
+  const { direction } = useThemeContext();
+  // Shapes display according to UI language direction
+  const isRTL = direction === 'rtl';
 
   return (
     <>
@@ -20,7 +22,7 @@ const ShapesPage: React.FC = () => {
               name=""
               element={shape.element}
               textColor={shape.color}
-              soundFile={`/audio/shapes/${currentLanguage}/${shape.audioFiles[currentLanguage as 'he' | 'en' | 'ru'] || shape.audioFiles.en}`}
+              soundFile={`/audio/shapes/he/${shape.audioFile}`}
               itemCaption={t(`shapes.${shape.id}.name`)}
               isRTL={isRTL}
             />

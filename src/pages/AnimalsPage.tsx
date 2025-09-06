@@ -4,11 +4,13 @@ import ItemCard from '../components/ItemCard';
 import animals from '../data/animals';
 import BackButton from '../components/BackButton';
 import { useTranslation } from 'react-i18next';
+import { useThemeContext } from '../context/ThemeContext';
 
 const AnimalsPage: React.FC = () => {
-  const { t, i18n } = useTranslation();
-  const currentLanguage = i18n.language || 'he';
-  const isRTL = currentLanguage === 'he';
+  const { t } = useTranslation();
+  const { direction } = useThemeContext();
+  // Animals display according to UI language direction
+  const isRTL = direction === 'rtl';
 
   return (
     <>
@@ -19,7 +21,7 @@ const AnimalsPage: React.FC = () => {
             <ItemCard
               name={animal.imageUrl}
               textColor={animal.color}
-              soundFile={`/audio/animals/${currentLanguage}/${animal.audioFiles[currentLanguage as 'he' | 'en' | 'ru'] || animal.audioFiles.en}`}
+              soundFile={`/audio/animals/he/${animal.audioFile}`}
               itemCaption={t(`animals.${animal.id}.name`)}
               isRTL={isRTL}
             />

@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { RoutesEnum } from '../models/RoutesEnum';
 import { useThemeContext } from '../context/ThemeContext';
 import FunButton from '../components/FunButton';
+import SEOHead from '../components/SEOHead';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -54,6 +55,7 @@ const EducationalGuidePage: React.FC = () => {
         py: 4,
       }}
     >
+      <SEOHead />
       <Container maxWidth="lg">
         {/* Hero Section */}
         <Box

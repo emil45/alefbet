@@ -4,11 +4,13 @@ import ItemCard from '../components/ItemCard';
 import food from '../data/food';
 import BackButton from '../components/BackButton';
 import { useTranslation } from 'react-i18next';
+import { useThemeContext } from '../context/ThemeContext';
 
 const FoodPage: React.FC = () => {
-  const { t, i18n } = useTranslation();
-  const currentLanguage = i18n.language || 'he';
-  const isRTL = currentLanguage === 'he';
+  const { t } = useTranslation();
+  const { direction } = useThemeContext();
+  // Food display according to UI language direction
+  const isRTL = direction === 'rtl';
 
   return (
     <>
@@ -19,7 +21,7 @@ const FoodPage: React.FC = () => {
             <ItemCard
               name={foodItem.imageUrl}
               textColor={foodItem.color}
-              soundFile={`/audio/food/${currentLanguage}/${foodItem.audioFiles[currentLanguage as 'he' | 'en' | 'ru'] || foodItem.audioFiles.en}`}
+              soundFile={`/audio/food/he/${foodItem.audioFile}`}
               itemCaption={t(`food.${foodItem.id}.name`)}
               isRTL={isRTL}
             />

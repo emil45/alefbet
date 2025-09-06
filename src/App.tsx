@@ -48,7 +48,7 @@ const App: React.FC = () => {
         
         <Box sx={{ textAlign: 'center', mt: '25px' }}>
           <Typography variant="body2" color="textSecondary">
-            {t('footer.text')}
+            {t('footer.text', { year: new Date().getFullYear() })}
           </Typography>
         </Box>
       </Box>
