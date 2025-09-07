@@ -34,10 +34,11 @@ const SEOHead: React.FC = () => {
       document.head.appendChild(canonical);
     }
     
-    // Set canonical to Hebrew version (default)
-    canonical.setAttribute('href', alternativeUrls.he);
+    // Set canonical to current language version
+    const currentLang = i18n.language || 'he';
+    canonical.setAttribute('href', alternativeUrls[currentLang] || alternativeUrls.he);
     
-  }, [location.pathname]);
+  }, [location.pathname, i18n.language]);
 
   return null; // This component only manages head elements
 };
