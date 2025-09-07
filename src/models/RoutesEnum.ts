@@ -13,4 +13,5 @@ export enum RoutesEnum {
   MEMORY_MATCH_GAME = '/games/memory-match-game',
   SIMON_GAME = '/games/simon-game',
   SPEED_CHALLENGE = '/games/speed-challenge',
+  WORD_BUILDER_GAME = '/games/word-builder',
 }

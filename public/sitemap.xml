@@ -293,4 +293,146 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games" />
   </url>
 
+  <!-- Word Builder Game -->
+  <url>
+    <loc>https://www.lepdy.com/games/word-builder</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/word-builder" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/word-builder" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/word-builder" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/en/games/word-builder</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/word-builder" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/word-builder" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/word-builder" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/ru/games/word-builder</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/word-builder" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/word-builder" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/word-builder" />
+  </url>
+
+  <!-- Other Games -->
+  <url>
+    <loc>https://www.lepdy.com/games/guess-game</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/guess-game" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/guess-game" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/guess-game" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/en/games/guess-game</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/guess-game" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/guess-game" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/guess-game" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/ru/games/guess-game</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/guess-game" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/guess-game" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/guess-game" />
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/games/memory-match-game</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/memory-match-game" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/memory-match-game" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/memory-match-game" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/en/games/memory-match-game</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/memory-match-game" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/memory-match-game" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/memory-match-game" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/ru/games/memory-match-game</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/memory-match-game" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/memory-match-game" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/memory-match-game" />
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/games/simon-game</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/simon-game" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/simon-game" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/simon-game" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/en/games/simon-game</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/simon-game" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/simon-game" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/simon-game" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/ru/games/simon-game</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/simon-game" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/simon-game" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/simon-game" />
+  </url>
+
+  <url>
+    <loc>https://www.lepdy.com/games/speed-challenge</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/speed-challenge" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/speed-challenge" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/speed-challenge" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/en/games/speed-challenge</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/speed-challenge" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/speed-challenge" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/speed-challenge" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/ru/games/speed-challenge</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/games/speed-challenge" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/games/speed-challenge" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/speed-challenge" />
+  </url>
+
 </urlset>

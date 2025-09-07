@@ -22,7 +22,8 @@
       "guessGame": "🎴 משחק הניחושים",
       "memoryMatchGame": "🧩 משחק הזיכרון",
       "simon": "🚦 סיימון",
-      "speedChallenge": "⚡ אתגר המהירות"
+      "speedChallenge": "⚡ אתגר המהירות",
+      "wordBuilder": "🔤 בונה המילים"
     },
     "guessGame": {
       "next": "הבא"
@@ -416,7 +417,21 @@
       "button": "התחילו הרפתקת למידה"
     }
   },
+  "wordBuilder": {
+    "score": "ניקוד",
+    "buildWord": "בנו את המילה",
+    "dragLettersHere": "גררו כאן את האותיות",
+    "check": "בדוק",
+    "clear": "נקה",
+    "correct": "נכון! מצוין",
+    "tryAgain": "נסו שוב",
+    "availableLetters": "אותיות זמינות",
+    "gameComplete": "המשחק הושלם",
+    "finalScore": "ניקוד סופי",
+    "congratulations": "כל הכבוד! השלמתם את כל המילים",
+    "playAgain": "שחקו שוב"
+  },
   "footer": {
-    "text": "Noa © {{year}}. All rights reserved."
+    "text": "Noa © {{year}}. All rights reserved"
   }
 }

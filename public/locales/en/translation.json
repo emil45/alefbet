@@ -22,7 +22,8 @@
       "guessGame": "Guessing Game 🎴",
       "memoryMatchGame": "Memory Match 🧩",
       "simon": "Simon 🚦",
-      "speedChallenge": "Speed Challenge ⚡"
+      "speedChallenge": "Speed Challenge ⚡",
+      "wordBuilder": "Word Builder 🔤"
     },
     "guessGame": {
       "next": "Next"
@@ -416,7 +417,21 @@
       "button": "Begin Hebrew Learning Adventure"
     }
   },
+  "wordBuilder": {
+    "score": "Score",
+    "buildWord": "Build the word",
+    "dragLettersHere": "Drag letters here",
+    "check": "Check",
+    "clear": "Clear",
+    "correct": "Correct! Great job",
+    "tryAgain": "Try again",
+    "availableLetters": "Available Letters",
+    "gameComplete": "Game Complete",
+    "finalScore": "Final Score",
+    "congratulations": "Congratulations! You completed all words",
+    "playAgain": "Play Again"
+  },
   "footer": {
-    "text": "Noa © {{year}}. All rights reserved."
+    "text": "Noa © {{year}}. All rights reserved"
   }
 }
