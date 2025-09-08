@@ -14,7 +14,8 @@
       "language": "Language",
       "voices": "Voices: Noa",
       "code": "Code: Emanuel",
-      "contact": "Contact: emil45@gmail.com"
+      "contact": "Contact: emil45@gmail.com",
+      "about": "Hebrew Learning for Kids"
     }
   },
   "games": {
@@ -261,10 +262,10 @@
     "frog": { "name": "Frog", "fullName": "Frog" }
   },
   "seo": {
-    "pageTitle": "Learn Hebrew for Kids - Letters, Numbers & Games Online",
-    "metaDescription": "Interactive Hebrew learning website for children - Hebrew letters, numbers, colors, shapes, animals & food with native audio. Hebrew learning games for kindergarten & grade 1 ages 3-8.",
+    "pageTitle": "Lepdy - Learn Hebrew for Kids Online | Letters, Numbers & Games",
+    "metaDescription": "Interactive Hebrew learning website for children - Hebrew letters, numbers, colors, shapes, animals & food with native audio. Hebrew learning games for kids of all ages.",
     "hero": {
-      "title": "Learn Hebrew the Fun Way",
+      "title": "Lepdy - Learn Hebrew the Fun Way",
       "subtitle": "Help your child master Hebrew letters, numbers, colors, shapes, animals and food through engaging audio-visual activities with authentic Hebrew pronunciation",
       "cta": "Start Learning Hebrew"
     },
@@ -356,10 +357,10 @@
     "chocolate": { "name": "Chocolate", "fullName": "Chocolate" }
   },
   "guide": {
-    "pageTitle": "Hebrew Learning Guide - How to Teach Kids Hebrew Letters",
+    "pageTitle": "Lepdy Guide - How to Teach Kids Hebrew Letters & Numbers",
     "metaDescription": "Complete guide for teaching children Hebrew letters, numbers, and vocabulary. Expert tips for Hebrew learning, pronunciation practice, and interactive activities for kids 2-6 years old.",
     "hero": {
-      "title": "Complete Hebrew Learning Guide for Parents",
+      "title": "Lepdy - Complete Hebrew Learning Guide for Parents",
       "subtitle": "Evidence-based tips and strategies to help your child master Hebrew. Discover age-appropriate activities, Hebrew pronunciation techniques, and expert advice for teaching Hebrew letters, numbers, and vocabulary.",
       "cta": "Start Learning Hebrew Now"
     },

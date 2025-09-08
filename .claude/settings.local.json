@@ -3,7 +3,8 @@
     "allow": [
       "Bash(find:*)",
       "WebFetch(domain:www.myinstants.com)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "mcp__ide__getDiagnostics"
     ],
     "deny": [],
     "ask": []
