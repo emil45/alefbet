@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "WebFetch(domain:www.myinstants.com)",
+      "Bash(grep:*)"
     ],
     "deny": [],
     "ask": []

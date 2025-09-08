@@ -170,15 +170,15 @@ const MemoryMatchGamePage: React.FC = () => {
           position: 'fixed',
           top: 0,
           left: 0,
-          // width: '100%',
-          // height: '100%',
+          width: '100%',
+          height: '100%',
           zIndex: 1400,
           pointerEvents: 'none',
         }}
       >
         <Confetti
-          // width={window.innerWidth}
-          // height={window.innerHeight}
+          width={window.innerWidth}
+          height={window.innerHeight}
           recycle={false}
           numberOfPieces={2000}
           gravity={0.05}

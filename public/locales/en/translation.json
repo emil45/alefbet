@@ -420,7 +420,7 @@
   "wordBuilder": {
     "score": "Score",
     "buildWord": "Build the word",
-    "dragLettersHere": "Drag letters here",
+    "selectLettersHere": "Click letters to build the word",
     "check": "Check",
     "clear": "Clear",
     "correct": "Correct! Great job",

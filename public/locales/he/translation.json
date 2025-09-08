@@ -420,7 +420,7 @@
   "wordBuilder": {
     "score": "ניקוד",
     "buildWord": "בנו את המילה",
-    "dragLettersHere": "גררו כאן את האותיות",
+    "selectLettersHere": "לחצו על האותיות לבניית המילה",
     "check": "בדוק",
     "clear": "נקה",
     "correct": "נכון! מצוין",

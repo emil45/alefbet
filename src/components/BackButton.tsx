@@ -22,7 +22,7 @@ const BackButton: React.FC = () => {
     }, 500);
   };
 
-  return (<Box sx={{ textAlign: 'left', direction: 'ltr' }}>
+  return (<Box sx={{ textAlign: 'left' }}>
     <RoundFunButton onClick={handleClick} >
       <ArrowBackIcon />
     </RoundFunButton>

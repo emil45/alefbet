@@ -25,17 +25,149 @@ interface HebrewWord {
 }
 
 const HEBREW_WORDS: HebrewWord[] = [
+  // Easy 2-letter words
+  { word: 'אל', letters: ['א', 'ל'], meaning: 'אל', audioFile: '/audio/words/he/el.mp3' },
+  { word: 'גן', letters: ['ג', 'ן'], meaning: 'גן', audioFile: '/audio/words/he/gan.mp3' },
+  { word: 'דג', letters: ['ד', 'ג'], meaning: 'דג', audioFile: '/audio/words/he/dag.mp3' },
+  { word: 'זב', letters: ['ז', 'ב'], meaning: 'זב', audioFile: '/audio/words/he/zav.mp3' },
+  { word: 'חם', letters: ['ח', 'ם'], meaning: 'חם', audioFile: '/audio/words/he/cham.mp3' },
+  { word: 'ים', letters: ['י', 'ם'], meaning: 'ים', audioFile: '/audio/words/he/yam.mp3' },
+  { word: 'לב', letters: ['ל', 'ב'], meaning: 'לב', audioFile: '/audio/words/he/lev.mp3' },
+  { word: 'מה', letters: ['מ', 'ה'], meaning: 'מה', audioFile: '/audio/words/he/ma.mp3' },
+  { word: 'נר', letters: ['נ', 'ר'], meaning: 'נר', audioFile: '/audio/words/he/ner.mp3' },
+  { word: 'עם', letters: ['ע', 'ם'], meaning: 'עם', audioFile: '/audio/words/he/am.mp3' },
+  { word: 'פה', letters: ['פ', 'ה'], meaning: 'פה', audioFile: '/audio/words/he/pe.mp3' },
+  { word: 'רק', letters: ['ר', 'ק'], meaning: 'רק', audioFile: '/audio/words/he/rak.mp3' },
+  { word: 'שם', letters: ['ש', 'ם'], meaning: 'שם', audioFile: '/audio/words/he/sham.mp3' },
+  { word: 'תן', letters: ['ת', 'ן'], meaning: 'תן', audioFile: '/audio/words/he/ten.mp3' },
+
+  // Easy 3-letter words - Family & Basic
   { word: 'אבא', letters: ['א', 'ב', 'א'], meaning: 'אבא', audioFile: '/audio/words/he/abba.mp3' },
   { word: 'אמא', letters: ['א', 'מ', 'א'], meaning: 'אמא', audioFile: '/audio/words/he/ima.mp3' },
-  { word: 'בית', letters: ['ב', 'י', 'ת'], meaning: 'בית', audioFile: '/audio/words/he/bayit.mp3' },
-  { word: 'ים', letters: ['י', 'ם'], meaning: 'ים', audioFile: '/audio/words/he/yam.mp3' },
-  { word: 'שמש', letters: ['ש', 'מ', 'ש'], meaning: 'שמש', audioFile: '/audio/words/he/shemesh.mp3' },
-  { word: 'ילד', letters: ['י', 'ל', 'ד'], meaning: 'ילד', audioFile: '/audio/words/he/yeled.mp3' },
-  { word: 'כלב', letters: ['כ', 'ל', 'ב'], meaning: 'כלב', audioFile: '/audio/words/he/kelev.mp3' },
+  { word: 'בן', letters: ['ב', 'ן'], meaning: 'בן', audioFile: '/audio/words/he/ben.mp3' },
+  { word: 'בת', letters: ['ב', 'ת'], meaning: 'בת', audioFile: '/audio/words/he/bat.mp3' },
+  { word: 'גמל', letters: ['ג', 'מ', 'ל'], meaning: 'גמל', audioFile: '/audio/words/he/gamal.mp3' },
+  { word: 'דוד', letters: ['ד', 'ו', 'ד'], meaning: 'דוד', audioFile: '/audio/words/he/dod.mp3' },
+  { word: 'דודה', letters: ['ד', 'ו', 'ד', 'ה'], meaning: 'דודה', audioFile: '/audio/words/he/doda.mp3' },
+  
+  // Easy 3-letter words - Animals
   { word: 'חתול', letters: ['ח', 'ת', 'ו', 'ל'], meaning: 'חתול', audioFile: '/audio/words/he/chatul.mp3' },
+  { word: 'כלב', letters: ['כ', 'ל', 'ב'], meaning: 'כלב', audioFile: '/audio/words/he/kelev.mp3' },
+  { word: 'עז', letters: ['ע', 'ז'], meaning: 'עז', audioFile: '/audio/words/he/ez.mp3' },
+  { word: 'פרה', letters: ['פ', 'ר', 'ה'], meaning: 'פרה', audioFile: '/audio/words/he/para.mp3' },
+  { word: 'צב', letters: ['צ', 'ב'], meaning: 'צב', audioFile: '/audio/words/he/tzav.mp3' },
+  { word: 'ארי', letters: ['א', 'ר', 'י'], meaning: 'ארי', audioFile: '/audio/words/he/ari.mp3' },
+  { word: 'דוב', letters: ['ד', 'ו', 'ב'], meaning: 'דוב', audioFile: '/audio/words/he/dov.mp3' },
+  { word: 'זאב', letters: ['ז', 'א', 'ב'], meaning: 'זאב', audioFile: '/audio/words/he/zeev.mp3' },
+  
+  // Easy 3-letter words - Food & Nature
+  { word: 'לחם', letters: ['ל', 'ח', 'ם'], meaning: 'לחם', audioFile: '/audio/words/he/lechem.mp3' },
+  { word: 'מים', letters: ['מ', 'י', 'ם'], meaning: 'מים', audioFile: '/audio/words/he/mayim.mp3' },
+  { word: 'שמש', letters: ['ש', 'מ', 'ש'], meaning: 'שמש', audioFile: '/audio/words/he/shemesh.mp3' },
+  { word: 'ירח', letters: ['י', 'ר', 'ח'], meaning: 'ירח', audioFile: '/audio/words/he/yareach.mp3' },
+  { word: 'עץ', letters: ['ע', 'ץ'], meaning: 'עץ', audioFile: '/audio/words/he/etz.mp3' },
   { word: 'פרח', letters: ['פ', 'ר', 'ח'], meaning: 'פרח', audioFile: '/audio/words/he/perach.mp3' },
-  { word: 'דג', letters: ['ד', 'ג'], meaning: 'דג', audioFile: '/audio/words/he/dag.mp3' },
+  { word: 'דבש', letters: ['ד', 'ב', 'ש'], meaning: 'דבש', audioFile: '/audio/words/he/dvash.mp3' },
+  { word: 'חלב', letters: ['ח', 'ל', 'ב'], meaning: 'חלב', audioFile: '/audio/words/he/chalav.mp3' },
+  
+  // Medium 3-4 letter words - Home & Objects
+  { word: 'בית', letters: ['ב', 'י', 'ת'], meaning: 'בית', audioFile: '/audio/words/he/bayit.mp3' },
+  { word: 'דלת', letters: ['ד', 'ל', 'ת'], meaning: 'דלת', audioFile: '/audio/words/he/delet.mp3' },
+  { word: 'חלון', letters: ['ח', 'ל', 'ו', 'ן'], meaning: 'חלון', audioFile: '/audio/words/he/chalon.mp3' },
+  { word: 'כסא', letters: ['כ', 'ס', 'א'], meaning: 'כסא', audioFile: '/audio/words/he/kise.mp3' },
+  { word: 'שולחן', letters: ['ש', 'ו', 'ל', 'ח', 'ן'], meaning: 'שולחן', audioFile: '/audio/words/he/shulchan.mp3' },
+  { word: 'מיטה', letters: ['מ', 'י', 'ט', 'ה'], meaning: 'מיטה', audioFile: '/audio/words/he/mita.mp3' },
+  { word: 'ספר', letters: ['ס', 'פ', 'ר'], meaning: 'ספר', audioFile: '/audio/words/he/sefer.mp3' },
+  { word: 'עפרון', letters: ['ע', 'פ', 'ר', 'ו', 'ן'], meaning: 'עפרון', audioFile: '/audio/words/he/iparon.mp3' },
+  
+  // Medium words - Body parts
+  { word: 'עין', letters: ['ע', 'י', 'ן'], meaning: 'עין', audioFile: '/audio/words/he/ayin.mp3' },
+  { word: 'אף', letters: ['א', 'ף'], meaning: 'אף', audioFile: '/audio/words/he/af.mp3' },
+  { word: 'יד', letters: ['י', 'ד'], meaning: 'יד', audioFile: '/audio/words/he/yad.mp3' },
+  { word: 'רגל', letters: ['ר', 'ג', 'ל'], meaning: 'רגל', audioFile: '/audio/words/he/regel.mp3' },
+  { word: 'ראש', letters: ['ר', 'א', 'ש'], meaning: 'ראש', audioFile: '/audio/words/he/rosh.mp3' },
+  { word: 'שיער', letters: ['ש', 'י', 'ע', 'ר'], meaning: 'שיער', audioFile: '/audio/words/he/sear.mp3' },
+  
+  // Medium words - Actions & Common words
+  { word: 'אוכל', letters: ['א', 'ו', 'כ', 'ל'], meaning: 'אוכל', audioFile: '/audio/words/he/ochel.mp3' },
+  { word: 'שותה', letters: ['ש', 'ו', 'ת', 'ה'], meaning: 'שותה', audioFile: '/audio/words/he/shote.mp3' },
+  { word: 'ישן', letters: ['י', 'ש', 'ן'], meaning: 'ישן', audioFile: '/audio/words/he/yashen.mp3' },
+  { word: 'קם', letters: ['ק', 'ם'], meaning: 'קם', audioFile: '/audio/words/he/kam.mp3' },
+  { word: 'רץ', letters: ['ר', 'ץ'], meaning: 'רץ', audioFile: '/audio/words/he/ratz.mp3' },
+  { word: 'הולך', letters: ['ה', 'ו', 'ל', 'ך'], meaning: 'הולך', audioFile: '/audio/words/he/holech.mp3' },
+  
+  // Medium words - Time & Weather
+  { word: 'יום', letters: ['י', 'ו', 'ם'], meaning: 'יום', audioFile: '/audio/words/he/yom.mp3' },
+  { word: 'לילה', letters: ['ל', 'י', 'ל', 'ה'], meaning: 'לילה', audioFile: '/audio/words/he/layla.mp3' },
+  { word: 'בוקר', letters: ['ב', 'ו', 'ק', 'ר'], meaning: 'בוקר', audioFile: '/audio/words/he/boker.mp3' },
+  { word: 'ערב', letters: ['ע', 'ר', 'ב'], meaning: 'ערב', audioFile: '/audio/words/he/erev.mp3' },
+  { word: 'גשם', letters: ['ג', 'ש', 'ם'], meaning: 'גשם', audioFile: '/audio/words/he/geshem.mp3' },
+  { word: 'רוח', letters: ['ר', 'ו', 'ח'], meaning: 'רוח', audioFile: '/audio/words/he/ruach.mp3' },
+  
+  // Medium words - Colors 
+  { word: 'אדום', letters: ['א', 'ד', 'ו', 'ם'], meaning: 'אדום', audioFile: '/audio/words/he/adom.mp3' },
+  { word: 'ירוק', letters: ['י', 'ר', 'ו', 'ק'], meaning: 'ירוק', audioFile: '/audio/words/he/yarok.mp3' },
+  { word: 'כחול', letters: ['כ', 'ח', 'ו', 'ל'], meaning: 'כחול', audioFile: '/audio/words/he/kachol.mp3' },
+  { word: 'צהוב', letters: ['צ', 'ה', 'ו', 'ב'], meaning: 'צהוב', audioFile: '/audio/words/he/tzahov.mp3' },
+  { word: 'שחור', letters: ['ש', 'ח', 'ו', 'ר'], meaning: 'שחור', audioFile: '/audio/words/he/shachor.mp3' },
+  { word: 'לבן', letters: ['ל', 'ב', 'ן'], meaning: 'לבן', audioFile: '/audio/words/he/lavan.mp3' },
+  
+  // Hard words - More complex
+  { word: 'ילד', letters: ['י', 'ל', 'ד'], meaning: 'ילד', audioFile: '/audio/words/he/yeled.mp3' },
+  { word: 'ילדה', letters: ['י', 'ל', 'ד', 'ה'], meaning: 'ילדה', audioFile: '/audio/words/he/yalda.mp3' },
+  { word: 'מורה', letters: ['מ', 'ו', 'ר', 'ה'], meaning: 'מורה', audioFile: '/audio/words/he/mora.mp3' },
+  { word: 'תלמיד', letters: ['ת', 'ל', 'מ', 'י', 'ד'], meaning: 'תלמיד', audioFile: '/audio/words/he/talmid.mp3' },
+  { word: 'חבר', letters: ['ח', 'ב', 'ר'], meaning: 'חבר', audioFile: '/audio/words/he/chaver.mp3' },
+  { word: 'חברה', letters: ['ח', 'ב', 'ר', 'ה'], meaning: 'חברה', audioFile: '/audio/words/he/chavera.mp3' },
+  
+  // Hard words - Fruits & Vegetables
+  { word: 'תפוח', letters: ['ת', 'פ', 'ו', 'ח'], meaning: 'תפוח', audioFile: '/audio/words/he/tapuach.mp3' },
+  { word: 'בננה', letters: ['ב', 'נ', 'נ', 'ה'], meaning: 'בננה', audioFile: '/audio/words/he/banana.mp3' },
+  { word: 'תפוז', letters: ['ת', 'פ', 'ו', 'ז'], meaning: 'תפוז', audioFile: '/audio/words/he/tapuz.mp3' },
+  { word: 'אבטיח', letters: ['א', 'ב', 'ט', 'י', 'ח'], meaning: 'אבטיח', audioFile: '/audio/words/he/avtiach.mp3' },
+  { word: 'גזר', letters: ['ג', 'ז', 'ר'], meaning: 'גזר', audioFile: '/audio/words/he/gezer.mp3' },
+  { word: 'עגבנייה', letters: ['ע', 'ג', 'ב', 'ן', 'י', 'ה'], meaning: 'עגבנייה', audioFile: '/audio/words/he/agvaniya.mp3' },
+  
+  // Hard words - Transportation
+  { word: 'רכב', letters: ['ר', 'כ', 'ב'], meaning: 'רכב', audioFile: '/audio/words/he/rechev.mp3' },
+  { word: 'אוטובוס', letters: ['א', 'ו', 'ט', 'ו', 'ב', 'ו', 'ס'], meaning: 'אוטובוס', audioFile: '/audio/words/he/autobus.mp3' },
+  { word: 'רכבת', letters: ['ר', 'כ', 'ב', 'ת'], meaning: 'רכבת', audioFile: '/audio/words/he/rakevet.mp3' },
+  { word: 'אופניים', letters: ['א', 'ו', 'פ', 'נ', 'י', 'ם'], meaning: 'אופניים', audioFile: '/audio/words/he/ofanayim.mp3' },
+  { word: 'מטוס', letters: ['מ', 'ט', 'ו', 'ס'], meaning: 'מטוס', audioFile: '/audio/words/he/matos.mp3' },
+  
+  // Very Hard words - Challenging
+  { word: 'משפחה', letters: ['מ', 'ש', 'פ', 'ח', 'ה'], meaning: 'משפחה', audioFile: '/audio/words/he/mishpacha.mp3' },
+  { word: 'חתונה', letters: ['ח', 'ת', 'ו', 'נ', 'ה'], meaning: 'חתונה', audioFile: '/audio/words/he/chatuna.mp3' },
+  { word: 'יום הולדת', letters: ['י', 'ו', 'ם', ' ', 'ה', 'ו', 'ל', 'ד', 'ת'], meaning: 'יום הולדת', audioFile: '/audio/words/he/yom-huledet.mp3' },
+  { word: 'ספרייה', letters: ['ס', 'פ', 'ר', 'י', 'ה'], meaning: 'ספרייה', audioFile: '/audio/words/he/sifriya.mp3' },
+  { word: 'חנות', letters: ['ח', 'נ', 'ו', 'ת'], meaning: 'חנות', audioFile: '/audio/words/he/chanut.mp3' },
+  { word: 'בית ספר', letters: ['ב', 'י', 'ת', ' ', 'ס', 'פ', 'ר'], meaning: 'בית ספר', audioFile: '/audio/words/he/beit-sefer.mp3' },
+  { word: 'מחשב', letters: ['מ', 'ח', 'ש', 'ב'], meaning: 'מחשב', audioFile: '/audio/words/he/machshev.mp3' },
+  { word: 'טלפון', letters: ['ט', 'ל', 'פ', 'ו', 'ן'], meaning: 'טלפון', audioFile: '/audio/words/he/telefon.mp3' },
+  { word: 'מקרר', letters: ['מ', 'ק', 'ר', 'ר'], meaning: 'מקרר', audioFile: '/audio/words/he/mekarer.mp3' },
+  { word: 'טלוויזיה', letters: ['ט', 'ל', 'ו', 'ו', 'י', 'ז', 'י', 'ה'], meaning: 'טלוויזיה', audioFile: '/audio/words/he/televizya.mp3' },
+  
+  // More simple words for variety
+  { word: 'בוקר', letters: ['ב', 'ו', 'ק', 'ר'], meaning: 'בוקר', audioFile: '/audio/words/he/boker.mp3' },
+  { word: 'לילה', letters: ['ל', 'י', 'ל', 'ה'], meaning: 'לילה', audioFile: '/audio/words/he/layla.mp3' },
+  { word: 'חום', letters: ['ח', 'ו', 'ם'], meaning: 'חום', audioFile: '/audio/words/he/chum.mp3' },
+  { word: 'קר', letters: ['ק', 'ר'], meaning: 'קר', audioFile: '/audio/words/he/kar.mp3' },
+  { word: 'גדול', letters: ['ג', 'ד', 'ו', 'ל'], meaning: 'גדול', audioFile: '/audio/words/he/gadol.mp3' },
+  { word: 'קטן', letters: ['ק', 'ט', 'ן'], meaning: 'קטן', audioFile: '/audio/words/he/katan.mp3' },
+  { word: 'טוב', letters: ['ט', 'ו', 'ב'], meaning: 'טוב', audioFile: '/audio/words/he/tov.mp3' },
+  { word: 'רע', letters: ['ר', 'ע'], meaning: 'רע', audioFile: '/audio/words/he/ra.mp3' },
+  { word: 'חדש', letters: ['ח', 'ד', 'ש'], meaning: 'חדש', audioFile: '/audio/words/he/chadash.mp3' },
+  { word: 'ישן', letters: ['י', 'ש', 'ן'], meaning: 'ישן', audioFile: '/audio/words/he/yashan.mp3' },
 ];
+
+// Game configuration
+const WORDS_PER_GAME = 10;
+
+// Get random selection of words for each game
+const getRandomWords = (count: number): HebrewWord[] => {
+  const shuffled = [...HEBREW_WORDS].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+};
 
 interface LetterCardProps {
   letter: string;
@@ -134,6 +266,7 @@ const LetterCard: React.FC<LetterCardProps> = ({ letter, isUsed, onClick, isInBu
 
 const WordBuilderGamePage: React.FC = () => {
   const { t } = useTranslation();
+  const [gameWords] = useState<HebrewWord[]>(() => getRandomWords(WORDS_PER_GAME));
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [shuffledLetters, setShuffledLetters] = useState<string[]>([]);
   const [builtWord, setBuiltWord] = useState<string[]>([]);
@@ -143,10 +276,10 @@ const WordBuilderGamePage: React.FC = () => {
   const [isGameComplete, setIsGameComplete] = useState(false);
   const [usedLetterIndices, setUsedLetterIndices] = useState<Set<number>>(new Set());
 
-  const currentWord = HEBREW_WORDS[currentWordIndex];
+  const currentWord = gameWords[currentWordIndex];
 
   const initializeGame = useCallback(() => {
-    const word = HEBREW_WORDS[currentWordIndex];
+    const word = gameWords[currentWordIndex];
     // Add some extra random Hebrew letters to make it more challenging
     const extraLetters = ['א', 'ה', 'ו', 'ר', 'ת', 'נ', 'ל', 'מ', 'ש', 'ק'];
     const availableLetters = [...word.letters];
@@ -159,6 +292,13 @@ const WordBuilderGamePage: React.FC = () => {
     setBuiltWord([]);
     setIsCorrect(null);
     setUsedLetterIndices(new Set());
+    
+    // Play game start sound on first word, level up sound on subsequent words
+    if (currentWordIndex === 0) {
+      playSound(AudioSounds.GAME_START);
+    } else {
+      setTimeout(() => playSound(AudioSounds.TICK), 200);
+    }
   }, [currentWordIndex]);
 
   useEffect(() => {
@@ -171,7 +311,7 @@ const WordBuilderGamePage: React.FC = () => {
     setBuiltWord(prev => [...prev, letter]);
     setUsedLetterIndices(prev => new Set([...Array.from(prev), index]));
     setIsCorrect(null);
-    playSound(AudioSounds.GREEN);
+    playSound(AudioSounds.LETTER_PICK);
   };
 
   const handleRemoveLetter = (indexToRemove: number) => {
@@ -189,7 +329,7 @@ const WordBuilderGamePage: React.FC = () => {
       return newSet;
     });
     setIsCorrect(null);
-    playSound(AudioSounds.BLUE);
+    playSound(AudioSounds.LETTER_REMOVE);
   };
 
   const checkWord = () => {
@@ -198,25 +338,29 @@ const WordBuilderGamePage: React.FC = () => {
     
     if (isWordCorrect) {
       setScore(prev => prev + 10);
-      playSound(AudioSounds.SUCCESS);
-      setShowConfetti(true);
+      playSound(AudioSounds.WORD_COMPLETE);
       
-      // Play word audio
-      const audio = new Audio(currentWord.audioFile);
-      audio.play().catch(() => {
-        console.log('Audio file not found:', currentWord.audioFile);
-      });
-
+      // Play word audio after a short delay
       setTimeout(() => {
-        setShowConfetti(false);
-        if (currentWordIndex < HEBREW_WORDS.length - 1) {
+        const audio = new Audio(currentWord.audioFile);
+        audio.play().catch(() => {
+          console.log('Audio file not found:', currentWord.audioFile);
+        });
+      }, 500);
+
+      // Level up sound and progression
+      setTimeout(() => {
+        if (currentWordIndex < gameWords.length - 1) {
+          playSound(AudioSounds.LEVEL_UP);
           setCurrentWordIndex(prev => prev + 1);
         } else {
+          playSound(AudioSounds.CELEBRATION);
+          setShowConfetti(true);
           setIsGameComplete(true);
         }
       }, 2500);
     } else {
-      playSound(AudioSounds.GAME_OVER);
+      playSound(AudioSounds.WRONG_ANSWER);
     }
   };
 
@@ -231,7 +375,7 @@ const WordBuilderGamePage: React.FC = () => {
     setBuiltWord([]);
     setUsedLetterIndices(new Set());
     setIsCorrect(null);
-    playSound(AudioSounds.YELLOW);
+    playSound(AudioSounds.WHOOSH);
   };
 
   return (
@@ -291,7 +435,7 @@ const WordBuilderGamePage: React.FC = () => {
               }}
             >
               <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold' }}>
-                {currentWordIndex + 1} / {HEBREW_WORDS.length}
+                {currentWordIndex + 1} / {gameWords.length}
               </Typography>
             </Box>
           </Box>
@@ -352,7 +496,7 @@ const WordBuilderGamePage: React.FC = () => {
                       opacity: 0.7
                     }}
                   >
-                    {t('wordBuilder.dragLettersHere')}
+                    {t('wordBuilder.selectLettersHere')}
                   </Typography>
                 ) : (
                   builtWord.map((letter, index) => (

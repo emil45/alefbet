@@ -49,6 +49,7 @@ interface GameStats {
 
 const SpeedChallengePage: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const { t: tHebrew } = useTranslation('', { lng: 'he' }); // Always get Hebrew translations for content
   const currentLanguage = i18n.language;
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -102,8 +103,8 @@ const SpeedChallengePage: React.FC = () => {
     letters.forEach((letter) => {
       items.push({
         id: letter.id,
-        name: t(`letters.${letter.id}.name`),
-        displayName: t(`letters.${letter.id}.fullName`),
+        name: tHebrew(`letters.${letter.id}.name`),
+        displayName: tHebrew(`letters.${letter.id}.fullName`),
         color: letter.color,
         audioPath: `letters/he/${letter.audioFile}`,
         type: ModelTypesEnum.LETTERS,
@@ -114,8 +115,8 @@ const SpeedChallengePage: React.FC = () => {
     numbers.forEach((number) => {
       items.push({
         id: number.id,
-        name: t(`numbers.${number.id}.name`),
-        displayName: t(`numbers.${number.id}.name`),
+        name: tHebrew(`numbers.${number.id}.name`),
+        displayName: tHebrew(`numbers.${number.id}.name`),
         color: number.color,
         audioPath: `numbers/he/${number.audioFile}`,
         type: ModelTypesEnum.NUMBERS,
@@ -126,8 +127,8 @@ const SpeedChallengePage: React.FC = () => {
     shapes.forEach((shape) => {
       items.push({
         id: shape.id,
-        name: t(`shapes.${shape.id}.name`),
-        displayName: t(`shapes.${shape.id}.name`),
+        name: tHebrew(`shapes.${shape.id}.name`),
+        displayName: tHebrew(`shapes.${shape.id}.name`),
         color: shape.color,
         audioPath: `shapes/he/${shape.audioFile}`,
         type: ModelTypesEnum.SHAPES,
@@ -139,8 +140,8 @@ const SpeedChallengePage: React.FC = () => {
     animals.forEach((animal) => {
       items.push({
         id: animal.id,
-        name: t(`animals.${animal.id}.name`),
-        displayName: t(`animals.${animal.id}.name`),
+        name: tHebrew(`animals.${animal.id}.name`),
+        displayName: tHebrew(`animals.${animal.id}.name`),
         color: animal.color,
         audioPath: null, // No audio for animals
         type: ModelTypesEnum.ANIMALS,
@@ -152,8 +153,8 @@ const SpeedChallengePage: React.FC = () => {
     colors.forEach((color) => {
       items.push({
         id: color.id,
-        name: t(`colors.${color.id}.name`),
-        displayName: t(`colors.${color.id}.name`),
+        name: tHebrew(`colors.${color.id}.name`),
+        displayName: tHebrew(`colors.${color.id}.name`),
         color: color.color,
         audioPath: `colors/he/${color.audioFile}`,
         type: ModelTypesEnum.COLORS,
@@ -228,10 +229,6 @@ const SpeedChallengePage: React.FC = () => {
 
     if (isCorrect) {
       playSound(AudioSounds.SUCCESS);
-      if (stats.streak >= 3) {
-        setShowCelebration(true);
-        setTimeout(() => setShowCelebration(false), 1000);
-      }
     } else {
       playSound(AudioSounds.GAME_OVER);
     }

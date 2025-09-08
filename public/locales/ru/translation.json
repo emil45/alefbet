@@ -408,7 +408,7 @@
   "wordBuilder": {
     "score": "очки",
     "buildWord": "соберите слово",
-    "dragLettersHere": "перетащите буквы сюда",
+    "selectLettersHere": "кликните на буквы чтобы собрать слово",
     "check": "проверить",
     "clear": "очистить",
     "correct": "правильно! отлично",

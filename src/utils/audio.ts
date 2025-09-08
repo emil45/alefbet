@@ -1,12 +1,26 @@
 export enum AudioSounds {
     GREEN,
     RED,
-    YELLOW ,
+    YELLOW,
     BLUE,
     GAME_START,
     GAME_OVER,
     SUCCESS,
     BONUS,
+    // Enhanced game sounds (available for all games)
+    LETTER_PICK,
+    LETTER_DROP,
+    LETTER_REMOVE,
+    WORD_COMPLETE,
+    LEVEL_UP,
+    CELEBRATION,
+    WRONG_ANSWER,
+    HINT,
+    TICK,
+    WHOOSH,
+    POP,
+    DING,
+    SPARKLE,
 }
 
 // Ensure the audioRefs keys match the enum values
@@ -19,6 +33,21 @@ export const audioRefs: { [key in AudioSounds]: HTMLAudioElement } = {
     [AudioSounds.GAME_OVER]: new Audio('/audio/common/game-over-arcade.mp3'),
     [AudioSounds.SUCCESS]: new Audio('/audio/common/short-success.mp3'),
     [AudioSounds.BONUS]: new Audio('/audio/common/game-bonus.mp3'),
+    
+    // Enhanced game sounds - Available for all games (using available sounds)
+    [AudioSounds.LETTER_PICK]: new Audio('/audio/common/tick.mp3'),        // Letter/item selection sound
+    [AudioSounds.LETTER_DROP]: new Audio('/audio/common/letter-drop.mp3'), // Item placement/drop sound
+    [AudioSounds.LETTER_REMOVE]: new Audio('/audio/common/pop.mp3'),       // Item removal sound  
+    [AudioSounds.WORD_COMPLETE]: new Audio('/audio/common/short-success.mp3'), // Task completion sound
+    [AudioSounds.LEVEL_UP]: new Audio('/audio/common/level-up.mp3'),       // Level progression sound
+    [AudioSounds.CELEBRATION]: new Audio('/audio/common/yay-kids.mp3'),    // Final victory celebration
+    [AudioSounds.WRONG_ANSWER]: new Audio('/audio/common/wrong-answer.mp3'), // Incorrect action feedback
+    [AudioSounds.HINT]: new Audio('/audio/common/hint.mp3'),               // Help/hint sound
+    [AudioSounds.TICK]: new Audio('/audio/common/tick.mp3'),               // Quick confirmation
+    [AudioSounds.WHOOSH]: new Audio('/audio/common/whoosh.mp3'),           // Swoosh/clearing sound
+    [AudioSounds.POP]: new Audio('/audio/common/pop.mp3'),                 // Pop/bubble sound
+    [AudioSounds.DING]: new Audio('/audio/common/ding.mp3'),               // Notification bell
+    [AudioSounds.SPARKLE]: new Audio('/audio/common/sparkle.mp3'),         // Magical/special effect
 };
 
 // Function to play sound
