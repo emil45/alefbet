@@ -9,7 +9,8 @@
       "WebFetch(domain:www.google.com)",
       "WebFetch(domain:www.npmjs.com)",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:vike.dev)"
+      "WebFetch(domain:vike.dev)",
+      "Bash(npm run preview:*)"
     ],
     "deny": [],
     "ask": []
