@@ -19,6 +19,7 @@ import MemoryMatchGamePage from '../pages/MemoryMatchGamePage';
 import SimonGamePage from '../pages/SimonGamePage';
 import SpeedChallengePage from '../pages/SpeedChallengePage';
 import WordBuilderGamePage from '../pages/WordBuilderGamePage';
+import CountingGamePage from '../pages/CountingGamePage';
 import GamesPage from '../pages/GamesPage';
 
 const ROUTE_COMPONENTS: Record<RoutesEnum, React.ComponentType> = {
@@ -37,6 +38,7 @@ const ROUTE_COMPONENTS: Record<RoutesEnum, React.ComponentType> = {
   [RoutesEnum.SIMON_GAME]: SimonGamePage,
   [RoutesEnum.SPEED_CHALLENGE]: SpeedChallengePage,
   [RoutesEnum.WORD_BUILDER_GAME]: WordBuilderGamePage,
+  [RoutesEnum.COUNTING_GAME]: CountingGamePage,
 };
 
 /**
@@ -47,20 +49,18 @@ export const generateAllRoutes = (): JSX.Element[] => {
   const routes: JSX.Element[] = [];
 
   // Generate routes for each supported language
-  SUPPORTED_LANGUAGES.forEach(language => {
+  SUPPORTED_LANGUAGES.forEach((language) => {
     Object.entries(ROUTE_COMPONENTS).forEach(([routePath, Component]) => {
       const route = routePath as RoutesEnum;
-      
+
       // Build the full path for this language
-      const fullPath = language.hasUrlPrefix 
-        ? `/${language.code}${route}`
-        : route;
+      const fullPath = language.hasUrlPrefix ? `/${language.code}${route}` : route;
 
       // Create unique key for React
       const key = `${language.code}-${route}`;
 
       routes.push(
-        <Route 
+        <Route
           key={key}
           path={fullPath}
           element={

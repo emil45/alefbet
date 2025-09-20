@@ -21,14 +21,6 @@ const animals: AnimalConfig[] = [
   },
   {
     type: ModelTypesEnum.ANIMALS,
-    id: 'pig',
-    translationKey: 'animals.pig',
-    audioFile: 'pig.mp3',
-    color: '#FFC0CB',
-    imageUrl: '🐷',
-  },
-  {
-    type: ModelTypesEnum.ANIMALS,
     id: 'sheep',
     translationKey: 'animals.sheep',
     audioFile: 'sheep.mp3',

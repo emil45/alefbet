@@ -22,11 +22,13 @@ const BackButton: React.FC = () => {
     }, 500);
   };
 
-  return (<Box sx={{ textAlign: 'left' }}>
-    <RoundFunButton onClick={handleClick} >
-      <ArrowBackIcon />
-    </RoundFunButton>
-  </Box>);
+  return (
+    <Box sx={{ textAlign: 'left' }}>
+      <RoundFunButton onClick={handleClick}>
+        <ArrowBackIcon />
+      </RoundFunButton>
+    </Box>
+  );
 };
 
 export default BackButton;

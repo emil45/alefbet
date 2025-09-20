@@ -9,15 +9,15 @@ import { LANGUAGE_BY_CODE, DEFAULT_LANGUAGE, PREFIXED_LANGUAGES } from '../confi
  */
 export const getLanguageSpecificRoute = (route: RoutesEnum, lang?: string): string => {
   if (!lang) return route;
-  
+
   const languageConfig = LANGUAGE_BY_CODE[lang];
-  
+
   // Return default route if language not supported
   if (!languageConfig) return route;
-  
+
   // Default language has no prefix
   if (languageConfig.isDefault) return route;
-  
+
   // Other languages get prefix
   return `/${lang}${route}`;
 };
@@ -28,14 +28,14 @@ export const getLanguageSpecificRoute = (route: RoutesEnum, lang?: string): stri
  */
 export const getCurrentLanguageFromPath = (): string => {
   const path = window.location.pathname;
-  
+
   // Check each prefixed language
   for (const lang of PREFIXED_LANGUAGES) {
     if (path.startsWith(`/${lang.code}/`) || path === `/${lang.code}`) {
       return lang.code;
     }
   }
-  
+
   // Default to default language
   return DEFAULT_LANGUAGE.code;
 };
@@ -48,11 +48,11 @@ export const getCurrentLanguageFromPath = (): string => {
 export const getAlternativeLanguageUrls = (currentRoute: RoutesEnum) => {
   const baseUrl = 'https://www.lepdy.com';
   const urls: Record<string, string> = {};
-  
+
   for (const lang of Object.values(LANGUAGE_BY_CODE)) {
     urls[lang.code] = baseUrl + getLanguageSpecificRoute(currentRoute, lang.code);
   }
-  
+
   return urls;
 };
 

@@ -24,7 +24,8 @@
       "memoryMatchGame": "Memory Match 🧩",
       "simon": "Simon 🚦",
       "speedChallenge": "Speed Challenge ⚡",
-      "wordBuilder": "Word Builder 🔤"
+      "wordBuilder": "Word Builder 🔤",
+      "countingGame": "Counting Game 🔢"
     },
     "guessGame": {
       "next": "Next"
@@ -38,6 +39,18 @@
       "score": "Score",
       "highScore": "High Score",
       "startGame": "Start Game",
+      "playAgain": "Play Again"
+    },
+    "countingGame": {
+      "instruction": "Count the objects and select the correct number!",
+      "level": "Level",
+      "score": "Score",
+      "correct": "Correct!",
+      "incorrect": "Try again!",
+      "levelComplete": "Level Complete!",
+      "continue": "Continue",
+      "gameComplete": "Game Complete!",
+      "finalScore": "Final Score",
       "playAgain": "Play Again"
     }
   },

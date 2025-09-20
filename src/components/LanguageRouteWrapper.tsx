@@ -14,7 +14,7 @@ const LanguageRouteWrapper: React.FC<LanguageRouteWrapperProps> = ({ children })
   useEffect(() => {
     // Extract language from current path
     const langFromPath = getCurrentLanguageFromPath();
-    
+
     // Only change language if it's different from current
     if (i18n.language !== langFromPath) {
       i18n.changeLanguage(langFromPath);

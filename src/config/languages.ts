@@ -32,10 +32,13 @@ export const SUPPORTED_LANGUAGES: LanguageConfig[] = [
 ];
 
 // Derived constants for performance
-export const DEFAULT_LANGUAGE = SUPPORTED_LANGUAGES.find(lang => lang.isDefault)!;
-export const LANGUAGE_CODES = SUPPORTED_LANGUAGES.map(lang => lang.code);
-export const PREFIXED_LANGUAGES = SUPPORTED_LANGUAGES.filter(lang => lang.hasUrlPrefix);
-export const LANGUAGE_BY_CODE = SUPPORTED_LANGUAGES.reduce((acc, lang) => {
-  acc[lang.code] = lang;
-  return acc;
-}, {} as Record<string, LanguageConfig>);
+export const DEFAULT_LANGUAGE = SUPPORTED_LANGUAGES.find((lang) => lang.isDefault)!;
+export const LANGUAGE_CODES = SUPPORTED_LANGUAGES.map((lang) => lang.code);
+export const PREFIXED_LANGUAGES = SUPPORTED_LANGUAGES.filter((lang) => lang.hasUrlPrefix);
+export const LANGUAGE_BY_CODE = SUPPORTED_LANGUAGES.reduce(
+  (acc, lang) => {
+    acc[lang.code] = lang;
+    return acc;
+  },
+  {} as Record<string, LanguageConfig>
+);

@@ -19,7 +19,7 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
   const location = useLocation();
   const [isChangingLanguage, setIsChangingLanguage] = useState(false);
   const [drawerDirection, setDrawerDirection] = useState(direction); // Stable drawer direction
-  
+
   // Update drawer direction when drawer opens (but not during language changes)
   useEffect(() => {
     if (open && !isChangingLanguage) {
@@ -41,10 +41,10 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
     const currentRoute = stripLanguageFromPath(location.pathname) as RoutesEnum;
     // Get the new language-specific route
     const newRoute = getLanguageSpecificRoute(currentRoute, lang);
-    
+
     // Close drawer first for smoother UX
     toggleDrawer(false);
-    
+
     // Navigate after a short delay to allow drawer to close
     setTimeout(() => {
       navigate(newRoute);

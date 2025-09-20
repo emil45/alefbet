@@ -24,6 +24,7 @@ const GamesPage: React.FC = () => {
           <FunButton to={RoutesEnum.SIMON_GAME} text={t('games.buttons.simon')} />
           <FunButton to={RoutesEnum.SPEED_CHALLENGE} text={t('games.buttons.speedChallenge')} />
           <FunButton to={RoutesEnum.WORD_BUILDER_GAME} text={t('games.buttons.wordBuilder')} />
+          <FunButton to={RoutesEnum.COUNTING_GAME} text={t('games.buttons.countingGame')} />
         </Box>
       </Box>
     </>

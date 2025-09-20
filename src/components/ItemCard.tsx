@@ -88,11 +88,11 @@ const ItemCard: React.FC<ItemCardProps> = ({
       {element ? (
         <SvgIcon sx={{ fontSize: 100 * cardSize, color: textColor }}>{element}</SvgIcon>
       ) : (
-        <Typography 
-          variant="h1" 
-          sx={{ 
-            color: textColor, 
-            fontSize: `${124 * cardSize}px`, 
+        <Typography
+          variant="h1"
+          sx={{
+            color: textColor,
+            fontSize: `${124 * cardSize}px`,
             fontWeight: 'bold',
             direction: shouldUseLTR ? 'ltr !important' : 'rtl !important',
             unicodeBidi: shouldUseLTR ? 'normal' : 'bidi-override',
@@ -103,9 +103,9 @@ const ItemCard: React.FC<ItemCardProps> = ({
               transform: 'scaleX(1)',
               '& *': {
                 direction: 'rtl !important',
-                unicodeBidi: 'bidi-override !important'
-              }
-            })
+                unicodeBidi: 'bidi-override !important',
+              },
+            }),
           }}
         >
           {name}
@@ -132,9 +132,9 @@ const ItemCard: React.FC<ItemCardProps> = ({
             ...(!shouldUseLTR && {
               '& *': {
                 direction: 'rtl !important',
-                unicodeBidi: 'bidi-override !important'
-              }
-            })
+                unicodeBidi: 'bidi-override !important',
+              },
+            }),
           }}
         >
           {itemCaption}

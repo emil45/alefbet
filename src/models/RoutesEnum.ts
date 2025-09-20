@@ -14,4 +14,5 @@ export enum RoutesEnum {
   SIMON_GAME = '/games/simon-game',
   SPEED_CHALLENGE = '/games/speed-challenge',
   WORD_BUILDER_GAME = '/games/word-builder',
+  COUNTING_GAME = '/games/counting-game',
 }

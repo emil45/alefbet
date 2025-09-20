@@ -2,9 +2,6 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
-import { logEvent } from '../utils/amplitude';
-import { AmplitudeEventsEnum } from '../models/amplitudeEvents';
-
 
 interface RoundFunButtonProps {
   to?: string;
@@ -94,7 +91,6 @@ const RoundFunButton: React.FC<RoundFunButtonProps> = (props) => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (props.to) {
-      // logEvent(AmplitudeEventsEnum.BUTTON_CLICK, { buttonName: to });
       setTimeout(() => {
         navigate(props.to!);
       }, 500);
@@ -107,9 +103,7 @@ const RoundFunButton: React.FC<RoundFunButtonProps> = (props) => {
     <Button disableElevation sx={commonStyles} onClick={handleClick}>
       <Box className="shadow" />
       <Box className="edge" />
-      <Typography className="front">
-        {props.children}
-      </Typography>
+      <Typography className="front">{props.children}</Typography>
     </Button>
   );
 };

@@ -498,9 +498,7 @@ const SpeedChallengePage: React.FC = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: showItem 
-            ? 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'
-            : '#fff3e0',
+          background: showItem ? 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)' : '#fff3e0',
           border: showItem ? '4px solid #2196F3' : '4px solid #f57c00',
           borderRadius: 4,
           transform: 'scale(1.05)',
@@ -520,7 +518,13 @@ const SpeedChallengePage: React.FC = () => {
             {currentItem.emoji ||
               (currentItem.element && (
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <svg width="150" height="150" viewBox="0 0 24 24" fill={currentItem.color} style={{ display: 'block' }}>
+                  <svg
+                    width="150"
+                    height="150"
+                    viewBox="0 0 24 24"
+                    fill={currentItem.color}
+                    style={{ display: 'block' }}
+                  >
                     {currentItem.element}
                   </svg>
                 </Box>
