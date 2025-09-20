@@ -4,7 +4,12 @@
       "Bash(find:*)",
       "WebFetch(domain:www.myinstants.com)",
       "Bash(grep:*)",
-      "mcp__ide__getDiagnostics"
+      "mcp__ide__getDiagnostics",
+      "WebSearch",
+      "WebFetch(domain:www.google.com)",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:vike.dev)"
     ],
     "deny": [],
     "ask": []

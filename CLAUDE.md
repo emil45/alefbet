@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the "alefbet" project that powers lepdy.com - a Hebrew learning web application built with React and TypeScript. It's designed as an interactive platform for children to learn Hebrew through letters, numbers, colors, shapes, animals, and food with authentic Hebrew audio and multilingual UI support.
+This is the "lepdy" project that powers lepdy.com - a Hebrew learning web application built with React and TypeScript. It's designed as an interactive platform for children to learn Hebrew through letters, numbers, colors, shapes, animals, and food with authentic Hebrew audio and multilingual UI support.
 
 ## Development Commands
 
