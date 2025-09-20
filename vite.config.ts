@@ -16,7 +16,7 @@ export default defineConfig({
           'mui': ['@mui/material', '@mui/icons-material', '@emotion/react', '@emotion/styled'],
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'i18n': ['i18next', 'react-i18next', 'i18next-http-backend', 'i18next-browser-languagedetector'],
-          'animation': ['react-confetti', 'react-transition-group']
+          'animation': ['react-confetti']
         }
       }
     }
