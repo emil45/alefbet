@@ -1,26 +1,7 @@
+const puppeteer = require('puppeteer');
 const fs = require('fs').promises;
 const path = require('path');
 const express = require('express');
-
-// Use puppeteer-core with chromium for Vercel compatibility
-let puppeteer;
-let chromium;
-
-// Check if we're in Vercel environment
-const isVercel = !!process.env.VERCEL;
-
-if (isVercel) {
-  try {
-    chromium = require('@sparticuz/chromium');
-    puppeteer = require('puppeteer-core');
-  } catch (error) {
-    console.log('Failed to load @sparticuz/chromium, falling back to puppeteer');
-    puppeteer = require('puppeteer');
-  }
-} else {
-  // Use regular puppeteer for local development
-  puppeteer = require('puppeteer');
-}
 
 // Routes to prerender - starting with critical SEO pages
 const routes = [
@@ -47,32 +28,12 @@ async function prerender() {
   });
 
   try {
-    // Launch Puppeteer with appropriate configuration
+    // Launch Puppeteer
     console.log('🌐 Launching browser...');
-
-    let launchOptions = {
+    const browser = await puppeteer.launch({
       headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-accelerated-2d-canvas',
-        '--no-first-run',
-        '--no-zygote',
-        '--single-process',
-        '--disable-gpu'
-      ]
-    };
-
-    // Use @sparticuz/chromium if we're in Vercel
-    if (isVercel && chromium) {
-      launchOptions.executablePath = await chromium.executablePath();
-      launchOptions.args = chromium.args;
-      launchOptions.defaultViewport = chromium.defaultViewport;
-      launchOptions.headless = chromium.headless;
-    }
-
-    const browser = await puppeteer.launch(launchOptions);
+      args: ['--no-sandbox', '--disable-setuid-sandbox'] // For Vercel compatibility
+    });
 
     for (const route of routes) {
       console.log(`📄 Prerendering ${route}...`);
