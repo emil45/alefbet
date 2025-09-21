@@ -9,7 +9,6 @@ Crawl-delay: 1
 
 # Allow all educational content for search engines
 Allow: /learn
-Allow: /guide
 Allow: /letters
 Allow: /numbers
 Allow: /colors

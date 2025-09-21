@@ -13,7 +13,6 @@ import ShapesPage from '../pages/ShapesPage';
 import AnimalsPage from '../pages/AnimalsPage';
 import FoodPage from '../pages/FoodPage';
 import SEOPage from '../pages/SEOPage';
-import EducationalGuidePage from '../pages/EducationalGuidePage';
 import GuessGamePage from '../pages/GuessGamePage';
 import MemoryMatchGamePage from '../pages/MemoryMatchGamePage';
 import SimonGamePage from '../pages/SimonGamePage';
@@ -25,7 +24,6 @@ import GamesPage from '../pages/GamesPage';
 const ROUTE_COMPONENTS: Record<RoutesEnum, React.ComponentType> = {
   [RoutesEnum.HOME]: HomePage,
   [RoutesEnum.SEO]: SEOPage,
-  [RoutesEnum.GUIDE]: EducationalGuidePage,
   [RoutesEnum.LETTERS]: LettersPage,
   [RoutesEnum.NUMBERS]: NumbersPage,
   [RoutesEnum.COLORS]: ColorsPage,

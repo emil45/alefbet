@@ -344,9 +344,54 @@
       "description2": "The audio-visual combination helps children develop both visual recognition and auditory processing skills, while the interactive elements maintain engagement and motivation. The Hebrew-focused approach supports cognitive development and introduces children to this beautiful ancient language.",
       "description3": "All content is carefully designed to be age-appropriate, culturally sensitive, and educationally effective. Parents can feel confident that their children are learning in a safe, structured environment that promotes both academic growth and cultural understanding."
     },
+    "faq": {
+      "title": "Frequently Asked Questions About Hebrew Learning",
+      "faq1": {
+        "question": "What age is best to start learning Hebrew letters?",
+        "answer": "Children can start recognizing Hebrew letters as early as 2-3 years old. Our app works for all ages, with activities suitable for young learners. Early exposure to Hebrew sounds and visual recognition creates strong foundations for future Hebrew reading and writing skills."
+      },
+      "faq2": {
+        "question": "How long should daily Hebrew practice sessions be?",
+        "answer": "We recommend 10-15 minute sessions for optimal learning. Short, frequent practice is more effective than long sessions."
+      },
+      "faq3": {
+        "question": "Do I need to know Hebrew to help my child learn?",
+        "answer": "Not at all! Our app provides authentic Hebrew pronunciation for every letter, number, and word. Parents can learn alongside their children. The interface supports multiple languages while maintaining focus on Hebrew learning objectives."
+      },
+      "faq4": {
+        "question": "What makes this Hebrew learning app different from others?",
+        "answer": "Our app combines authentic Hebrew audio, interactive games, and educational methodologies. We focus exclusively on Hebrew learning with native pronunciation and right-to-left reading practice."
+      },
+      "faq5": {
+        "question": "Can my child use this app independently?",
+        "answer": "Yes! The app is designed for independent learning while encouraging parent participation. Clear visual cues, audio instructions, and intuitive navigation allow children to explore and learn at their own pace while parents can observe and provide support."
+      },
+      "faq6": {
+        "question": "What devices does the Hebrew learning app work on?",
+        "answer": "Our web-based app works on all devices - tablets, phones, computers, and smart TVs. No downloads required! The responsive design ensures optimal learning experience across all screen sizes with touch-friendly interfaces perfect for young learners."
+      }
+    },
+    "methodology": {
+      "title": "Our Proven Hebrew Learning Methodology",
+      "scientific": {
+        "title": "Research-Based Hebrew Education",
+        "description": "Our Hebrew learning approach incorporates multisensory learning techniques to enhance Hebrew letter recognition and pronunciation skills.",
+        "point1": "Visual-auditory learning combines Hebrew letter shapes with authentic pronunciation",
+        "point2": "Spaced repetition system optimizes Hebrew vocabulary retention",
+        "point3": "Interactive feedback reinforces correct Hebrew learning patterns"
+      },
+      "practical": {
+        "title": "Hands-On Hebrew Learning Activities",
+        "description": "Hebrew learning activities engage multiple senses while building practical Hebrew skills. From tracing Hebrew letters to playing Hebrew memory games, children develop Hebrew foundations.",
+        "step1": "Listen to authentic Hebrew pronunciation for each letter and word",
+        "step2": "Practice Hebrew letter recognition through interactive visual games",
+        "step3": "Reinforce Hebrew learning through engaging memory and matching activities"
+      }
+    },
     "finalCta": {
-      "title": "Ready to Begin the Learning Journey?",
-      "button": "Start Learning Now"
+      "title": "Ready to Begin the Hebrew Learning Journey?",
+      "subtitle": "Start your Hebrew learning journey today",
+      "button": "Start Learning Hebrew Now"
     }
   },
   "food": {
@@ -368,68 +413,6 @@
     "cookie": { "name": "Cookie", "fullName": "Cookie" },
     "icecream": { "name": "Ice Cream", "fullName": "Ice Cream" },
     "chocolate": { "name": "Chocolate", "fullName": "Chocolate" }
-  },
-  "guide": {
-    "pageTitle": "Lepdy Guide - How to Teach Kids Hebrew Letters & Numbers",
-    "metaDescription": "Complete guide for teaching children Hebrew letters, numbers, and vocabulary. Expert tips for Hebrew learning, pronunciation practice, and interactive activities for kids 2-6 years old.",
-    "hero": {
-      "title": "Lepdy - Complete Hebrew Learning Guide for Parents",
-      "subtitle": "Evidence-based tips and strategies to help your child master Hebrew. Discover age-appropriate activities, Hebrew pronunciation techniques, and expert advice for teaching Hebrew letters, numbers, and vocabulary.",
-      "cta": "Start Learning Hebrew Now"
-    },
-    "tips": {
-      "title": "Expert Hebrew Learning Tips for Parents",
-      "tip1": {
-        "title": "Make Hebrew Learning Playful",
-        "content": "Children learn Hebrew best through play. Use games, Hebrew songs, and interactive activities to teach Hebrew letters and numbers. Keep sessions short (10-15 minutes) and focus on Hebrew pronunciation and sounds."
-      },
-      "tip2": {
-        "title": "Focus on Hebrew Sounds",
-        "content": "Hebrew has unique sounds that differ from English. Celebrate when your child pronounces Hebrew words correctly and avoid pressure. Create a Hebrew-rich environment with Hebrew audio and visual materials."
-      },
-      "tip3": {
-        "title": "Use Multi-Sensory Hebrew Learning",
-        "content": "Combine visual Hebrew letters, Hebrew audio pronunciation, and tactile learning. Let children trace Hebrew letters in sand, listen to Hebrew sounds, or use Hebrew flashcards. Multiple senses enhance Hebrew memory significantly."
-      },
-      "tip4": {
-        "title": "Practice Hebrew Daily",
-        "content": "Regular Hebrew practice is more effective than long sessions. Set a daily routine for Hebrew learning activities. Remember that Hebrew reading goes right-to-left, which takes time to master."
-      }
-    },
-    "whyEarly": {
-      "title": "Why Early Hebrew Learning Matters",
-      "content": "The first six years are crucial for language acquisition. During this period, children's brains are most receptive to new languages and sounds. Early Hebrew exposure creates lasting neural pathways for Hebrew comprehension and pronunciation.",
-      "benefit1": "Natural Hebrew sound recognition and pronunciation",
-      "benefit2": "Improved bilingual cognitive development",
-      "benefit3": "Better preparation for Hebrew reading and writing",
-      "benefit4": "Increased cultural awareness and identity",
-      "benefit5": "Enhanced memory through Hebrew memorization",
-      "benefit6": "Stronger connection to Hebrew heritage and traditions"
-    },
-    "ageGuidelines": {
-      "title": "Age-Specific Hebrew Learning Guidelines",
-      "ages2_3": {
-        "title": "Ages 2-3: Hebrew Foundation Building",
-        "content": "Focus on Hebrew sounds, Hebrew colors, shapes, and Hebrew counting 1-5. Use Hebrew repetition, Hebrew songs, and hands-on activities. Introduce Hebrew letter sounds through play and daily Hebrew exposure."
-      },
-      "ages3_4": {
-        "title": "Ages 3-4: Hebrew Skill Development",
-        "content": "Begin formal Hebrew letter recognition and Hebrew numbers 1-10. Practice tracing Hebrew letters and developing fine motor skills. Encourage Hebrew vocabulary expansion through daily Hebrew audio exposure."
-      },
-      "ages4_5": {
-        "title": "Ages 4-5: Hebrew Pre-School Preparation",
-        "content": "Master Hebrew alphabet recognition and Hebrew letter sounds. Count to 10 in Hebrew and understand Hebrew vocabulary. Practice writing Hebrew letters right-to-left. Develop Hebrew listening skills."
-      },
-      "ages5_6": {
-        "title": "Ages 5-6: Hebrew Reading Readiness",
-        "content": "Begin reading simple Hebrew words. Master Hebrew numbers and basic Hebrew vocabulary. Develop independence in Hebrew learning tasks. Practice Hebrew pronunciation and comprehension skills."
-      }
-    },
-    "finalCta": {
-      "title": "Ready to Start Your Child's Hebrew Learning Journey?",
-      "subtitle": "Our interactive Hebrew learning app provides age-appropriate Hebrew activities, authentic Hebrew pronunciation, and engaging Hebrew content designed by Hebrew education experts.",
-      "button": "Begin Hebrew Learning Adventure"
-    }
   },
   "wordBuilder": {
     "score": "Score",

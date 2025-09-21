@@ -123,7 +123,7 @@ To add a new language (e.g., Spanish):
 - **HomePage**: Main landing page with category navigation
 - **Educational Pages**: LettersPage, NumbersPage, ColorsPage, ShapesPage, AnimalsPage, FoodPage
 - **Game Pages**: GamesPage (hub), GuessGamePage, MemoryMatchGamePage, SimonGamePage
-- **Utility Pages**: SEOPage (/learn), EducationalGuidePage (/guide)
+- **Utility Pages**: SEOPage (/learn)
 - All pages wrapped in LanguageRouteWrapper for automatic language detection
 
 ### SEO & Performance

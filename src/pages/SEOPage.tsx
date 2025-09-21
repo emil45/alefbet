@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, Typography, Grid, Card, CardContent, Container } from '@mui/material';
+import { Box, Typography, Grid, Card, CardContent, Container, Accordion, AccordionSummary, AccordionDetails, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { RoutesEnum } from '../models/RoutesEnum';
 import { useThemeContext } from '../context/ThemeContext';
@@ -10,6 +10,9 @@ import DevicesIcon from '@mui/icons-material/Devices';
 import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
 import GamepadIcon from '@mui/icons-material/Gamepad';
 import TranslateIcon from '@mui/icons-material/Translate';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 const SEOPage: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -296,6 +299,117 @@ const SEOPage: React.FC = () => {
           </Card>
         </Box>
 
+
+        {/* FAQ Section */}
+        <Box mb={6}>
+          <Typography
+            variant="h3"
+            component="h2"
+            textAlign="center"
+            sx={{
+              fontSize: { xs: '1.8rem', md: '2.5rem' },
+              fontWeight: 'bold',
+              color: 'primary.light',
+              mb: 4,
+              textShadow: '1px 1px 2px rgba(0,0,0,0.3)',
+            }}
+          >
+            {t('seo.faq.title')}
+          </Typography>
+
+          <Card
+            sx={{
+              background: 'rgba(255,255,255,0.95)',
+              backdropFilter: 'blur(10px)',
+              borderRadius: '20px',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+            }}
+          >
+            {['faq1', 'faq2', 'faq3', 'faq4', 'faq5', 'faq6'].map((faq, index) => (
+              <Accordion key={index} sx={{ background: 'transparent', boxShadow: 'none' }}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                    {t(`seo.faq.${faq}.question`)}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography variant="body1" sx={{ lineHeight: 1.7 }}>
+                    {t(`seo.faq.${faq}.answer`)}
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
+            ))}
+          </Card>
+        </Box>
+
+
+        {/* Methodology Section */}
+        <Box mb={6}>
+          <Typography
+            variant="h3"
+            component="h2"
+            textAlign="center"
+            sx={{
+              fontSize: { xs: '1.8rem', md: '2.5rem' },
+              fontWeight: 'bold',
+              color: 'primary.light',
+              mb: 4,
+              textShadow: '1px 1px 2px rgba(0,0,0,0.3)',
+            }}
+          >
+            {t('seo.methodology.title')}
+          </Typography>
+
+          <Card
+            sx={{
+              background: 'rgba(255,255,255,0.95)',
+              backdropFilter: 'blur(10px)',
+              borderRadius: '20px',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+              p: 4,
+            }}
+          >
+            <Grid container spacing={4}>
+              <Grid item xs={12} md={6}>
+                <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2, color: 'primary.main' }}>
+                  {t('seo.methodology.scientific.title')}
+                </Typography>
+                <Typography variant="body1" sx={{ lineHeight: 1.7, mb: 3 }}>
+                  {t('seo.methodology.scientific.description')}
+                </Typography>
+                <List>
+                  {['point1', 'point2', 'point3'].map((point, index) => (
+                    <ListItem key={index} sx={{ pl: 0 }}>
+                      <ListItemIcon>
+                        <CheckCircleIcon sx={{ color: '#4CAF50' }} />
+                      </ListItemIcon>
+                      <ListItemText primary={t(`seo.methodology.scientific.${point}`)} />
+                    </ListItem>
+                  ))}
+                </List>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2, color: 'primary.main' }}>
+                  {t('seo.methodology.practical.title')}
+                </Typography>
+                <Typography variant="body1" sx={{ lineHeight: 1.7, mb: 3 }}>
+                  {t('seo.methodology.practical.description')}
+                </Typography>
+                <List>
+                  {['step1', 'step2', 'step3'].map((step, index) => (
+                    <ListItem key={index} sx={{ pl: 0 }}>
+                      <ListItemIcon>
+                        <MenuBookIcon sx={{ color: 'primary.main' }} />
+                      </ListItemIcon>
+                      <ListItemText primary={t(`seo.methodology.practical.${step}`)} />
+                    </ListItem>
+                  ))}
+                </List>
+              </Grid>
+            </Grid>
+          </Card>
+        </Box>
+
         {/* Final CTA */}
         <Box textAlign="center">
           <Typography
@@ -310,6 +424,17 @@ const SEOPage: React.FC = () => {
             }}
           >
             {t('seo.finalCta.title')}
+          </Typography>
+
+          <Typography
+            variant="h6"
+            sx={{
+              color: 'primary.light',
+              mb: 4,
+              opacity: 0.9,
+            }}
+          >
+            {t('seo.finalCta.subtitle')}
           </Typography>
 
           <Box sx={{ display: 'inline-block' }}>
