@@ -28,8 +28,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && cp -r static/* build/ 2>/dev/null || true",
     "build:with-ssg": "vite build && node scripts/prerender.js",
+    "prerender:local": "vite build && node scripts/prerender.js",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },

@@ -74,9 +74,9 @@ async function prerender() {
       // Determine the output path
       let outputPath;
       if (route === '/') {
-        outputPath = path.join('build', 'index.html');
+        outputPath = path.join('static', 'index.html');
       } else {
-        outputPath = path.join('build', route, 'index.html');
+        outputPath = path.join('static', route, 'index.html');
       }
 
       // Create directory if it doesn't exist
