@@ -3,14 +3,12 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import RoundFunButton from './RoundFunButton';
 import { Box } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useTranslation } from 'react-i18next';
 
 const BackButton: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { i18n } = useTranslation();
-  const isRTL = (i18n.language || 'he') === 'he';
 
   const handleClick = () => {
     setTimeout(() => {
