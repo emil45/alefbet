@@ -162,7 +162,7 @@ const SpeedChallengePage: React.FC = () => {
     });
 
     return items;
-  }, [t, currentLanguage]);
+  }, [currentLanguage]);
 
   const getFilteredItems = useCallback(() => {
     const allItems = getAllItems();
@@ -355,8 +355,8 @@ const SpeedChallengePage: React.FC = () => {
               {t('speedChallenge.questions')}
             </InputLabel>
             <Select
-              value={questionsCount}
-              onChange={(e: SelectChangeEvent) => setQuestionsCount(e.target.value as any)}
+              value={questionsCount.toString()}
+              onChange={(e: SelectChangeEvent) => setQuestionsCount(Number(e.target.value) as 5 | 15 | 30)}
               sx={{
                 fontSize: '1.1rem',
                 '& .MuiOutlinedInput-notchedOutline': {
@@ -365,9 +365,9 @@ const SpeedChallengePage: React.FC = () => {
                 marginTop: '12px',
               }}
             >
-              <MenuItem value={5}>🏃 5 {t('speedChallenge.questions')}</MenuItem>
-              <MenuItem value={15}>⚡ 15 {t('speedChallenge.questions')}</MenuItem>
-              <MenuItem value={30}>🎯 30 {t('speedChallenge.questions')}</MenuItem>
+              <MenuItem value="5">🏃 5 {t('speedChallenge.questions')}</MenuItem>
+              <MenuItem value="15">⚡ 15 {t('speedChallenge.questions')}</MenuItem>
+              <MenuItem value="30">🎯 30 {t('speedChallenge.questions')}</MenuItem>
             </Select>
           </FormControl>
 
@@ -430,8 +430,15 @@ const SpeedChallengePage: React.FC = () => {
               {t('speedChallenge.category')}
             </InputLabel>
             <Select
-              value={category}
-              onChange={(e: SelectChangeEvent) => setCategory(e.target.value as any)}
+              value={category === 'mixed' ? 'mixed' : category.toString()}
+              onChange={(e: SelectChangeEvent) => {
+                const value = e.target.value;
+                if (value === 'mixed') {
+                  setCategory('mixed');
+                } else {
+                  setCategory(Number(value) as ModelTypesEnum);
+                }
+              }}
               sx={{
                 fontSize: '1.1rem',
                 '& .MuiOutlinedInput-notchedOutline': {
@@ -441,11 +448,11 @@ const SpeedChallengePage: React.FC = () => {
               }}
             >
               <MenuItem value="mixed">🎯 {t('speedChallenge.mixed')}</MenuItem>
-              <MenuItem value={ModelTypesEnum.LETTERS}>🅰️ {t('speedChallenge.letters')}</MenuItem>
-              <MenuItem value={ModelTypesEnum.NUMBERS}>1️⃣ {t('speedChallenge.numbers')}</MenuItem>
-              <MenuItem value={ModelTypesEnum.SHAPES}>🟣 {t('speedChallenge.shapes')}</MenuItem>
-              <MenuItem value={ModelTypesEnum.ANIMALS}>🐶 {t('speedChallenge.animals')}</MenuItem>
-              <MenuItem value={ModelTypesEnum.COLORS}>🎨 {t('speedChallenge.colors')}</MenuItem>
+              <MenuItem value={ModelTypesEnum.LETTERS.toString()}>🅰️ {t('speedChallenge.letters')}</MenuItem>
+              <MenuItem value={ModelTypesEnum.NUMBERS.toString()}>1️⃣ {t('speedChallenge.numbers')}</MenuItem>
+              <MenuItem value={ModelTypesEnum.SHAPES.toString()}>🟣 {t('speedChallenge.shapes')}</MenuItem>
+              <MenuItem value={ModelTypesEnum.ANIMALS.toString()}>🐶 {t('speedChallenge.animals')}</MenuItem>
+              <MenuItem value={ModelTypesEnum.COLORS.toString()}>🎨 {t('speedChallenge.colors')}</MenuItem>
             </Select>
           </FormControl>
 
