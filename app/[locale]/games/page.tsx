@@ -1,0 +1,32 @@
+'use client';
+
+import React from 'react';
+import BackButton from '@/components/BackButton';
+import FunButton from '@/components/FunButton';
+import { Box } from '@mui/material';
+import { useTranslations } from 'next-intl';
+
+export default function GamesPage() {
+  const t = useTranslations();
+
+  return (
+    <>
+      <BackButton />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
+          <FunButton to="/games/guess-game" text={t('games.buttons.guessGame')} />
+          <FunButton to="/games/memory-match-game" text={t('games.buttons.memoryMatchGame')} />
+          <FunButton to="/games/simon-game" text={t('games.buttons.simon')} />
+          <FunButton to="/games/speed-challenge" text={t('games.buttons.speedChallenge')} />
+          <FunButton to="/games/word-builder" text={t('games.buttons.wordBuilder')} />
+        </Box>
+      </Box>
+    </>
+  );
+}
