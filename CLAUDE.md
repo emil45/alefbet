@@ -43,7 +43,9 @@ Translations are stored in `public/locales/{lang}/translation.json` with `name` 
 
 ### Audio System
 
-- Per-item audio: `/audio/{audioFile}` - Pronunciation for letters, numbers, etc.
+**Important**: All educational audio is exclusively Hebrew pronunciation, regardless of UI language. The UI supports Hebrew/English/Russian, but the learning content audio is Hebrew-only.
+
+- Per-item audio: `/audio/{audioFile}` - Hebrew pronunciation for letters, numbers, etc.
 - Game sounds: `/audio/common/` - UI feedback sounds
 - Use `playAudio(path)` for item pronunciation, `playSound(AudioSounds.X)` for game feedback
 
@@ -59,3 +61,20 @@ Translations are stored in `public/locales/{lang}/translation.json` with `name` 
 ### Theme and Direction
 
 The app uses MUI with RTL/LTR support based on language. `ThemeContext` manages direction switching automatically when language changes. Hebrew uses RTL; English and Russian use LTR.
+
+**Content direction overrides**: Hebrew letters always display RTL regardless of UI language (CSS overrides with `!important`). Numbers always display LTR even in Hebrew UI since digits are universal.
+
+### Adding a New Language
+
+1. Add language config to `src/config/languages.ts`:
+```typescript
+{
+  code: 'es',
+  name: 'Español',
+  direction: 'ltr',
+  isDefault: false,
+  hasUrlPrefix: true,
+}
+```
+2. Add translations to `public/locales/es/translation.json`
+3. Routes are automatically generated with the new prefix (e.g., `/es/letters`)
