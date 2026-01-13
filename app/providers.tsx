@@ -5,10 +5,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { getTheme } from '@/theme/theme';
 import { initAmplitude } from '@/utils/amplitude';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+// Note: Roboto font is now loaded via next/font/google in layout.tsx for better performance
 
 interface ProvidersProps {
   children: ReactNode;

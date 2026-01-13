@@ -12,7 +12,6 @@
     "@amplitude/analytics-browser": "^2.33.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@fontsource/roboto": "^5.2.9",
     "@mui/icons-material": "^7.3.7",
     "@mui/material": "^7.3.7",
     "next": "16.1.1",

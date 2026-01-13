@@ -7,6 +7,15 @@ import type { Metadata } from 'next';
 import { Box, Typography } from '@mui/material';
 import Script from 'next/script';
 import { BASE_URL, getLocaleUrl, getOgLocale } from '@/lib/seo';
+import { Roboto } from 'next/font/google';
+
+// Optimized font loading with next/font
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin', 'latin-ext'],
+  display: 'swap', // Prevents FOIT (Flash of Invisible Text)
+  preload: true,
+});
 
 type Props = {
   children: React.ReactNode;
@@ -162,13 +171,20 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} dir={direction}>
       <head>
+        {/* Preload background image to improve LCP */}
+        <link
+          rel="preload"
+          href="/images/background.jpg"
+          as="image"
+          type="image/jpeg"
+        />
         <Script
           id="json-ld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body style={{ margin: 0 }}>
+      <body className={roboto.className} style={{ margin: 0 }}>
         <NextIntlClientProvider messages={messages}>
           <Providers direction={direction}>
             <Box
