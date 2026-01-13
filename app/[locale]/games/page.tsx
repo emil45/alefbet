@@ -1,32 +1,17 @@
-'use client';
+import { setRequestLocale } from 'next-intl/server';
+import { generatePageMetadata } from '@/lib/seo';
+import GamesContent from './GamesContent';
 
-import React from 'react';
-import BackButton from '@/components/BackButton';
-import FunButton from '@/components/FunButton';
-import { Box } from '@mui/material';
-import { useTranslations } from 'next-intl';
+type Props = { params: Promise<{ locale: string }> };
 
-export default function GamesPage() {
-  const t = useTranslations();
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  return generatePageMetadata(locale, 'games', '/games');
+}
 
-  return (
-    <>
-      <BackButton />
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-          <FunButton to="/games/guess-game" text={t('games.buttons.guessGame')} />
-          <FunButton to="/games/memory-match-game" text={t('games.buttons.memoryMatchGame')} />
-          <FunButton to="/games/simon-game" text={t('games.buttons.simon')} />
-          <FunButton to="/games/speed-challenge" text={t('games.buttons.speedChallenge')} />
-          <FunButton to="/games/word-builder" text={t('games.buttons.wordBuilder')} />
-        </Box>
-      </Box>
-    </>
-  );
+export default async function GamesPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  return <GamesContent />;
 }

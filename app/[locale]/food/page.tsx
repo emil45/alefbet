@@ -1,34 +1,26 @@
-'use client';
-
-import React from 'react';
-import { Grid } from '@mui/material';
-import ItemCard from '@/components/ItemCard';
+import { setRequestLocale } from 'next-intl/server';
+import { generatePageMetadata } from '@/lib/seo';
+import CategoryPage from '@/components/CategoryPage';
 import food from '@/data/food';
-import BackButton from '@/components/BackButton';
-import { useTranslations } from 'next-intl';
-import { useDirection } from '@/hooks/useDirection';
 
-export default function FoodPage() {
-  const t = useTranslations();
-  const direction = useDirection();
-  const isRTL = direction === 'rtl';
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  return generatePageMetadata(locale, 'food', '/food');
+}
+
+export default async function FoodPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
   return (
-    <>
-      <BackButton />
-      <Grid container spacing={4} justifyContent="center">
-        {food.map((foodItem, index) => (
-          <Grid key={index}>
-            <ItemCard
-              name={foodItem.imageUrl}
-              textColor={foodItem.color}
-              soundFile={`/audio/food/he/${foodItem.audioFile}`}
-              itemCaption={t(`food.${foodItem.id}.name`)}
-              isRTL={isRTL}
-            />
-          </Grid>
-        ))}
-      </Grid>
-    </>
+    <CategoryPage
+      pageName="food"
+      items={food}
+      translationPrefix="food"
+      audioPath="food"
+      renderMode="image"
+    />
   );
 }

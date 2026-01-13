@@ -1,35 +1,27 @@
-'use client';
-
-import React from 'react';
-import { Grid } from '@mui/material';
-import ItemCard from '@/components/ItemCard';
+import { setRequestLocale } from 'next-intl/server';
+import { generatePageMetadata } from '@/lib/seo';
+import CategoryPage from '@/components/CategoryPage';
 import numbers from '@/data/numbers';
-import BackButton from '@/components/BackButton';
-import { useTranslations } from 'next-intl';
-import { useDirection } from '@/hooks/useDirection';
 
-export default function NumbersPage() {
-  const t = useTranslations();
-  const direction = useDirection();
-  // Numbers display according to UI language direction
-  const isRTL = direction === 'rtl';
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  return generatePageMetadata(locale, 'numbers', '/numbers');
+}
+
+export default async function NumbersPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
   return (
-    <>
-      <BackButton />
-      <Grid container spacing={4} justifyContent="center">
-        {numbers.map((number, index) => (
-          <Grid key={index}>
-            <ItemCard
-              name={t(`numbers.${number.id}.name`)}
-              textColor={number.color}
-              soundFile={`/audio/numbers/he/${number.audioFile}`}
-              itemCaption={t(`numbers.${number.id}.fullName`)}
-              isRTL={isRTL}
-            />
-          </Grid>
-        ))}
-      </Grid>
-    </>
+    <CategoryPage
+      pageName="numbers"
+      items={numbers}
+      translationPrefix="numbers"
+      audioPath="numbers"
+      renderMode="text"
+      hasFullName={true}
+    />
   );
 }

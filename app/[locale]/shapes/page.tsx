@@ -1,35 +1,26 @@
-'use client';
-
-import React from 'react';
-import { Grid } from '@mui/material';
-import ItemCard from '@/components/ItemCard';
+import { setRequestLocale } from 'next-intl/server';
+import { generatePageMetadata } from '@/lib/seo';
+import CategoryPage from '@/components/CategoryPage';
 import shapes from '@/data/shapes';
-import BackButton from '@/components/BackButton';
-import { useTranslations } from 'next-intl';
-import { useDirection } from '@/hooks/useDirection';
 
-export default function ShapesPage() {
-  const t = useTranslations();
-  const direction = useDirection();
-  const isRTL = direction === 'rtl';
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  return generatePageMetadata(locale, 'shapes', '/shapes');
+}
+
+export default async function ShapesPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
   return (
-    <>
-      <BackButton />
-      <Grid container spacing={4} justifyContent="center">
-        {shapes.map((shape, index) => (
-          <Grid key={index}>
-            <ItemCard
-              name=""
-              element={shape.element}
-              textColor={shape.color}
-              soundFile={`/audio/shapes/he/${shape.audioFile}`}
-              itemCaption={t(`shapes.${shape.id}.name`)}
-              isRTL={isRTL}
-            />
-          </Grid>
-        ))}
-      </Grid>
-    </>
+    <CategoryPage
+      pageName="shapes"
+      items={shapes}
+      translationPrefix="shapes"
+      audioPath="shapes"
+      renderMode="element"
+    />
   );
 }

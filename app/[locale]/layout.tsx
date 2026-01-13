@@ -1,15 +1,89 @@
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { getMessages, setRequestLocale, getTranslations } from 'next-intl/server';
 import { locales, getDirection, type Locale } from '@/i18n/config';
 import Providers from '../providers';
 import type { Metadata } from 'next';
 import { Box, Typography } from '@mui/material';
+import Script from 'next/script';
+import { BASE_URL, getLocaleUrl, getOgLocale } from '@/lib/seo';
 
 type Props = {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 };
+
+// JSON-LD structured data for SEO
+function generateJsonLd(locale: string) {
+  const names: Record<string, string> = {
+    he: 'לפדי - לימוד עברית לילדים',
+    en: 'Lepdy - Hebrew Learning for Kids',
+    ru: 'Lepdy - Изучение иврита для детей',
+  };
+
+  const descriptions: Record<string, string> = {
+    he: 'אתר חינוכי אינטראקטיבי לילדים - לימוד אותיות עברית, מספרים, צבעים, צורות ומשחקים חינוכיים. עם הגיית ילדה ישראלית אמיתית.',
+    en: 'Interactive educational website for children - learn Hebrew letters, numbers, colors, shapes and educational games. With real Israeli child pronunciation.',
+    ru: 'Интерактивный образовательный сайт для детей - изучение ивритских букв, цифр, цветов, форм и развивающие игры. С реальным произношением израильского ребенка.',
+  };
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebApplication',
+        '@id': `${BASE_URL}/#application`,
+        name: names[locale] || names.he,
+        description: descriptions[locale] || descriptions.he,
+        url: locale === 'he' ? BASE_URL : `${BASE_URL}/${locale}`,
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'Web Browser',
+        browserRequirements: 'Requires JavaScript',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'ILS',
+        },
+        inLanguage: ['he', 'en', 'ru'],
+        audience: {
+          '@type': 'EducationalAudience',
+          educationalRole: 'student',
+          audienceType: 'Children',
+          suggestedMinAge: 2,
+          suggestedMaxAge: 7,
+        },
+        author: {
+          '@type': 'Organization',
+          '@id': `${BASE_URL}/#organization`,
+        },
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${BASE_URL}/#organization`,
+        name: 'Lepdy',
+        alternateName: 'לפדי',
+        url: BASE_URL,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${BASE_URL}/icon-512x512.png`,
+        },
+        sameAs: [],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${BASE_URL}/#website`,
+        url: BASE_URL,
+        name: 'Lepdy',
+        alternateName: 'לפדי',
+        inLanguage: ['he', 'en', 'ru'],
+        publisher: {
+          '@type': 'Organization',
+          '@id': `${BASE_URL}/#organization`,
+        },
+      },
+    ],
+  };
+}
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -17,39 +91,55 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'seo' });
 
-  const titles: Record<string, string> = {
-    he: 'לפדי - אתר חינוכי לילדים ללימוד אותיות עברית',
-    en: 'Lepdy - Educational Hebrew Learning App for Kids',
-    ru: 'Lepdy - Обучающее приложение для изучения иврита для детей',
-  };
-
-  const descriptions: Record<string, string> = {
-    he: 'אתר חינוכי אינטראקטיבי לילדים - לימוד אותיות עברית, מספרים וצבעים לגיל הרך',
-    en: 'Interactive educational app for children - learn Hebrew letters, numbers and colors',
-    ru: 'Интерактивное образовательное приложение для детей - изучение ивритских букв, цифр и цветов',
-  };
-
-  const baseUrl = 'https://www.lepdy.com';
+  const currentUrl = locale === 'he' ? BASE_URL : `${BASE_URL}/${locale}`;
 
   return {
-    title: titles[locale] || titles.he,
-    description: descriptions[locale] || descriptions.he,
+    title: t('siteTitle'),
+    description: t('siteDescription'),
+    keywords: locale === 'he'
+      ? ['לימוד אותיות', 'אלף בית לילדים', 'משחקים חינוכיים', 'עברית לגיל הרך', 'לימוד מספרים', 'משחקי זיכרון לילדים']
+      : locale === 'ru'
+      ? ['учить иврит', 'алфавит для детей', 'развивающие игры', 'еврейские буквы']
+      : ['learn hebrew', 'hebrew alphabet', 'alef bet', 'educational games for kids', 'hebrew for toddlers'],
     alternates: {
-      canonical: locale === 'he' ? baseUrl : `${baseUrl}/${locale}`,
+      canonical: currentUrl,
       languages: {
-        he: baseUrl,
-        en: `${baseUrl}/en`,
-        ru: `${baseUrl}/ru`,
+        he: BASE_URL,
+        en: `${BASE_URL}/en`,
+        ru: `${BASE_URL}/ru`,
       },
     },
     openGraph: {
-      title: titles[locale] || titles.he,
-      description: descriptions[locale] || descriptions.he,
-      url: locale === 'he' ? baseUrl : `${baseUrl}/${locale}`,
+      title: t('siteTitle'),
+      description: t('siteDescription'),
+      url: currentUrl,
       siteName: 'Lepdy',
-      locale: locale,
+      locale: locale === 'he' ? 'he_IL' : locale === 'ru' ? 'ru_RU' : 'en_US',
       type: 'website',
+      images: [
+        {
+          url: `${BASE_URL}/og-image.png`,
+          width: 1200,
+          height: 630,
+          alt: t('siteTitle'),
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('siteTitle'),
+      description: t('siteDescription'),
+      images: [`${BASE_URL}/og-image.png`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
     },
   };
 }
@@ -67,8 +157,17 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
   const direction = getDirection(locale);
 
+  const jsonLd = generateJsonLd(locale);
+
   return (
     <html lang={locale} dir={direction}>
+      <head>
+        <Script
+          id="json-ld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body style={{ margin: 0 }}>
         <NextIntlClientProvider messages={messages}>
           <Providers direction={direction}>

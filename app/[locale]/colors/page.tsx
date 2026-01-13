@@ -1,35 +1,26 @@
-'use client';
-
-import React from 'react';
-import { Grid } from '@mui/material';
-import ItemCard from '@/components/ItemCard';
+import { setRequestLocale } from 'next-intl/server';
+import { generatePageMetadata } from '@/lib/seo';
+import CategoryPage from '@/components/CategoryPage';
 import colors from '@/data/colors';
-import BackButton from '@/components/BackButton';
-import { useTranslations } from 'next-intl';
-import { useDirection } from '@/hooks/useDirection';
 
-export default function ColorsPage() {
-  const t = useTranslations();
-  const direction = useDirection();
-  const isRTL = direction === 'rtl';
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  return generatePageMetadata(locale, 'colors', '/colors');
+}
+
+export default async function ColorsPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
   return (
-    <>
-      <BackButton />
-      <Grid container spacing={4} justifyContent="center">
-        {colors.map((color, index) => (
-          <Grid key={index}>
-            <ItemCard
-              name=""
-              textColor={color.color}
-              backgroundColor={color.color}
-              soundFile={`/audio/colors/he/${color.audioFile}`}
-              itemCaption={t(`colors.${color.id}.name`)}
-              isRTL={isRTL}
-            />
-          </Grid>
-        ))}
-      </Grid>
-    </>
+    <CategoryPage
+      pageName="colors"
+      items={colors}
+      translationPrefix="colors"
+      audioPath="colors"
+      renderMode="color"
+    />
   );
 }
