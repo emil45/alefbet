@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import FunButton from '@/components/FunButton';
 import { useTranslations, useLocale } from 'next-intl';
 import RoundFunButton from '@/components/RoundFunButton';
@@ -72,6 +72,22 @@ export default function HomePage() {
 
   return (
     <Box>
+      <Typography
+        component="h1"
+        sx={{
+          position: 'absolute',
+          width: '1px',
+          height: '1px',
+          padding: 0,
+          margin: '-1px',
+          overflow: 'hidden',
+          clip: 'rect(0, 0, 0, 0)',
+          whiteSpace: 'nowrap',
+          border: 0,
+        }}
+      >
+        {t('seo.hero.title')}
+      </Typography>
       {showSettingsButton()}
       {showLearnMoreButton()}
       <SettingsDrawer open={open} toggleDrawer={toggleDrawer} />
