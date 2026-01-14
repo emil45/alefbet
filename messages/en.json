@@ -25,7 +25,25 @@
       "simon": "Simon 🚦",
       "speedChallenge": "Speed Challenge ⚡",
       "wordBuilder": "Word Builder 🔤",
-      "countingGame": "Counting Game 🔢"
+      "countingGame": "Counting Game 🔢",
+      "letterRain": "Letter Rain 🎈"
+    },
+    "letterRain": {
+      "title": "Letter Rain",
+      "freePlay": "Free Play",
+      "challenge": "Challenge",
+      "speed": "Speed",
+      "slow": "Slow",
+      "medium": "Medium",
+      "fast": "Fast",
+      "superfast": "Super Fast!",
+      "start": "Start",
+      "score": "Score",
+      "findLetter": "Find:",
+      "gameComplete": "Great Job!",
+      "totalScore": "Total Score",
+      "accuracy": "Accuracy",
+      "playAgain": "Play Again"
     },
     "guessGame": {
       "next": "Next"
