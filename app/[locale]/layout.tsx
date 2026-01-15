@@ -185,9 +185,9 @@ export default async function LocaleLayout({ children, params }: Props) {
         />
       </head>
       <body className={roboto.className} style={{ margin: 0 }}>
-        {/* Google tag (gtag.js) */}
+        {/* Google Analytics + Google Ads */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17878894842"
+          src="https://www.googletagmanager.com/gtag/js?id=G-XMN00ZGJH4"
           strategy="afterInteractive"
         />
         <Script id="gtag-init" strategy="afterInteractive">
@@ -195,6 +195,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
+            gtag('config', 'G-XMN00ZGJH4');
             gtag('config', 'AW-17878894842');
           `}
         </Script>
