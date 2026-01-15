@@ -37,13 +37,17 @@
       "medium": "בינוני",
       "fast": "מהיר",
       "superfast": "סופר מהיר!",
+      "ultrafast": "אולטרה מהיר!!",
       "start": "התחל",
       "score": "ניקוד",
       "findLetter": "מצאו:",
       "gameComplete": "כל הכבוד!",
       "totalScore": "ניקוד סופי",
       "accuracy": "דיוק",
-      "playAgain": "שחקו שוב"
+      "playAgain": "שחקו שוב",
+      "includeNumbers": "כולל מספרים",
+      "includeShapes": "כולל צורות",
+      "globalHighScore": "שיא עולמי"
     },
     "guessGame": {
       "next": "הבא"

@@ -37,13 +37,17 @@
       "medium": "Средне",
       "fast": "Быстро",
       "superfast": "Супер быстро!",
+      "ultrafast": "Ультра быстро!!",
       "start": "Начать",
       "score": "Счёт",
       "findLetter": "Найди:",
       "gameComplete": "Молодец!",
       "totalScore": "Общий счёт",
       "accuracy": "Точность",
-      "playAgain": "Играть снова"
+      "playAgain": "Играть снова",
+      "includeNumbers": "Включить числа",
+      "includeShapes": "Включить фигуры",
+      "globalHighScore": "Мировой рекорд"
     },
     "guessGame": {
       "next": "дальше"

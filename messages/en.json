@@ -37,13 +37,17 @@
       "medium": "Medium",
       "fast": "Fast",
       "superfast": "Super Fast!",
+      "ultrafast": "Ultra Fast!!",
       "start": "Start",
       "score": "Score",
       "findLetter": "Find:",
       "gameComplete": "Great Job!",
       "totalScore": "Total Score",
       "accuracy": "Accuracy",
-      "playAgain": "Play Again"
+      "playAgain": "Play Again",
+      "includeNumbers": "Include Numbers",
+      "includeShapes": "Include Shapes",
+      "globalHighScore": "World Record"
     },
     "guessGame": {
       "next": "Next"
