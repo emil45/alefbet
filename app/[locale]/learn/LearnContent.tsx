@@ -28,34 +28,28 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 
+const glassCard = { background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(10px)', boxShadow: '0 8px 32px rgba(0,0,0,0.1)' };
+
 const cardStyles = {
+  ...glassCard,
   height: '100%',
-  background: 'rgba(255,255,255,0.95)',
-  backdropFilter: 'blur(10px)',
   borderRadius: '15px',
-  boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
   transition: 'transform 0.3s ease',
-  '&:hover': {
-    transform: 'translateY(-5px)',
-    boxShadow: '0 12px 40px rgba(0,0,0,0.15)',
-  },
+  '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 12px 40px rgba(0,0,0,0.15)' },
 };
 
-const sectionTitleStyles = {
-  fontSize: { xs: '1.8rem', md: '2.5rem' },
-  fontWeight: 'bold',
-  color: 'primary.light',
-  mb: 4,
-  textShadow: '1px 1px 2px rgba(0,0,0,0.3)',
-};
+const sectionCardStyles = { ...glassCard, borderRadius: '20px', p: 4 };
 
+const sectionTitleStyles = { fontSize: { xs: '1.8rem', md: '2.5rem' }, fontWeight: 'bold', color: 'primary.light', mb: 4, textShadow: '1px 1px 2px rgba(0,0,0,0.3)' };
+
+const iconSx = { fontSize: 40, color: 'primary.main' };
 const features = [
-  { id: 'audio', icon: <VolumeUpIcon sx={{ fontSize: 40, color: 'primary.main' }} /> },
-  { id: 'bilingual', icon: <TranslateIcon sx={{ fontSize: 40, color: 'primary.main' }} /> },
-  { id: 'interactive', icon: <GamepadIcon sx={{ fontSize: 40, color: 'primary.main' }} /> },
-  { id: 'responsive', icon: <DevicesIcon sx={{ fontSize: 40, color: 'primary.main' }} /> },
-  { id: 'family', icon: <FamilyRestroomIcon sx={{ fontSize: 40, color: 'primary.main' }} /> },
-  { id: 'educational', icon: <SchoolIcon sx={{ fontSize: 40, color: 'primary.main' }} /> },
+  { id: 'audio', icon: <VolumeUpIcon sx={iconSx} /> },
+  { id: 'bilingual', icon: <TranslateIcon sx={iconSx} /> },
+  { id: 'interactive', icon: <GamepadIcon sx={iconSx} /> },
+  { id: 'responsive', icon: <DevicesIcon sx={iconSx} /> },
+  { id: 'family', icon: <FamilyRestroomIcon sx={iconSx} /> },
+  { id: 'educational', icon: <SchoolIcon sx={iconSx} /> },
 ];
 
 const learningTopics = [
@@ -166,15 +160,7 @@ export default function LearnContent() {
 
       {/* Educational Benefits Section */}
       <Box mb={6}>
-        <Card
-          sx={{
-            background: 'rgba(255,255,255,0.95)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '20px',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
-            p: 4,
-          }}
-        >
+        <Card sx={sectionCardStyles}>
           <Typography
             variant="h3"
             component="h2"
@@ -212,14 +198,7 @@ export default function LearnContent() {
           {t('faq.title')}
         </Typography>
 
-        <Card
-          sx={{
-            background: 'rgba(255,255,255,0.95)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '20px',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
-          }}
-        >
+        <Card sx={{ ...glassCard, borderRadius: '20px' }}>
           {faqIds.map((faq) => (
             <Accordion key={faq} sx={{ background: 'transparent', boxShadow: 'none' }}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -243,15 +222,7 @@ export default function LearnContent() {
           {t('methodology.title')}
         </Typography>
 
-        <Card
-          sx={{
-            background: 'rgba(255,255,255,0.95)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '20px',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
-            p: 4,
-          }}
-        >
+        <Card sx={sectionCardStyles}>
           <Grid container spacing={4}>
             <Grid size={{ xs: 12, md: 6 }}>
               <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2, color: 'primary.main' }}>

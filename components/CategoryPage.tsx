@@ -16,10 +16,6 @@ interface BaseItem {
   audioFile: string;
 }
 
-interface TextItem extends BaseItem {
-  // For letters/numbers - display translated text
-}
-
 interface ImageItem extends BaseItem {
   imageUrl: string;
 }
@@ -28,7 +24,7 @@ interface ElementItem extends BaseItem {
   element: React.ReactNode;
 }
 
-type CategoryItem = TextItem | ImageItem | ElementItem;
+type CategoryItem = BaseItem | ImageItem | ElementItem;
 
 interface CategoryPageProps<T extends CategoryItem> {
   pageName: string;
@@ -54,78 +50,33 @@ export default function CategoryPage<T extends CategoryItem>({
   const isRTL = forceRTL || direction === 'rtl';
 
   const getItemName = (item: T): string => {
-    switch (renderMode) {
-      case 'text':
-        return t(`${translationPrefix}.${item.id}.name`);
-      case 'image':
-        return (item as ImageItem).imageUrl;
-      case 'element':
-      case 'color':
-        return '';
-      default:
-        return '';
-    }
+    if (renderMode === 'text') return t(`${translationPrefix}.${item.id}.name`);
+    if (renderMode === 'image') return (item as ImageItem).imageUrl;
+    return '';
   };
 
-  const getItemCaption = (item: T): string => {
-    if (hasFullName) {
-      return t(`${translationPrefix}.${item.id}.fullName`);
-    }
-    return t(`${translationPrefix}.${item.id}.name`);
-  };
-
-  const getElement = (item: T): React.ReactNode | undefined => {
-    if (renderMode === 'element') {
-      return (item as ElementItem).element;
-    }
-    return undefined;
-  };
-
-  const getBackgroundColor = (item: T): string | undefined => {
-    if (renderMode === 'color') {
-      return item.color;
-    }
-    return undefined;
-  };
-
-  const content = (
-    <Grid container spacing={4} justifyContent="center">
-      {items.map((item, index) => (
-        <Grid key={index}>
-          <ItemCard
-            name={getItemName(item)}
-            element={getElement(item)}
-            textColor={item.color}
-            backgroundColor={getBackgroundColor(item)}
-            soundFile={`/audio/${audioPath}/he/${item.audioFile}`}
-            itemCaption={getItemCaption(item)}
-            isRTL={isRTL}
-          />
-        </Grid>
-      ))}
-    </Grid>
-  );
+  const getItemCaption = (item: T) => t(`${translationPrefix}.${item.id}.${hasFullName ? 'fullName' : 'name'}`);
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        flex: 1,
-        position: 'relative',
-      }}
-    >
+    <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, position: 'relative' }}>
       <BackButton />
       <PageIntro pageName={pageName} />
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flex: 1,
-        }}
-      >
-        {forceRTL ? <div style={{ direction: 'rtl' }}>{content}</div> : content}
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+        <Grid container spacing={4} justifyContent="center" sx={forceRTL ? { direction: 'rtl' } : undefined}>
+          {items.map((item) => (
+            <Grid key={item.id}>
+              <ItemCard
+                name={getItemName(item)}
+                element={renderMode === 'element' ? (item as ElementItem).element : undefined}
+                textColor={item.color}
+                backgroundColor={renderMode === 'color' ? item.color : undefined}
+                soundFile={`/audio/${audioPath}/he/${item.audioFile}`}
+                itemCaption={getItemCaption(item)}
+                isRTL={isRTL}
+              />
+            </Grid>
+          ))}
+        </Grid>
       </Box>
     </Box>
   );

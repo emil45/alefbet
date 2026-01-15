@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import letters from '@/data/letters';
 import ItemCard from './ItemCard';
@@ -14,103 +14,48 @@ import FunButton from './FunButton';
 import { useTranslations } from 'next-intl';
 import { useDirection } from '@/hooks/useDirection';
 
-// Define union type for all possible item types
-type GameItem =
-  | (typeof letters)[0]
-  | (typeof shapes)[0]
-  | (typeof colors)[0]
-  | (typeof numbers)[0]
-  | (typeof animals)[0]
-  | (typeof food)[0];
+// All items combined at module level (static data)
+const ALL_ITEMS = [...letters, ...shapes, ...colors, ...numbers, ...animals, ...food];
+
+// Configuration for each item type
+const ITEM_CONFIG = {
+  [ModelTypesEnum.LETTERS]: { key: 'letters', folder: 'letters', useFullName: true, forceRTL: true },
+  [ModelTypesEnum.NUMBERS]: { key: 'numbers', folder: 'numbers', useFullName: true },
+  [ModelTypesEnum.SHAPES]: { key: 'shapes', folder: 'shapes', hasElement: true },
+  [ModelTypesEnum.COLORS]: { key: 'colors', folder: 'colors', showBackground: true },
+  [ModelTypesEnum.ANIMALS]: { key: 'animals', folder: 'animals', hasImage: true },
+  [ModelTypesEnum.FOOD]: { key: 'food', folder: 'food', hasImage: true },
+} as const;
 
 const GuessGame: React.FC = () => {
   const t = useTranslations();
   const direction = useDirection();
-  // Content display according to UI language direction (except Hebrew letters which are always RTL)
   const isRTL = direction === 'rtl';
 
-  // All items are available since Hebrew content is always present
-  const availableItems = useMemo(() => {
-    return [...letters, ...shapes, ...colors, ...numbers, ...animals, ...food];
-  }, []);
+  const getRandomItem = () => ALL_ITEMS[Math.floor(Math.random() * ALL_ITEMS.length)];
+  const [currentItem, setCurrentItem] = useState(getRandomItem);
 
-  const getRandomItem = () => {
-    return availableItems[Math.floor(Math.random() * availableItems.length)];
-  };
-
-  const [currentItem, setCurrentItem] = useState(getRandomItem());
-
-  const handleNextItem = () => {
-    setCurrentItem(getRandomItem());
+  const config = ITEM_CONFIG[currentItem.type as keyof typeof ITEM_CONFIG];
+  const hasImage = 'hasImage' in config;
+  const hasElement = 'hasElement' in config;
+  const showBackground = 'showBackground' in config;
+  const itemProps = {
+    name: hasImage ? (currentItem as any).imageUrl : (hasElement || showBackground) ? '' : t(`${config.key}.${currentItem.id}.name`),
+    textColor: currentItem.color,
+    soundFile: `/audio/${config.folder}/he/${currentItem.audioFile}`,
+    itemCaption: t(`${config.key}.${currentItem.id}.${'useFullName' in config ? 'fullName' : 'name'}`),
+    cardSize: 2 as const,
+    isRTL: ('forceRTL' in config && config.forceRTL) || isRTL,
+    ...(hasElement && { element: (currentItem as any).element }),
+    ...(showBackground && { backgroundColor: currentItem.color }),
   };
 
   return (
     <Box sx={{ textAlign: 'center', marginTop: 4 }}>
       <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 4 }}>
-        {currentItem.type === ModelTypesEnum.LETTERS && (
-          <ItemCard
-            name={t(`letters.${currentItem.id}.name`)}
-            textColor={currentItem.color}
-            soundFile={`/audio/letters/he/${currentItem.audioFile}`}
-            itemCaption={t(`letters.${currentItem.id}.fullName`)}
-            cardSize={2}
-            isRTL={true}
-          />
-        )}
-        {currentItem.type === ModelTypesEnum.SHAPES && (
-          <ItemCard
-            name=""
-            element={(currentItem as any).element}
-            textColor={currentItem.color}
-            soundFile={`/audio/shapes/he/${currentItem.audioFile}`}
-            itemCaption={t(`shapes.${currentItem.id}.name`)}
-            cardSize={2}
-            isRTL={isRTL}
-          />
-        )}
-        {currentItem.type === ModelTypesEnum.COLORS && (
-          <ItemCard
-            name=""
-            textColor={currentItem.color}
-            backgroundColor={currentItem.color}
-            soundFile={`/audio/colors/he/${currentItem.audioFile}`}
-            itemCaption={t(`colors.${currentItem.id}.name`)}
-            cardSize={2}
-            isRTL={isRTL}
-          />
-        )}
-        {currentItem.type === ModelTypesEnum.NUMBERS && (
-          <ItemCard
-            name={t(`numbers.${currentItem.id}.name`)}
-            textColor={currentItem.color}
-            soundFile={`/audio/numbers/he/${currentItem.audioFile}`}
-            itemCaption={t(`numbers.${currentItem.id}.fullName`)}
-            cardSize={2}
-            isRTL={isRTL}
-          />
-        )}
-        {currentItem.type === ModelTypesEnum.ANIMALS && (
-          <ItemCard
-            name={(currentItem as any).imageUrl}
-            textColor={currentItem.color}
-            soundFile={`/audio/animals/he/${currentItem.audioFile}`}
-            itemCaption={t(`animals.${currentItem.id}.name`)}
-            cardSize={2}
-            isRTL={isRTL}
-          />
-        )}
-        {currentItem.type === ModelTypesEnum.FOOD && (
-          <ItemCard
-            name={(currentItem as any).imageUrl}
-            textColor={currentItem.color}
-            soundFile={`/audio/food/he/${currentItem.audioFile}`}
-            itemCaption={t(`food.${currentItem.id}.name`)}
-            cardSize={2}
-            isRTL={isRTL}
-          />
-        )}
+        <ItemCard {...itemProps} />
       </Box>
-      <FunButton onClick={handleNextItem} text={t('games.guessGame.next')} />
+      <FunButton onClick={() => setCurrentItem(getRandomItem())} text={t('games.guessGame.next')} />
     </Box>
   );
 };

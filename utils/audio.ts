@@ -98,7 +98,7 @@ export const preloadSounds = () => {
         audio.currentTime = 0;
       })
       .catch(() => {
-        console.log('Audio preload failed for:', key);
+        // Expected: browsers block autoplay before user interaction
       });
   }
 };

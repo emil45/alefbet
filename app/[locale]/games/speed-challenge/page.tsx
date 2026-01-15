@@ -47,6 +47,27 @@ interface GameStats {
   timeBonus: number;
 }
 
+// Constants
+const DIFFICULTY_SETTINGS = {
+  baby: { time: 10000, options: 2 },
+  easy: { time: 6000, options: 2 },
+  medium: { time: 4000, options: 3 },
+  hard: { time: 2000, options: 4 },
+} as const;
+
+const AUDIO_PLAY_DELAY = 800;
+const QUESTION_TRANSITION_DELAY = 1200;
+const TIMEOUT_GRACE_PERIOD = 200;
+const CELEBRATION_THRESHOLD = 0.7;
+
+const CATEGORY_CONFIGS = [
+  { data: letters, type: ModelTypesEnum.LETTERS, folder: 'letters', useFullName: true, translationKey: 'letters' },
+  { data: numbers, type: ModelTypesEnum.NUMBERS, folder: 'numbers', useFullName: false, translationKey: 'numbers' },
+  { data: shapes, type: ModelTypesEnum.SHAPES, folder: 'shapes', useFullName: false, translationKey: 'shapes', hasElement: true },
+  { data: animals, type: ModelTypesEnum.ANIMALS, folder: null, useFullName: false, translationKey: 'animals', hasEmoji: true },
+  { data: colors, type: ModelTypesEnum.COLORS, folder: 'colors', useFullName: false, translationKey: 'colors' },
+] as const;
+
 export default function SpeedChallengePage() {
   const t = useTranslations();
   const locale = useLocale();
@@ -71,20 +92,21 @@ export default function SpeedChallengePage() {
   const [maxQuestions, setMaxQuestions] = useState(15);
   const [showCelebration, setShowCelebration] = useState(false);
 
-  const getDifficultySettings = (diff: string) => {
-    switch (diff) {
-      case 'baby':
-        return { time: 10000, options: 2 };
-      case 'easy':
-        return { time: 6000, options: 2 };
-      case 'medium':
-        return { time: 4000, options: 3 };
-      case 'hard':
-        return { time: 2000, options: 4 };
-      default:
-        return { time: 4000, options: 3 };
-    }
+  // Shared styles
+  const getInputLabelSx = (isHebrew: boolean) => ({
+    fontSize: '1.1rem',
+    ...(isHebrew
+      ? { right: '12px', left: 'auto', transform: 'translate(0, -5px) scale()', transformOrigin: 'top right', textAlign: 'right' }
+      : { transform: 'translate(14px, -20px) scale()', transformOrigin: 'top left' }),
+  });
+
+  const selectSx = {
+    fontSize: '1.1rem',
+    '& .MuiOutlinedInput-notchedOutline': { marginTop: '8px' },
+    marginTop: '12px',
   };
+
+  const getDifficultySettings = (diff: string) => DIFFICULTY_SETTINGS[diff as keyof typeof DIFFICULTY_SETTINGS] ?? DIFFICULTY_SETTINGS.medium;
 
   // Stop any playing audio
   const stopAudio = () => {
@@ -96,71 +118,18 @@ export default function SpeedChallengePage() {
   };
 
   const getAllItems = useCallback((): GameItem[] => {
-    const items: GameItem[] = [];
-
-    // Letters - Always use Hebrew letters
-    letters.forEach((letter) => {
-      items.push({
-        id: letter.id,
-        name: t(`letters.${letter.id}.name`),
-        displayName: t(`letters.${letter.id}.fullName`),
-        color: letter.color,
-        audioPath: `letters/he/${letter.audioFile}`,
-        type: ModelTypesEnum.LETTERS,
-      });
-    });
-
-    // Numbers
-    numbers.forEach((number) => {
-      items.push({
-        id: number.id,
-        name: t(`numbers.${number.id}.name`),
-        displayName: t(`numbers.${number.id}.name`),
-        color: number.color,
-        audioPath: `numbers/he/${number.audioFile}`,
-        type: ModelTypesEnum.NUMBERS,
-      });
-    });
-
-    // Shapes
-    shapes.forEach((shape) => {
-      items.push({
-        id: shape.id,
-        name: t(`shapes.${shape.id}.name`),
-        displayName: t(`shapes.${shape.id}.name`),
-        color: shape.color,
-        audioPath: `shapes/he/${shape.audioFile}`,
-        type: ModelTypesEnum.SHAPES,
-        element: shape.element,
-      });
-    });
-
-    // Animals - NO AUDIO, just names and emojis
-    animals.forEach((animal) => {
-      items.push({
-        id: animal.id,
-        name: t(`animals.${animal.id}.name`),
-        displayName: t(`animals.${animal.id}.name`),
-        color: animal.color,
-        audioPath: null, // No audio for animals
-        type: ModelTypesEnum.ANIMALS,
-        emoji: animal.imageUrl,
-      });
-    });
-
-    // Colors
-    colors.forEach((color) => {
-      items.push({
-        id: color.id,
-        name: t(`colors.${color.id}.name`),
-        displayName: t(`colors.${color.id}.name`),
-        color: color.color,
-        audioPath: `colors/he/${color.audioFile}`,
-        type: ModelTypesEnum.COLORS,
-      });
-    });
-
-    return items;
+    return CATEGORY_CONFIGS.flatMap((config) =>
+      (config.data as any[]).map((item: any) => ({
+        id: item.id,
+        name: t(`${config.translationKey}.${item.id}.name`),
+        displayName: config.useFullName ? t(`${config.translationKey}.${item.id}.fullName`) : t(`${config.translationKey}.${item.id}.name`),
+        color: item.color,
+        audioPath: config.folder ? `${config.folder}/he/${item.audioFile}` : null,
+        type: config.type,
+        ...('hasElement' in config && config.hasElement && { element: item.element }),
+        ...('hasEmoji' in config && config.hasEmoji && { emoji: item.imageUrl }),
+      }))
+    );
   }, [t]);
 
   const getFilteredItems = useCallback(() => {
@@ -334,35 +303,11 @@ export default function SpeedChallengePage() {
       <Paper elevation={4} sx={{ p: 4, maxWidth: 500, width: '100%', borderRadius: 3 }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
           <FormControl fullWidth>
-            <InputLabel
-              sx={{
-                fontSize: '1.1rem',
-                ...(locale === 'he'
-                  ? {
-                      right: '12px',
-                      left: 'auto',
-                      transform: 'translate(0, -5px) scale()',
-                      transformOrigin: 'top right',
-                      textAlign: 'right',
-                    }
-                  : {
-                      transform: 'translate(14px, -20px) scale()',
-                      transformOrigin: 'top left',
-                    }),
-              }}
-            >
-              {t('speedChallenge.questions')}
-            </InputLabel>
+            <InputLabel sx={getInputLabelSx(locale === 'he')}>{t('speedChallenge.questions')}</InputLabel>
             <Select
               value={questionsCount.toString()}
               onChange={(e: SelectChangeEvent) => setQuestionsCount(Number(e.target.value) as 5 | 15 | 30)}
-              sx={{
-                fontSize: '1.1rem',
-                '& .MuiOutlinedInput-notchedOutline': {
-                  marginTop: '8px',
-                },
-                marginTop: '12px',
-              }}
+              sx={selectSx}
             >
               <MenuItem value="5">🏃 5 {t('speedChallenge.questions')}</MenuItem>
               <MenuItem value="15">⚡ 15 {t('speedChallenge.questions')}</MenuItem>
@@ -371,36 +316,8 @@ export default function SpeedChallengePage() {
           </FormControl>
 
           <FormControl fullWidth>
-            <InputLabel
-              sx={{
-                fontSize: '1.1rem',
-                ...(locale === 'he'
-                  ? {
-                      right: '12px',
-                      left: 'auto',
-                      transform: 'translate(0, -5px) scale()',
-                      transformOrigin: 'top right',
-                      textAlign: 'right',
-                    }
-                  : {
-                      transform: 'translate(14px, -20px) scale()',
-                      transformOrigin: 'top left',
-                    }),
-              }}
-            >
-              {t('speedChallenge.difficulty')}
-            </InputLabel>
-            <Select
-              value={difficulty}
-              onChange={(e: SelectChangeEvent) => setDifficulty(e.target.value as any)}
-              sx={{
-                fontSize: '1.1rem',
-                '& .MuiOutlinedInput-notchedOutline': {
-                  marginTop: '8px',
-                },
-                marginTop: '12px',
-              }}
-            >
+            <InputLabel sx={getInputLabelSx(locale === 'he')}>{t('speedChallenge.difficulty')}</InputLabel>
+            <Select value={difficulty} onChange={(e: SelectChangeEvent) => setDifficulty(e.target.value as any)} sx={selectSx}>
               <MenuItem value="baby">👶 10 {t('speedChallenge.seconds')}</MenuItem>
               <MenuItem value="easy">🐌 6 {t('speedChallenge.seconds')}</MenuItem>
               <MenuItem value="medium">🚀 4 {t('speedChallenge.seconds')}</MenuItem>
@@ -409,42 +326,11 @@ export default function SpeedChallengePage() {
           </FormControl>
 
           <FormControl fullWidth>
-            <InputLabel
-              sx={{
-                fontSize: '1.1rem',
-                ...(locale === 'he'
-                  ? {
-                      right: '12px',
-                      left: 'auto',
-                      transform: 'translate(0, -5px) scale()',
-                      transformOrigin: 'top right',
-                      textAlign: 'right',
-                    }
-                  : {
-                      transform: 'translate(14px, -20px) scale()',
-                      transformOrigin: 'top left',
-                    }),
-              }}
-            >
-              {t('speedChallenge.category')}
-            </InputLabel>
+            <InputLabel sx={getInputLabelSx(locale === 'he')}>{t('speedChallenge.category')}</InputLabel>
             <Select
               value={category === 'mixed' ? 'mixed' : category.toString()}
-              onChange={(e: SelectChangeEvent) => {
-                const value = e.target.value;
-                if (value === 'mixed') {
-                  setCategory('mixed');
-                } else {
-                  setCategory(Number(value) as ModelTypesEnum);
-                }
-              }}
-              sx={{
-                fontSize: '1.1rem',
-                '& .MuiOutlinedInput-notchedOutline': {
-                  marginTop: '8px',
-                },
-                marginTop: '12px',
-              }}
+              onChange={(e: SelectChangeEvent) => setCategory(e.target.value === 'mixed' ? 'mixed' : (Number(e.target.value) as ModelTypesEnum))}
+              sx={selectSx}
             >
               <MenuItem value="mixed">🎯 {t('speedChallenge.mixed')}</MenuItem>
               <MenuItem value={ModelTypesEnum.LETTERS.toString()}>🅰️ {t('speedChallenge.letters')}</MenuItem>

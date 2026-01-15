@@ -14,6 +14,16 @@ import { getRandomWords, type HebrewWord } from '@/data/hebrewWords';
 
 // Game configuration
 const WORDS_PER_GAME = 10;
+const POINTS_PER_WORD = 10;
+const WORD_TRANSITION_DELAY = 2500;
+const EXTRA_LETTERS_POOL = ['א', 'ה', 'ו', 'ר', 'ת', 'נ', 'ל', 'מ', 'ש', 'ק'];
+
+// Helper for isCorrect-based styles
+const getCorrectStyles = (isCorrect: boolean | null) => {
+  if (isCorrect === true) return { border: '3px solid #4caf50', background: 'rgba(76, 175, 80, 0.1)' };
+  if (isCorrect === false) return { border: '3px solid #f44336', background: 'rgba(244, 67, 54, 0.1)' };
+  return { border: '3px dashed #ddd', background: 'rgba(0,0,0,0.02)' };
+};
 
 interface LetterCardProps {
   letter: string;
@@ -122,28 +132,26 @@ export default function WordBuilderGamePage() {
 
   const currentWord = gameWords[currentWordIndex];
 
-  const initializeGame = useCallback(() => {
-    const word = gameWords[currentWordIndex];
-    // Add some extra random Hebrew letters to make it more challenging
-    const extraLetters = ['א', 'ה', 'ו', 'ר', 'ת', 'נ', 'ל', 'מ', 'ש', 'ק'];
-    const availableLetters = [...word.letters];
-
-    // Add 2-3 extra letters that aren't in the word
-    const filteredExtra = extraLetters.filter((letter) => !word.letters.includes(letter));
-    const randomExtra = filteredExtra.slice(0, Math.min(3, Math.max(1, 8 - word.letters.length)));
-
-    setShuffledLetters(shuffle([...availableLetters, ...randomExtra]));
+  const resetWordState = () => {
     setBuiltWord([]);
     setIsCorrect(null);
     setUsedLetterIndices(new Set());
+  };
 
-    // Play game start sound on first word, level up sound on subsequent words
+  const initializeGame = useCallback(() => {
+    const word = gameWords[currentWordIndex];
+    const filteredExtra = EXTRA_LETTERS_POOL.filter((letter) => !word.letters.includes(letter));
+    const randomExtra = filteredExtra.slice(0, Math.min(3, Math.max(1, 8 - word.letters.length)));
+
+    setShuffledLetters(shuffle([...word.letters, ...randomExtra]));
+    resetWordState();
+
     if (currentWordIndex === 0) {
       playSound(AudioSounds.GAME_START);
     } else {
       setTimeout(() => playSound(AudioSounds.TICK), 200);
     }
-  }, [currentWordIndex]);
+  }, [currentWordIndex, gameWords]);
 
   useEffect(() => {
     initializeGame();
@@ -151,25 +159,19 @@ export default function WordBuilderGamePage() {
 
   const handleLetterClick = (letter: string, index: number) => {
     if (usedLetterIndices.has(index)) return;
-
     setBuiltWord((prev) => [...prev, letter]);
-    setUsedLetterIndices((prev) => new Set([...Array.from(prev), index]));
+    setUsedLetterIndices((prev) => new Set([...prev, index]));
     setIsCorrect(null);
     playSound(AudioSounds.LETTER_PICK);
   };
 
   const handleRemoveLetter = (indexToRemove: number) => {
     const letterToRemove = builtWord[indexToRemove];
-    const originalIndex = shuffledLetters.findIndex(
-      (letter, idx) => letter === letterToRemove && usedLetterIndices.has(idx)
-    );
-
+    const originalIndex = shuffledLetters.findIndex((letter, idx) => letter === letterToRemove && usedLetterIndices.has(idx));
     setBuiltWord((prev) => prev.filter((_, idx) => idx !== indexToRemove));
     setUsedLetterIndices((prev) => {
-      const newSet = new Set(Array.from(prev));
-      if (originalIndex !== -1) {
-        newSet.delete(originalIndex);
-      }
+      const newSet = new Set(prev);
+      if (originalIndex !== -1) newSet.delete(originalIndex);
       return newSet;
     });
     setIsCorrect(null);
@@ -181,18 +183,9 @@ export default function WordBuilderGamePage() {
     setIsCorrect(isWordCorrect);
 
     if (isWordCorrect) {
-      setScore((prev) => prev + 10);
+      setScore((prev) => prev + POINTS_PER_WORD);
       playSound(AudioSounds.WORD_COMPLETE);
-
-      // Play word audio after a short delay
-      setTimeout(() => {
-        const audio = new Audio(currentWord.audioFile);
-        audio.play().catch(() => {
-          console.log('Audio file not found:', currentWord.audioFile);
-        });
-      }, 500);
-
-      // Level up sound and progression
+      setTimeout(() => new Audio(currentWord.audioFile).play().catch(() => {}), 500);
       setTimeout(() => {
         if (currentWordIndex < gameWords.length - 1) {
           playSound(AudioSounds.LEVEL_UP);
@@ -202,7 +195,7 @@ export default function WordBuilderGamePage() {
           setShowConfetti(true);
           setIsGameComplete(true);
         }
-      }, 2500);
+      }, WORD_TRANSITION_DELAY);
     } else {
       playSound(AudioSounds.WRONG_ANSWER);
     }
@@ -216,9 +209,7 @@ export default function WordBuilderGamePage() {
   };
 
   const clearBuiltWord = () => {
-    setBuiltWord([]);
-    setUsedLetterIndices(new Set());
-    setIsCorrect(null);
+    resetWordState();
     playSound(AudioSounds.WHOOSH);
   };
 
@@ -314,16 +305,11 @@ export default function WordBuilderGamePage() {
                 {t('wordBuilder.buildWord')}: "{currentWord.meaning}"
               </Typography>
 
-              {/* Built Word Display - Beautiful RTL Container */}
+              {/* Built Word Display */}
               <Box
                 sx={{
                   minHeight: '120px',
-                  border:
-                    isCorrect === true
-                      ? '3px solid #4caf50'
-                      : isCorrect === false
-                        ? '3px solid #f44336'
-                        : '3px dashed #ddd',
+                  ...getCorrectStyles(isCorrect),
                   borderRadius: '15px',
                   display: 'flex',
                   alignItems: 'center',
@@ -331,12 +317,6 @@ export default function WordBuilderGamePage() {
                   gap: 2,
                   p: 3,
                   mb: 4,
-                  background:
-                    isCorrect === true
-                      ? 'rgba(76, 175, 80, 0.1)'
-                      : isCorrect === false
-                        ? 'rgba(244, 67, 54, 0.1)'
-                        : 'rgba(0,0,0,0.02)',
                   transition: 'all 0.3s ease',
                   boxShadow: 'inset 0 2px 10px rgba(0,0,0,0.05)',
                 }}

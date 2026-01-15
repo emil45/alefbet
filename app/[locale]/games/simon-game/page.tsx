@@ -8,6 +8,7 @@ import { preloadSounds, playSound, AudioSounds, stopAllSounds } from '@/utils/au
 import FunButton from '@/components/FunButton';
 import { Color, COLORS, colorToAudioSound, GameState } from '@/models/SimonGameModels';
 import { useTranslations } from 'next-intl';
+import { submitScore, getTopScore } from '@/lib/firebase';
 
 export const INITIAL_DELAY = 1000;
 export const INITIAL_SEQUENCE_DELAY = 500;
@@ -57,13 +58,16 @@ const SimonContainer = styled(Box)(({ theme }) => ({
 export default function SimonGamePage() {
   const t = useTranslations();
   const [sequence, setSequence] = useState<Color[]>([]);
-  const [userSequence, setUserSequence] = useState<Color[]>([]);
+  const [userStep, setUserStep] = useState(0); // Simplified: just track current step instead of full array
   const [gameState, setGameState] = useState<GameState>(GameState.IDLE);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [globalHighScore, setGlobalHighScore] = useState(0);
+  const [globalHighScoreDate, setGlobalHighScoreDate] = useState<Date | null>(null);
   const [activeColor, setActiveColor] = useState<Color | null>(null);
 
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
+  const shouldPlayRef = useRef(false);
 
   const clearAllTimeouts = () => {
     timeoutsRef.current.forEach((timeout) => clearTimeout(timeout));
@@ -72,6 +76,12 @@ export default function SimonGamePage() {
 
   useEffect(() => {
     preloadSounds();
+    getTopScore('simon').then((record) => {
+      if (record) {
+        setGlobalHighScore(record.score);
+        setGlobalHighScoreDate(new Date(record.timestamp));
+      }
+    });
 
     return () => {
       clearAllTimeouts();
@@ -92,10 +102,12 @@ export default function SimonGamePage() {
 
   const addToSequence = useCallback(() => {
     const newColor = COLORS[Math.floor(Math.random() * COLORS.length)];
+    shouldPlayRef.current = true;
     setSequence((prev) => [...prev, newColor]);
   }, []);
 
   const playSequence = useCallback(() => {
+    clearAllTimeouts();
     setGameState(GameState.SEQUENCE);
     const sequenceDelay = getSequenceDelay();
     sequence.forEach((color, index) => {
@@ -115,7 +127,7 @@ export default function SimonGamePage() {
   const startGame = useCallback(() => {
     clearAllTimeouts();
     setSequence([]);
-    setUserSequence([]);
+    setUserStep(0);
     setScore(0);
     setGameState(GameState.IDLE);
     playSound(AudioSounds.GAME_START);
@@ -127,44 +139,61 @@ export default function SimonGamePage() {
       if (gameState !== GameState.USER_INPUT) return;
 
       lightUp(color, getSequenceDelay() / 2);
-      setUserSequence((prev) => [...prev, color]);
 
-      const currentStep = userSequence.length;
-      if (color !== sequence[currentStep]) {
+      // Check if user clicked correct color
+      if (color !== sequence[userStep]) {
         setGameState(GameState.GAME_OVER);
         playSound(AudioSounds.GAME_OVER);
         return;
       }
 
-      if (currentStep + 1 === sequence.length) {
-        setScore((prev) => prev + 1);
-        setHighScore((prev) => Math.max(prev, score + 1));
-        setUserSequence([]);
+      const nextStep = userStep + 1;
+      if (nextStep === sequence.length) {
+        // Completed sequence
+        const newScore = score + 1;
+        setScore(newScore);
+        setHighScore((prev) => Math.max(prev, newScore));
+        setUserStep(0);
         playSound(AudioSounds.SUCCESS);
-        if (score > 0 && score % 5 === 0) {
+        if (newScore % 5 === 0) {
           playSound(AudioSounds.BONUS);
         }
-        setTimeout(() => {
-          addToSequence();
-          setGameState(GameState.IDLE);
-        }, INITIAL_DELAY);
+        // Submit if new world record
+        if (newScore > globalHighScore) {
+          submitScore('simon', newScore);
+          setGlobalHighScore(newScore);
+          setGlobalHighScoreDate(new Date());
+        }
+        const timeout = setTimeout(() => addToSequence(), INITIAL_DELAY);
+        timeoutsRef.current.push(timeout);
+      } else {
+        setUserStep(nextStep);
       }
     },
-    [gameState, getSequenceDelay, lightUp, sequence, score, userSequence, addToSequence]
+    [gameState, getSequenceDelay, lightUp, sequence, userStep, score, addToSequence, globalHighScore]
   );
 
   useEffect(() => {
-    if (sequence.length && gameState === GameState.IDLE) {
-      playSequence();
+    if (shouldPlayRef.current && sequence.length) {
+      shouldPlayRef.current = false;
+      // Defer to avoid synchronous setState in effect
+      const timeout = setTimeout(playSequence, 0);
+      timeoutsRef.current.push(timeout);
     }
-  }, [sequence, gameState, playSequence]);
+  }, [sequence, playSequence]);
 
   return (
     <>
       <BackButton />
       <Box display="flex" flexDirection="column" alignItems="center" mb={4}>
-        <Typography variant="h4" align="center" sx={{ mb: 4 }}>
+        <Typography variant="h4" align="center" sx={{ mb: 2 }}>
           {t('games.simonGame.score')}: {score} | {t('games.simonGame.highScore')}: {highScore}
+        </Typography>
+        <Typography variant="body1" align="center" sx={{ mb: 2, opacity: 0.7 }}>
+          🏆 {t('games.simonGame.globalHighScore')}:{' '}
+          {globalHighScore > 0
+            ? `${globalHighScore} (${globalHighScoreDate?.getDate()}/${(globalHighScoreDate?.getMonth() ?? 0) + 1}/${globalHighScoreDate?.getFullYear()})`
+            : '---'}
         </Typography>
         <SimonContainer>
           {COLORS.map((color) => (

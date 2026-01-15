@@ -26,39 +26,41 @@ import FunButton from '@/components/FunButton';
 import RoundFunButton from '@/components/RoundFunButton';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { AudioSounds, playSound } from '@/utils/audio';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
+
+const CARD_OPTIONS = [6, 10, 20, 40, 70, 100] as const;
+
+const modalBoxSx = (theme: any) => ({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 300,
+  bgcolor: theme.palette.colors.beigePastel,
+  boxShadow: 24,
+  borderRadius: '16px',
+  p: 4,
+  textAlign: 'center',
+});
+
+const CARD_CONFIGS = [
+  { data: letters.slice(0, 22), key: 'letters', useTranslation: true },
+  { data: numbers, key: 'numbers', useTranslation: true },
+  { data: shapes, key: 'shapes', useTranslation: true, hasElement: true },
+  { data: animals, key: 'animals', hasImage: true },
+  { data: food, key: 'food', hasImage: true },
+] as const;
 
 const generateCards = (numCards: number, t: any): MemoryMatchCardModel[] => {
-  const items: Omit<MemoryMatchCardModel, 'id' | 'matched'>[] = [
-    ...letters.slice(0, 22).map((letter) => ({
-      type: letter.type,
-      name: t(`letters.${letter.id}.name`),
-      textColor: letter.color,
-    })),
-    ...numbers.map((number) => ({
-      type: number.type,
-      name: t(`numbers.${number.id}.name`),
-      textColor: number.color,
-    })),
-    ...shapes.map((shape) => ({
-      type: shape.type,
-      name: t(`shapes.${shape.id}.name`),
-      textColor: shape.color,
-      element: shape.element,
-    })),
-    ...animals.map((animal) => ({
-      type: animal.type,
-      name: animal.imageUrl,
-      textColor: animal.color,
-      imageUrl: animal.imageUrl,
-    })),
-    ...food.map((foodItem) => ({
-      type: foodItem.type,
-      name: foodItem.imageUrl,
-      textColor: foodItem.color,
-      imageUrl: foodItem.imageUrl,
-    })),
-  ];
+  const items: Omit<MemoryMatchCardModel, 'id' | 'matched'>[] = CARD_CONFIGS.flatMap((config) =>
+    (config.data as any[]).map((item) => ({
+      type: item.type,
+      name: 'hasImage' in config ? item.imageUrl : t(`${config.key}.${item.id}.name`),
+      textColor: item.color,
+      ...('hasElement' in config && { element: item.element }),
+      ...('hasImage' in config && { imageUrl: item.imageUrl }),
+    }))
+  );
 
   const shuffledItems = shuffle(items);
   const selectedItems = shuffledItems.slice(0, numCards / 2);
@@ -72,7 +74,6 @@ const generateCards = (numCards: number, t: any): MemoryMatchCardModel[] => {
 
 export default function MemoryMatchGamePage() {
   const t = useTranslations();
-  const locale = useLocale();
   const [numCards, setNumCards] = useState<number>(10);
   const [cards, setCards] = useState<MemoryMatchCardModel[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
@@ -147,105 +148,50 @@ export default function MemoryMatchGamePage() {
     setNumCards(event.target.value as number);
   };
 
-  const showModal = () => {
-    return (
-      <Modal
-        open={isGameWon}
-        onClose={resetGame}
-        aria-labelledby="congratulations-modal"
-        aria-describedby="congratulations-description"
-      >
-        <Box
-          sx={(theme) => ({
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 300,
-            bgcolor: theme.palette.colors.beigePastel,
-            boxShadow: 24,
-            borderRadius: '16px',
-            p: 4,
-            textAlign: 'center',
-          })}
-        >
-          <Typography id="congratulations-modal" variant="h5" component="h1" sx={{ mb: 4 }}>
-            🥳 {t('games.memoryMatchGame.winMessage')}
-          </Typography>
-          <FunButton onClick={resetGame} text={t('games.memoryMatchGame.reset')} fontSize={18} />
-        </Box>
-      </Modal>
-    );
-  };
-
-  const showConfetti = () => {
-    return isGameWon && windowSize.width > 0 ? (
-      <Box
-        sx={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: 1400,
-          pointerEvents: 'none',
-        }}
-      >
-        <Confetti
-          width={windowSize.width}
-          height={windowSize.height}
-          recycle={false}
-          numberOfPieces={2000}
-          gravity={0.05}
-        />
+  const showModal = () => (
+    <Modal open={isGameWon} onClose={resetGame} aria-labelledby="congratulations-modal">
+      <Box sx={modalBoxSx}>
+        <Typography id="congratulations-modal" variant="h5" component="h1" sx={{ mb: 4 }}>
+          🥳 {t('games.memoryMatchGame.winMessage')}
+        </Typography>
+        <FunButton onClick={resetGame} text={t('games.memoryMatchGame.reset')} fontSize={18} />
       </Box>
-    ) : null;
-  };
+    </Modal>
+  );
 
-  const showCards = () => {
-    return (
-      <Grid container spacing={{ xs: 2, sm: 4 }} justifyContent="center">
-        {cards.map((card, index) => (
-          <Grid key={card.id}>
-            <MemoryMatchCard
-              card={card}
-              flipped={flippedCards.includes(index) || card.matched}
-              onClick={() => !isResetting && handleCardClick(index)}
-            />
-          </Grid>
-        ))}
-      </Grid>
-    );
-  };
-
-  const showHeaders = () => {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-        <BackButton />
-        <FormControl sx={{ width: 100 }}>
-          <InputLabel id="num-cards-label">{t('games.memoryMatchGame.cardsNumber')}</InputLabel>
-          <Select
-            dir="rtl"
-            labelId="num-cards-label"
-            id="num-cards-select"
-            value={numCards}
-            label={t('games.memoryMatchGame.cardsNumber')}
-            onChange={handleNumCardsChange}
-          >
-            <MenuItem value={6}>6</MenuItem>
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-            <MenuItem value={40}>40</MenuItem>
-            <MenuItem value={70}>70</MenuItem>
-            <MenuItem value={100}>100</MenuItem>
-          </Select>
-        </FormControl>
-        <RoundFunButton onClick={resetGame}>
-          <RefreshIcon />
-        </RoundFunButton>
+  const showConfetti = () =>
+    isGameWon && windowSize.width > 0 && (
+      <Box sx={{ position: 'fixed', inset: 0, zIndex: 1400, pointerEvents: 'none' }}>
+        <Confetti width={windowSize.width} height={windowSize.height} recycle={false} numberOfPieces={2000} gravity={0.05} />
       </Box>
     );
-  };
+
+  const showCards = () => (
+    <Grid container spacing={{ xs: 2, sm: 4 }} justifyContent="center">
+      {cards.map((card, index) => (
+        <Grid key={card.id}>
+          <MemoryMatchCard card={card} flipped={flippedCards.includes(index) || card.matched} onClick={() => !isResetting && handleCardClick(index)} />
+        </Grid>
+      ))}
+    </Grid>
+  );
+
+  const showHeaders = () => (
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
+      <BackButton />
+      <FormControl sx={{ width: 100 }}>
+        <InputLabel id="num-cards-label">{t('games.memoryMatchGame.cardsNumber')}</InputLabel>
+        <Select dir="rtl" labelId="num-cards-label" id="num-cards-select" value={numCards} label={t('games.memoryMatchGame.cardsNumber')} onChange={handleNumCardsChange}>
+          {CARD_OPTIONS.map((option) => (
+            <MenuItem key={option} value={option}>{option}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <RoundFunButton onClick={resetGame}>
+        <RefreshIcon />
+      </RoundFunButton>
+    </Box>
+  );
 
   return (
     <Box>

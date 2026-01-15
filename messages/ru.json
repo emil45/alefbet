@@ -56,6 +56,7 @@
     "simonGame": {
       "score": "счёт",
       "highScore": "рекорд",
+      "globalHighScore": "мировой рекорд",
       "startGame": "начать игру",
       "playAgain": "играть снова"
     },
