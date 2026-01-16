@@ -22,12 +22,12 @@ export default function GamesContent() {
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-          <FunButton to="/games/guess-game" text={t('games.buttons.guessGame')} />
-          <FunButton to="/games/memory-match-game" text={t('games.buttons.memoryMatchGame')} />
           <FunButton to="/games/simon-game" text={t('games.buttons.simon')} />
+          <FunButton to="/games/letter-rain" text={t('games.buttons.letterRain')} />
+          <FunButton to="/games/memory-match-game" text={t('games.buttons.memoryMatchGame')} />
           <FunButton to="/games/speed-challenge" text={t('games.buttons.speedChallenge')} />
           <FunButton to="/games/word-builder" text={t('games.buttons.wordBuilder')} />
-          <FunButton to="/games/letter-rain" text={t('games.buttons.letterRain')} />
+          <FunButton to="/games/guess-game" text={t('games.buttons.guessGame')} />
         </Box>
       </Box>
     </>

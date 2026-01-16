@@ -35,20 +35,32 @@ const SPAWN_INTERVALS: Record<Difficulty, number> = {
   medium: 1800,
   fast: 1200,
   superfast: 700,
-  ultrafast: 450,
+  ultrafast: 300, // Much faster spawning
 };
 const ANIMATION_DURATIONS: Record<Difficulty, { min: number; max: number }> = {
   slow: { min: 10, max: 14 },
   medium: { min: 7, max: 10 },
   fast: { min: 5, max: 7 },
   superfast: { min: 3, max: 5 },
-  ultrafast: { min: 2, max: 3 },
+  ultrafast: { min: 1.5, max: 2.5 }, // Much faster falling
 };
 
-// Target spawning: base chance increases with each miss to guarantee appearance
-const TARGET_BASE_CHANCE = 0.35;
-const TARGET_CHANCE_INCREMENT = 0.2; // Adds 20% per miss
-const TARGET_MAX_MISSES = 4; // After 4 misses, 100% chance
+// Target spawn config: true randomness with guardrails
+// warmupMin/Max = random mandatory distractors (you don't know how many)
+// spawnChance = probability each spawn after warmup is the target
+// hardMax = failsafe maximum wait
+const TARGET_SPAWN_CONFIG: Record<Difficulty, { warmupMin: number; warmupMax: number; spawnChance: number; hardMax: number }> = {
+  slow: { warmupMin: 3, warmupMax: 6, spawnChance: 0.30, hardMax: 14 },
+  medium: { warmupMin: 2, warmupMax: 5, spawnChance: 0.35, hardMax: 12 },
+  fast: { warmupMin: 2, warmupMax: 4, spawnChance: 0.40, hardMax: 10 },
+  superfast: { warmupMin: 1, warmupMax: 3, spawnChance: 0.45, hardMax: 8 },
+  ultrafast: { warmupMin: 1, warmupMax: 2, spawnChance: 0.50, hardMax: 5 },
+};
+const RESPAWN_SPAWN_CONFIG = { warmupMin: 0, warmupMax: 1, spawnChance: 0.60, hardMax: 3 };
+
+// Position zones for variety (4 horizontal zones)
+const NUM_ZONES = 4;
+const ZONE_WIDTH = 70 / NUM_ZONES; // 70% usable width divided into zones
 
 // Bubble colors for variety
 const BUBBLE_COLORS = [
@@ -63,6 +75,23 @@ const BUBBLE_COLORS = [
   '#BB8FCE',
   '#85C1E9',
 ];
+
+// Audio folder mapping by item type
+const AUDIO_FOLDER_MAP: Record<ModelTypesEnum, string> = {
+  [ModelTypesEnum.LETTERS]: 'letters',
+  [ModelTypesEnum.NUMBERS]: 'numbers',
+  [ModelTypesEnum.SHAPES]: 'shapes',
+  [ModelTypesEnum.COLORS]: 'colors',
+  [ModelTypesEnum.ANIMALS]: 'animals',
+  [ModelTypesEnum.FOOD]: 'food',
+  [ModelTypesEnum.MEMORY_MATCH_CARD]: 'common',
+};
+
+// Check if two items are the same (by id and type)
+function isSameItem(a: ItemType | null | undefined, b: ItemType | null | undefined): boolean {
+  if (!a || !b) return false;
+  return a.id === b.id && a.type === b.type;
+}
 
 export default function LetterRainPage() {
   const t = useTranslations();
@@ -96,7 +125,12 @@ export default function LetterRainPage() {
   const hasTargetOnScreenRef = useRef(false);
   const includeNumbersRef = useRef(false);
   const includeShapesRef = useRef(false);
-  const spawnsSinceTargetRef = useRef(0); // Track spawns since last target for progressive probability
+
+  // True randomness tracking
+  const spawnCountRef = useRef(0); // How many spawns since last target
+  const warmupEndRef = useRef(0); // Random warmup period (no target during warmup)
+  const isRespawnModeRef = useRef(false); // Quick mode after missing target
+  const recentZonesRef = useRef<number[]>([]); // Last 2 spawn zones for position variety
 
   // Get random item (letter, number, or shape)
   const getRandomItem = useCallback((): ItemType => {
@@ -106,11 +140,67 @@ export default function LetterRainPage() {
     return pool[Math.floor(Math.random() * pool.length)];
   }, []);
 
+  // Reset spawn tracking with random warmup period
+  const resetTargetSpawn = useCallback(
+    (isRespawn: boolean = false) => {
+      const config = isRespawn ? RESPAWN_SPAWN_CONFIG : TARGET_SPAWN_CONFIG[difficulty];
+      spawnCountRef.current = 0;
+      isRespawnModeRef.current = isRespawn;
+      // Pick random warmup period - you don't know when target becomes possible
+      warmupEndRef.current = config.warmupMin + Math.floor(Math.random() * (config.warmupMax - config.warmupMin + 1));
+    },
+    [difficulty]
+  );
+
+  // Get spawn X position with zone variety (prevents clustering)
+  const getVariedXPosition = useCallback(() => {
+    const recentZones = recentZonesRef.current;
+    const availableZones = [0, 1, 2, 3].filter((z) => !recentZones.includes(z));
+
+    // 80% chance to pick a zone not recently used
+    const selectedZone =
+      availableZones.length > 0 && Math.random() < 0.8
+        ? availableZones[Math.floor(Math.random() * availableZones.length)]
+        : Math.floor(Math.random() * NUM_ZONES);
+
+    // Update recent zones (keep last 2)
+    recentZonesRef.current = [...recentZones, selectedZone].slice(-2);
+
+    // Calculate X within zone (5% base + zone offset + random within zone)
+    return 5 + selectedZone * ZONE_WIDTH + Math.random() * ZONE_WIDTH;
+  }, []);
+
   // Clear all bubble timeouts
   const clearBubbleTimeouts = useCallback(() => {
     bubbleTimeoutsRef.current.forEach((timeout) => clearTimeout(timeout));
     bubbleTimeoutsRef.current.clear();
   }, []);
+
+  // Clear all game timers
+  const clearGameTimers = useCallback(() => {
+    if (spawnTimerRef.current) {
+      clearInterval(spawnTimerRef.current);
+      spawnTimerRef.current = null;
+    }
+    if (gameTimerRef.current) {
+      clearInterval(gameTimerRef.current);
+      gameTimerRef.current = null;
+    }
+  }, []);
+
+  // Get a distractor item (different from target, with safeguard against infinite loop)
+  const getDistractor = useCallback(
+    (target: ItemType): ItemType => {
+      let item: ItemType;
+      let attempts = 0;
+      do {
+        item = getRandomItem();
+        attempts++;
+      } while (isSameItem(item, target) && attempts < 100);
+      return item;
+    },
+    [getRandomItem]
+  );
 
   // Spawn a new bubble
   const spawnBubble = useCallback(
@@ -118,44 +208,48 @@ export default function LetterRainPage() {
       const durations = ANIMATION_DURATIONS[difficulty];
       const bubbleId = nextBubbleId.current++;
 
-      // In challenge mode, spawn target item with progressive probability
       let itemToUse: ItemType;
       let isTargetItem = false;
 
-      if (forceTargetItem) {
-        if (!hasTargetOnScreenRef.current) {
-          // No target on screen - we have a chance to spawn one
-          const spawnChance = Math.min(
-            1,
-            TARGET_BASE_CHANCE + spawnsSinceTargetRef.current * TARGET_CHANCE_INCREMENT
-          );
+      if (forceTargetItem && !hasTargetOnScreenRef.current) {
+        // Get current config
+        const config = isRespawnModeRef.current ? RESPAWN_SPAWN_CONFIG : TARGET_SPAWN_CONFIG[difficulty];
+        const currentSpawn = spawnCountRef.current;
+        spawnCountRef.current++;
 
-          if (Math.random() < spawnChance) {
-            itemToUse = forceTargetItem;
-            isTargetItem = true;
-            hasTargetOnScreenRef.current = true;
-            spawnsSinceTargetRef.current = 0; // Reset counter
-          } else {
-            // Chose not to spawn target - increment miss counter
-            do {
-              itemToUse = getRandomItem();
-            } while (itemToUse.id === forceTargetItem.id && itemToUse.type === forceTargetItem.type);
-            spawnsSinceTargetRef.current++;
-          }
+        // Determine if this spawn is the target using TRUE randomness
+        let shouldSpawnTarget = false;
+
+        if (currentSpawn < warmupEndRef.current) {
+          // Still in warmup - guaranteed distractor
+          shouldSpawnTarget = false;
+        } else if (currentSpawn >= config.hardMax) {
+          // Hit hard max - force target
+          shouldSpawnTarget = true;
         } else {
-          // Target already on screen - just spawn a random non-target (don't increment counter)
-          do {
-            itemToUse = getRandomItem();
-          } while (itemToUse.id === forceTargetItem.id && itemToUse.type === forceTargetItem.type);
+          // Past warmup - roll the dice each spawn!
+          shouldSpawnTarget = Math.random() < config.spawnChance;
         }
+
+        if (shouldSpawnTarget) {
+          itemToUse = forceTargetItem;
+          isTargetItem = true;
+          hasTargetOnScreenRef.current = true;
+        } else {
+          itemToUse = getDistractor(forceTargetItem);
+        }
+      } else if (forceTargetItem) {
+        // Target already on screen - spawn distractor
+        itemToUse = getDistractor(forceTargetItem);
       } else {
+        // Freeplay mode
         itemToUse = getRandomItem();
       }
 
       const bubble: Bubble = {
         id: bubbleId,
         item: itemToUse,
-        x: 5 + Math.random() * 70,
+        x: getVariedXPosition(),
         animationDuration: durations.min + Math.random() * (durations.max - durations.min),
         colorIndex: bubbleId % BUBBLE_COLORS.length,
       };
@@ -166,16 +260,17 @@ export default function LetterRainPage() {
         () => {
           setBubbles((prev) => prev.filter((b) => b.id !== bubbleId));
           bubbleTimeoutsRef.current.delete(bubbleId);
-          // If this was the target item, mark it as no longer on screen
+          // If target was missed, switch to quick respawn mode
           if (isTargetItem) {
             hasTargetOnScreenRef.current = false;
+            resetTargetSpawn(true);
           }
         },
         bubble.animationDuration * 1000 + 500
       );
       bubbleTimeoutsRef.current.set(bubbleId, timeoutId);
     },
-    [difficulty, getRandomItem]
+    [difficulty, getRandomItem, getDistractor, getVariedXPosition, resetTargetSpawn]
   );
 
   // Handle bubble click
@@ -183,17 +278,8 @@ export default function LetterRainPage() {
     (bubble: Bubble, event: React.MouseEvent | React.TouchEvent) => {
       event.stopPropagation();
 
-      // Play audio - determine folder based on type
-      const audioFolderMap: Record<ModelTypesEnum, string> = {
-        [ModelTypesEnum.LETTERS]: 'letters',
-        [ModelTypesEnum.NUMBERS]: 'numbers',
-        [ModelTypesEnum.SHAPES]: 'shapes',
-        [ModelTypesEnum.COLORS]: 'colors',
-        [ModelTypesEnum.ANIMALS]: 'animals',
-        [ModelTypesEnum.FOOD]: 'food',
-        [ModelTypesEnum.MEMORY_MATCH_CARD]: 'common',
-      };
-      const audioFolder = audioFolderMap[bubble.item.type] || 'letters';
+      // Play audio
+      const audioFolder = AUDIO_FOLDER_MAP[bubble.item.type] || 'letters';
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
@@ -223,7 +309,7 @@ export default function LetterRainPage() {
       } else {
         setStats((prev) => ({ ...prev, total: prev.total + 1 }));
 
-        if (bubble.item.id === targetItem?.id && bubble.item.type === targetItem?.type) {
+        if (isSameItem(bubble.item, targetItem)) {
           setScore((prev) => {
             const newScore = prev + 10;
             // Play celebration sound when crossing 100-point milestones
@@ -234,8 +320,9 @@ export default function LetterRainPage() {
           });
           setStats((prev) => ({ ...prev, correct: prev.correct + 1 }));
           playSound(AudioSounds.SUCCESS);
-          // Target was clicked, allow new one to spawn
+          // Target was clicked, reset spawn tracking for next target
           hasTargetOnScreenRef.current = false;
+          resetTargetSpawn(false);
           const newTarget = getRandomItem();
           setTargetItem(newTarget);
           targetItemRef.current = newTarget;
@@ -245,24 +332,17 @@ export default function LetterRainPage() {
         }
       }
     },
-    [gameMode, targetItem, getRandomItem]
+    [gameMode, targetItem, getRandomItem, resetTargetSpawn]
   );
 
   // End game
   const endGame = useCallback(() => {
-    if (spawnTimerRef.current) {
-      clearInterval(spawnTimerRef.current);
-      spawnTimerRef.current = null;
-    }
-    if (gameTimerRef.current) {
-      clearInterval(gameTimerRef.current);
-      gameTimerRef.current = null;
-    }
+    clearGameTimers();
     clearBubbleTimeouts();
     setBubbles([]);
     setGameState('finished');
     playSound(AudioSounds.CELEBRATION);
-  }, [clearBubbleTimeouts]);
+  }, [clearGameTimers, clearBubbleTimeouts]);
 
   // Submit score when game finishes (challenge mode only)
   useEffect(() => {
@@ -284,7 +364,8 @@ export default function LetterRainPage() {
     hasTargetOnScreenRef.current = false;
     includeNumbersRef.current = includeNumbers;
     includeShapesRef.current = includeShapes;
-    spawnsSinceTargetRef.current = 0;
+    recentZonesRef.current = [];
+    resetTargetSpawn(false); // Initialize with random warmup
 
     playSound(AudioSounds.GAME_START);
 
@@ -306,7 +387,7 @@ export default function LetterRainPage() {
     gameTimerRef.current = setInterval(() => {
       setGameTime((prev) => prev + 1);
     }, 1000);
-  }, [gameMode, difficulty, spawnBubble, getRandomItem, includeNumbers, includeShapes]);
+  }, [gameMode, difficulty, spawnBubble, getRandomItem, includeNumbers, includeShapes, resetTargetSpawn]);
 
   // Watch gameTime and end game when time is up
   useEffect(() => {
@@ -317,24 +398,17 @@ export default function LetterRainPage() {
 
   // Reset to menu
   const resetGame = useCallback(() => {
-    if (spawnTimerRef.current) {
-      clearInterval(spawnTimerRef.current);
-      spawnTimerRef.current = null;
-    }
-    if (gameTimerRef.current) {
-      clearInterval(gameTimerRef.current);
-      gameTimerRef.current = null;
-    }
+    clearGameTimers();
     clearBubbleTimeouts();
     setBubbles([]);
     setGameState('menu');
     setTargetItem(null);
-  }, [clearBubbleTimeouts]);
+  }, [clearGameTimers, clearBubbleTimeouts]);
 
   // Handle back button - go to menu if playing/finished, otherwise go back
   const handleBack = useCallback(() => {
     if (gameState === 'menu') {
-      setTimeout(() => router.back(), 500);
+      router.back();
     } else {
       resetGame();
     }
@@ -363,12 +437,10 @@ export default function LetterRainPage() {
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      if (spawnTimerRef.current) clearInterval(spawnTimerRef.current);
-      if (gameTimerRef.current) clearInterval(gameTimerRef.current);
-      bubbleTimeoutsRef.current.forEach((timeout) => clearTimeout(timeout));
-      bubbleTimeoutsRef.current.clear();
+      clearGameTimers();
+      clearBubbleTimeouts();
     };
-  }, []);
+  }, [clearGameTimers, clearBubbleTimeouts]);
 
   // Render menu
   const renderMenu = () => (
@@ -418,8 +490,8 @@ export default function LetterRainPage() {
       {gameMode === 'challenge' && (
         <Typography variant="body1" sx={{ opacity: 0.7, textAlign: 'center' }}>
           🏆 {t('games.letterRain.globalHighScore')}:{' '}
-          {globalHighScore > 0
-            ? `${globalHighScore} (${globalHighScoreDate?.getDate()}/${(globalHighScoreDate?.getMonth() ?? 0) + 1}/${globalHighScoreDate?.getFullYear()})`
+          {globalHighScore > 0 && globalHighScoreDate
+            ? `${globalHighScore} (${globalHighScoreDate.toLocaleDateString()})`
             : '---'}
         </Typography>
       )}
@@ -495,7 +567,7 @@ export default function LetterRainPage() {
         position: 'relative',
         height: 'calc(100vh - 120px)',
         minHeight: '500px',
-        maxWidth: '600px',
+        maxWidth: { xs: '100%', md: '700px' },
         mx: 'auto',
         overflow: 'hidden',
         touchAction: 'none',
@@ -604,7 +676,9 @@ export default function LetterRainPage() {
       <Box
         sx={{
           position: 'absolute',
-          top: gameMode === 'challenge' ? 180 : 80,
+          // Mobile: start at middle of target box so bubbles emerge from behind it
+          // Desktop: start below the header/target area
+          top: { xs: gameMode === 'challenge' ? 130 : 70, sm: gameMode === 'challenge' ? 180 : 80 },
           left: 0,
           right: 0,
           bottom: 0,
@@ -614,7 +688,7 @@ export default function LetterRainPage() {
       >
         {bubbles.map((bubble) => {
           const bubbleColor = BUBBLE_COLORS[bubble.colorIndex];
-          const isTarget = gameMode === 'challenge' && bubble.item.id === targetItem?.id && bubble.item.type === targetItem?.type;
+          const isTarget = gameMode === 'challenge' && isSameItem(bubble.item, targetItem);
 
           return (
             <Box
