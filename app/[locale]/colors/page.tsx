@@ -21,6 +21,7 @@ export default async function ColorsPage({ params }: Props) {
       translationPrefix="colors"
       audioPath="colors"
       renderMode="color"
+      category="colors"
     />
   );
 }

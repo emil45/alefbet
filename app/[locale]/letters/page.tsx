@@ -28,6 +28,7 @@ export default async function LettersPage({ params }: Props) {
         renderMode="text"
         forceRTL={true}
         hasFullName={true}
+        category="letters"
       />
     </>
   );

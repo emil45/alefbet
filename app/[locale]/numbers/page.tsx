@@ -22,6 +22,7 @@ export default async function NumbersPage({ params }: Props) {
       audioPath="numbers"
       renderMode="text"
       hasFullName={true}
+      category="numbers"
     />
   );
 }

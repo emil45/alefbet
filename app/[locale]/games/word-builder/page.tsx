@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl';
 import { shuffle } from '@/utils/common';
 import { AudioSounds, playSound } from '@/utils/audio';
 import Confetti from 'react-confetti';
+import { useGameAnalytics } from '@/hooks/useGameAnalytics';
 import ClearIcon from '@mui/icons-material/Clear';
 import { getRandomWords, type HebrewWord } from '@/data/hebrewWords';
 
@@ -120,6 +121,7 @@ const LetterCard: React.FC<LetterCardProps> = ({ letter, isUsed, onClick, isInBu
 
 export default function WordBuilderGamePage() {
   const t = useTranslations();
+  const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'word-builder' });
   const [gameWords] = useState<HebrewWord[]>(() => getRandomWords(WORDS_PER_GAME));
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [shuffledLetters, setShuffledLetters] = useState<string[]>([]);
@@ -148,6 +150,7 @@ export default function WordBuilderGamePage() {
 
     if (currentWordIndex === 0) {
       playSound(AudioSounds.GAME_START);
+      trackGameStarted();
     } else {
       setTimeout(() => playSound(AudioSounds.TICK), 200);
     }
@@ -194,6 +197,7 @@ export default function WordBuilderGamePage() {
           playSound(AudioSounds.CELEBRATION);
           setShowConfetti(true);
           setIsGameComplete(true);
+          trackGameCompleted(score + POINTS_PER_WORD); // Include the final word's points
         }
       }, WORD_TRANSITION_DELAY);
     } else {

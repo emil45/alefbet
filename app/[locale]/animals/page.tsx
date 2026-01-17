@@ -21,6 +21,7 @@ export default async function AnimalsPage({ params }: Props) {
       translationPrefix="animals"
       audioPath="animals"
       renderMode="image"
+      category="animals"
     />
   );
 }

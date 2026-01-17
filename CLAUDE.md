@@ -12,6 +12,8 @@ Lepdy is a Hebrew learning web application for children ages 2-7. It teaches Heb
 npm run dev      # Start development server at localhost:3000
 npm run build    # Production build
 npm run lint     # Run ESLint
+npm test         # Run E2E tests (Playwright)
+npm run test:ui  # Run tests with Playwright UI for debugging
 ```
 
 ## Architecture
@@ -79,3 +81,39 @@ Located in `app/[locale]/games/`:
 
 - URL: https://lepdy.com
 - Hebrew uses root path, English at `/en`, Russian at `/ru`
+
+## Testing
+
+E2E tests using Playwright in `e2e/app.spec.ts`. Tests verify the site isn't broken - not every feature.
+
+**Current coverage:**
+- Homepage loads with category buttons
+- Letters page loads with cards
+- Games page loads with game buttons
+- Navigation between pages works
+- A game page loads without crashing
+- English and Russian locales work
+
+**When to update tests:**
+1. **New page/route added** → Add a test that the page loads without crashing
+2. **New game added** → Add a test that the game page loads
+3. **Major UI change** → Update selectors if tests break
+4. **Bug found that tests missed** → Consider adding a test for that case
+
+**When NOT to add tests:**
+- Small copy/text changes
+- Styling changes
+- Adding items to existing categories (same component)
+
+**Run tests before deploying** - if all pass, site works.
+
+## Roadmap & Task Tracking
+
+**Monday.com Board ID:** `5090306877`
+
+All tasks tracked in Monday.com. Before starting work:
+1. Connect to Monday MCP
+2. Query board 5090306877 for items with status "Working on it" or next pending task
+3. Each task has full implementation context in the Description field
+
+Groups: Week 1 Actions → Phase 1 → Phase 2 → Phase 3 → Phase 4

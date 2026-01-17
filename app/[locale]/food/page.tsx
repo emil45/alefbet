@@ -21,6 +21,7 @@ export default async function FoodPage({ params }: Props) {
       translationPrefix="food"
       audioPath="food"
       renderMode="image"
+      category="food"
     />
   );
 }

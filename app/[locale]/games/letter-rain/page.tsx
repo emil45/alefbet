@@ -11,6 +11,7 @@ import Confetti from 'react-confetti';
 import letters from '@/data/letters';
 import { playSound, AudioSounds } from '@/utils/audio';
 import { submitScore, getTopScore } from '@/lib/firebase';
+import { useGameAnalytics } from '@/hooks/useGameAnalytics';
 import numbers from '@/data/numbers';
 import shapes from '@/data/shapes';
 import { ModelTypesEnum } from '@/models/ModelsTypesEnum';
@@ -96,6 +97,7 @@ function isSameItem(a: ItemType | null | undefined, b: ItemType | null | undefin
 export default function LetterRainPage() {
   const t = useTranslations();
   const router = useRouter();
+  const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'letter-rain' });
 
   // Game State
   const [gameState, setGameState] = useState<GameState>('menu');
@@ -344,6 +346,13 @@ export default function LetterRainPage() {
     playSound(AudioSounds.CELEBRATION);
   }, [clearGameTimers, clearBubbleTimeouts]);
 
+  // Track game completion
+  useEffect(() => {
+    if (gameState === 'finished') {
+      trackGameCompleted(score);
+    }
+  }, [gameState, score, trackGameCompleted]);
+
   // Submit score when game finishes (challenge mode only)
   useEffect(() => {
     if (gameState === 'finished' && gameMode === 'challenge' && score > globalHighScore) {
@@ -368,6 +377,7 @@ export default function LetterRainPage() {
     resetTargetSpawn(false); // Initialize with random warmup
 
     playSound(AudioSounds.GAME_START);
+    trackGameStarted();
 
     const initialTarget = gameMode === 'challenge' ? getRandomItem() : null;
     if (initialTarget) {

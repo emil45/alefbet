@@ -407,4 +407,91 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/games/speed-challenge" />
   </url>
 
+  <!-- About Pages -->
+  <url>
+    <loc>https://www.lepdy.com/about</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/about" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/about" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/en/about</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/about" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/about" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/ru/about</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/about" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/about" />
+  </url>
+
+  <!-- Safety Pages -->
+  <url>
+    <loc>https://www.lepdy.com/safety</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/safety" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/safety" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/safety" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/en/safety</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/safety" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/safety" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/safety" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/ru/safety</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/safety" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/safety" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/safety" />
+  </url>
+
+  <!-- Contact Pages -->
+  <url>
+    <loc>https://www.lepdy.com/contact</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/contact" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/contact" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/en/contact</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/contact" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/contact" />
+  </url>
+  <url>
+    <loc>https://www.lepdy.com/ru/contact</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://www.lepdy.com/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lepdy.com/en/contact" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.lepdy.com/ru/contact" />
+  </url>
+
 </urlset>

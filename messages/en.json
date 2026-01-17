@@ -366,6 +366,18 @@
       "learn": {
         "title": "Learn Hebrew for Kids - Parent Guide | Lepdy",
         "description": "Discover our method for teaching Hebrew to children - letters, numbers, colors and educational games with authentic pronunciation."
+      },
+      "about": {
+        "title": "About Lepdy - Hebrew Learning for Kids | Lepdy",
+        "description": "Learn about Lepdy, the interactive Hebrew learning app for children and families. Authentic pronunciation, educational games, and safe learning environment."
+      },
+      "safety": {
+        "title": "Child Safety & Privacy | Lepdy",
+        "description": "Learn about our commitment to child safety and privacy. COPPA compliant, no ads, no data collection, safe learning environment for children."
+      },
+      "contact": {
+        "title": "Contact Us | Lepdy",
+        "description": "Get in touch with the Lepdy team. We'd love to hear your feedback, suggestions, and questions about our Hebrew learning app for children."
       }
     },
     "pageTitle": "Lepdy - Learn Hebrew for Kids Online | Letters, Numbers & Games",
@@ -522,6 +534,53 @@
     "playAgain": "Play Again"
   },
   "footer": {
-    "text": "Noa © {{year}}. All rights reserved"
+    "about": "About",
+    "safety": "Safety",
+    "contact": "Contact"
+  },
+  "parentGate": {
+    "title": "For Parents",
+    "description": "To continue, please solve this math problem:",
+    "placeholder": "Enter the answer",
+    "wrongAnswer": "Incorrect answer, please try again",
+    "submit": "Continue"
+  },
+  "about": {
+    "pageTitle": "About Lepdy",
+    "intro": "Lepdy is an interactive Hebrew learning app designed for children and families. Our mission is to make learning Hebrew fun, engaging, and accessible for learners of all ages.",
+    "whatWeOffer": "What We Offer",
+    "features": {
+      "letters": "Learn the complete Hebrew alphabet (Alef-Bet) with authentic pronunciation",
+      "numbers": "Master Hebrew numbers 1-10 with interactive counting activities",
+      "vocabulary": "Build vocabulary with colors, shapes, animals, and food categories",
+      "games": "Reinforce learning through fun educational games like memory match, Simon, and word builder"
+    },
+    "ourApproach": "Our Approach",
+    "approachText": "We believe children learn best through play and exploration. Every element in Lepdy is designed with young learners in mind - from the colorful, friendly interface to the authentic Hebrew pronunciation recorded by a native Israeli child. Our multisensory approach combines visual, auditory, and interactive elements to create an engaging learning experience.",
+    "madeWithLove": "Made with Love",
+    "madeWithLoveText": "Lepdy was created by a parent who wanted to help their child learn Hebrew. The app features real pronunciation by Noa, ensuring children hear authentic Hebrew from the very start of their learning journey."
+  },
+  "safety": {
+    "pageTitle": "Child Safety & Privacy",
+    "intro": "At Lepdy, we take child safety and privacy very seriously. Our app is designed to provide a safe, educational environment for young learners.",
+    "noAds": "No Advertisements",
+    "noAdsText": "Lepdy is completely ad-free. Children can learn without interruptions or exposure to inappropriate content.",
+    "noDataCollection": "No Data Collection",
+    "noDataCollectionText": "We do not collect personal information from children. Your child's privacy is protected at all times.",
+    "parentalControls": "Parental Controls",
+    "parentalControlsText": "Parent-only sections are protected by a simple math gate that children typically cannot solve, ensuring parents maintain control over app settings and information pages.",
+    "offlineCapable": "Safe Learning Environment",
+    "offlineCapableText": "The app contains only age-appropriate educational content carefully designed for children and families.",
+    "coppaCompliant": "Privacy Commitment",
+    "coppaCompliantText": "We are committed to protecting children's privacy and follow best practices for children's applications."
+  },
+  "contact": {
+    "pageTitle": "Contact Us",
+    "intro": "We'd love to hear from you! Whether you have questions, suggestions, or feedback about Lepdy, please don't hesitate to reach out.",
+    "emailUs": "Email Us",
+    "emailAddress": "emil45@gmail.com",
+    "feedbackWelcome": "Feedback Welcome",
+    "feedbackText": "Your feedback helps us improve Lepdy for all families. Let us know what features you'd like to see, report any issues, or share your child's learning success stories.",
+    "responseTime": "We typically respond within 24-48 hours."
   }
 }

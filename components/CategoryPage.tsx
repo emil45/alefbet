@@ -6,7 +6,10 @@ import ItemCard from '@/components/ItemCard';
 import BackButton from '@/components/BackButton';
 import PageIntro from '@/components/PageIntro';
 import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { useDirection } from '@/hooks/useDirection';
+import { logEvent } from '@/utils/amplitude';
+import { AmplitudeEventsEnum, CategoryType, LocaleType } from '@/models/amplitudeEvents';
 
 type RenderMode = 'text' | 'image' | 'element' | 'color';
 
@@ -34,6 +37,7 @@ interface CategoryPageProps<T extends CategoryItem> {
   renderMode: RenderMode;
   forceRTL?: boolean;
   hasFullName?: boolean;
+  category: CategoryType;
 }
 
 export default function CategoryPage<T extends CategoryItem>({
@@ -44,8 +48,10 @@ export default function CategoryPage<T extends CategoryItem>({
   renderMode,
   forceRTL = false,
   hasFullName = false,
+  category,
 }: CategoryPageProps<T>) {
   const t = useTranslations();
+  const locale = useLocale() as LocaleType;
   const direction = useDirection();
   const isRTL = forceRTL || direction === 'rtl';
 
@@ -56,6 +62,23 @@ export default function CategoryPage<T extends CategoryItem>({
   };
 
   const getItemCaption = (item: T) => t(`${translationPrefix}.${item.id}.${hasFullName ? 'fullName' : 'name'}`);
+
+  const handleItemTap = (item: T) => {
+    // Fire item_tapped event
+    logEvent(AmplitudeEventsEnum.ITEM_TAPPED, {
+      category,
+      item_id: item.id,
+      locale,
+    });
+
+    // Fire audio_played event
+    logEvent(AmplitudeEventsEnum.AUDIO_PLAYED, {
+      category,
+      item_id: item.id,
+      locale,
+      audio_file: item.audioFile,
+    });
+  };
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, position: 'relative' }}>
@@ -73,6 +96,7 @@ export default function CategoryPage<T extends CategoryItem>({
                 soundFile={`/audio/${audioPath}/he/${item.audioFile}`}
                 itemCaption={getItemCaption(item)}
                 isRTL={isRTL}
+                onTap={() => handleItemTap(item)}
               />
             </Grid>
           ))}

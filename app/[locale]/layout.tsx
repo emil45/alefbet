@@ -8,6 +8,7 @@ import { Box, Typography } from '@mui/material';
 import Script from 'next/script';
 import { BASE_URL, getLocaleUrl, getOgLocale } from '@/lib/seo';
 import { Roboto } from 'next/font/google';
+import Footer from '@/components/Footer';
 
 // Optimized font loading with next/font
 const roboto = Roboto({
@@ -200,7 +201,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           `}
         </Script>
         <NextIntlClientProvider messages={messages}>
-          <Providers direction={direction}>
+          <Providers direction={direction} locale={locale as 'he' | 'en' | 'ru'}>
             <Box
               sx={{
                 padding: '20px',
@@ -219,11 +220,7 @@ export default async function LocaleLayout({ children, params }: Props) {
               }}
             >
               {children}
-              <Box sx={{ textAlign: 'center', mt: '25px' }}>
-                <Typography variant="body2" color="textSecondary">
-                  Noa &copy; {new Date().getFullYear()}. All rights reserved
-                </Typography>
-              </Box>
+              <Footer />
             </Box>
           </Providers>
         </NextIntlClientProvider>

@@ -27,6 +27,7 @@ import { shuffle } from '@/utils/common';
 import Confetti from 'react-confetti';
 import FunButton from '@/components/FunButton';
 import { AudioSounds, playSound } from '@/utils/audio';
+import { useGameAnalytics } from '@/hooks/useGameAnalytics';
 
 interface GameItem {
   id: string;
@@ -72,6 +73,7 @@ export default function SpeedChallengePage() {
   const t = useTranslations();
   const locale = useLocale();
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'speed-challenge' });
 
   const [gameState, setGameState] = useState<'menu' | 'playing' | 'finished'>('menu');
   const [difficulty, setDifficulty] = useState<'baby' | 'easy' | 'medium' | 'hard'>('medium');
@@ -204,6 +206,8 @@ export default function SpeedChallengePage() {
     // Check if game should end BEFORE updating question number
     if (newQuestionNumber >= maxQuestions) {
       // Game is finished, don't update question number or generate another question
+      const finalScore = (stats.correct + (isCorrect ? 1 : 0)) * 100 + stats.timeBonus + (isCorrect ? timeBonus : 0);
+      trackGameCompleted(finalScore);
       setTimeout(() => {
         setGameState('finished');
         if (stats.correct >= maxQuestions * 0.7) {
@@ -223,6 +227,7 @@ export default function SpeedChallengePage() {
     setStats({ correct: 0, total: 0, streak: 0, bestStreak: 0, timeBonus: 0 });
     setQuestionNumber(0);
     setMaxQuestions(questionsCount); // Set the selected question count
+    trackGameStarted();
     generateQuestion();
   };
 
@@ -262,6 +267,7 @@ export default function SpeedChallengePage() {
           playSound(AudioSounds.GAME_OVER);
 
           if (newQuestionNumber >= maxQuestions) {
+            trackGameCompleted(stats.correct * 100 + stats.timeBonus);
             setTimeout(() => {
               setGameState('finished');
             }, 1200);

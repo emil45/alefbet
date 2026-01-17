@@ -110,12 +110,12 @@ const FunButton: React.FC<FunButtonProps> = ({
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    logEvent(AmplitudeEventsEnum.BUTTON_CLICK, { buttonName: text });
+    logEvent(AmplitudeEventsEnum.BUTTON_CLICK, { button_name: text });
     if (to) {
       const languageRoute = getLanguageSpecificRoute(to, locale);
       setTimeout(() => {
         router.push(languageRoute);
-      }, 500);
+      }, 200);
     } else if (onClick) {
       onClick();
     }

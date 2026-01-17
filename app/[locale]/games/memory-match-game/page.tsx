@@ -27,6 +27,7 @@ import RoundFunButton from '@/components/RoundFunButton';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { AudioSounds, playSound } from '@/utils/audio';
 import { useTranslations } from 'next-intl';
+import { useGameAnalytics } from '@/hooks/useGameAnalytics';
 
 const CARD_OPTIONS = [6, 10, 20, 40, 70, 100] as const;
 
@@ -74,6 +75,7 @@ const generateCards = (numCards: number, t: any): MemoryMatchCardModel[] => {
 
 export default function MemoryMatchGamePage() {
   const t = useTranslations();
+  const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'memory-match-game' });
   const [numCards, setNumCards] = useState<number>(10);
   const [cards, setCards] = useState<MemoryMatchCardModel[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
@@ -103,8 +105,9 @@ export default function MemoryMatchGamePage() {
     setTimeout(() => {
       setCards(generateCards(numCards, t));
       setIsResetting(false);
+      trackGameStarted();
     }, 600);
-  }, [numCards, t]);
+  }, [numCards, t, trackGameStarted]);
 
   useEffect(() => {
     if (cards.length > 0) {
@@ -116,8 +119,9 @@ export default function MemoryMatchGamePage() {
     if (cards.length > 0 && cards.every((card) => card.matched)) {
       setIsGameWon(true);
       playSound(AudioSounds.BONUS);
+      trackGameCompleted(numCards); // Score is number of cards matched
     }
-  }, [cards]);
+  }, [cards, numCards, trackGameCompleted]);
 
   useEffect(() => {
     if (flippedCards.length === 2) {

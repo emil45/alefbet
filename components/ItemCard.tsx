@@ -15,6 +15,7 @@ interface ItemCardProps {
   itemCaption?: string;
   element?: React.ReactNode;
   isRTL?: boolean;
+  onTap?: () => void;
 }
 
 const ItemCard: React.FC<ItemCardProps> = ({
@@ -26,12 +27,16 @@ const ItemCard: React.FC<ItemCardProps> = ({
   element,
   cardSize = 1,
   isRTL = true,
+  onTap,
 }) => {
   // Numbers should always be LTR, even in Hebrew UI
   const isNumber = /^\d+$/.test(name);
   const shouldUseLTR = isNumber || !isRTL;
 
   const playSound = () => {
+    // Fire tap callback if provided
+    onTap?.();
+
     // Stop any currently playing audio
     if (currentlyPlayingAudio) {
       currentlyPlayingAudio.pause();

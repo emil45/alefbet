@@ -9,6 +9,7 @@ import FunButton from '@/components/FunButton';
 import { Color, COLORS, colorToAudioSound, GameState } from '@/models/SimonGameModels';
 import { useTranslations } from 'next-intl';
 import { submitScore, getTopScore } from '@/lib/firebase';
+import { useGameAnalytics } from '@/hooks/useGameAnalytics';
 
 export const INITIAL_DELAY = 1000;
 export const INITIAL_SEQUENCE_DELAY = 500;
@@ -57,6 +58,7 @@ const SimonContainer = styled(Box)(({ theme }) => ({
 
 export default function SimonGamePage() {
   const t = useTranslations();
+  const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'simon-game' });
   const [sequence, setSequence] = useState<Color[]>([]);
   const [userStep, setUserStep] = useState(0); // Simplified: just track current step instead of full array
   const [gameState, setGameState] = useState<GameState>(GameState.IDLE);
@@ -131,8 +133,9 @@ export default function SimonGamePage() {
     setScore(0);
     setGameState(GameState.IDLE);
     playSound(AudioSounds.GAME_START);
+    trackGameStarted();
     addToSequence();
-  }, [addToSequence]);
+  }, [addToSequence, trackGameStarted]);
 
   const handleColorClick = useCallback(
     (color: Color) => {
@@ -144,6 +147,7 @@ export default function SimonGamePage() {
       if (color !== sequence[userStep]) {
         setGameState(GameState.GAME_OVER);
         playSound(AudioSounds.GAME_OVER);
+        trackGameCompleted(score);
         return;
       }
 

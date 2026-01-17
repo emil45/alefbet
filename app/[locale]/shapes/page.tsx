@@ -21,6 +21,7 @@ export default async function ShapesPage({ params }: Props) {
       translationPrefix="shapes"
       audioPath="shapes"
       renderMode="element"
+      category="shapes"
     />
   );
 }
