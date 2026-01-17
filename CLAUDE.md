@@ -44,16 +44,18 @@ The `CategoryPage` component (`components/CategoryPage.tsx`) renders category it
 Located in `app/[locale]/games/`:
 - **guess-game**: Quiz-style game to identify items
 - **memory-match-game**: Card matching game
-- **simon-game**: Sequence memory game
+- **simon-game**: Sequence memory game (has Firebase leaderboard)
 - **speed-challenge**: Timed challenge
 - **word-builder**: Word construction game
-- **letter-rain**: Falling letters game (ages 5-7)
+- **counting-game**: Count objects and select correct number
+- **letter-rain**: Falling letters game, ages 5-7 (has Firebase leaderboard)
 
 ### Audio
 
 - Category audio: `/public/audio/{category}/he/{filename}.mp3`
 - Game sounds: `/public/audio/common/` - managed via `utils/audio.ts` with `AudioSounds` enum
 - Use `playSound(AudioSounds.X)` for game effects, `playAudio(path)` for category item audio
+- **Note**: Animals category plays animal sounds, not Hebrew pronunciation (unlike other categories)
 
 ### Theming
 
@@ -61,7 +63,19 @@ Located in `app/[locale]/games/`:
 - Theme defined in `theme/theme.ts` with custom pastel color palette
 - Direction passed through `Providers` component which creates directional MUI theme
 
-### Analytics
+### Analytics & Backend
 
 - Amplitude: initialized in `providers.tsx`, events defined in `models/amplitudeEvents.ts`
 - Google Analytics 4 + Google Ads: loaded in locale layout
+- Firebase: used for leaderboards (`lib/firebase.ts`), functions `submitScore()` and `getTopScore()`
+
+### Navigation
+
+- `BackButton` component accepts optional `href` prop (defaults to `/`)
+- Category pages: back goes to home (`/`)
+- Game pages: back goes to games list (`/games`)
+
+### Production
+
+- URL: https://lepdy.com
+- Hebrew uses root path, English at `/en`, Russian at `/ru`
