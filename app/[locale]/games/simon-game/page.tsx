@@ -191,8 +191,8 @@ export default function SimonGamePage() {
         </Typography>
         <Typography variant="body1" align="center" sx={{ mb: 2, opacity: 0.7 }}>
           🏆 {t('games.simonGame.globalHighScore')}:{' '}
-          {globalHighScore > 0
-            ? `${globalHighScore} (${globalHighScoreDate?.getDate()}/${(globalHighScoreDate?.getMonth() ?? 0) + 1}/${globalHighScoreDate?.getFullYear()})`
+          {globalHighScore > 0 && globalHighScoreDate
+            ? `${globalHighScore} (${globalHighScoreDate.toLocaleDateString()})`
             : '---'}
         </Typography>
         <SimonContainer>
