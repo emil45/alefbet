@@ -11,7 +11,7 @@ const BackButton: React.FC = () => {
 
   const handleClick = () => {
     setTimeout(() => {
-      router.back();
+      router.push('/');
     }, 500);
   };
 
