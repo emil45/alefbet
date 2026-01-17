@@ -520,7 +520,7 @@ export default function SpeedChallengePage() {
 
   return (
     <>
-      <BackButton />
+      <BackButton href="/games" />
       {showCelebration && <Confetti recycle={false} numberOfPieces={200} />}
 
       <Box

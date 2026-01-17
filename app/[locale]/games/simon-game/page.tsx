@@ -184,7 +184,7 @@ export default function SimonGamePage() {
 
   return (
     <>
-      <BackButton />
+      <BackButton href="/games" />
       <Box display="flex" flexDirection="column" alignItems="center" mb={4}>
         <Typography variant="h4" align="center" sx={{ mb: 2 }}>
           {t('games.simonGame.score')}: {score} | {t('games.simonGame.highScore')}: {highScore}

@@ -408,7 +408,7 @@ export default function LetterRainPage() {
   // Handle back button - go to menu if playing/finished, otherwise go back
   const handleBack = useCallback(() => {
     if (gameState === 'menu') {
-      router.back();
+      router.push('/games');
     } else {
       resetGame();
     }

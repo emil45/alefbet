@@ -6,12 +6,16 @@ import RoundFunButton from './RoundFunButton';
 import { Box } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const BackButton: React.FC = () => {
+interface BackButtonProps {
+  href?: string;
+}
+
+const BackButton: React.FC<BackButtonProps> = ({ href = '/' }) => {
   const router = useRouter();
 
   const handleClick = () => {
     setTimeout(() => {
-      router.push('/');
+      router.push(href);
     }, 500);
   };
 

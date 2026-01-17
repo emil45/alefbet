@@ -7,7 +7,7 @@ import GuessGame from '@/components/GuessGame';
 export default function GuessGameContent() {
   return (
     <>
-      <BackButton />
+      <BackButton href="/games" />
       <GuessGame />
     </>
   );

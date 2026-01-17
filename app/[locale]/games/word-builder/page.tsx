@@ -215,7 +215,7 @@ export default function WordBuilderGamePage() {
 
   return (
     <>
-      <BackButton />
+      <BackButton href="/games" />
 
       {showConfetti && <Confetti />}
 

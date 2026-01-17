@@ -178,7 +178,7 @@ export default function MemoryMatchGamePage() {
 
   const showHeaders = () => (
     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-      <BackButton />
+      <BackButton href="/games" />
       <FormControl sx={{ width: 100 }}>
         <InputLabel id="num-cards-label">{t('games.memoryMatchGame.cardsNumber')}</InputLabel>
         <Select dir="rtl" labelId="num-cards-label" id="num-cards-select" value={numCards} label={t('games.memoryMatchGame.cardsNumber')} onChange={handleNumCardsChange}>
