@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { getTheme } from '@/theme/theme';
 import { initAmplitude, logEvent } from '@/utils/amplitude';
 import { AmplitudeEventsEnum, LocaleType } from '@/models/amplitudeEvents';
+import { StreakProvider } from '@/contexts/StreakContext';
 
 const FIRST_VISIT_KEY = 'lepdy_first_visit';
 
@@ -41,7 +42,9 @@ export default function Providers({ children, direction, locale }: ProvidersProp
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {children}
+      <StreakProvider>
+        {children}
+      </StreakProvider>
     </ThemeProvider>
   );
 }

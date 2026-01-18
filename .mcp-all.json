@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "monday-mcp": {
+      "type": "http",
+      "url": "https://mcp.monday.com/mcp"
+    },
+    "amplitude": {
+      "type": "http",
+      "url": "https://mcp.amplitude.com/mcp"
+    }
+  }
+}

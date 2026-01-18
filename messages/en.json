@@ -582,5 +582,28 @@
     "feedbackWelcome": "Feedback Welcome",
     "feedbackText": "Your feedback helps us improve Lepdy for all families. Let us know what features you'd like to see, report any issues, or share your child's learning success stories.",
     "responseTime": "We typically respond within 24-48 hours."
+  },
+  "streakIndicator": {
+    "days": "days",
+    "day": "day",
+    "keepItUp": "Keep it up!",
+    "atRisk": "Don't lose your streak!",
+    "freezeAvailable": "Freeze available",
+    "freezeUsed": "Freeze used this week",
+    "newStreak": "Day 1!",
+    "milestone3": "3 days!",
+    "milestone7": "One week!",
+    "milestone14": "Two weeks!",
+    "milestone30": "One month!",
+    "longestStreak": "Longest streak"
+  },
+  "startHere": {
+    "welcome": "Welcome to Lepdy!",
+    "tapToHear": "Tap the letter to hear how it sounds",
+    "greatJob": "Great job!",
+    "comeBackTomorrow": "Come back tomorrow to keep learning!",
+    "streakStarted": "You started a 1 day streak!",
+    "letsGo": "Let's go!",
+    "continue": "Continue"
   }
 }

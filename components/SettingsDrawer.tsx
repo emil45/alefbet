@@ -7,6 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import React, { useState, useEffect } from 'react';
 import { useDirection } from '@/hooks/useDirection';
 import { getDirection } from '@/i18n/config';
+import { useStreakContext } from '@/contexts/StreakContext';
 
 interface SettingsDrawerProps {
   open: boolean;
@@ -21,6 +22,8 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
   const pathname = usePathname();
   const [isChangingLanguage, setIsChangingLanguage] = useState(false);
   const [drawerDirection, setDrawerDirection] = useState(direction);
+  const { streakData } = useStreakContext();
+  const tStreak = useTranslations('streakIndicator');
 
   // Update drawer direction when drawer opens (but not during language changes)
   useEffect(() => {
@@ -119,6 +122,67 @@ const SettingsDrawer: React.FC<SettingsDrawerProps> = ({ open, toggleDrawer }) =
             <CloseIcon />
           </IconButton>
         </Box>
+
+        {/* Streak Display */}
+        {streakData.currentStreak > 0 && (
+          <>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 1.5,
+                py: 2,
+                px: 2,
+                my: 2,
+                borderRadius: 3,
+                background: 'linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%)',
+                border: '2px solid #ffb74d',
+              }}
+            >
+              <Typography sx={{ fontSize: '2.5rem', lineHeight: 1 }}>🔥</Typography>
+              <Box sx={{ textAlign: direction === 'rtl' ? 'right' : 'left' }}>
+                <Typography
+                  sx={{
+                    fontSize: '1.8rem',
+                    fontWeight: 'bold',
+                    color: '#e65100',
+                    lineHeight: 1,
+                  }}
+                >
+                  {streakData.currentStreak}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: '0.85rem',
+                    color: '#f57c00',
+                    fontWeight: 500,
+                  }}
+                >
+                  {streakData.currentStreak === 1 ? tStreak('day') : tStreak('days')}
+                </Typography>
+              </Box>
+              {streakData.longestStreak > streakData.currentStreak && (
+                <Box
+                  sx={{
+                    borderLeft: '1px solid #ffb74d',
+                    pl: 1.5,
+                    ml: 0.5,
+                    textAlign: direction === 'rtl' ? 'right' : 'left',
+                  }}
+                >
+                  <Typography sx={{ fontSize: '0.7rem', color: '#8d6e63' }}>
+                    {tStreak('longestStreak')}
+                  </Typography>
+                  <Typography sx={{ fontSize: '1rem', fontWeight: 'bold', color: '#8d6e63' }}>
+                    {streakData.longestStreak}
+                  </Typography>
+                </Box>
+              )}
+            </Box>
+          </>
+        )}
+
         <Divider sx={{ my: 2 }} />
         <Box
           sx={{

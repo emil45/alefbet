@@ -10,6 +10,7 @@ import { useLocale } from 'next-intl';
 import { useDirection } from '@/hooks/useDirection';
 import { logEvent } from '@/utils/amplitude';
 import { AmplitudeEventsEnum, CategoryType, LocaleType } from '@/models/amplitudeEvents';
+import { useStreakContext } from '@/contexts/StreakContext';
 
 type RenderMode = 'text' | 'image' | 'element' | 'color';
 
@@ -54,6 +55,7 @@ export default function CategoryPage<T extends CategoryItem>({
   const locale = useLocale() as LocaleType;
   const direction = useDirection();
   const isRTL = forceRTL || direction === 'rtl';
+  const { recordActivity } = useStreakContext();
 
   const getItemName = (item: T): string => {
     if (renderMode === 'text') return t(`${translationPrefix}.${item.id}.name`);
@@ -64,6 +66,9 @@ export default function CategoryPage<T extends CategoryItem>({
   const getItemCaption = (item: T) => t(`${translationPrefix}.${item.id}.${hasFullName ? 'fullName' : 'name'}`);
 
   const handleItemTap = (item: T) => {
+    // Record learning activity for streak tracking
+    recordActivity();
+
     // Fire item_tapped event
     logEvent(AmplitudeEventsEnum.ITEM_TAPPED, {
       category,

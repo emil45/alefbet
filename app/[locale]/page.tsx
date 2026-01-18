@@ -10,6 +10,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import SettingsDrawer from '@/components/SettingsDrawer';
 import { useRouter } from 'next/navigation';
 import { getLanguageSpecificRoute } from '@/utils/languageRoutes';
+import StartHere from '@/components/StartHere';
 
 export default function HomePage() {
   const [open, setOpen] = useState(false);
@@ -32,23 +33,6 @@ export default function HomePage() {
         <FunButton to="/animals" text={t('home.buttons.animals')} />
         <FunButton to="/food" text={t('home.buttons.food')} />
         <FunButton to="/games" text={t('home.buttons.games')} />
-      </Box>
-    );
-  };
-
-  const showSettingsButton = () => {
-    return (
-      <Box
-        sx={{
-          position: 'absolute',
-          top: { xs: '10px', sm: '20px' },
-          ...(isRTL ? { left: { xs: '10px', sm: '20px' } } : { right: { xs: '10px', sm: '20px' } }),
-          zIndex: 10,
-        }}
-      >
-        <RoundFunButton onClick={() => toggleDrawer(true)}>
-          <SettingsIcon />
-        </RoundFunButton>
       </Box>
     );
   };
@@ -88,9 +72,21 @@ export default function HomePage() {
       >
         {t('seo.hero.title')}
       </Typography>
-      {showSettingsButton()}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: { xs: '10px', sm: '20px' },
+          ...(isRTL ? { left: { xs: '10px', sm: '20px' } } : { right: { xs: '10px', sm: '20px' } }),
+          zIndex: 10,
+        }}
+      >
+        <RoundFunButton onClick={() => toggleDrawer(true)}>
+          <SettingsIcon />
+        </RoundFunButton>
+      </Box>
       {showLearnMoreButton()}
       <SettingsDrawer open={open} toggleDrawer={toggleDrawer} />
+      <StartHere />
       <Box
         display="flex"
         flexDirection="column"

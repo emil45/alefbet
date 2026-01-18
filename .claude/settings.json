@@ -1,6 +1,8 @@
 {
   "permissions": {
     "allow": [
+      "mcp__monday-mcp__*",
+      "mcp__amplitude__*",
       "Bash(npm uninstall:*)",
       "Bash(npm install:*)",
       "Bash(mv:*)",
@@ -21,6 +23,9 @@
       "Bash(find:*)",
       "Bash(done)",
       "Bash(grep:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm test:*)",
       "WebSearch"
     ],
     "deny": []
