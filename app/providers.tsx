@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect, useMemo } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { getTheme } from '@/theme/theme';
@@ -19,7 +19,7 @@ interface ProvidersProps {
 }
 
 export default function Providers({ children, direction, locale }: ProvidersProps) {
-  const theme = createTheme(getTheme(direction));
+  const theme = useMemo(() => createTheme(getTheme(direction)), [direction]);
 
   useEffect(() => {
     initAmplitude();

@@ -195,12 +195,12 @@ export default async function LocaleLayout({ children, params }: Props) {
         />
       </head>
       <body className={roboto.className} style={{ margin: 0 }}>
-        {/* Google Analytics + Google Ads */}
+        {/* Google Analytics + Google Ads - lazyOnload to not block LCP */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XMN00ZGJH4"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="gtag-init" strategy="afterInteractive">
+        <Script id="gtag-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -226,7 +226,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center center',
-                backgroundAttachment: 'fixed',
+                // Note: backgroundAttachment: 'fixed' removed - causes expensive repaints on mobile
                 position: 'relative',
                 overflowX: 'hidden',
               }}

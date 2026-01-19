@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set, get } from 'firebase/database';
+import type { FirebaseApp } from 'firebase/app';
+import type { Database } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCUIRCYj-xmI3dsxN_PV99JvpErVfvQyKo',
@@ -11,8 +11,19 @@ const firebaseConfig = {
   appId: '1:1056907902981:web:740300b72dd4812bf0dc6c',
 };
 
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+let app: FirebaseApp | null = null;
+let database: Database | null = null;
+
+// Lazy initialization - only loads Firebase when first needed
+async function getFirebaseDatabase(): Promise<Database> {
+  if (!database) {
+    const { initializeApp } = await import('firebase/app');
+    const { getDatabase } = await import('firebase/database');
+    app = initializeApp(firebaseConfig);
+    database = getDatabase(app);
+  }
+  return database;
+}
 
 export interface LeaderboardEntry {
   score: number;
@@ -21,7 +32,9 @@ export interface LeaderboardEntry {
 
 export async function submitScore(game: string, score: number): Promise<void> {
   try {
-    const recordRef = ref(database, `leaderboard/${game}`);
+    const db = await getFirebaseDatabase();
+    const { ref, set } = await import('firebase/database');
+    const recordRef = ref(db, `leaderboard/${game}`);
     await set(recordRef, { score, timestamp: Date.now() });
     console.log('Score submitted:', score);
   } catch (error) {
@@ -31,7 +44,9 @@ export async function submitScore(game: string, score: number): Promise<void> {
 
 export async function getTopScore(game: string): Promise<LeaderboardEntry | null> {
   try {
-    const recordRef = ref(database, `leaderboard/${game}`);
+    const db = await getFirebaseDatabase();
+    const { ref, get } = await import('firebase/database');
+    const recordRef = ref(db, `leaderboard/${game}`);
     const snapshot = await get(recordRef);
     return snapshot.exists() ? snapshot.val() : null;
   } catch (error) {
