@@ -9,6 +9,7 @@ import Script from 'next/script';
 import { BASE_URL } from '@/lib/seo';
 import { Roboto } from 'next/font/google';
 import Footer from '@/components/Footer';
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 // Optimized font loading with next/font
 const roboto = Roboto({
@@ -211,6 +212,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           `}
         </Script>
         <NextIntlClientProvider messages={messages}>
+          <BreadcrumbJsonLd />
           <Providers direction={direction} locale={locale as 'he' | 'en' | 'ru'}>
             <Box
               sx={{
