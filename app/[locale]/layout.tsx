@@ -59,8 +59,6 @@ function generateJsonLd(locale: string) {
           '@type': 'EducationalAudience',
           educationalRole: 'student',
           audienceType: 'Children',
-          suggestedMinAge: 2,
-          suggestedMaxAge: 7,
         },
         author: {
           '@type': 'Organization',
