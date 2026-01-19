@@ -195,11 +195,10 @@ Execute phases sequentially. No approval gates. Ask for help only if stuck after
    }
    ```
 
-3. **Update sitemap** in `public/sitemap.xml`:
-   - Add URL entry with all 3 locale variants (he, en, ru)
-   - Include hreflang links
+3. **Update sitemap** in `app/sitemap.ts`:
+   - Add route to the `routes` array
    - Set appropriate priority (0.9 content, 0.6 games, 0.5 info)
-   - Update lastmod date
+   - Hreflang alternates are auto-generated for all locales
 
 4. **Structured data** (if applicable):
    - FAQ page? Add FAQPage JSON-LD (see `learn/page.tsx`)
@@ -208,8 +207,7 @@ Execute phases sequentially. No approval gates. Ask for help only if stuck after
 ### Checklist:
 - [ ] SEO translations in all 3 locales
 - [ ] `generateMetadata` exports in page.tsx
-- [ ] Sitemap entry with hreflang
-- [ ] Lastmod dates updated
+- [ ] Route added to `app/sitemap.ts`
 
 ---
 
