@@ -74,7 +74,7 @@ This v2.0 roadmap refines prior recommendations with fresh 2026 insights:
 *Lepdy: The world's most joyful and authentic path to Hebrew literacy for young children and their families.*
 
 **UVP**  
-*Beautiful, playful Hebrew learning with real Israeli child pronunciation, designed from the ground up for ages 2–7 — in Hebrew, English, and Russian.*
+*Beautiful, playful Hebrew learning with real Israeli child pronunciation, designed from the ground up for young children — in Hebrew, English, and Russian.*
 
 ---
 

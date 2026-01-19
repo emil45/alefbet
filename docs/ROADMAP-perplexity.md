@@ -2,7 +2,7 @@
 ## Business + Product + Design Unified Strategy
 
 **Document Version:** 3.0 | **Last Updated:** January 2026 | **Scope:** 24-Month Execution Plan
-**Focus:** Integrated business scaling, product innovation, and UX excellence for ages 2-7 Hebrew learners
+**Focus:** Integrated business scaling, product innovation, and UX excellence for young Hebrew learners
 
 ---
 
@@ -66,7 +66,7 @@ Lepdy is a **content library with mini-games**, not a **learning platform with e
 
 **Pillar 3: Design Excellence** *(NEW - V3.0)*
 - Maintain watercolor aesthetic while improving usability
-- Optimize UX for ages 2-3, 4-5, 6-7 (different needs)
+- Optimize UX for different age groups (different needs)
 - Ensure accessibility (WCAG 2.1 AA) expands reach
 - Create intuitive navigation that feels like play
 
@@ -937,7 +937,7 @@ These pillars must advance together. Phase 1 activates all three simultaneouslyâ
 - **Hebrew-First** (not English adapted)
 - **Watercolor Aesthetic** (more beautiful)
 - **Russian Support** (niche market)
-- **Smaller scope** (2-7 only, deeper, not broader)
+- **Smaller scope** (young children only, deeper, not broader)
 - **Community-built** (Israeli team, authentic)
 
 **Lepdy Advantage:** Trust + Authenticity (especially for diaspora families seeking "real Hebrew")

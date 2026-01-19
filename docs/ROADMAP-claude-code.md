@@ -32,7 +32,7 @@ This document provides a comprehensive analysis of Lepdy (lepdy.com) and a strat
 - Beautiful watercolor visual design
 - Hebrew-first, RTL-native design
 - Russian language support (unique for Russian-Israeli diaspora)
-- Clean, age-appropriate UI for 2-7 year olds
+- Clean, age-appropriate UI for young children
 
 ### Critical Gaps
 
@@ -66,7 +66,7 @@ This document provides a comprehensive analysis of Lepdy (lepdy.com) and a strat
 1. **Authentic voice** - Real Israeli child, not synthetic
 2. **Hebrew-first** - Not adapted from English
 3. **Visual identity** - Watercolor aesthetic stands out
-4. **Simplicity** - Focused 2-7 range, not trying to do everything
+4. **Simplicity** - Focused on young children, not trying to do everything
 5. **Russian support** - Underserved market
 
 ---

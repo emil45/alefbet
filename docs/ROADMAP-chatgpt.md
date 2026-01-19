@@ -55,7 +55,7 @@
 
 ## 4. Target audiences and positioning
 ### 4.1 Audience segments (high value)
-1) **Parents of ages 2-7** (Israel + diaspora)
+1) **Parents of young children** (Israel + diaspora)
    - Needs: safe, simple, educational, quick sessions, no junk.
 2) **Diaspora families** (heritage learners)
    - Needs: pronunciation confidence, family routines, bilingual support.

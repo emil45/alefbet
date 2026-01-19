@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Lepdy is a Hebrew learning web application for children ages 2-7. It teaches Hebrew letters, numbers, colors, shapes, animals, and food through interactive cards and educational games.
+Lepdy is a Hebrew learning web application for children. It teaches Hebrew letters, numbers, colors, shapes, animals, and food through interactive cards and educational games.
 
 ## Commands
 
