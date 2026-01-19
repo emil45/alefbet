@@ -43,11 +43,12 @@ export default function StartHere({ onComplete }: StartHereProps) {
   const [letterPlayed, setLetterPlayed] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
 
-  // Check if first visit on mount
+  // Check if first visit on mount - delay to not affect LCP measurement
   useEffect(() => {
     const hasCompleted = localStorage.getItem(FIRST_VISIT_COMPLETED_KEY);
     if (!hasCompleted) {
-      setOpen(true);
+      const timer = setTimeout(() => setOpen(true), 2500);
+      return () => clearTimeout(timer);
     }
   }, []);
 
