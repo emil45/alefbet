@@ -6,7 +6,7 @@ import Providers from '../providers';
 import type { Metadata } from 'next';
 import { Box, Typography } from '@mui/material';
 import Script from 'next/script';
-import { BASE_URL, getLocaleUrl, getOgLocale } from '@/lib/seo';
+import { BASE_URL } from '@/lib/seo';
 import { Roboto } from 'next/font/google';
 import Footer from '@/components/Footer';
 
@@ -75,7 +75,7 @@ function generateJsonLd(locale: string) {
         url: BASE_URL,
         logo: {
           '@type': 'ImageObject',
-          url: `${BASE_URL}/icon-512x512.png`,
+          url: `${BASE_URL}/android-chrome-512x512.png`,
         },
         sameAs: [],
       },
@@ -113,16 +113,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : locale === 'ru'
       ? ['иврит для детей', 'алфавит иврита для детей', 'учим буквы иврита', 'развивающие игры', 'алеф бет']
       : ['hebrew for kids', 'learn alef bet', 'hebrew alphabet for toddlers', 'hebrew letters for children', 'learn hebrew for kids', 'hebrew games for kids'],
-    icons: {
-      icon: [
-        { url: '/favicon.ico', sizes: 'any' },
-        { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-        { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      ],
-      apple: [
-        { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-      ],
-    },
     alternates: {
       canonical: currentUrl,
       languages: {
@@ -138,20 +128,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: 'Lepdy',
       locale: locale === 'he' ? 'he_IL' : locale === 'ru' ? 'ru_RU' : 'en_US',
       type: 'website',
-      images: [
-        {
-          url: `${BASE_URL}/og-image.png`,
-          width: 1200,
-          height: 630,
-          alt: t('siteTitle'),
-        },
-      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('siteTitle'),
       description: t('siteDescription'),
-      images: [`${BASE_URL}/og-image.png`],
     },
     robots: {
       index: true,

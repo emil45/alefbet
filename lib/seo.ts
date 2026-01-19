@@ -37,14 +37,6 @@ export async function generatePageMetadata(
       siteName: 'Lepdy',
       locale: getOgLocale(locale),
       type: 'website',
-      images: [
-        {
-          url: `${BASE_URL}/og-image.png`,
-          width: 1200,
-          height: 630,
-          alt: t('title'),
-        },
-      ],
     },
   };
 }
