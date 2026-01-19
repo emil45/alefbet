@@ -7,7 +7,8 @@
       "shapes": "Shapes 🟣 🔶",
       "animals": "Animals 🐶 🐱",
       "food": "Food 🍎 🍌",
-      "games": "Games 🧩 🎲"
+      "games": "Games 🧩 🎲",
+      "stickers": "Stickers 🏆 ⭐"
     },
     "settings": {
       "title": "Settings",
@@ -378,6 +379,10 @@
       "contact": {
         "title": "Contact Us | Lepdy",
         "description": "Get in touch with the Lepdy team. We'd love to hear your feedback, suggestions, and questions about our Hebrew learning app for children."
+      },
+      "stickers": {
+        "title": "Sticker Collection for Kids | Lepdy",
+        "description": "Collect fun stickers while learning! Interactive sticker collection for kids with various themes - letters, numbers, animals and more."
       }
     },
     "pageTitle": "Lepdy - Learn Hebrew for Kids Online | Letters, Numbers & Games",
@@ -605,5 +610,64 @@
     "streakStarted": "You started a 1 day streak!",
     "letsGo": "Let's go!",
     "continue": "Continue"
+  },
+  "stickers": {
+    "title": "My Sticker Collection",
+    "collected": "{count} of {total} stickers",
+    "pages": {
+      "letters": "Letters",
+      "numbers": "Numbers",
+      "animals": "Animals",
+      "games": "Games",
+      "streaks": "Streaks",
+      "explorer": "Explorer"
+    },
+    "letters": {
+      "first": "First Letter",
+      "five": "Five Letters",
+      "ten": "Ten Letters",
+      "all": "All Letters",
+      "tracer": "Letter Tracer"
+    },
+    "numbers": {
+      "one": "Number One",
+      "five": "Number Five",
+      "ten": "Number Ten",
+      "master": "Number Master",
+      "math": "Math Star"
+    },
+    "animals": {
+      "first": "First Animal",
+      "five": "Five Animals",
+      "all": "All Animals",
+      "sounds": "Animal Sounds",
+      "zoo": "Zoo Explorer"
+    },
+    "games": {
+      "first": "First Game",
+      "memory": "Memory Master",
+      "simon": "Simon Star",
+      "speed": "Speed Demon",
+      "master": "Game Champion"
+    },
+    "streaks": {
+      "day1": "Day One",
+      "day3": "Three Days",
+      "day7": "One Week",
+      "day14": "Two Weeks",
+      "day30": "One Month"
+    },
+    "explorer": {
+      "colors": "Color Explorer",
+      "shapes": "Shape Explorer",
+      "food": "Food Explorer",
+      "words": "Word Builder",
+      "super": "Super Learner"
+    },
+    "unlockHint": {
+      "streak": "Reach a {days} day streak to unlock"
+    },
+    "comingSoon": "Coming soon!",
+    "streakHint": "Keep learning every day to unlock streak stickers!"
   }
 }

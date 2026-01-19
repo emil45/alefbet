@@ -7,6 +7,7 @@ import { getTheme } from '@/theme/theme';
 import { initAmplitude, logEvent } from '@/utils/amplitude';
 import { AmplitudeEventsEnum, LocaleType } from '@/models/amplitudeEvents';
 import { StreakProvider } from '@/contexts/StreakContext';
+import { StickerProvider } from '@/contexts/StickerContext';
 
 const FIRST_VISIT_KEY = 'lepdy_first_visit';
 
@@ -43,7 +44,9 @@ export default function Providers({ children, direction, locale }: ProvidersProp
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <StreakProvider>
-        {children}
+        <StickerProvider>
+          {children}
+        </StickerProvider>
       </StreakProvider>
     </ThemeProvider>
   );

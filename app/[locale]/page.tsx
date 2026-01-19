@@ -7,6 +7,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import RoundFunButton from '@/components/RoundFunButton';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import SettingsDrawer from '@/components/SettingsDrawer';
 import { useRouter } from 'next/navigation';
 import { getLanguageSpecificRoute } from '@/utils/languageRoutes';
@@ -45,10 +46,16 @@ export default function HomePage() {
           top: { xs: '10px', sm: '20px' },
           ...(isRTL ? { right: { xs: '10px', sm: '20px' } } : { left: { xs: '10px', sm: '20px' } }),
           zIndex: 10,
+          display: 'flex',
+          flexDirection: 'row',
+          gap: 1,
         }}
       >
         <RoundFunButton onClick={() => router.push(getLanguageSpecificRoute('/learn', locale))}>
           <HelpOutlineIcon />
+        </RoundFunButton>
+        <RoundFunButton onClick={() => router.push(getLanguageSpecificRoute('/stickers', locale))}>
+          <EmojiEventsIcon />
         </RoundFunButton>
       </Box>
     );
