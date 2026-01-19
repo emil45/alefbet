@@ -196,8 +196,10 @@ export default async function LocaleLayout({ children, params }: Props) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XMN00ZGJH4');
-            gtag('config', 'AW-17878894842');
+            if (window.location.hostname !== 'localhost') {
+              gtag('config', 'G-XMN00ZGJH4');
+              gtag('config', 'AW-17878894842');
+            }
           `}
         </Script>
         <NextIntlClientProvider messages={messages}>

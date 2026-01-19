@@ -13,6 +13,7 @@ let initialized = false;
 
 export const initAmplitude = () => {
   if (typeof window === 'undefined' || initialized) return;
+  if (window.location.hostname === 'localhost') return;
   amplitude.init(API_KEY, { defaultTracking: true });
   initialized = true;
 };
