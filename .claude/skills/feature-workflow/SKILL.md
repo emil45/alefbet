@@ -1,160 +1,313 @@
-# Feature Workflow Skill
+---
+name: feature-workflow
+description: Autonomous feature development workflow. Fetches task from Monday.com, implements it, reviews with pr-review-toolkit agents, tests, commits, and pushes.
+---
 
-A structured workflow for implementing features and tasks. Ensures quality through exploration, implementation, review, and testing phases.
+# /feature-workflow
 
-## When to Use
+Autonomous end-to-end feature development. Fetches next task from Monday.com and works independently until complete or help is needed.
 
-- Implementing new features
-- Fixing bugs
-- Refactoring code
-- Any task from a task management system (Monday, Jira, Trello, GitHub Issues)
+---
 
-## Workflow Phases
+## Context
 
-### Phase 1: Task Acquisition
+| Key | Value |
+|-----|-------|
+| **Monday.com Board ID** | `5090306877` |
+| **Status: Ready** | `To Do` |
+| **Status: In Progress** | `In Progress` |
+| **Status: Complete** | `Done` |
+| **Description Column** | `text` |
+| **Build Command** | `npm run build` |
+| **Test Command** | `npm test` |
+| **Review Agents** | code-reviewer → silent-failure-hunter → code-simplifier |
 
-1. **Get task from task management system**
-   - For Monday.com: Query board for "Working on it" or next "Waiting For Work" item
-   - Read the full task description for implementation context
+### Tech Stack
+Next.js 16, TypeScript, MUI, Firebase, next-intl (he/en/ru)
 
-2. **Set task to "In Progress"**
-   - Update status in task management system
-   - This signals to others that work has started
-
-### Phase 2: Exploration
-
-3. **Explore the codebase** (BEFORE writing any code)
-   - Use `Explore` agent or read relevant files
-   - Understand existing patterns related to the task
-   - Identify files that will need changes
-   - Look for similar implementations to follow as patterns
-
-4. **Create implementation plan**
-   - Use `TodoWrite` to create a task list
-   - For complex tasks, consider using `Plan` agent
-   - Break down into small, verifiable steps
-
-### Phase 3: Implementation
-
-5. **Implement the feature**
-   - Follow existing patterns discovered in exploration
-   - Create reusable utilities when appropriate (not one-off code)
-   - Update TodoWrite as you complete each step
-   - Prefer editing existing files over creating new ones
-
-6. **Build verification**
-   ```bash
-   npm run build
-   ```
-   - Fix any TypeScript errors
-   - Fix any lint errors
-
-### Phase 4: Testing
-
-7. **Run existing tests**
-   ```bash
-   npm test
-   ```
-   - All tests must pass before proceeding
-   - Fix any regressions caused by changes
-
-8. **Evaluate test coverage**
-   - Consider: Does this feature need new tests?
-   - Check CLAUDE.md for project testing guidelines
-   - For Lepdy: Only add tests for new pages/routes or major functionality
-
-### Phase 5: Review
-
-9. **Run code-reviewer agent**
-   - ALWAYS run after implementation
-   - Focus on changed/new files
-   - Address any high-priority issues found
-   ```
-   Task: code-reviewer agent on recent changes
-   ```
-
-10. **Run code-simplifier agent** (if complexity was added)
-    - Use when: new abstractions, complex logic, multiple new files
-    - Skip when: simple bug fixes, small changes
-    ```
-    Task: code-simplifier agent on new code
-    ```
-
-11. **Run silent-failure-hunter agent** (if error handling was added)
-    - Use when: try/catch blocks, fallback logic, error handling
-    - Ensures errors aren't silently swallowed
-
-### Phase 6: Completion
-
-12. **Mark task as complete**
-    - Update status in task management system to "Done"
-    - Clear the TodoWrite list
-
-13. **Prompt for commit**
-    - Ask user: "Ready to commit these changes?"
-    - If yes, create commit with descriptive message
-    - Do NOT push unless explicitly requested
-
-## Decision Tree
-
+### File Structure
 ```
-Start Task
-    │
-    ▼
-┌─────────────────────┐
-│ 1. Get & Set Status │
-└─────────────────────┘
-    │
-    ▼
-┌─────────────────────┐
-│ 2. Explore Codebase │◄── Use Explore agent for unfamiliar areas
-└─────────────────────┘
-    │
-    ▼
-┌─────────────────────┐
-│ 3. Plan with Todos  │◄── Complex task? Use Plan agent
-└─────────────────────┘
-    │
-    ▼
-┌─────────────────────┐
-│ 4. Implement        │
-└─────────────────────┘
-    │
-    ▼
-┌─────────────────────┐
-│ 5. Build & Test     │◄── Must pass before continuing
-└─────────────────────┘
-    │
-    ▼
-┌─────────────────────┐
-│ 6. Code Review      │◄── ALWAYS run code-reviewer
-└─────────────────────┘
-    │
-    ├── Complexity added? ──► Run code-simplifier
-    │
-    ├── Error handling? ────► Run silent-failure-hunter
-    │
-    ▼
-┌─────────────────────┐
-│ 7. Complete & Commit│
-└─────────────────────┘
+app/[locale]/     → Pages (server: page.tsx, client: *Content.tsx)
+components/       → UI components
+hooks/            → Custom hooks (useCelebration, useGameAnalytics)
+utils/            → Utilities (audio.ts, celebrations.ts)
+data/             → Static data arrays
+lib/              → External integrations (firebase.ts, seo.ts)
 ```
 
-## Agents to Use
+### Key Patterns
+- Audio: `playSound(AudioSounds.X)` for effects, `playAudio(path)` for content
+- Celebrations: `useCelebration` hook with types: gameComplete, milestone, correctAnswer, streak
 
-| Phase | Agent | When |
-|-------|-------|------|
-| Exploration | `Explore` | Understanding unfamiliar code |
-| Planning | `Plan` | Complex multi-step features |
-| Review | `code-reviewer` | **Always** after implementation |
-| Review | `code-simplifier` | When complexity was added |
-| Review | `silent-failure-hunter` | When error handling was added |
+### Testing Rules
+- **Add tests**: New pages, new games, major UI changes
+- **Skip tests**: Copy changes, styling, adding category items
 
-## Anti-Patterns to Avoid
+---
 
-- Starting to code before exploring existing patterns
-- Skipping code-reviewer "because it's a small change"
-- Creating new files when editing existing ones would work
-- Marking task done before build/tests pass
-- Pushing to remote without explicit user request
-- Adding tests for trivial changes (follow project guidelines)
+## Design Philosophy
+
+> Claude is capable of extraordinary creative work. Don't hold back—show what can truly be created when thinking outside the box and committing fully to a distinctive vision.
+
+### Mindset
+
+This is a **children's learning app**. Every feature should spark joy, wonder, and delight. Generic is the enemy. Safe is forgettable. Kids deserve magic.
+
+**Before coding any UI, ask:**
+- What would make a 4-year-old's eyes light up?
+- How can this feel like play, not work?
+- What unexpected detail would make this memorable?
+
+### Creative Principles
+
+**1. Bold Over Safe**
+Don't settle for "it works." Push for "this is delightful." A button could bounce. A transition could whoosh. Success could explode with confetti. Take creative risks.
+
+**2. Personality Over Polish**
+Generic rounded rectangles are forgettable. Give elements character. A loading state could be playful. An error could be gentle and encouraging. Everything communicates.
+
+**3. Reward Every Interaction**
+Children need constant positive feedback. Every tap should feel responsive. Every correct answer should celebrate. Every milestone should feel earned. Use `useCelebration` liberally.
+
+**4. Sensory Richness**
+Combine visual + audio + motion. A card flip with sound. A success with confetti AND fanfare. Multiple senses = deeper engagement.
+
+**5. Surprise & Delight**
+Add unexpected moments. Easter eggs. Playful animations. Sounds that make kids giggle. The details they'll show their parents.
+
+### UI Guidelines
+
+| Element | Guideline |
+|---------|-----------|
+| **Touch targets** | Minimum 48px, larger for small fingers |
+| **Typography** | Large, clear, playful - never small text |
+| **Colors** | Pastel palette from `theme.ts` - warm, inviting |
+| **Animations** | Bouncy, celebratory - use spring physics |
+| **Feedback** | Every interaction = visual + audio response |
+| **Layout** | Breathing room, one clear action per view |
+
+### Design Anti-Patterns
+
+- Generic UI that could be any app
+- Subtle animations kids won't notice
+- Small text or tiny touch targets
+- Silent interactions (no feedback)
+- Overwhelming complexity
+- "Adult" aesthetics (sharp, minimal, cold)
+
+---
+
+## Workflow
+
+```
+ACQUIRE → EXPLORE → PLAN → IMPLEMENT → SEO → REVIEW → TEST → SHIP
+```
+
+Execute phases sequentially. No approval gates. Ask for help only if stuck after 3 attempts.
+
+---
+
+## Phase 1: Acquire
+
+**Goal**: Get next task from Monday.com.
+
+1. Query **Monday.com Board ID** for items with **Status: In Progress** or **Status: Ready**
+2. Priority: **Status: In Progress** first (resume), then oldest **Status: Ready**
+3. Set status to **Status: In Progress**
+4. Read **Description Column** for requirements
+5. Create TodoWrite with task breakdown
+6. If no tasks: Report "No pending tasks" and stop
+
+---
+
+## Phase 2: Explore
+
+**Goal**: Understand codebase before coding.
+
+1. Launch 2-3 Explore agents in parallel to find:
+   - Similar features and patterns
+   - Files that need changes
+   - Existing utilities/hooks to reuse
+
+2. Read all identified key files
+
+3. Update TodoWrite with specific files to modify/create
+
+---
+
+## Phase 3: Plan
+
+**Goal**: Break down into concrete steps.
+
+1. Create detailed TodoWrite:
+   - Each todo = one logical change
+   - Order by dependency
+   - Include build verification
+
+2. Prefer editing existing files over creating new ones
+
+---
+
+## Phase 4: Implement
+
+**Goal**: Build the feature.
+
+1. For each todo:
+   - Mark `in_progress`
+   - Make change following existing patterns
+   - Mark `completed`
+
+2. **UI translations**: Add strings to `messages/{he,en,ru}.json` for any user-facing text
+
+3. **Tests** (if needed per Testing Rules): Add to `e2e/app.spec.ts`
+
+4. Run **Build Command** - fix ALL errors before proceeding
+
+5. If stuck >3 attempts: Ask for help
+
+---
+
+## Phase 5: SEO
+
+**Goal**: Ensure new pages/routes are discoverable.
+
+**Skip this phase if**: No new pages or routes were created.
+
+### For New Pages:
+
+1. **Add translation keys** in `messages/{he,en,ru}.json`:
+   ```json
+   "seo": {
+     "pages": {
+       "yourPage": {
+         "title": "...",
+         "description": "..."
+       }
+     }
+   }
+   ```
+
+2. **Generate metadata** in `page.tsx`:
+   ```typescript
+   export async function generateMetadata({ params }: Props) {
+     const { locale } = await params;
+     return generatePageMetadata(locale, 'yourPage', '/your-path');
+   }
+   ```
+
+3. **Update sitemap** in `public/sitemap.xml`:
+   - Add URL entry with all 3 locale variants (he, en, ru)
+   - Include hreflang links
+   - Set appropriate priority (0.9 content, 0.6 games, 0.5 info)
+   - Update lastmod date
+
+4. **Structured data** (if applicable):
+   - FAQ page? Add FAQPage JSON-LD (see `learn/page.tsx`)
+   - Game with scores? Consider adding Game schema
+
+### Checklist:
+- [ ] SEO translations in all 3 locales
+- [ ] `generateMetadata` exports in page.tsx
+- [ ] Sitemap entry with hreflang
+- [ ] Lastmod dates updated
+
+---
+
+## Phase 6: Review
+
+**Goal**: Catch issues before testing.
+
+Run **Review Agents** sequentially:
+
+### 6.1 code-reviewer
+- Bugs, logic errors, guideline violations
+- Fix critical/high severity issues
+
+### 6.2 silent-failure-hunter
+- Error handling, silent failures
+- Fix swallowed exceptions
+
+### 6.3 code-simplifier
+- Unnecessary complexity
+- Apply clarity improvements
+
+After fixes: Re-run **Build Command**
+
+---
+
+## Phase 7: Test
+
+**Goal**: Verify nothing broke.
+
+1. Run **Test Command**
+
+2. If fails:
+   - Fix the issue
+   - Re-run reviews if fix was significant
+   - Re-run tests
+   - After 3 failures: Ask for help
+
+3. If passes: Proceed to Ship
+
+---
+
+## Phase 8: Ship
+
+**Goal**: Commit, push, close task.
+
+1. **Commit** (types: `feat`, `fix`, `refactor`, `style`, `docs`, `test`):
+```bash
+git add -A
+git commit -m "$(cat <<'EOF'
+<type>(<scope>): <description>
+
+<body>
+
+EOF
+)"
+```
+
+2. **Push**: `git push`
+
+3. **Update Monday.com**: Set status to **Status: Complete**
+
+4. **Summary**: Report files changed, decisions made, follow-ups
+
+---
+
+## Error Handling
+
+### Ask for help when:
+- Build/test fails 3+ times on same issue
+- Requirements unclear
+- Major architectural decision needed
+
+### Format:
+```
+I'm stuck on [issue].
+
+Tried:
+1. [attempt]
+2. [attempt]
+3. [attempt]
+
+Error: [specific error]
+
+Options:
+- [A]
+- [B]
+
+Which approach?
+```
+
+---
+
+## Workflow Anti-Patterns
+
+- Coding before exploring codebase
+- Creating files when editing existing works
+- Skipping reviews "because it's small"
+- Over-engineering for hypothetical needs
+- Committing without tests passing
+- Forgetting UI translations for new text
+- Skipping SEO for new pages

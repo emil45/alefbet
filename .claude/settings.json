@@ -26,7 +26,17 @@
       "Bash(npm run lint:*)",
       "Bash(npx tsc:*)",
       "Bash(npm test:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(git -C /Users/emil/code/lepdy status)",
+      "Bash(git -C /Users/emil/code/lepdy diff --staged)",
+      "Bash(git -C /Users/emil/code/lepdy log --oneline -5)",
+      "Bash(git -C /Users/emil/code/lepdy diff)",
+      "Bash(git -C /Users/emil/code/lepdy push)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(claude plugins install:*)",
+      "Bash(claude plugin:*)",
+      "Bash(npx playwright test:*)",
+      "Bash(head:*)"
     ],
     "deny": []
   },
