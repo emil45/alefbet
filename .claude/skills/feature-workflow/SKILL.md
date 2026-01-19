@@ -19,7 +19,7 @@ Autonomous end-to-end feature development. Fetches next task from Monday.com and
 | **Status: Complete** | `Done` |
 | **Description Column** | `text` |
 | **Build Command** | `npm run build` |
-| **Test Command** | `npm test` |
+| **Test Command** | `npm test -- --workers=1` |
 | **Review Agents** | code-reviewer → silent-failure-hunter → code-simplifier |
 
 ### Tech Stack
@@ -239,15 +239,17 @@ After fixes: Re-run **Build Command**
 
 **Goal**: Verify nothing broke.
 
-1. Run **Test Command**
+1. Run **Test Command** (single worker avoids race conditions)
 
 2. If fails:
-   - Fix the issue
+   - **Failures in files YOU modified**: Fix the issue, re-run
+   - **Failures in unrelated files**: Note them and proceed (pre-existing issues)
    - Re-run reviews if fix was significant
-   - Re-run tests
-   - After 3 failures: Ask for help
+   - After 3 failures on YOUR code: Ask for help
 
 3. If passes: Proceed to Ship
+
+**Don't**: Use `git stash` to verify if failures are pre-existing. Just check if the failing test files relate to your changes.
 
 ---
 
@@ -255,23 +257,28 @@ After fixes: Re-run **Build Command**
 
 **Goal**: Commit, push, close task.
 
-1. **Commit** (types: `feat`, `fix`, `refactor`, `style`, `docs`, `test`):
+1. **Check working directory**: Run `git status`
+   - If unrelated files are modified, ask user: "Include [file] in commit or revert?"
+   - Don't silently revert or include without asking
+
+2. **Commit** (types: `feat`, `fix`, `refactor`, `style`, `docs`, `test`):
 ```bash
-git add -A
+git add <specific-files>
 git commit -m "$(cat <<'EOF'
 <type>(<scope>): <description>
 
 <body>
 
+Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
 EOF
 )"
 ```
 
-2. **Push**: `git push`
+3. **Push**: `git push`
 
-3. **Update Monday.com**: Set status to **Status: Complete**
+4. **Update Monday.com**: Set status to **Status: Complete**
 
-4. **Summary**: Report files changed, decisions made, follow-ups
+5. **Summary**: Report files changed, decisions made, follow-ups
 
 ---
 
@@ -311,3 +318,5 @@ Which approach?
 - Committing without tests passing
 - Forgetting UI translations for new text
 - Skipping SEO for new pages
+- Using `git stash` to verify pre-existing test failures (just check file names)
+- Silently reverting unrelated working directory changes without asking
