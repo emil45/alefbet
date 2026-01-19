@@ -84,7 +84,7 @@ Located in `app/[locale]/games/`:
 
 ## Testing
 
-E2E tests using Playwright in `e2e/app.spec.ts`. Tests verify the site isn't broken - not every feature.
+E2E tests using Playwright in `e2e/app.spec.ts`. Tests run with 1 worker to avoid resource issues. Tests verify the site isn't broken - not every feature.
 
 **Current coverage:**
 - Homepage loads with category buttons

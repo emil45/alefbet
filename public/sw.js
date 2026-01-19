@@ -1,7 +1,7 @@
 // Lepdy Service Worker
 // Minimal service worker to enable PWA installation
 
-const CACHE_NAME = 'lepdy-v1';
+const CACHE_NAME = 'lepdy-v2';
 
 // Install event - cache essential assets
 self.addEventListener('install', (event) => {
@@ -9,7 +9,7 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll([
         '/',
-        '/manifest.json',
+        '/manifest.webmanifest',
       ]);
     })
   );
@@ -32,8 +32,13 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch event - network first, fallback to cache
+// Fetch event - network first, fallback to cache (GET requests only)
 self.addEventListener('fetch', (event) => {
+  // Only handle GET requests - Cache API doesn't support POST, etc.
+  if (event.request.method !== 'GET') {
+    return;
+  }
+
   event.respondWith(
     fetch(event.request)
       .then((response) => {
