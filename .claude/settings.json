@@ -31,7 +31,6 @@
     "deny": []
   },
   "enabledPlugins": {
-    "feature-dev@claude-plugins-official": true,
     "pr-review-toolkit@claude-plugins-official": true
   }
 }

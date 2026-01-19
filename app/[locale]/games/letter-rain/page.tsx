@@ -7,11 +7,12 @@ import RoundFunButton from '@/components/RoundFunButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useRouter } from 'next/navigation';
 import FunButton from '@/components/FunButton';
-import Confetti from 'react-confetti';
 import letters from '@/data/letters';
 import { playSound, AudioSounds } from '@/utils/audio';
 import { submitScore, getTopScore } from '@/lib/firebase';
 import { useGameAnalytics } from '@/hooks/useGameAnalytics';
+import { useCelebration } from '@/hooks/useCelebration';
+import Celebration from '@/components/Celebration';
 import numbers from '@/data/numbers';
 import shapes from '@/data/shapes';
 import { ModelTypesEnum } from '@/models/ModelsTypesEnum';
@@ -98,6 +99,7 @@ export default function LetterRainPage() {
   const t = useTranslations();
   const router = useRouter();
   const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'letter-rain' });
+  const { celebrationState, celebrate, resetCelebration } = useCelebration();
 
   // Game State
   const [gameState, setGameState] = useState<GameState>('menu');
@@ -343,8 +345,8 @@ export default function LetterRainPage() {
     clearBubbleTimeouts();
     setBubbles([]);
     setGameState('finished');
-    playSound(AudioSounds.CELEBRATION);
-  }, [clearGameTimers, clearBubbleTimeouts]);
+    celebrate('gameComplete');
+  }, [clearGameTimers, clearBubbleTimeouts, celebrate]);
 
   // Track game completion
   useEffect(() => {
@@ -803,12 +805,7 @@ export default function LetterRainPage() {
           p: 2,
         }}
       >
-        <Confetti
-          width={windowSize.width}
-          height={windowSize.height}
-          recycle={false}
-          numberOfPieces={300}
-        />
+        <Celebration celebrationState={celebrationState} onComplete={resetCelebration} />
 
         <Paper
           elevation={8}

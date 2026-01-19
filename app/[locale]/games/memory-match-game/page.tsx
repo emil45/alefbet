@@ -21,13 +21,13 @@ import food from '@/data/food';
 import { shuffle } from '@/utils/common';
 import MemoryMatchCard from '@/components/MemoryMatchCard';
 import { MemoryMatchCardModel } from '@/models/MemoryMatchCardModel';
-import Confetti from 'react-confetti';
 import FunButton from '@/components/FunButton';
 import RoundFunButton from '@/components/RoundFunButton';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import { AudioSounds, playSound } from '@/utils/audio';
 import { useTranslations } from 'next-intl';
 import { useGameAnalytics } from '@/hooks/useGameAnalytics';
+import { useCelebration } from '@/hooks/useCelebration';
+import Celebration from '@/components/Celebration';
 
 const CARD_OPTIONS = [6, 10, 20, 40, 70, 100] as const;
 
@@ -76,23 +76,16 @@ const generateCards = (numCards: number, t: any): MemoryMatchCardModel[] => {
 export default function MemoryMatchGamePage() {
   const t = useTranslations();
   const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'memory-match-game' });
+  const { celebrationState, celebrate, resetCelebration } = useCelebration();
   const [numCards, setNumCards] = useState<number>(10);
   const [cards, setCards] = useState<MemoryMatchCardModel[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [isGameWon, setIsGameWon] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   // Initialize cards on client side only
   useEffect(() => {
     setCards(generateCards(numCards, t));
-    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-
-    const handleResize = () => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const resetGame = useCallback(() => {
@@ -113,15 +106,16 @@ export default function MemoryMatchGamePage() {
     if (cards.length > 0) {
       resetGame();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Intentional: only reset on numCards change, not resetGame identity
   }, [numCards]);
 
   useEffect(() => {
     if (cards.length > 0 && cards.every((card) => card.matched)) {
       setIsGameWon(true);
-      playSound(AudioSounds.BONUS);
+      celebrate('gameComplete');
       trackGameCompleted(numCards); // Score is number of cards matched
     }
-  }, [cards, numCards, trackGameCompleted]);
+  }, [cards, numCards, trackGameCompleted, celebrate]);
 
   useEffect(() => {
     if (flippedCards.length === 2) {
@@ -163,12 +157,9 @@ export default function MemoryMatchGamePage() {
     </Modal>
   );
 
-  const showConfetti = () =>
-    isGameWon && windowSize.width > 0 && (
-      <Box sx={{ position: 'fixed', inset: 0, zIndex: 1400, pointerEvents: 'none' }}>
-        <Confetti width={windowSize.width} height={windowSize.height} recycle={false} numberOfPieces={2000} gravity={0.05} />
-      </Box>
-    );
+  const showConfetti = () => (
+    <Celebration celebrationState={celebrationState} onComplete={resetCelebration} />
+  );
 
   const showCards = () => (
     <Grid container spacing={{ xs: 2, sm: 4 }} justifyContent="center">

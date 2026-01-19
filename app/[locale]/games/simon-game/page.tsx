@@ -10,6 +10,8 @@ import { Color, COLORS, colorToAudioSound, GameState } from '@/models/SimonGameM
 import { useTranslations } from 'next-intl';
 import { submitScore, getTopScore } from '@/lib/firebase';
 import { useGameAnalytics } from '@/hooks/useGameAnalytics';
+import { useCelebration } from '@/hooks/useCelebration';
+import Celebration from '@/components/Celebration';
 
 export const INITIAL_DELAY = 1000;
 export const INITIAL_SEQUENCE_DELAY = 500;
@@ -59,6 +61,7 @@ const SimonContainer = styled(Box)(({ theme }) => ({
 export default function SimonGamePage() {
   const t = useTranslations();
   const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'simon-game' });
+  const { celebrationState, celebrate, resetCelebration } = useCelebration();
   const [sequence, setSequence] = useState<Color[]>([]);
   const [userStep, setUserStep] = useState(0); // Simplified: just track current step instead of full array
   const [gameState, setGameState] = useState<GameState>(GameState.IDLE);
@@ -159,8 +162,9 @@ export default function SimonGamePage() {
         setHighScore((prev) => Math.max(prev, newScore));
         setUserStep(0);
         playSound(AudioSounds.SUCCESS);
+        // Celebrate milestones every 5 levels
         if (newScore % 5 === 0) {
-          playSound(AudioSounds.BONUS);
+          celebrate('milestone');
         }
         // Submit if new world record
         if (newScore > globalHighScore) {
@@ -174,7 +178,7 @@ export default function SimonGamePage() {
         setUserStep(nextStep);
       }
     },
-    [gameState, getSequenceDelay, lightUp, sequence, userStep, score, addToSequence, globalHighScore]
+    [gameState, getSequenceDelay, lightUp, sequence, userStep, score, addToSequence, globalHighScore, celebrate]
   );
 
   useEffect(() => {
@@ -188,6 +192,7 @@ export default function SimonGamePage() {
 
   return (
     <>
+      <Celebration celebrationState={celebrationState} onComplete={resetCelebration} />
       <BackButton href="/games" />
       <Box display="flex" flexDirection="column" alignItems="center" mb={4}>
         <Typography variant="h4" align="center" sx={{ mb: 2 }}>

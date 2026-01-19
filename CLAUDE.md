@@ -107,6 +107,23 @@ E2E tests using Playwright in `e2e/app.spec.ts`. Tests verify the site isn't bro
 
 **Run tests before deploying** - if all pass, site works.
 
+## Development Workflow
+
+Follow the structured workflow in `.claude/skills/feature-workflow/SKILL.md` for implementing features and tasks. The workflow ensures quality through:
+
+1. **Task Acquisition** - Get and set task status
+2. **Exploration** - Understand codebase BEFORE coding
+3. **Implementation** - Follow patterns, use TodoWrite
+4. **Testing** - Build verification, run tests
+5. **Review** - Always run code-reviewer agent
+6. **Completion** - Mark done, commit
+
+Key agents to use:
+- `code-reviewer` - **Always** after implementation
+- `code-simplifier` - When complexity was added
+- `silent-failure-hunter` - When error handling was added
+- `Explore` - For understanding unfamiliar code
+
 ## Roadmap & Task Tracking
 
 **Monday.com Board ID:** `5090306877`
