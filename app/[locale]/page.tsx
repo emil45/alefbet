@@ -1,65 +1,17 @@
-'use client';
-
-import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import FunButton from '@/components/FunButton';
-import { useTranslations, useLocale } from 'next-intl';
-import RoundFunButton from '@/components/RoundFunButton';
-import SettingsIcon from '@mui/icons-material/Settings';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import SettingsDrawer from '@/components/SettingsDrawer';
-import { useRouter } from 'next/navigation';
-import { getLanguageSpecificRoute } from '@/utils/languageRoutes';
+import HomeHeader from '@/components/HomeHeader';
 import StartHere from '@/components/StartHere';
 
-export default function HomePage() {
-  const [open, setOpen] = useState(false);
-  const t = useTranslations();
-  const locale = useLocale();
-  const router = useRouter();
-  const isRTL = locale === 'he';
+type Props = {
+  params: Promise<{ locale: string }>;
+};
 
-  const toggleDrawer = (newOpen: boolean) => {
-    setOpen(newOpen);
-  };
-
-  const showButtons = () => {
-    return (
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-        <FunButton to="/letters" text={t('home.buttons.letters')} />
-        <FunButton to="/numbers" text={t('home.buttons.numbers')} />
-        <FunButton to="/colors" text={t('home.buttons.colors')} />
-        <FunButton to="/shapes" text={t('home.buttons.shapes')} />
-        <FunButton to="/animals" text={t('home.buttons.animals')} />
-        <FunButton to="/food" text={t('home.buttons.food')} />
-        <FunButton to="/games" text={t('home.buttons.games')} />
-      </Box>
-    );
-  };
-
-  const showLearnMoreButton = () => {
-    return (
-      <Box
-        sx={{
-          position: 'absolute',
-          top: { xs: '10px', sm: '20px' },
-          ...(isRTL ? { right: { xs: '10px', sm: '20px' } } : { left: { xs: '10px', sm: '20px' } }),
-          zIndex: 10,
-          display: 'flex',
-          flexDirection: 'row',
-          gap: 1,
-        }}
-      >
-        <RoundFunButton onClick={() => router.push(getLanguageSpecificRoute('/learn', locale))}>
-          <HelpOutlineIcon />
-        </RoundFunButton>
-        <RoundFunButton onClick={() => router.push(getLanguageSpecificRoute('/stickers', locale))}>
-          <EmojiEventsIcon />
-        </RoundFunButton>
-      </Box>
-    );
-  };
+export default async function HomePage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations();
 
   return (
     <Box>
@@ -79,20 +31,7 @@ export default function HomePage() {
       >
         {t('seo.hero.title')}
       </Typography>
-      <Box
-        sx={{
-          position: 'absolute',
-          top: { xs: '10px', sm: '20px' },
-          ...(isRTL ? { left: { xs: '10px', sm: '20px' } } : { right: { xs: '10px', sm: '20px' } }),
-          zIndex: 10,
-        }}
-      >
-        <RoundFunButton onClick={() => toggleDrawer(true)}>
-          <SettingsIcon />
-        </RoundFunButton>
-      </Box>
-      {showLearnMoreButton()}
-      <SettingsDrawer open={open} toggleDrawer={toggleDrawer} />
+      <HomeHeader locale={locale} />
       <StartHere />
       <Box
         display="flex"
@@ -100,7 +39,15 @@ export default function HomePage() {
         alignItems="center"
         sx={{ pt: { xs: 8, sm: 6 } }}
       >
-        {showButtons()}
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
+          <FunButton to="/letters" text={t('home.buttons.letters')} />
+          <FunButton to="/numbers" text={t('home.buttons.numbers')} />
+          <FunButton to="/colors" text={t('home.buttons.colors')} />
+          <FunButton to="/shapes" text={t('home.buttons.shapes')} />
+          <FunButton to="/animals" text={t('home.buttons.animals')} />
+          <FunButton to="/food" text={t('home.buttons.food')} />
+          <FunButton to="/games" text={t('home.buttons.games')} />
+        </Box>
       </Box>
     </Box>
   );
