@@ -109,10 +109,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: t('siteTitle'),
     description: t('siteDescription'),
     keywords: locale === 'he'
-      ? ['לימוד אותיות', 'אלף בית לילדים', 'משחקים חינוכיים', 'עברית לגיל הרך', 'לימוד מספרים', 'משחקי זיכרון לילדים']
+      ? ['לימוד עברית לילדים', 'אלף בית לילדים', 'לומדים אותיות', 'משחקים חינוכיים לגיל הרך', 'לימוד אותיות ומספרים', 'עברית לגן']
       : locale === 'ru'
-      ? ['учить иврит', 'алфавит для детей', 'развивающие игры', 'еврейские буквы']
-      : ['learn hebrew', 'hebrew alphabet', 'alef bet', 'educational games for kids', 'hebrew for toddlers'],
+      ? ['иврит для детей', 'алфавит иврита для детей', 'учим буквы иврита', 'развивающие игры', 'алеф бет']
+      : ['hebrew for kids', 'learn alef bet', 'hebrew alphabet for toddlers', 'hebrew letters for children', 'learn hebrew for kids', 'hebrew games for kids'],
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+        { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      ],
+      apple: [
+        { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      ],
+    },
     alternates: {
       canonical: currentUrl,
       languages: {

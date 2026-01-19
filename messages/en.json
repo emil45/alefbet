@@ -299,94 +299,94 @@
     "frog": { "name": "Frog", "fullName": "Frog" }
   },
   "seo": {
-    "siteTitle": "Lepdy - Learn Hebrew Alphabet for Kids | Educational Games",
-    "siteDescription": "Interactive Hebrew learning website for kids - learn Hebrew letters (Alef Bet), numbers, colors, shapes with fun educational games. Real Israeli child pronunciation.",
+    "siteTitle": "Hebrew for Kids - Learn Alef Bet, Numbers, Colors & Games",
+    "siteDescription": "Teach your child Hebrew with interactive games. Learn the Hebrew alphabet (Alef Bet), numbers 1-10, colors, shapes and animals with real Israeli pronunciation. Perfect for toddlers ages 2-7.",
     "pages": {
       "letters": {
-        "title": "Learn Hebrew Letters - Alef Bet for Kids | Lepdy",
-        "description": "Learn all 22 Hebrew alphabet letters interactively. Click each letter to hear correct pronunciation by a real Israeli child. Perfect for toddlers and preschool.",
+        "title": "Learn Hebrew Alphabet for Kids - Alef Bet Letters",
+        "description": "Teach your child the Hebrew alphabet! All 22 Alef Bet letters with authentic Israeli pronunciation. Interactive Hebrew letters for toddlers and preschoolers.",
         "pageTitle": "Learn Hebrew Letters - Alef Bet",
         "pageDescription": "Click each letter to hear the correct Hebrew pronunciation"
       },
       "numbers": {
-        "title": "Learn Hebrew Numbers for Kids - Counting for Toddlers | Lepdy",
-        "description": "Learn Hebrew numbers 0-9 interactively. Click each number to hear correct pronunciation by a real Israeli child. Perfect counting games for toddlers.",
+        "title": "Hebrew Numbers for Kids - Learn to Count 1-10 in Hebrew",
+        "description": "Teach kids Hebrew numbers 1-10 with native pronunciation. Interactive counting games perfect for toddlers learning Hebrew.",
         "pageTitle": "Learn Hebrew Numbers",
         "pageDescription": "Click each number to hear how to say it in Hebrew"
       },
       "colors": {
-        "title": "Learn Hebrew Colors for Kids - Colors for Toddlers | Lepdy",
-        "description": "Learn Hebrew colors interactively. Click each color to hear its name with correct pronunciation by a real Israeli child.",
+        "title": "Learn Colors in Hebrew for Kids - Hebrew Color Names",
+        "description": "Teach your child colors in Hebrew. Click each color to hear its Hebrew name with authentic pronunciation. Fun for toddlers!",
         "pageTitle": "Learn Colors in Hebrew",
         "pageDescription": "Click each color to hear its Hebrew name"
       },
       "shapes": {
-        "title": "Learn Hebrew Shapes for Kids - Geometric Shapes for Toddlers | Lepdy",
-        "description": "Learn geometric shapes in Hebrew - circle, square, triangle and more. Click each shape to hear its name with correct pronunciation.",
+        "title": "Learn Shapes in Hebrew for Kids - Circle, Square, Triangle",
+        "description": "Teach kids shapes in Hebrew - circle, square, triangle and more. Interactive shape learning with native Hebrew pronunciation.",
         "pageTitle": "Learn Shapes in Hebrew",
         "pageDescription": "Click each shape to hear its Hebrew name"
       },
       "animals": {
-        "title": "Learn Hebrew Animal Names for Kids | Lepdy",
-        "description": "Learn animal names in Hebrew interactively. Click each animal to hear its sound. Dog, cat, lion and more!",
+        "title": "Hebrew Animal Names for Kids - Learn Animals in Hebrew",
+        "description": "Teach kids animal names in Hebrew. Dog, cat, lion and more with real animal sounds. Interactive Hebrew vocabulary for children.",
         "pageTitle": "Learn Animal Names in Hebrew",
         "pageDescription": "Click each animal to hear its sound"
       },
       "food": {
-        "title": "Learn Hebrew Food Names for Kids | Lepdy",
-        "description": "Learn food names in Hebrew interactively. Click each food to hear its name with correct pronunciation. Apple, banana, bread and more!",
+        "title": "Learn Food Words in Hebrew for Kids",
+        "description": "Teach kids food names in Hebrew. Apple, banana, bread and more with native pronunciation. Build Hebrew vocabulary through play!",
         "pageTitle": "Learn Food Names in Hebrew",
         "pageDescription": "Click each food to hear its Hebrew name"
       },
       "games": {
-        "title": "Educational Games for Kids - Learning Games for Toddlers | Lepdy",
-        "description": "Interactive educational games for kids - memory match, Simon game, speed challenge, word builder and more. Fun learning games for toddlers!",
+        "title": "Hebrew Learning Games for Kids - Educational Games",
+        "description": "Fun Hebrew games for kids - memory match, Simon, speed challenge and word builder. Interactive educational games for toddlers learning Hebrew.",
         "pageTitle": "Educational Games for Kids",
         "pageDescription": "Choose a game and start learning with fun!"
       },
       "guessGame": {
-        "title": "Guess Game for Kids - Fun Hebrew Learning | Lepdy",
-        "description": "Interactive guessing game for kids - learn Hebrew letters, numbers, colors and shapes. Fun educational game for toddlers!"
+        "title": "Hebrew Guessing Game for Kids - Learn Letters & Numbers",
+        "description": "Interactive Hebrew guessing game - learn Alef Bet letters, numbers, colors and shapes. Fun educational game for toddlers!"
       },
       "memoryGame": {
-        "title": "Memory Match Game for Kids - Learning Games | Lepdy",
-        "description": "Interactive memory game for kids - match pairs of letters, numbers and shapes. Educational game for memory development!"
+        "title": "Hebrew Memory Game for Kids - Match Hebrew Letters",
+        "description": "Fun memory matching game with Hebrew letters, numbers and shapes. Build memory skills while learning Hebrew!"
       },
       "simonGame": {
-        "title": "Simon Game for Kids - Memory Games | Lepdy",
-        "description": "Interactive Simon game for kids - remember the sequence and repeat it! Educational game for memory and concentration."
+        "title": "Simon Says in Hebrew - Memory Game for Kids",
+        "description": "Hebrew Simon game for kids - remember sequences with Hebrew letters. Fun memory and concentration game for children."
       },
       "speedChallenge": {
-        "title": "Speed Challenge for Kids - Learning Games | Lepdy",
-        "description": "Interactive speed game for kids - identify letters, numbers and shapes quickly! Fun educational challenge for toddlers."
+        "title": "Hebrew Speed Game for Kids - Quick Letter Recognition",
+        "description": "Fast-paced Hebrew learning game - identify Alef Bet letters, numbers and shapes quickly! Fun challenge for kids."
       },
       "wordBuilder": {
-        "title": "Word Builder for Kids - Learn Hebrew Reading | Lepdy",
-        "description": "Interactive word building game for kids - learn to build Hebrew words letter by letter. Educational game for reading development!"
+        "title": "Build Hebrew Words - Learn to Read Hebrew for Kids",
+        "description": "Interactive word building game - learn to build Hebrew words letter by letter. Help your child start reading Hebrew!"
       },
       "learn": {
-        "title": "Learn Hebrew for Kids - Parent Guide | Lepdy",
-        "description": "Discover our method for teaching Hebrew to children - letters, numbers, colors and educational games with authentic pronunciation."
+        "title": "Learn Hebrew for Kids - How to Teach Your Child Hebrew",
+        "description": "How to teach your child Hebrew at home. Interactive Alef Bet, numbers, colors and educational games with native Israeli pronunciation."
       },
       "about": {
-        "title": "About Lepdy - Hebrew Learning for Kids | Lepdy",
-        "description": "Learn about Lepdy, the interactive Hebrew learning app for children and families. Authentic pronunciation, educational games, and safe learning environment."
+        "title": "About - Hebrew Learning App for Kids & Families",
+        "description": "Interactive Hebrew learning for children and families. Authentic pronunciation by Israeli children, fun games, and a safe ad-free environment."
       },
       "safety": {
-        "title": "Child Safety & Privacy | Lepdy",
-        "description": "Learn about our commitment to child safety and privacy. COPPA compliant, no ads, no data collection, safe learning environment for children."
+        "title": "Child Safety & Privacy - Safe Hebrew Learning",
+        "description": "Safe, ad-free Hebrew learning for kids. No data collection, no ads, parental controls. A trusted environment for children to learn."
       },
       "contact": {
-        "title": "Contact Us | Lepdy",
-        "description": "Get in touch with the Lepdy team. We'd love to hear your feedback, suggestions, and questions about our Hebrew learning app for children."
+        "title": "Contact Us - Hebrew Learning for Kids",
+        "description": "Questions about our Hebrew learning app? We'd love to hear from parents. Share feedback and suggestions."
       },
       "stickers": {
-        "title": "Sticker Collection for Kids | Lepdy",
-        "description": "Collect fun stickers while learning! Interactive sticker collection for kids with various themes - letters, numbers, animals and more."
+        "title": "Sticker Rewards for Kids - Fun Hebrew Learning",
+        "description": "Earn stickers while learning Hebrew! Fun reward system with letter, number, animal and achievement stickers for kids."
       }
     },
-    "pageTitle": "Lepdy - Learn Hebrew for Kids Online | Letters, Numbers & Games",
-    "metaDescription": "Interactive Hebrew learning website for children - Hebrew letters, numbers, colors, shapes, animals & food with native audio. Hebrew learning games for kids of all ages.",
+    "pageTitle": "Hebrew for Kids - Learn Alef Bet, Numbers & Colors",
+    "metaDescription": "Teach your child Hebrew with fun interactive games. Learn Alef Bet letters, numbers, colors, shapes and animals with real Israeli pronunciation. Ages 2-7.",
     "hero": {
       "title": "Lepdy - Learn Hebrew the Fun Way",
       "subtitle": "Help your child master Hebrew letters, numbers, colors, shapes, animals and food through engaging audio-visual activities with authentic Hebrew pronunciation",
@@ -676,6 +676,8 @@
     "install": "Install Now",
     "installing": "Installing...",
     "benefits": "Quick access, works offline too",
-    "close": "Close"
+    "close": "Close",
+    "iosStep1": "Tap",
+    "iosStep2": "then \"Add to Home Screen\""
   }
 }

@@ -5,6 +5,8 @@ import { Box, Typography, Button, Paper, IconButton, keyframes, Slide } from '@m
 import { useTranslations } from 'next-intl';
 import CloseIcon from '@mui/icons-material/Close';
 import GetAppIcon from '@mui/icons-material/GetApp';
+import IosShareIcon from '@mui/icons-material/IosShare';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { playSound, AudioSounds } from '@/utils/audio';
 
 const VISIT_COUNT_KEY = 'lepdy_visit_count';
@@ -47,13 +49,20 @@ const SPARKLE_POSITIONS = [
 export default function InstallPrompt() {
   const t = useTranslations('installPrompt');
   const [showPrompt, setShowPrompt] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [isInstalling, setIsInstalling] = useState(false);
 
-  // Track visits and check if we should show prompt
+  // Register service worker and track visits
   useEffect(() => {
-    // Don't run on server
     if (typeof window === 'undefined') return;
+
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch((error) => {
+        console.error('Service worker registration failed:', error);
+      });
+    }
 
     try {
       // Check if already dismissed
@@ -71,7 +80,17 @@ export default function InstallPrompt() {
       // Only show after required visits
       if (newCount < VISITS_BEFORE_PROMPT) return;
 
-      // Listen for the beforeinstallprompt event
+      // Detect iOS
+      const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+      setIsIOS(isIOSDevice);
+
+      // On iOS, show manual instructions immediately
+      if (isIOSDevice) {
+        setShowPrompt(true);
+        return;
+      }
+
+      // On other platforms, listen for beforeinstallprompt
       const handleBeforeInstallPrompt = (e: Event) => {
         e.preventDefault();
         setDeferredPrompt(e as BeforeInstallPromptEvent);
@@ -89,7 +108,7 @@ export default function InstallPrompt() {
     }
   }, []);
 
-  // Listen for app installed event to hide prompt if user installs via browser
+  // Listen for app installed event to hide prompt
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -238,39 +257,62 @@ export default function InstallPrompt() {
           sx={{
             textAlign: 'center',
             color: '#5d4037',
-            mb: 3,
+            mb: 2,
           }}
         >
           {t('description')}
         </Typography>
 
-        {/* Install button */}
-        <Button
-          variant="contained"
-          size="large"
-          fullWidth
-          onClick={handleInstall}
-          disabled={isInstalling}
-          startIcon={<GetAppIcon />}
-          sx={{
-            py: 1.5,
-            fontSize: '1.1rem',
-            fontWeight: 'bold',
-            borderRadius: 3,
-            backgroundColor: '#7b1fa2',
-            textTransform: 'none',
-            '&:hover': {
-              backgroundColor: '#6a1b9a',
-              transform: 'scale(1.02)',
-            },
-            '&:active': {
-              transform: 'scale(0.98)',
-            },
-            transition: 'all 0.2s ease',
-          }}
-        >
-          {isInstalling ? t('installing') : t('install')}
-        </Button>
+        {/* iOS Instructions */}
+        {isIOS ? (
+          <Box sx={{ mb: 2 }}>
+            <Typography
+              variant="body2"
+              sx={{
+                textAlign: 'center',
+                color: '#5d4037',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 0.5,
+                flexWrap: 'wrap',
+              }}
+            >
+              {t('iosStep1')}
+              <IosShareIcon sx={{ fontSize: 20, color: '#007AFF', mx: 0.5 }} />
+              {t('iosStep2')}
+              <AddBoxIcon sx={{ fontSize: 20, color: '#007AFF', mx: 0.5 }} />
+            </Typography>
+          </Box>
+        ) : (
+          /* Install button for non-iOS */
+          <Button
+            variant="contained"
+            size="large"
+            fullWidth
+            onClick={handleInstall}
+            disabled={isInstalling || !deferredPrompt}
+            startIcon={<GetAppIcon />}
+            sx={{
+              py: 1.5,
+              fontSize: '1.1rem',
+              fontWeight: 'bold',
+              borderRadius: 3,
+              backgroundColor: '#7b1fa2',
+              textTransform: 'none',
+              '&:hover': {
+                backgroundColor: '#6a1b9a',
+                transform: 'scale(1.02)',
+              },
+              '&:active': {
+                transform: 'scale(0.98)',
+              },
+              transition: 'all 0.2s ease',
+            }}
+          >
+            {isInstalling ? t('installing') : t('install')}
+          </Button>
+        )}
 
         {/* Benefits text */}
         <Typography
