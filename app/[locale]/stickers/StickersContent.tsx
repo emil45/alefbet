@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Box, Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import BackButton from '@/components/BackButton';
 import StickerCard from '@/components/StickerCard';
+import StickerPeelAnimation from '@/components/StickerPeelAnimation';
 import { useStickerContext } from '@/contexts/StickerContext';
 import { useStreakContext } from '@/contexts/StreakContext';
 import {
@@ -14,33 +15,89 @@ import {
   Sticker,
 } from '@/data/stickers';
 
+interface PeelAnimationState {
+  isActive: boolean;
+  sticker: Sticker | null;
+  originX: number;
+  originY: number;
+}
+
 export default function StickersContent() {
   const [currentPage, setCurrentPage] = useState(0); // 0-indexed tab
   const { hasSticker, earnSticker, totalEarned } = useStickerContext();
   const { streakData } = useStreakContext();
   const t = useTranslations();
 
-  // Check if a sticker is unlocked (can be earned)
+  // Peel animation state
+  const [peelAnimation, setPeelAnimation] = useState<PeelAnimationState>({
+    isActive: false,
+    sticker: null,
+    originX: 0,
+    originY: 0,
+  });
+
+  // Check if a sticker meets its unlock requirements (regardless of earned status)
+  const meetsUnlockRequirements = useCallback(
+    (sticker: Sticker): boolean => {
+      if (sticker.unlockType === 'streak' && sticker.unlockValue !== undefined) {
+        return streakData.currentStreak >= sticker.unlockValue;
+      }
+      return false;
+    },
+    [streakData.currentStreak]
+  );
+
+  // Check if a sticker is unlocked (earned or meets requirements)
   const isStickerUnlocked = (sticker: Sticker): boolean => {
-    // Already earned = unlocked
-    if (hasSticker(sticker.id)) {
-      return true;
-    }
-    // Check unlock conditions
-    if (sticker.unlockType === 'streak' && sticker.unlockValue !== undefined) {
-      return streakData.currentStreak >= sticker.unlockValue;
-    }
-    // Future stickers are locked
-    return false;
+    return hasSticker(sticker.id) || meetsUnlockRequirements(sticker);
   };
 
-  // Handle clicking an unlocked sticker (earn it if not already earned)
-  const handleStickerClick = (sticker: Sticker) => {
-    if (!hasSticker(sticker.id) && isStickerUnlocked(sticker)) {
-      const name = t(sticker.translationKey);
-      earnSticker(sticker.id, name, sticker.pageNumber);
+  // Handle clicking an unlocked sticker (start peel animation)
+  const handleStickerClick = useCallback(
+    (sticker: Sticker, event: React.MouseEvent) => {
+      const isEarned = hasSticker(sticker.id);
+      if (isEarned || !meetsUnlockRequirements(sticker)) {
+        return;
+      }
+
+      // Get the click position for animation origin
+      const rect = event.currentTarget.getBoundingClientRect();
+      const originX = rect.left + rect.width / 2;
+      const originY = rect.top + rect.height / 2;
+
+      setPeelAnimation({
+        isActive: true,
+        sticker,
+        originX,
+        originY,
+      });
+    },
+    [hasSticker, meetsUnlockRequirements]
+  );
+
+  // Called when peel animation completes
+  const handlePeelComplete = useCallback(() => {
+    // Capture sticker reference before resetting state
+    const stickerToEarn = peelAnimation.sticker;
+
+    // ALWAYS reset animation state first - UI must not get stuck
+    setPeelAnimation({
+      isActive: false,
+      sticker: null,
+      originX: 0,
+      originY: 0,
+    });
+
+    // Then try to award the sticker
+    if (stickerToEarn) {
+      try {
+        const name = t(stickerToEarn.translationKey);
+        earnSticker(stickerToEarn.id, name, stickerToEarn.pageNumber);
+      } catch (error) {
+        console.error('Failed to earn sticker:', error);
+      }
     }
-  };
+  }, [peelAnimation.sticker, t, earnSticker]);
 
   // Get unlock hint for locked stickers
   const getUnlockHint = (sticker: Sticker): string | undefined => {
@@ -275,7 +332,7 @@ export default function StickersContent() {
                   unlockHint={!isUnlocked ? getUnlockHint(sticker) : undefined}
                   onClick={
                     isUnlocked && !isEarned
-                      ? () => handleStickerClick(sticker)
+                      ? (event) => handleStickerClick(sticker, event)
                       : undefined
                   }
                   pageColor={pageInfo?.color}
@@ -340,6 +397,17 @@ export default function StickersContent() {
           ))}
         </Box>
       </Box>
+
+      {/* Sticker Peel Animation */}
+      {peelAnimation.isActive && peelAnimation.sticker && (
+        <StickerPeelAnimation
+          emoji={peelAnimation.sticker.emoji}
+          color={pageInfo?.color || '#FFD93D'}
+          originX={peelAnimation.originX}
+          originY={peelAnimation.originY}
+          onComplete={handlePeelComplete}
+        />
+      )}
     </Box>
   );
 }

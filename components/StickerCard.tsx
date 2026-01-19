@@ -9,7 +9,7 @@ interface StickerCardProps {
   name: string;
   isLocked: boolean;
   unlockHint?: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
   pageColor?: string;
 }
 
@@ -21,9 +21,15 @@ const StickerCard: React.FC<StickerCardProps> = ({
   onClick,
   pageColor = '#FFD93D',
 }) => {
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!isLocked && onClick) {
+      onClick(event);
+    }
+  };
+
   const cardContent = (
     <Box
-      onClick={isLocked ? undefined : onClick}
+      onClick={handleClick}
       sx={{
         cursor: isLocked ? 'default' : onClick ? 'pointer' : 'default',
         position: 'relative',
