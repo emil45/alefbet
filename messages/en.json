@@ -669,5 +669,13 @@
     },
     "comingSoon": "Coming soon!",
     "streakHint": "Keep learning every day to unlock streak stickers!"
+  },
+  "installPrompt": {
+    "title": "Install Lepdy!",
+    "description": "Add Lepdy to your home screen for quick access and learning anywhere",
+    "install": "Install Now",
+    "installing": "Installing...",
+    "benefits": "Quick access, works offline too",
+    "close": "Close"
   }
 }
