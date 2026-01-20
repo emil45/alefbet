@@ -12,9 +12,7 @@
  */
 export interface FeatureFlags {
   showStickersButton: boolean;
-  // Add new flags here as needed:
-  // exampleFlag: boolean;
-  // anotherFeature: boolean;
+  showVoiceIndicator: boolean;
 }
 
 /**
@@ -26,6 +24,7 @@ export interface FeatureFlags {
  */
 export const DEFAULT_FLAGS: FeatureFlags = {
   showStickersButton: false,
+  showVoiceIndicator: false,
 };
 
 /**

@@ -93,7 +93,7 @@ export default function CategoryPage<T extends CategoryItem>({
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flex: 1 }}>
         <Grid container spacing={4} justifyContent="center" sx={forceRTL ? { direction: 'rtl' } : undefined}>
           {items.map((item) => (
-            <Grid key={item.id} sx={{ pb: { xs: 6, sm: 7 } }}>
+            <Grid key={item.id}>
               <ItemCard
                 name={getItemName(item)}
                 element={renderMode === 'element' ? (item as ElementItem).element : undefined}

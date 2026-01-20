@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Box, SvgIcon, Typography } from '@mui/material';
 import VoiceIndicator from './VoiceIndicator';
 import { VoiceCharacter } from '@/models/VoiceCharacter';
+import { useFeatureFlagContext } from '@/contexts/FeatureFlagContext';
 
 // Global variable to track currently playing audio
 let currentlyPlayingAudio: HTMLAudioElement | null = null;
@@ -35,6 +36,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
   voiceCharacter,
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const { getFlag } = useFeatureFlagContext();
   // Numbers should always be LTR, even in Hebrew UI
   const isNumber = /^\d+$/.test(name);
   const shouldUseLTR = isNumber || !isRTL;
@@ -170,7 +172,9 @@ const ItemCard: React.FC<ItemCardProps> = ({
           {itemCaption}
         </Typography>
       )}
-      {voiceCharacter && <VoiceIndicator isVisible={isPlaying} character={voiceCharacter} />}
+      {voiceCharacter && getFlag('showVoiceIndicator') && (
+        <VoiceIndicator isVisible={isPlaying} character={voiceCharacter} />
+      )}
     </Box>
   );
 };

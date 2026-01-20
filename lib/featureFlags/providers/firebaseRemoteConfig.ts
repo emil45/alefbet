@@ -116,7 +116,7 @@ export class FirebaseRemoteConfigProvider implements FeatureFlagProvider {
       // Use getSource() to check if value exists remotely, otherwise use our defaults
       const newFlags: FeatureFlags = {
         showStickersButton: this.getBooleanFlag('showStickersButton', getValue),
-        // Add new flags here as they are added to FeatureFlags interface
+        showVoiceIndicator: this.getBooleanFlag('showVoiceIndicator', getValue),
       };
 
       this.flags = newFlags;
