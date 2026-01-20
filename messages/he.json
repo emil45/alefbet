@@ -679,5 +679,9 @@
     "close": "סגור",
     "iosStep1": "לחצו על",
     "iosStep2": "ואז על \"הוסף למסך הבית\""
+  },
+  "common": {
+    "voiceName": "נעה",
+    "animalSound": "קול החיה"
   }
 }

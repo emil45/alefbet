@@ -11,6 +11,7 @@ import { useDirection } from '@/hooks/useDirection';
 import { logEvent } from '@/utils/amplitude';
 import { AmplitudeEventsEnum, CategoryType, LocaleType } from '@/models/amplitudeEvents';
 import { useStreakContext } from '@/contexts/StreakContext';
+import { VOICE_CHARACTERS } from '@/data/voiceCharacters';
 
 type RenderMode = 'text' | 'image' | 'element' | 'color';
 
@@ -92,7 +93,7 @@ export default function CategoryPage<T extends CategoryItem>({
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flex: 1 }}>
         <Grid container spacing={4} justifyContent="center" sx={forceRTL ? { direction: 'rtl' } : undefined}>
           {items.map((item) => (
-            <Grid key={item.id}>
+            <Grid key={item.id} sx={{ pb: { xs: 6, sm: 7 } }}>
               <ItemCard
                 name={getItemName(item)}
                 element={renderMode === 'element' ? (item as ElementItem).element : undefined}
@@ -102,6 +103,7 @@ export default function CategoryPage<T extends CategoryItem>({
                 itemCaption={getItemCaption(item)}
                 isRTL={isRTL}
                 onTap={() => handleItemTap(item)}
+                voiceCharacter={category === 'animals' ? VOICE_CHARACTERS.animal : VOICE_CHARACTERS.noa}
               />
             </Grid>
           ))}

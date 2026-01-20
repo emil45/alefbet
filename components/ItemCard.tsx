@@ -1,7 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, SvgIcon, Typography } from '@mui/material';
+import VoiceIndicator from './VoiceIndicator';
+import { VoiceCharacter } from '@/models/VoiceCharacter';
 
 // Global variable to track currently playing audio
 let currentlyPlayingAudio: HTMLAudioElement | null = null;
@@ -16,6 +18,8 @@ interface ItemCardProps {
   element?: React.ReactNode;
   isRTL?: boolean;
   onTap?: () => void;
+  /** Voice character to display when audio plays. If undefined, no indicator shown. */
+  voiceCharacter?: VoiceCharacter;
 }
 
 const ItemCard: React.FC<ItemCardProps> = ({
@@ -28,7 +32,9 @@ const ItemCard: React.FC<ItemCardProps> = ({
   cardSize = 1,
   isRTL = true,
   onTap,
+  voiceCharacter,
 }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
   // Numbers should always be LTR, even in Hebrew UI
   const isNumber = /^\d+$/.test(name);
   const shouldUseLTR = isNumber || !isRTL;
@@ -47,15 +53,30 @@ const ItemCard: React.FC<ItemCardProps> = ({
     const audio = new Audio(soundFile);
     currentlyPlayingAudio = audio;
 
-    // Clear the reference when audio ends naturally
+    // Show voice indicator when audio starts
+    setIsPlaying(true);
+
+    // Clear the reference and hide indicator when audio ends naturally
     audio.addEventListener('ended', () => {
+      setIsPlaying(false);
       if (currentlyPlayingAudio === audio) {
         currentlyPlayingAudio = null;
       }
     });
 
+    // Hide indicator if audio is paused (e.g., by another card)
+    audio.addEventListener('pause', () => {
+      setIsPlaying(false);
+    });
+
     // Clear the reference if audio fails to load
-    audio.addEventListener('error', () => {
+    audio.addEventListener('error', (e) => {
+      const target = e.target as HTMLAudioElement;
+      console.error('Audio failed to load:', soundFile, {
+        errorCode: target?.error?.code,
+        errorMessage: target?.error?.message,
+      });
+      setIsPlaying(false);
       if (currentlyPlayingAudio === audio) {
         currentlyPlayingAudio = null;
       }
@@ -63,6 +84,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
 
     audio.play().catch((error) => {
       console.error('Error playing audio:', soundFile, error);
+      setIsPlaying(false);
       if (currentlyPlayingAudio === audio) {
         currentlyPlayingAudio = null;
       }
@@ -148,6 +170,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
           {itemCaption}
         </Typography>
       )}
+      {voiceCharacter && <VoiceIndicator isVisible={isPlaying} character={voiceCharacter} />}
     </Box>
   );
 };

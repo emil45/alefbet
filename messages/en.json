@@ -679,5 +679,9 @@
     "close": "Close",
     "iosStep1": "Tap",
     "iosStep2": "then \"Add to Home Screen\""
+  },
+  "common": {
+    "voiceName": "Noa",
+    "animalSound": "Animal sound"
   }
 }

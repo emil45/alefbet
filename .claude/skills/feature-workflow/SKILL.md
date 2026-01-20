@@ -19,6 +19,7 @@ Autonomous end-to-end feature development. Fetches next task from Monday.com and
 | **Status: In Progress** | Label `In Progress` (index 0) |
 | **Status: Complete** | Label `Done` (index 1) |
 | **Description Column ID** | `long_text_mkzpq0cm` |
+| **Updates/Comments** | Use `get_item_updates` with item ID |
 | **Build Command** | `npm run build` |
 | **Test Command** | `npm test -- --workers=1` |
 | **Review Agents** | code-reviewer → silent-failure-hunter → code-simplifier |
@@ -130,14 +131,20 @@ Execute phases sequentially. No approval gates. Ask for help only if stuck after
 
 4. Read **Description Column** (`long_text_mkzpq0cm`) for requirements
 
-5. **If task is vague** (e.g., "fix issues", "validate", "improve"):
+5. **Fetch Updates/Comments** using `get_item_updates`:
+   - Query: `get_item_updates` with the item ID
+   - Updates often contain additional context, clarifications, or requirements that don't fit in the description
+   - Read ALL updates to get the complete picture
+   - Newer updates may override or clarify older requirements
+
+6. **If task is vague** (e.g., "fix issues", "validate", "improve"):
    - Explore the relevant code first
    - List specific issues found before planning fixes
    - If still unclear after exploration, ask user for clarification
 
-6. Create TodoWrite with task breakdown
+7. Create TodoWrite with task breakdown
 
-7. If no tasks: Report "No pending tasks" and stop
+8. If no tasks: Report "No pending tasks" and stop
 
 ---
 
