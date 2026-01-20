@@ -14,10 +14,11 @@ Autonomous end-to-end feature development. Fetches next task from Monday.com and
 | Key | Value |
 |-----|-------|
 | **Monday.com Board ID** | `5090306877` |
-| **Status: Ready** | `To Do` |
-| **Status: In Progress** | `In Progress` |
-| **Status: Complete** | `Done` |
-| **Description Column** | `text` |
+| **Status Column ID** | `color_mkzppqjv` |
+| **Status: Ready** | Label `To Do` (index 5) |
+| **Status: In Progress** | Label `In Progress` (index 0) |
+| **Status: Complete** | Label `Done` (index 1) |
+| **Description Column ID** | `long_text_mkzpq0cm` |
 | **Build Command** | `npm run build` |
 | **Test Command** | `npm test -- --workers=1` |
 | **Review Agents** | code-reviewer → silent-failure-hunter → code-simplifier |
@@ -38,6 +39,9 @@ lib/              → External integrations (firebase.ts, seo.ts)
 ### Key Patterns
 - Audio: `playSound(AudioSounds.X)` for effects, `playAudio(path)` for content
 - Celebrations: `useCelebration` hook with types: gameComplete, milestone, correctAnswer, streak
+
+### Known Gaps
+- **Word audio files missing**: `/public/audio/words/` doesn't exist yet. `hebrewWords.ts` has `audioFile` paths but they 404. Don't add code to play these until files exist.
 
 ### Testing Rules
 - **Add tests**: New pages, new games, major UI changes
@@ -111,12 +115,29 @@ Execute phases sequentially. No approval gates. Ask for help only if stuck after
 
 **Goal**: Get next task from Monday.com.
 
-1. Query **Monday.com Board ID** for items with **Status: In Progress** or **Status: Ready**
-2. Priority: **Status: In Progress** first (resume), then oldest **Status: Ready**
-3. Set status to **Status: In Progress**
-4. Read **Description Column** for requirements
-5. Create TodoWrite with task breakdown
-6. If no tasks: Report "No pending tasks" and stop
+1. Query board using `get_board_items_page` with filter:
+   ```json
+   {"columnId": "color_mkzppqjv", "compareValue": [0, 5], "operator": "any_of"}
+   ```
+   (0 = In Progress, 5 = To Do)
+
+2. Priority: **In Progress** first (resume), then oldest **To Do**
+
+3. Set status to **In Progress** using `change_item_column_values`:
+   ```json
+   {"color_mkzppqjv": {"label": "In Progress"}}
+   ```
+
+4. Read **Description Column** (`long_text_mkzpq0cm`) for requirements
+
+5. **If task is vague** (e.g., "fix issues", "validate", "improve"):
+   - Explore the relevant code first
+   - List specific issues found before planning fixes
+   - If still unclear after exploration, ask user for clarification
+
+6. Create TodoWrite with task breakdown
+
+7. If no tasks: Report "No pending tasks" and stop
 
 ---
 
@@ -215,18 +236,19 @@ Execute phases sequentially. No approval gates. Ask for help only if stuck after
 
 **Goal**: Catch issues before testing.
 
-Run **Review Agents** sequentially:
+Run **Review Agents** sequentially. **Important**: Scope each agent to only the files you modified, not the entire codebase.
 
 ### 6.1 code-reviewer
-- Bugs, logic errors, guideline violations
+- Prompt: "Review changes to [list specific files]. Focus on bugs, logic errors, guideline violations."
 - Fix critical/high severity issues
 
 ### 6.2 silent-failure-hunter
-- Error handling, silent failures
-- Fix swallowed exceptions
+- Prompt: "Review error handling in [list specific files] for silent failures."
+- Fix swallowed exceptions in YOUR changes only
+- Ignore pre-existing issues in other files
 
 ### 6.3 code-simplifier
-- Unnecessary complexity
+- Prompt: "Review [list specific files] for unnecessary complexity."
 - Apply clarity improvements
 
 After fixes: Re-run **Build Command**
@@ -274,7 +296,10 @@ EOF
 
 3. **Push**: `git push`
 
-4. **Update Monday.com**: Set status to **Status: Complete**
+4. **Update Monday.com**: Set status to Done using `change_item_column_values`:
+   ```json
+   {"color_mkzppqjv": {"label": "Done"}}
+   ```
 
 5. **Summary**: Report files changed, decisions made, follow-ups
 
@@ -318,3 +343,5 @@ Which approach?
 - Skipping SEO for new pages
 - Using `git stash` to verify pre-existing test failures (just check file names)
 - Silently reverting unrelated working directory changes without asking
+- Running review agents on entire codebase instead of scoping to changed files
+- Adding code that references missing assets (check files exist first)
