@@ -11,7 +11,9 @@ import { AudioSounds, playSound } from '@/utils/audio';
 import Confetti from 'react-confetti';
 import { useGameAnalytics } from '@/hooks/useGameAnalytics';
 import ClearIcon from '@mui/icons-material/Clear';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { getRandomWords, type HebrewWord } from '@/data/hebrewWords';
+import { useCelebration } from '@/hooks/useCelebration';
 
 // Game configuration
 const WORDS_PER_GAME = 10;
@@ -122,13 +124,13 @@ const LetterCard: React.FC<LetterCardProps> = ({ letter, isUsed, onClick, isInBu
 export default function WordBuilderGamePage() {
   const t = useTranslations();
   const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'word-builder' });
+  const { celebrationState, celebrate, resetCelebration } = useCelebration();
   const [gameWords] = useState<HebrewWord[]>(() => getRandomWords(WORDS_PER_GAME));
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [shuffledLetters, setShuffledLetters] = useState<string[]>([]);
   const [builtWord, setBuiltWord] = useState<string[]>([]);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [score, setScore] = useState(0);
-  const [showConfetti, setShowConfetti] = useState(false);
   const [isGameComplete, setIsGameComplete] = useState(false);
   const [usedLetterIndices, setUsedLetterIndices] = useState<Set<number>>(new Set());
 
@@ -188,16 +190,14 @@ export default function WordBuilderGamePage() {
     if (isWordCorrect) {
       setScore((prev) => prev + POINTS_PER_WORD);
       playSound(AudioSounds.WORD_COMPLETE);
-      setTimeout(() => new Audio(currentWord.audioFile).play().catch(() => {}), 500);
       setTimeout(() => {
         if (currentWordIndex < gameWords.length - 1) {
           playSound(AudioSounds.LEVEL_UP);
           setCurrentWordIndex((prev) => prev + 1);
         } else {
-          playSound(AudioSounds.CELEBRATION);
-          setShowConfetti(true);
+          celebrate('gameComplete');
           setIsGameComplete(true);
-          trackGameCompleted(score + POINTS_PER_WORD); // Include the final word's points
+          trackGameCompleted(score + POINTS_PER_WORD);
         }
       }, WORD_TRANSITION_DELAY);
     } else {
@@ -209,7 +209,7 @@ export default function WordBuilderGamePage() {
     setCurrentWordIndex(0);
     setScore(0);
     setIsGameComplete(false);
-    setShowConfetti(false);
+    resetCelebration();
   };
 
   const clearBuiltWord = () => {
@@ -221,7 +221,15 @@ export default function WordBuilderGamePage() {
     <>
       <BackButton href="/games" />
 
-      {showConfetti && <Confetti />}
+      {celebrationState.isActive && (
+        <Confetti
+          numberOfPieces={celebrationState.confettiPieces}
+          gravity={celebrationState.confettiGravity}
+          colors={celebrationState.colors}
+          recycle={false}
+          onConfettiComplete={resetCelebration}
+        />
+      )}
 
       <Box
         sx={{
@@ -359,26 +367,41 @@ export default function WordBuilderGamePage() {
                   backgroundColor={builtWord.length === 0 ? '#ccc' : '#4caf50'}
                 />
 
-                <Box sx={{ position: 'relative' }}>
-                  <RoundFunButton onClick={clearBuiltWord}>
-                    <ClearIcon />
-                  </RoundFunButton>
-                </Box>
+                <RoundFunButton onClick={clearBuiltWord}>
+                  <ClearIcon />
+                </RoundFunButton>
               </Box>
 
               {/* Feedback Messages */}
               {isCorrect === true && (
-                <Typography
-                  variant="h5"
+                <Box
                   sx={{
-                    color: 'success.main',
-                    fontWeight: 'bold',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 1,
                     animation: 'bounce 0.5s ease',
-                    textShadow: '1px 1px 2px rgba(0,0,0,0.2)',
                   }}
                 >
-                  {t('wordBuilder.correct')} ✨
-                </Typography>
+                  <CheckCircleOutlineIcon
+                    sx={{
+                      fontSize: { xs: 40, sm: 50 },
+                      color: '#4caf50',
+                      filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.2))',
+                    }}
+                  />
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      color: 'success.main',
+                      fontWeight: 'bold',
+                      textShadow: '1px 1px 2px rgba(0,0,0,0.2)',
+                      fontSize: { xs: '1.3rem', sm: '1.6rem' },
+                    }}
+                  >
+                    {t('wordBuilder.correct')}
+                  </Typography>
+                </Box>
               )}
               {isCorrect === false && (
                 <Typography
@@ -387,6 +410,7 @@ export default function WordBuilderGamePage() {
                     color: 'error.main',
                     fontWeight: 'bold',
                     animation: 'shake 0.5s ease',
+                    fontSize: { xs: '1.3rem', sm: '1.6rem' },
                   }}
                 >
                   {t('wordBuilder.tryAgain')} 🤔
@@ -448,8 +472,55 @@ export default function WordBuilderGamePage() {
                 p: 4,
                 textAlign: 'center',
                 border: '3px solid rgba(255,255,255,0.2)',
+                overflow: 'hidden',
               }}
             >
+              {/* Animated stars decoration */}
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '10%',
+                  left: '10%',
+                  fontSize: '2rem',
+                  animation: 'twinkle 1.5s ease-in-out infinite',
+                }}
+              >
+                ⭐
+              </Box>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '15%',
+                  right: '12%',
+                  fontSize: '1.5rem',
+                  animation: 'twinkle 1.8s ease-in-out infinite 0.3s',
+                }}
+              >
+                ✨
+              </Box>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  bottom: '20%',
+                  left: '8%',
+                  fontSize: '1.5rem',
+                  animation: 'twinkle 2s ease-in-out infinite 0.6s',
+                }}
+              >
+                🌟
+              </Box>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  bottom: '25%',
+                  right: '10%',
+                  fontSize: '1.8rem',
+                  animation: 'twinkle 1.7s ease-in-out infinite 0.2s',
+                }}
+              >
+                ⭐
+              </Box>
+
               <Typography
                 variant="h3"
                 gutterBottom
@@ -458,6 +529,7 @@ export default function WordBuilderGamePage() {
                   fontWeight: 'bold',
                   textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
                   mb: 3,
+                  fontSize: { xs: '1.8rem', sm: '2.5rem' },
                 }}
               >
                 🎉 {t('wordBuilder.gameComplete')} 🎉
@@ -465,17 +537,26 @@ export default function WordBuilderGamePage() {
 
               <Box
                 sx={{
-                  background: 'rgba(255,255,255,0.9)',
+                  background: 'rgba(255,255,255,0.95)',
                   borderRadius: '15px',
                   p: 3,
                   mb: 3,
+                  position: 'relative',
                 }}
               >
-                <Typography variant="h4" gutterBottom sx={{ color: 'primary.main', fontWeight: 'bold' }}>
+                <Typography
+                  variant="h4"
+                  gutterBottom
+                  sx={{
+                    color: 'primary.main',
+                    fontWeight: 'bold',
+                    fontSize: { xs: '1.5rem', sm: '2rem' },
+                  }}
+                >
                   {t('wordBuilder.finalScore')}: {score}
                 </Typography>
 
-                <Typography variant="h6" sx={{ color: 'text.secondary' }}>
+                <Typography variant="h6" sx={{ color: 'text.secondary', fontSize: { xs: '1rem', sm: '1.25rem' } }}>
                   {t('wordBuilder.congratulations')}
                 </Typography>
               </Box>
@@ -498,11 +579,16 @@ export default function WordBuilderGamePage() {
             40% { transform: translateY(-10px); }
             80% { transform: translateY(-5px); }
           }
-          
+
           @keyframes shake {
             0%, 100% { transform: translateX(0); }
             10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
             20%, 40%, 60%, 80% { transform: translateX(5px); }
+          }
+
+          @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
           }
         `}
       </style>
