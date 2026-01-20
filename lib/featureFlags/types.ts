@@ -1,0 +1,93 @@
+/**
+ * Feature Flag System - Type Definitions
+ *
+ * This is the abstraction layer. All providers must implement these interfaces.
+ * To switch providers (e.g., from Firebase to LaunchDarkly), only the provider
+ * implementation needs to change - consumers remain unchanged.
+ */
+
+/**
+ * All feature flags in the application.
+ * Add new flags here with their default values.
+ */
+export interface FeatureFlags {
+  showStickersButton: boolean;
+  // Add new flags here as needed:
+  // exampleFlag: boolean;
+  // anotherFeature: boolean;
+}
+
+/**
+ * Default values for all feature flags.
+ * These are used when:
+ * - The provider hasn't loaded yet
+ * - The provider fails to fetch
+ * - A flag doesn't exist in the remote config
+ */
+export const DEFAULT_FLAGS: FeatureFlags = {
+  showStickersButton: false,
+};
+
+/**
+ * Type-safe flag names
+ */
+export type FeatureFlagKey = keyof FeatureFlags;
+
+/**
+ * Status of the feature flag provider
+ */
+export type FeatureFlagStatus = 'loading' | 'ready' | 'error';
+
+/**
+ * Interface that all feature flag providers must implement.
+ * This is the contract that allows swapping providers easily.
+ */
+export interface FeatureFlagProvider {
+  /**
+   * Initialize the provider and fetch initial flag values
+   */
+  initialize(): Promise<void>;
+
+  /**
+   * Get the current value of a flag
+   */
+  getFlag<K extends FeatureFlagKey>(key: K): FeatureFlags[K];
+
+  /**
+   * Get all current flag values
+   */
+  getAllFlags(): FeatureFlags;
+
+  /**
+   * Refresh flags from the remote source
+   */
+  refresh(): Promise<void>;
+
+  /**
+   * Current status of the provider
+   */
+  getStatus(): FeatureFlagStatus;
+
+  /**
+   * Subscribe to flag changes (for real-time updates)
+   * Returns an unsubscribe function
+   */
+  subscribe(callback: (flags: FeatureFlags) => void): () => void;
+}
+
+/**
+ * Configuration for creating a feature flag provider
+ */
+export interface FeatureFlagProviderConfig {
+  /**
+   * Minimum time between fetches in milliseconds
+   * Default: 5 minutes
+   */
+  minimumFetchIntervalMs?: number;
+
+  /**
+   * Whether to fetch on initialization
+   * Default: true
+   */
+  fetchOnInit?: boolean;
+}

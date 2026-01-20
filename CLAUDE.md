@@ -65,11 +65,33 @@ Located in `app/[locale]/games/`:
 - Theme defined in `theme/theme.ts` with custom pastel color palette
 - Direction passed through `Providers` component which creates directional MUI theme
 
+### Feature Flags
+
+Provider-agnostic feature flag system using Firebase Remote Config. Architecture allows easy provider switching.
+
+**Files:**
+- `lib/featureFlags/types.ts` - Flag definitions and defaults
+- `lib/featureFlags/providers/index.ts` - Provider factory (change this file to switch providers)
+- `hooks/useFeatureFlags.ts` - React hook
+- `contexts/FeatureFlagContext.tsx` - Context wrapper
+
+**Usage:**
+```tsx
+const { getFlag } = useFeatureFlagContext();
+if (getFlag('myFeature')) { /* render feature */ }
+```
+
+**Adding a new flag:**
+1. Add to `FeatureFlags` interface in `lib/featureFlags/types.ts`
+2. Add default value `false` in `DEFAULT_FLAGS` (features behind FF are disabled by default, enabled via Firebase)
+3. Add to `fetchFlags()` in `lib/featureFlags/providers/firebaseRemoteConfig.ts`
+4. Configure in [Firebase Remote Config console](https://console.firebase.google.com/project/lepdy-c29da/remoteconfig)
+
 ### Analytics & Backend
 
 - Amplitude: initialized in `providers.tsx`, events defined in `models/amplitudeEvents.ts`
 - Google Analytics 4 + Google Ads: loaded in locale layout
-- Firebase: used for leaderboards (`lib/firebase.ts`), functions `submitScore()` and `getTopScore()`
+- Firebase: used for leaderboards (`lib/firebase.ts`), Remote Config for feature flags, functions `submitScore()` and `getTopScore()`
 
 ### Navigation
 

@@ -8,6 +8,7 @@ import { initAmplitude, logEvent } from '@/utils/amplitude';
 import { AmplitudeEventsEnum, LocaleType } from '@/models/amplitudeEvents';
 import { StreakProvider } from '@/contexts/StreakContext';
 import { StickerProvider } from '@/contexts/StickerContext';
+import { FeatureFlagProvider } from '@/contexts/FeatureFlagContext';
 import InstallPrompt from '@/components/InstallPrompt';
 
 const FIRST_VISIT_KEY = 'lepdy_first_visit';
@@ -44,12 +45,14 @@ export default function Providers({ children, direction, locale }: ProvidersProp
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <StreakProvider>
-        <StickerProvider>
-          {children}
-          <InstallPrompt />
-        </StickerProvider>
-      </StreakProvider>
+      <FeatureFlagProvider>
+        <StreakProvider>
+          <StickerProvider>
+            {children}
+            <InstallPrompt />
+          </StickerProvider>
+        </StreakProvider>
+      </FeatureFlagProvider>
     </ThemeProvider>
   );
 }

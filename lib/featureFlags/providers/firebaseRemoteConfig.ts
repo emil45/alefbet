@@ -1,0 +1,180 @@
+/**
+ * Firebase Remote Config Provider
+ *
+ * Implementation of FeatureFlagProvider using Firebase Remote Config.
+ * To switch to a different provider (e.g., LaunchDarkly, PostHog),
+ * create a new file implementing the same FeatureFlagProvider interface.
+ */
+
+import {
+  FeatureFlagProvider,
+  FeatureFlagProviderConfig,
+  FeatureFlags,
+  FeatureFlagKey,
+  FeatureFlagStatus,
+  DEFAULT_FLAGS,
+} from '../types';
+
+type RemoteConfig = import('firebase/remote-config').RemoteConfig;
+
+const DEFAULT_CONFIG: Required<FeatureFlagProviderConfig> = {
+  minimumFetchIntervalMs: 5 * 60 * 1000, // 5 minutes
+  fetchOnInit: true,
+};
+
+export class FirebaseRemoteConfigProvider implements FeatureFlagProvider {
+  private remoteConfig: RemoteConfig | null = null;
+  private flags: FeatureFlags = { ...DEFAULT_FLAGS };
+  private status: FeatureFlagStatus = 'loading';
+  private subscribers: Set<(flags: FeatureFlags) => void> = new Set();
+  private config: Required<FeatureFlagProviderConfig>;
+
+  constructor(config: FeatureFlagProviderConfig = {}) {
+    this.config = { ...DEFAULT_CONFIG, ...config };
+  }
+
+  async initialize(): Promise<void> {
+    // Skip on server-side
+    if (typeof window === 'undefined') {
+      this.status = 'ready';
+      return;
+    }
+
+    try {
+      const { initializeApp, getApps } = await import('firebase/app');
+      const { getRemoteConfig } = await import('firebase/remote-config');
+
+      // Firebase config (same as existing firebase.ts)
+      const firebaseConfig = {
+        apiKey: 'AIzaSyCUIRCYj-xmI3dsxN_PV99JvpErVfvQyKo',
+        authDomain: 'lepdy-c29da.firebaseapp.com',
+        projectId: 'lepdy-c29da',
+        storageBucket: 'lepdy-c29da.firebasestorage.app',
+        messagingSenderId: '1056907902981',
+        appId: '1:1056907902981:web:740300b72dd4812bf0dc6c',
+      };
+
+      // Initialize Firebase app if not already done
+      const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+
+      // Initialize Remote Config
+      this.remoteConfig = getRemoteConfig(app);
+
+      // Set minimum fetch interval (use 0 in development for faster testing)
+      this.remoteConfig.settings.minimumFetchIntervalMillis =
+        process.env.NODE_ENV === 'development' ? 0 : this.config.minimumFetchIntervalMs;
+
+      // Set default values
+      this.remoteConfig.defaultConfig = this.convertFlagsToRemoteConfigDefaults();
+
+      if (this.config.fetchOnInit) {
+        await this.fetchFlags();
+      }
+
+      this.status = 'ready';
+    } catch (error) {
+      console.error('[FeatureFlags] Failed to initialize Firebase Remote Config:', error);
+      this.status = 'error';
+      // Continue with default values
+    }
+  }
+
+  getFlag<K extends FeatureFlagKey>(key: K): FeatureFlags[K] {
+    return this.flags[key];
+  }
+
+  getAllFlags(): FeatureFlags {
+    return { ...this.flags };
+  }
+
+  async refresh(): Promise<void> {
+    await this.fetchFlags();
+  }
+
+  getStatus(): FeatureFlagStatus {
+    return this.status;
+  }
+
+  subscribe(callback: (flags: FeatureFlags) => void): () => void {
+    this.subscribers.add(callback);
+    return () => {
+      this.subscribers.delete(callback);
+    };
+  }
+
+  private async fetchFlags(): Promise<void> {
+    if (!this.remoteConfig) {
+      return;
+    }
+
+    try {
+      const { fetchAndActivate, getValue } = await import('firebase/remote-config');
+
+      await fetchAndActivate(this.remoteConfig);
+
+      // Read all flags from Remote Config
+      // Use getSource() to check if value exists remotely, otherwise use our defaults
+      const newFlags: FeatureFlags = {
+        showStickersButton: this.getBooleanFlag('showStickersButton', getValue),
+        // Add new flags here as they are added to FeatureFlags interface
+      };
+
+      this.flags = newFlags;
+      this.notifySubscribers();
+    } catch (error) {
+      console.error('[FeatureFlags] Failed to fetch remote config:', error);
+      // Keep using current/default values
+    }
+  }
+
+  /**
+   * Get a boolean flag value, falling back to DEFAULT_FLAGS if not set in remote config.
+   * This handles the case where a parameter doesn't exist in Firebase yet.
+   */
+  private getBooleanFlag(
+    key: FeatureFlagKey,
+    getValue: typeof import('firebase/remote-config').getValue
+  ): boolean {
+    if (!this.remoteConfig) return DEFAULT_FLAGS[key] as boolean;
+
+    const value = getValue(this.remoteConfig, key);
+    // 'static' means the value wasn't found in remote config or defaults
+    // 'default' means it's using our defaultConfig
+    // 'remote' means it's from Firebase Remote Config
+    if (value.getSource() === 'static') {
+      return DEFAULT_FLAGS[key] as boolean;
+    }
+    return value.asBoolean();
+  }
+
+  private convertFlagsToRemoteConfigDefaults(): Record<string, string | number | boolean> {
+    // Firebase Remote Config expects default values in this format
+    return Object.entries(DEFAULT_FLAGS).reduce(
+      (acc, [key, value]) => {
+        acc[key] = value;
+        return acc;
+      },
+      {} as Record<string, string | number | boolean>
+    );
+  }
+
+  private notifySubscribers(): void {
+    const flagsCopy = { ...this.flags };
+    this.subscribers.forEach((callback) => {
+      try {
+        callback(flagsCopy);
+      } catch (error) {
+        console.error('[FeatureFlags] Subscriber error:', error);
+      }
+    });
+  }
+}
+
+/**
+ * Create a Firebase Remote Config provider instance
+ */
+export function createFirebaseRemoteConfigProvider(
+  config?: FeatureFlagProviderConfig
+): FeatureFlagProvider {
+  return new FirebaseRemoteConfigProvider(config);
+}

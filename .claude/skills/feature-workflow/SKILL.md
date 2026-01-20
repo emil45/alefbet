@@ -31,15 +31,17 @@ Next.js 16, TypeScript, MUI, Firebase, next-intl (he/en/ru)
 ```
 app/[locale]/     → Pages (server: page.tsx, client: *Content.tsx)
 components/       → UI components
-hooks/            → Custom hooks (useCelebration, useGameAnalytics)
+hooks/            → Custom hooks (useCelebration, useGameAnalytics, useFeatureFlags)
+contexts/         → React contexts (FeatureFlagContext, StickerContext, StreakContext)
 utils/            → Utilities (audio.ts, celebrations.ts)
 data/             → Static data arrays
-lib/              → External integrations (firebase.ts, seo.ts)
+lib/              → External integrations (firebase.ts, seo.ts, featureFlags/)
 ```
 
 ### Key Patterns
 - Audio: `playSound(AudioSounds.X)` for effects, `playAudio(path)` for content
 - Celebrations: `useCelebration` hook with types: gameComplete, milestone, correctAnswer, streak
+- Feature Flags: `useFeatureFlagContext().getFlag('flagName')` - defaults to `false`, enabled via Firebase Remote Config
 
 ### Known Gaps
 - **Word audio files missing**: `/public/audio/words/` doesn't exist yet. `hebrewWords.ts` has `audioFile` paths but they 404. Don't add code to play these until files exist.
@@ -187,11 +189,13 @@ Execute phases sequentially. No approval gates. Ask for help only if stuck after
 
 2. **UI translations**: Add strings to `messages/{he,en,ru}.json` for any user-facing text
 
-3. **Tests** (if needed per Testing Rules): Add to `e2e/app.spec.ts`
+3. **Feature flags**: If feature needs gradual rollout, wrap with `getFlag('flagName')`. Add flag to `lib/featureFlags/types.ts` with default `false` (enabled via Firebase Remote Config)
 
-4. Run **Build Command** - fix ALL errors before proceeding
+4. **Tests** (if needed per Testing Rules): Add to `e2e/app.spec.ts`
 
-5. If stuck >3 attempts: Ask for help
+5. Run **Build Command** - fix ALL errors before proceeding
+
+6. If stuck >3 attempts: Ask for help
 
 ---
 

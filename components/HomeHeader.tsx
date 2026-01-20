@@ -9,6 +9,7 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import SettingsDrawer from '@/components/SettingsDrawer';
 import { useRouter } from 'next/navigation';
 import { getLanguageSpecificRoute } from '@/utils/languageRoutes';
+import { useFeatureFlagContext } from '@/contexts/FeatureFlagContext';
 
 interface HomeHeaderProps {
   locale: string;
@@ -17,7 +18,9 @@ interface HomeHeaderProps {
 export default function HomeHeader({ locale }: HomeHeaderProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const { getFlag } = useFeatureFlagContext();
   const isRTL = locale === 'he';
+  const showStickersButton = getFlag('showStickersButton');
 
   return (
     <>
@@ -47,9 +50,11 @@ export default function HomeHeader({ locale }: HomeHeaderProps) {
         <RoundFunButton onClick={() => router.push(getLanguageSpecificRoute('/learn', locale))}>
           <HelpOutlineIcon />
         </RoundFunButton>
-        <RoundFunButton onClick={() => router.push(getLanguageSpecificRoute('/stickers', locale))}>
-          <EmojiEventsIcon />
-        </RoundFunButton>
+        {showStickersButton && (
+          <RoundFunButton onClick={() => router.push(getLanguageSpecificRoute('/stickers', locale))}>
+            <EmojiEventsIcon />
+          </RoundFunButton>
+        )}
       </Box>
       <SettingsDrawer open={open} toggleDrawer={setOpen} />
     </>
