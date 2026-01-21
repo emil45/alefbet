@@ -89,17 +89,6 @@ export const preloadSounds = () => {
   for (const key in refs) {
     const audio = refs[key as unknown as AudioSounds];
     audio.load();
-    audio.volume = 0;
-    audio
-      .play()
-      .then(() => {
-        audio.pause();
-        audio.volume = 1;
-        audio.currentTime = 0;
-      })
-      .catch(() => {
-        // Expected: browsers block autoplay before user interaction
-      });
   }
 };
 

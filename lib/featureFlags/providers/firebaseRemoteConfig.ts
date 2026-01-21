@@ -41,23 +41,10 @@ export class FirebaseRemoteConfigProvider implements FeatureFlagProvider {
     }
 
     try {
-      const { initializeApp, getApps } = await import('firebase/app');
+      const { getFirebaseApp } = await import('@/lib/firebaseApp');
       const { getRemoteConfig } = await import('firebase/remote-config');
 
-      // Firebase config (same as existing firebase.ts)
-      const firebaseConfig = {
-        apiKey: 'AIzaSyCUIRCYj-xmI3dsxN_PV99JvpErVfvQyKo',
-        authDomain: 'lepdy-c29da.firebaseapp.com',
-        projectId: 'lepdy-c29da',
-        storageBucket: 'lepdy-c29da.firebasestorage.app',
-        messagingSenderId: '1056907902981',
-        appId: '1:1056907902981:web:740300b72dd4812bf0dc6c',
-      };
-
-      // Initialize Firebase app if not already done
-      const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-
-      // Initialize Remote Config
+      const app = await getFirebaseApp();
       this.remoteConfig = getRemoteConfig(app);
 
       // Set minimum fetch interval (use 0 in development for faster testing)
