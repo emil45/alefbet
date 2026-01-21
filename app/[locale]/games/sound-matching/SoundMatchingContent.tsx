@@ -591,11 +591,8 @@ export default function SoundMatchingContent() {
 
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
           pt: 2,
+          pb: 4,
         }}
       >
         {gameState === 'menu' && renderMenu()}
