@@ -27,7 +27,7 @@ export default function StickersContent() {
   const [currentPage, setCurrentPage] = useState(0); // 0-indexed tab
   const { hasSticker, earnSticker, totalEarned } = useStickerContext();
   const { streakData } = useStreakContext();
-  const { totalHeard: lettersHeard } = useLettersProgressContext();
+  const { totalHeard: lettersHeard, totalClicks: lettersTotalClicks } = useLettersProgressContext();
   const t = useTranslations();
 
   // Peel animation state
@@ -50,11 +50,13 @@ export default function StickersContent() {
           return streakData.currentStreak >= sticker.unlockValue;
         case 'letters_progress':
           return lettersHeard >= sticker.unlockValue;
+        case 'letters_total':
+          return lettersTotalClicks >= sticker.unlockValue;
         default:
           return false;
       }
     },
-    [streakData.currentStreak, lettersHeard]
+    [streakData.currentStreak, lettersHeard, lettersTotalClicks]
   );
 
   // Check if a sticker is unlocked (earned or meets requirements)
@@ -117,6 +119,9 @@ export default function StickersContent() {
     }
     if (unlockType === 'letters_progress' && unlockValue !== undefined) {
       return t('stickers.unlockHint.letters', { count: unlockValue });
+    }
+    if (unlockType === 'letters_total' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.lettersTotal', { count: unlockValue });
     }
     return t('stickers.comingSoon');
   }

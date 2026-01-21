@@ -7,10 +7,15 @@ export interface Sticker {
   translationKey: string;
   emoji: string;
   pageNumber: number;
-  // Unlock types: 'streak' for daily streaks, 'letters_progress' for letter learning, 'future' shows as locked
-  unlockType: 'streak' | 'letters_progress' | 'future';
-  // For streak type: the streak day required to unlock
-  // For letters_progress type: the number of unique letters heard
+  // Unlock types:
+  // - 'streak': daily streaks
+  // - 'letters_progress': unique letters heard
+  // - 'letters_total': total letter clicks/listens (practice milestone)
+  // - 'future': shows as locked
+  unlockType: 'streak' | 'letters_progress' | 'letters_total' | 'future';
+  // For streak: the streak day required
+  // For letters_progress: unique letters heard count
+  // For letters_total: total letter clicks count
   unlockValue?: number;
 }
 
@@ -20,14 +25,19 @@ export interface StickerPage {
   color: string;
 }
 
-// 30 stickers across 6 pages (5 per page)
+// 34 stickers across 6 pages
 export const STICKERS: Sticker[] = [
-  // Page 1: Letters (unlockable by hearing letters)
+  // Page 1: Letters - Discovery (unique letters heard)
   { id: 'letters_first', translationKey: 'stickers.letters.first', emoji: '🔤', pageNumber: 1, unlockType: 'letters_progress', unlockValue: 1 },
   { id: 'letters_five', translationKey: 'stickers.letters.five', emoji: '📝', pageNumber: 1, unlockType: 'letters_progress', unlockValue: 5 },
   { id: 'letters_ten', translationKey: 'stickers.letters.ten', emoji: '📖', pageNumber: 1, unlockType: 'letters_progress', unlockValue: 10 },
+  { id: 'letters_fifteen', translationKey: 'stickers.letters.fifteen', emoji: '⭐', pageNumber: 1, unlockType: 'letters_progress', unlockValue: 15 },
   { id: 'letters_all', translationKey: 'stickers.letters.all', emoji: '🎓', pageNumber: 1, unlockType: 'letters_progress', unlockValue: 22 },
-  { id: 'letters_tracer', translationKey: 'stickers.letters.tracer', emoji: '✏️', pageNumber: 1, unlockType: 'future' },
+  // Page 1: Letters - Practice (total letter clicks)
+  { id: 'letters_practice_50', translationKey: 'stickers.letters.practice50', emoji: '🎯', pageNumber: 1, unlockType: 'letters_total', unlockValue: 50 },
+  { id: 'letters_practice_100', translationKey: 'stickers.letters.practice100', emoji: '💪', pageNumber: 1, unlockType: 'letters_total', unlockValue: 100 },
+  { id: 'letters_practice_200', translationKey: 'stickers.letters.practice200', emoji: '🚀', pageNumber: 1, unlockType: 'letters_total', unlockValue: 200 },
+  { id: 'letters_practice_300', translationKey: 'stickers.letters.practice300', emoji: '🏅', pageNumber: 1, unlockType: 'letters_total', unlockValue: 300 },
 
   // Page 2: Numbers (all future/locked for MVP)
   { id: 'numbers_one', translationKey: 'stickers.numbers.one', emoji: '1️⃣', pageNumber: 2, unlockType: 'future' },
@@ -76,7 +86,7 @@ export const STICKER_PAGES: StickerPage[] = [
 ];
 
 export const TOTAL_PAGES = 6;
-export const TOTAL_STICKERS = 30;
+export const TOTAL_STICKERS = 34;
 
 // Helper to get stickers for a specific page
 export function getStickersForPage(pageNumber: number): Sticker[] {

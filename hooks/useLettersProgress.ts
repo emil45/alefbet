@@ -5,6 +5,7 @@ import letters from '@/data/letters';
 
 export interface LettersProgressData {
   heardLetterIds: string[];
+  totalClicks: number; // Total letter clicks/listens for practice milestones
 }
 
 const STORAGE_KEY = 'lepdy_letters_progress';
@@ -13,6 +14,7 @@ const TOTAL_LETTERS = letters.length; // 22 Hebrew letters
 function getDefaultLettersProgressData(): LettersProgressData {
   return {
     heardLetterIds: [],
+    totalClicks: 0,
   };
 }
 
@@ -48,6 +50,7 @@ export interface UseLettersProgressReturn {
   hasHeardLetter: (letterId: string) => boolean;
   heardLetterIds: Set<string>;
   totalHeard: number;
+  totalClicks: number; // Total clicks for practice milestones
   totalLetters: number;
   hasHeardAll: boolean;
 }
@@ -84,18 +87,21 @@ export function useLettersProgress(): UseLettersProgressReturn {
 
   const recordLetterHeard = useCallback((letterId: string) => {
     setLettersProgressData((prev) => {
-      // Check inside updater for most recent state to avoid race conditions
-      if (prev.heardLetterIds.includes(letterId)) {
-        return prev;
-      }
+      const isNewLetter = !prev.heardLetterIds.includes(letterId);
       return {
         ...prev,
-        heardLetterIds: [...prev.heardLetterIds, letterId],
+        // Add to unique letters if new
+        heardLetterIds: isNewLetter
+          ? [...prev.heardLetterIds, letterId]
+          : prev.heardLetterIds,
+        // Always increment total clicks for practice milestones
+        totalClicks: (prev.totalClicks || 0) + 1,
       };
     });
   }, []);
 
   const totalHeard = lettersProgressData.heardLetterIds.length;
+  const totalClicks = lettersProgressData.totalClicks || 0;
   const hasHeardAll = totalHeard >= TOTAL_LETTERS;
 
   return {
@@ -104,6 +110,7 @@ export function useLettersProgress(): UseLettersProgressReturn {
     hasHeardLetter,
     heardLetterIds,
     totalHeard,
+    totalClicks,
     totalLetters: TOTAL_LETTERS,
     hasHeardAll,
   };

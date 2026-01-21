@@ -646,8 +646,12 @@
       "first": "First Letter",
       "five": "Five Letters",
       "ten": "Ten Letters",
+      "fifteen": "Fifteen Letters",
       "all": "All Letters",
-      "tracer": "Letter Tracer"
+      "practice50": "Practice 50",
+      "practice100": "Practice 100",
+      "practice200": "Practice 200",
+      "practice300": "Practice Champion"
     },
     "numbers": {
       "one": "Number One",
@@ -686,7 +690,8 @@
     },
     "unlockHint": {
       "streak": "Reach a {days} day streak to unlock",
-      "letters": "Hear {count} different letters to unlock"
+      "letters": "Hear {count} different letters to unlock",
+      "lettersTotal": "Click letters {count} times to unlock"
     },
     "comingSoon": "Coming soon!",
     "streakHint": "Keep learning every day to unlock streak stickers!"
