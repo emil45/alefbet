@@ -437,6 +437,7 @@ export default function SoundMatchingContent() {
           p: 2.5,
           borderRadius: '50%',
           width: 120,
+          my: 1.5,
           height: 120,
           display: 'flex',
           alignItems: 'center',
@@ -593,7 +594,8 @@ export default function SoundMatchingContent() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          pt: 1,
+          justifyContent: 'flex-start',
+          pt: 2,
         }}
       >
         {gameState === 'menu' && renderMenu()}
