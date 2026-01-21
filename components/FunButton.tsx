@@ -16,6 +16,20 @@ interface FunButtonProps {
   fontSize?: number;
   backgroundColor?: string;
   paddingX?: number;
+  variant?: 'default' | 'square';
+}
+
+function getFontSize(
+  fontSize: number | undefined,
+  isSquare: boolean
+): string | { xs: string; sm: string; md: string } {
+  if (fontSize) {
+    return `${fontSize}px`;
+  }
+  if (isSquare) {
+    return { xs: '18px', sm: '20px', md: '22px' };
+  }
+  return { xs: '24px', sm: '30px', md: '40px' };
 }
 
 const FunButton: React.FC<FunButtonProps> = ({
@@ -25,10 +39,14 @@ const FunButton: React.FC<FunButtonProps> = ({
   fontSize,
   backgroundColor,
   paddingX,
+  variant = 'default',
   ...rest
 }) => {
   const router = useRouter();
   const locale = useLocale();
+  const isSquare = variant === 'square';
+
+  const squareSize = { xs: '140px', sm: '160px', md: '180px' };
 
   const commonStyles = (theme: any) => ({
     position: 'relative',
@@ -38,6 +56,11 @@ const FunButton: React.FC<FunButtonProps> = ({
     cursor: 'pointer',
     outlineOffset: '4px',
     transition: 'filter 250ms',
+    ...(isSquare && {
+      width: squareSize,
+      height: squareSize,
+      minWidth: 'unset',
+    }),
     '& .shadow': {
       position: 'absolute',
       top: 0,
@@ -64,13 +87,23 @@ const FunButton: React.FC<FunButtonProps> = ({
       position: 'relative',
       color: theme.palette.colors.white,
       fontWeight: 'bold',
-      fontSize: fontSize ? `${fontSize}px` : { xs: '24px', sm: '30px', md: '40px' },
-      padding: `12px ${paddingX || 30}px`,
+      fontSize: getFontSize(fontSize, isSquare),
+      padding: isSquare ? '12px' : `12px ${paddingX || 30}px`,
       borderRadius: '12px',
       background: backgroundColor || '#f74572',
       willChange: 'transform',
       transform: 'translateY(-4px)',
       transition: 'transform 600ms cubic-bezier(.3, .7, .4, 1)',
+      ...(isSquare && {
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        boxSizing: 'border-box',
+        lineHeight: 1.2,
+      }),
     },
     '&:hover': {
       backgroundColor: 'transparent',

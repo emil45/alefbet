@@ -16,20 +16,20 @@ export default function GamesContent() {
       <PageIntro pageName="games" />
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, auto)',
+          gap: { xs: '16px', sm: '20px', md: '24px' },
+          justifyContent: 'center',
+          px: 2,
         }}
       >
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-          <FunButton to="/games/simon-game" text={t('games.buttons.simon')} />
-          <FunButton to="/games/sound-matching" text={t('games.buttons.soundMatching')} />
-          <FunButton to="/games/letter-rain" text={t('games.buttons.letterRain')} />
-          <FunButton to="/games/memory-match-game" text={t('games.buttons.memoryMatchGame')} />
-          <FunButton to="/games/speed-challenge" text={t('games.buttons.speedChallenge')} />
-          <FunButton to="/games/word-builder" text={t('games.buttons.wordBuilder')} />
-          <FunButton to="/games/guess-game" text={t('games.buttons.guessGame')} />
-        </Box>
+        <FunButton variant="square" to="/games/simon-game" text={t('games.buttons.simon')} />
+        <FunButton variant="square" to="/games/sound-matching" text={t('games.buttons.soundMatching')} />
+        <FunButton variant="square" to="/games/letter-rain" text={t('games.buttons.letterRain')} />
+        <FunButton variant="square" to="/games/memory-match-game" text={t('games.buttons.memoryMatchGame')} />
+        <FunButton variant="square" to="/games/speed-challenge" text={t('games.buttons.speedChallenge')} />
+        <FunButton variant="square" to="/games/word-builder" text={t('games.buttons.wordBuilder')} />
+        <FunButton variant="square" to="/games/guess-game" text={t('games.buttons.guessGame')} />
       </Box>
     </>
   );

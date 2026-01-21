@@ -1,11 +1,11 @@
 ---
 name: feature-workflow
-description: Autonomous feature development workflow. Fetches task from Monday.com, implements it, reviews with pr-review-toolkit agents, tests, commits, and pushes.
+description: Autonomous feature development workflow. Fetches task from task tracker, implements it, reviews with pr-review-toolkit agents, tests, commits, and pushes.
 ---
 
 # /feature-workflow
 
-Autonomous end-to-end feature development. Fetches next task from Monday.com and works independently until complete or help is needed.
+Autonomous end-to-end feature development. Fetches next task from task tracker and works independently until complete or help is needed.
 
 ---
 
@@ -13,13 +13,7 @@ Autonomous end-to-end feature development. Fetches next task from Monday.com and
 
 | Key | Value |
 |-----|-------|
-| **Monday.com Board ID** | `5090306877` |
-| **Status Column ID** | `color_mkzppqjv` |
-| **Status: Ready** | Label `To Do` (index 5) |
-| **Status: In Progress** | Label `In Progress` (index 0) |
-| **Status: Complete** | Label `Done` (index 1) |
-| **Description Column ID** | `long_text_mkzpq0cm` |
-| **Updates/Comments** | Use `get_item_updates` with item ID |
+| **Task Agent** | `monday-agent` (swap for `jira-agent` etc.) |
 | **Build Command** | `npm run build` |
 | **Test Command** | `npm test -- --workers=1` |
 | **Review Agents** | code-reviewer → silent-failure-hunter → code-simplifier |
@@ -117,37 +111,23 @@ Execute phases sequentially. No approval gates. Ask for help only if stuck after
 
 ## Phase 1: Acquire
 
-**Goal**: Get next task from Monday.com.
+**Goal**: Get next task from task tracker.
 
-1. Query board using `get_board_items_page` with filter:
-   ```json
-   {"columnId": "color_mkzppqjv", "compareValue": [0, 5], "operator": "any_of"}
-   ```
-   (0 = In Progress, 5 = To Do)
+1. **Launch task agent** to fetch the next task:
+   - Use Task tool with `subagent_type: "monday-agent"` (or configured task agent)
+   - Prompt: `"fetch"`
+   - Agent returns: task ID, name, description, updates/comments, previous status
 
-2. Priority: **In Progress** first (resume), then oldest **To Do**
+2. **Store the task ID** - you'll need it in Phase 8 to mark as Done
 
-3. Set status to **In Progress** using `change_item_column_values`:
-   ```json
-   {"color_mkzppqjv": {"label": "In Progress"}}
-   ```
-
-4. Read **Description Column** (`long_text_mkzpq0cm`) for requirements
-
-5. **Fetch Updates/Comments** using `get_item_updates`:
-   - Query: `get_item_updates` with the item ID
-   - Updates often contain additional context, clarifications, or requirements that don't fit in the description
-   - Read ALL updates to get the complete picture
-   - Newer updates may override or clarify older requirements
-
-6. **If task is vague** (e.g., "fix issues", "validate", "improve"):
+3. **If task is vague** (e.g., "fix issues", "validate", "improve"):
    - Explore the relevant code first
    - List specific issues found before planning fixes
    - If still unclear after exploration, ask user for clarification
 
-7. Create TodoWrite with task breakdown
+4. Create TodoWrite with task breakdown
 
-8. If no tasks: Report "No pending tasks" and stop
+5. If no tasks: Report "No pending tasks" and stop
 
 ---
 
@@ -318,10 +298,9 @@ EOF
 
 3. **Push**: `git push`
 
-4. **Update Monday.com**: Set status to Done using `change_item_column_values`:
-   ```json
-   {"color_mkzppqjv": {"label": "Done"}}
-   ```
+4. **Close task**: Launch task agent to mark as Done:
+   - Use Task tool with `subagent_type: "monday-agent"` (or configured task agent)
+   - Prompt: `"done <item_id>"` (use the task ID from Phase 1)
 
 5. **Summary**: Report files changed, decisions made, follow-ups
 

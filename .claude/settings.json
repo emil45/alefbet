@@ -36,7 +36,19 @@
       "Bash(claude plugins install:*)",
       "Bash(claude plugin:*)",
       "Bash(npx playwright test:*)",
-      "Bash(head:*)"
+      "Bash(head:*)",
+      "Bash(git stash:*)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill -9)",
+      "Bash(tree:*)",
+      "Bash(git diff:*)",
+      "WebFetch(domain:developers.google.com)",
+      "Bash(git -C /Users/emil/code/lepdy log --all --full-history -- \"public/audio/words\")",
+      "Bash(wc:*)",
+      "Bash(git log:*)",
+      "Bash(npx eslint:*)",
+      "Bash(git checkout:*)",
+      "Bash(claude --mcp-config /Users/emil/code/lepdy/.mcp-all.json:*)"
     ],
     "deny": []
   },
