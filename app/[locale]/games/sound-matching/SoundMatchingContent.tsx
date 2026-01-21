@@ -11,6 +11,7 @@ import FunButton from '@/components/FunButton';
 import { AudioSounds, playSound } from '@/utils/audio';
 import { useGameAnalytics } from '@/hooks/useGameAnalytics';
 import { useCelebration } from '@/hooks/useCelebration';
+import { useFeatureFlagContext } from '@/contexts/FeatureFlagContext';
 import Celebration from '@/components/Celebration';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import ReplayIcon from '@mui/icons-material/Replay';
@@ -47,7 +48,6 @@ const CONFUSED_PAIRS = [
 const TOTAL_ROUNDS = 10;
 const SOUND_PLAY_DELAY = 600;
 const CORRECT_ANSWER_DELAY = 1200;
-const WRONG_ANSWER_DELAY = 2500; // Give kids time to see the correct answer
 
 // Pulse animation for sound button
 const pulse = keyframes`
@@ -74,6 +74,7 @@ export default function SoundMatchingContent() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'sound-matching' });
   const { celebrationState, celebrate, resetCelebration } = useCelebration();
+  const { getFlag } = useFeatureFlagContext();
 
   const [gameState, setGameState] = useState<'menu' | 'playing' | 'finished'>('menu');
   const [currentLetter, setCurrentLetter] = useState<LetterItem | null>(null);
@@ -233,7 +234,8 @@ export default function SoundMatchingContent() {
     }
 
     // Move to next round or finish (longer delay for wrong answers so kids can see correct letter)
-    const delay = correct ? CORRECT_ANSWER_DELAY : WRONG_ANSWER_DELAY;
+    const wrongAnswerDelay = getFlag('soundMatchingWrongAnswerDelayMs');
+    const delay = correct ? CORRECT_ANSWER_DELAY : wrongAnswerDelay;
     setTimeout(() => {
       const nextRound = round + 1;
       if (nextRound >= TOTAL_ROUNDS) {
@@ -250,7 +252,7 @@ export default function SoundMatchingContent() {
         generateQuestion();
       }
     }, delay);
-  }, [currentLetter, canSelect, round, score, playLetterSound, celebrate, trackGameCompleted, generateQuestion]);
+  }, [currentLetter, canSelect, round, score, playLetterSound, celebrate, trackGameCompleted, generateQuestion, getFlag]);
 
   // Start the game
   const startGame = useCallback(() => {

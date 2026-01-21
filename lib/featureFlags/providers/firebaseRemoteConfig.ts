@@ -104,6 +104,7 @@ export class FirebaseRemoteConfigProvider implements FeatureFlagProvider {
       const newFlags: FeatureFlags = {
         showStickersButton: this.getBooleanFlag('showStickersButton', getValue),
         showVoiceIndicator: this.getBooleanFlag('showVoiceIndicator', getValue),
+        soundMatchingWrongAnswerDelayMs: this.getNumberFlag('soundMatchingWrongAnswerDelayMs', getValue),
       };
 
       this.flags = newFlags;
@@ -132,6 +133,22 @@ export class FirebaseRemoteConfigProvider implements FeatureFlagProvider {
       return DEFAULT_FLAGS[key] as boolean;
     }
     return value.asBoolean();
+  }
+
+  /**
+   * Get a number flag value, falling back to DEFAULT_FLAGS if not set in remote config.
+   */
+  private getNumberFlag(
+    key: FeatureFlagKey,
+    getValue: typeof import('firebase/remote-config').getValue
+  ): number {
+    if (!this.remoteConfig) return DEFAULT_FLAGS[key] as number;
+
+    const value = getValue(this.remoteConfig, key);
+    if (value.getSource() === 'static') {
+      return DEFAULT_FLAGS[key] as number;
+    }
+    return value.asNumber();
   }
 
   private convertFlagsToRemoteConfigDefaults(): Record<string, string | number | boolean> {

@@ -13,6 +13,7 @@
 export interface FeatureFlags {
   showStickersButton: boolean;
   showVoiceIndicator: boolean;
+  soundMatchingWrongAnswerDelayMs: number;
 }
 
 /**
@@ -25,6 +26,7 @@ export interface FeatureFlags {
 export const DEFAULT_FLAGS: FeatureFlags = {
   showStickersButton: false,
   showVoiceIndicator: false,
+  soundMatchingWrongAnswerDelayMs: 2500,
 };
 
 /**
