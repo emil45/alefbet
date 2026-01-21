@@ -43,7 +43,8 @@ export type GameType =
   | 'word-builder'
   | 'counting-game'
   | 'letter-rain'
-  | 'sound-matching';
+  | 'sound-matching'
+  | 'letter-tracing';
 
 // Locale types
 export type LocaleType = 'he' | 'en' | 'ru';

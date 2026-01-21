@@ -28,7 +28,8 @@
       "wordBuilder": "Word Builder 🔤",
       "countingGame": "Counting Game 🔢",
       "letterRain": "Letter Rain 🎈",
-      "soundMatching": "Sound Matching 🔊"
+      "soundMatching": "Sound Matching 🔊",
+      "letterTracing": "Letter Tracing ✏️"
     },
     "letterRain": {
       "title": "Letter Rain",
@@ -77,6 +78,29 @@
       "gameComplete": "Game Complete!",
       "finalScore": "Final Score",
       "playAgain": "Play Again"
+    },
+    "letterTracing": {
+      "title": "Letter Tracing",
+      "instructions": "Trace the letters with your finger!",
+      "selectDifficulty": "Select Difficulty",
+      "difficulty": {
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      },
+      "difficultyDesc": {
+        "easy": "Thick lines, full guidance",
+        "medium": "Medium lines, fading guidance",
+        "hard": "Thin lines, no guidance"
+      },
+      "start": "Start",
+      "tracedCount": "{count} of {total} letters traced",
+      "complete": "Great Job!",
+      "playAgain": "Play Again",
+      "next": "Next",
+      "clear": "Clear",
+      "greatJob": "Amazing!",
+      "traceHint": "Trace the letter with your finger"
     }
   },
   "soundMatching": {
@@ -383,6 +407,10 @@
       "soundMatching": {
         "title": "Hebrew Sound Matching Game - Letter Recognition for Kids",
         "description": "Listen to Hebrew letter sounds and match them to the correct letter! Fun phonics game for kids learning the Hebrew alphabet."
+      },
+      "letterTracing": {
+        "title": "Hebrew Letter Tracing for Kids - Learn to Write Alef Bet",
+        "description": "Teach your child to write Hebrew letters! Trace all 22 Alef Bet letters with guidance and authentic pronunciation. Interactive writing game for toddlers and preschoolers."
       },
       "learn": {
         "title": "Learn Hebrew for Kids - How to Teach Your Child Hebrew",

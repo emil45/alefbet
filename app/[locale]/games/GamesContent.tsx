@@ -29,6 +29,7 @@ export default function GamesContent() {
           <FunButton to="/games/speed-challenge" text={t('games.buttons.speedChallenge')} />
           <FunButton to="/games/word-builder" text={t('games.buttons.wordBuilder')} />
           <FunButton to="/games/guess-game" text={t('games.buttons.guessGame')} />
+          <FunButton to="/games/letter-tracing" text={t('games.buttons.letterTracing')} />
         </Box>
       </Box>
     </>
