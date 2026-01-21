@@ -241,8 +241,10 @@ Run **Review Agents** sequentially. **Important**: Scope each agent to only the 
 
 ### 6.2 silent-failure-hunter
 - Prompt: "Review error handling in [list specific files] for silent failures."
-- Fix swallowed exceptions in YOUR changes only
-- Ignore pre-existing issues in other files
+- If issues are found in patterns you're copying from (e.g., useLettersProgress → useAnimalsProgress), fix BOTH:
+  1. Your new code
+  2. The original code you copied from
+- This improves the codebase over time rather than propagating debt
 
 ### 6.3 code-simplifier
 - Prompt: "Review [list specific files] for unnecessary complexity."
