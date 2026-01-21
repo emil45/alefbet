@@ -10,6 +10,7 @@ import { StreakProvider } from '@/contexts/StreakContext';
 import { StickerProvider } from '@/contexts/StickerContext';
 import { FeatureFlagProvider } from '@/contexts/FeatureFlagContext';
 import InstallPrompt from '@/components/InstallPrompt';
+import ThemeRegistry from './ThemeRegistry';
 
 const FIRST_VISIT_KEY = 'lepdy_first_visit';
 
@@ -43,16 +44,18 @@ export default function Providers({ children, direction, locale }: ProvidersProp
   }, [locale]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <FeatureFlagProvider>
-        <StreakProvider>
-          <StickerProvider>
-            {children}
-            <InstallPrompt />
-          </StickerProvider>
-        </StreakProvider>
-      </FeatureFlagProvider>
-    </ThemeProvider>
+    <ThemeRegistry>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <FeatureFlagProvider>
+          <StreakProvider>
+            <StickerProvider>
+              {children}
+              <InstallPrompt />
+            </StickerProvider>
+          </StreakProvider>
+        </FeatureFlagProvider>
+      </ThemeProvider>
+    </ThemeRegistry>
   );
 }
