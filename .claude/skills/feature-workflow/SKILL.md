@@ -37,10 +37,12 @@ lib/              → External integrations (firebase.ts, seo.ts, featureFlags/)
 - Celebrations: `useCelebration` hook with types: gameComplete, milestone, correctAnswer, streak
 - Feature Flags: `useFeatureFlagContext().getFlag('flagName')` - defaults to `false`, enabled via Firebase Remote Config
 - Category Progress: `useCategoryProgress` hook for tracking discovery/practice milestones. Wrap with category-specific hooks (e.g., `useLettersProgress`). Handles localStorage with proper error handling.
+- Games Progress: `useGamesProgressContext()` tracks game completions, achievements (Simon scores, memory wins, etc.) for sticker unlocks.
 
 ### Known Gaps
 - **Word audio files missing**: `/public/audio/words/` doesn't exist yet. `hebrewWords.ts` has `audioFile` paths but they 404. Don't add code to play these until files exist.
-- **Game/Explorer sticker rewards not implemented**: Stickers on pages 4 (Games) and 6 (Explorer) have `unlockType: 'future'`. Letters, numbers, and animals stickers ARE implemented using the `useCategoryProgress` pattern.
+- **Explorer stickers not implemented**: Page 6 (Explorer) stickers have `unlockType: 'future'`. Pages 1-5 (Letters, Numbers, Animals, Games, Streaks) ARE fully implemented.
+- **counting-game defined but not implemented**: `GameType` in `amplitudeEvents.ts` includes `'counting-game'` but no game exists. Exclude from `ALL_GAME_TYPES` until implemented.
 
 ### Testing Rules
 - **Add tests**: New pages, new games, major UI changes
@@ -89,6 +91,14 @@ Add unexpected moments. Easter eggs. Playful animations. Sounds that make kids g
 | **Feedback** | Every interaction = visual + audio response |
 | **Layout** | Breathing room, one clear action per view |
 
+### Sticker Guidelines
+
+When adding stickers:
+- **Be generous**: Kids love collecting - add 8-12 stickers per page, not 3-5
+- **Unique emojis**: Never reuse the same emoji across different sticker pages
+- **Progressive milestones**: Add multiple levels (e.g., Simon 5, 7, 10 - not just 10)
+- **Mix achievement types**: Combine easy wins (play once) with challenges (perfect score)
+
 ### Design Anti-Patterns
 
 - Generic UI that could be any app
@@ -97,6 +107,7 @@ Add unexpected moments. Easter eggs. Playful animations. Sounds that make kids g
 - Silent interactions (no feedback)
 - Overwhelming complexity
 - "Adult" aesthetics (sharp, minimal, cold)
+- Stingy rewards (kids want MORE stickers, not fewer)
 
 ---
 
