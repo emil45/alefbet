@@ -84,6 +84,8 @@ export default function SoundMatchingContent() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
   const [canSelect, setCanSelect] = useState(true);
+  const [roundResults, setRoundResults] = useState<(boolean | null)[]>(Array(TOTAL_ROUNDS).fill(null));
+  const [usedLetterIds, setUsedLetterIds] = useState<Set<string>>(new Set());
 
   // Get all letters with translations
   const getAllLetters = useCallback((): LetterItem[] => {
@@ -128,38 +130,64 @@ export default function SoundMatchingContent() {
   }, [stopAudio]);
 
   // Generate a new question
-  const generateQuestion = useCallback(() => {
+  const generateQuestion = useCallback((currentUsedIds: Set<string> = usedLetterIds) => {
     const allLetters = getAllLetters();
+    // Filter out already used letters for the correct answer
+    const availableLetters = allLetters.filter((l) => !currentUsedIds.has(l.id));
+
     let correctLetter: LetterItem;
     let wrongLetters: LetterItem[];
 
     // First 4 rounds: use easy (distinct) letters
     // Later rounds: mix in confused pairs for challenge
     if (round < 4) {
-      // Easy mode: pick from visually distinct letters
-      const easyLetters = allLetters.filter((l) => EASY_LETTER_IDS.includes(l.id));
-      correctLetter = easyLetters[Math.floor(Math.random() * easyLetters.length)];
-      wrongLetters = shuffle(easyLetters.filter((l) => l.id !== correctLetter.id)).slice(0, 3);
+      // Easy mode: pick from visually distinct letters (that haven't been used)
+      const easyLetters = availableLetters.filter((l) => EASY_LETTER_IDS.includes(l.id));
+      // Fallback to any available letter if no easy ones left
+      const pool = easyLetters.length > 0 ? easyLetters : availableLetters;
+      correctLetter = pool[Math.floor(Math.random() * pool.length)];
+      // Wrong letters can include used ones (just not the correct answer)
+      const wrongPool = allLetters.filter((l) => l.id !== correctLetter.id);
+      wrongLetters = shuffle(wrongPool).slice(0, 3);
     } else {
       // Challenge mode: sometimes use confused pairs
       const useConfusedPair = Math.random() > 0.5 && round >= 5;
 
       if (useConfusedPair) {
-        // Pick a confused pair
-        const pair = CONFUSED_PAIRS[Math.floor(Math.random() * CONFUSED_PAIRS.length)];
-        const pairLetters = allLetters.filter((l) => pair.includes(l.id));
-        correctLetter = pairLetters[Math.floor(Math.random() * pairLetters.length)];
+        // Pick a confused pair where at least one letter hasn't been used
+        const availablePairs = CONFUSED_PAIRS.filter((pair) =>
+          pair.some((id) => !currentUsedIds.has(id))
+        );
 
-        // Include the confusing partner in wrong options
-        const confusingPartner = pairLetters.find((l) => l.id !== correctLetter.id);
-        const otherWrong = shuffle(allLetters.filter((l) => !pair.includes(l.id))).slice(0, 2);
-        wrongLetters = confusingPartner ? [confusingPartner, ...otherWrong] : otherWrong.slice(0, 3);
+        if (availablePairs.length > 0) {
+          const pair = availablePairs[Math.floor(Math.random() * availablePairs.length)];
+          const pairLetters = allLetters.filter((l) => pair.includes(l.id) && !currentUsedIds.has(l.id));
+
+          if (pairLetters.length > 0) {
+            correctLetter = pairLetters[Math.floor(Math.random() * pairLetters.length)];
+            // Include the confusing partner in wrong options
+            const confusingPartner = allLetters.find((l) => pair.includes(l.id) && l.id !== correctLetter.id);
+            const otherWrong = shuffle(allLetters.filter((l) => !pair.includes(l.id) && l.id !== correctLetter.id)).slice(0, 2);
+            wrongLetters = confusingPartner ? [confusingPartner, ...otherWrong] : otherWrong.slice(0, 3);
+          } else {
+            // Fallback to random available letter
+            correctLetter = availableLetters[Math.floor(Math.random() * availableLetters.length)];
+            wrongLetters = shuffle(allLetters.filter((l) => l.id !== correctLetter.id)).slice(0, 3);
+          }
+        } else {
+          // No confused pairs available, use random
+          correctLetter = availableLetters[Math.floor(Math.random() * availableLetters.length)];
+          wrongLetters = shuffle(allLetters.filter((l) => l.id !== correctLetter.id)).slice(0, 3);
+        }
       } else {
-        // Normal mode: random letter from all
-        correctLetter = allLetters[Math.floor(Math.random() * allLetters.length)];
+        // Normal mode: random letter from available
+        correctLetter = availableLetters[Math.floor(Math.random() * availableLetters.length)];
         wrongLetters = shuffle(allLetters.filter((l) => l.id !== correctLetter.id)).slice(0, 3);
       }
     }
+
+    // Mark this letter as used
+    setUsedLetterIds((prev) => new Set([...prev, correctLetter.id]));
 
     const allOptions = shuffle([correctLetter, ...wrongLetters]);
 
@@ -173,7 +201,7 @@ export default function SoundMatchingContent() {
     setTimeout(() => {
       playLetterSound(correctLetter.audioFile);
     }, SOUND_PLAY_DELAY);
-  }, [getAllLetters, round, playLetterSound]);
+  }, [getAllLetters, round, playLetterSound, usedLetterIds]);
 
   // Handle answer selection
   const handleAnswer = useCallback((selectedLetter: LetterItem) => {
@@ -183,6 +211,13 @@ export default function SoundMatchingContent() {
     setSelectedId(selectedLetter.id);
     const correct = selectedLetter.id === currentLetter.id;
     setIsCorrect(correct);
+
+    // Record the result for this round
+    setRoundResults((prev) => {
+      const newResults = [...prev];
+      newResults[round] = correct;
+      return newResults;
+    });
 
     if (correct) {
       setScore((prev) => prev + 1);
@@ -221,8 +256,12 @@ export default function SoundMatchingContent() {
     setRound(0);
     setScore(0);
     setShowCelebration(false);
+    setRoundResults(Array(TOTAL_ROUNDS).fill(null));
+    const emptySet = new Set<string>();
+    setUsedLetterIds(emptySet);
     trackGameStarted();
-    generateQuestion();
+    // Pass empty set to generateQuestion since state hasn't updated yet
+    generateQuestion(emptySet);
   }, [trackGameStarted, generateQuestion]);
 
   // Cleanup audio on unmount
@@ -340,23 +379,23 @@ export default function SoundMatchingContent() {
   // Game screen
   function renderGame() {
     return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, p: 2 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1.5, p: 1 }}>
       {/* Progress bar */}
       <Paper
         elevation={3}
         sx={{
-          p: 2,
+          p: 1.5,
           borderRadius: 3,
           width: '100%',
-          maxWidth: 500,
+          maxWidth: 340,
           background: 'linear-gradient(135deg, #f5f5f5 0%, #eeeeee 100%)',
         }}
       >
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-          <Typography variant="h6" fontWeight="bold" color="#424242">
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0.5 }}>
+          <Typography variant="body1" fontWeight="bold" color="#424242">
             {t('soundMatching.round')} {round + 1}/{TOTAL_ROUNDS}
           </Typography>
-          <Typography variant="h6" fontWeight="bold" color="#4caf50">
+          <Typography variant="body1" fontWeight="bold" color="#4caf50">
             {t('soundMatching.score')}: {score}
           </Typography>
         </Box>
@@ -365,8 +404,12 @@ export default function SoundMatchingContent() {
         <Box sx={{ display: 'flex', gap: 0.8, justifyContent: 'center' }}>
           {Array.from({ length: TOTAL_ROUNDS }).map((_, i) => {
             let dotColor = '#e0e0e0'; // future rounds
-            if (i < round) dotColor = '#4caf50'; // completed
-            else if (i === round) dotColor = '#2196f3'; // current
+            if (i < round) {
+              // Completed round - green for correct, red for incorrect
+              dotColor = roundResults[i] === true ? '#4caf50' : '#f44336';
+            } else if (i === round) {
+              dotColor = '#2196f3'; // current
+            }
 
             return (
               <Box
@@ -389,10 +432,10 @@ export default function SoundMatchingContent() {
         elevation={8}
         onClick={handleReplaySound}
         sx={{
-          p: 4,
+          p: 2.5,
           borderRadius: '50%',
-          width: 160,
-          height: 160,
+          width: 120,
+          height: 120,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -413,37 +456,39 @@ export default function SoundMatchingContent() {
       >
         <Box sx={{ textAlign: 'center' }}>
           {isPlaying ? (
-            <VolumeUpIcon sx={{ fontSize: 64, color: '#1565c0' }} />
+            <VolumeUpIcon sx={{ fontSize: 48, color: '#1565c0' }} />
           ) : (
-            <ReplayIcon sx={{ fontSize: 64, color: '#1976d2' }} />
+            <ReplayIcon sx={{ fontSize: 48, color: '#1976d2' }} />
           )}
-          <Typography variant="body2" color="#1565c0" fontWeight="bold" sx={{ mt: 0.5 }}>
+          <Typography variant="caption" color="#1565c0" fontWeight="bold" sx={{ mt: 0.5, display: 'block' }}>
             {isPlaying ? t('soundMatching.listening') : t('soundMatching.playAgain')}
           </Typography>
         </Box>
       </Paper>
 
-      {/* Answer feedback message */}
-      {isCorrect !== null && (
-        <Typography
-          variant="h5"
-          sx={{
-            fontWeight: 'bold',
-            color: isCorrect ? '#4caf50' : '#f44336',
-            textAlign: 'center',
-          }}
-        >
-          {isCorrect ? t('soundMatching.correct') : t('soundMatching.tryAgainMessage')}
-        </Typography>
-      )}
+      {/* Answer feedback message - fixed height to prevent layout shift */}
+      <Box sx={{ height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {isCorrect !== null && (
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 'bold',
+              color: isCorrect ? '#4caf50' : '#f44336',
+              textAlign: 'center',
+            }}
+          >
+            {isCorrect ? t('soundMatching.correct') : t('soundMatching.tryAgainMessage')}
+          </Typography>
+        )}
+      </Box>
 
       {/* Letter options */}
       <Box
         sx={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: 2,
-          maxWidth: 400,
+          gap: 1.5,
+          maxWidth: 340,
           width: '100%',
         }}
       >
@@ -455,7 +500,7 @@ export default function SoundMatchingContent() {
               elevation={selectedId ? 2 : 6}
               onClick={() => canSelect && handleAnswer(letter)}
               sx={{
-                p: 3,
+                p: 2,
                 borderRadius: 3,
                 textAlign: 'center',
                 transition: 'all 0.2s ease',
@@ -473,16 +518,16 @@ export default function SoundMatchingContent() {
                 variant="h2"
                 sx={{
                   fontWeight: 'bold',
-                  fontSize: { xs: '3rem', sm: '4rem' },
+                  fontSize: '3rem',
                   lineHeight: 1,
                 }}
               >
                 {letter.name}
               </Typography>
               <Typography
-                variant="body1"
+                variant="body2"
                 sx={{
-                  mt: 1,
+                  mt: 0.5,
                   color: styles.color === '#bdbdbd' ? '#bdbdbd' : '#757575',
                   fontWeight: 500,
                 }}
@@ -562,8 +607,7 @@ export default function SoundMatchingContent() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          minHeight: '85vh',
-          pt: 2,
+          pt: 1,
         }}
       >
         {gameState === 'menu' && renderMenu()}
