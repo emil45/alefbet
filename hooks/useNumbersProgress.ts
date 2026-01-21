@@ -1,118 +1,85 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import numbers from '@/data/numbers';
-
-export interface NumbersProgressData {
-  heardNumberIds: string[];
-  totalClicks: number; // Total number clicks/listens for practice milestones
-}
+import { useCategoryProgress, StorageErrorType } from './useCategoryProgress';
 
 const STORAGE_KEY = 'lepdy_numbers_progress';
 const TOTAL_NUMBERS = numbers.length; // 10 numbers
 
-function getDefaultNumbersProgressData(): NumbersProgressData {
-  return {
-    heardNumberIds: [],
-    totalClicks: 0,
-  };
-}
-
-function loadNumbersProgressData(): NumbersProgressData {
-  if (typeof window === 'undefined') {
-    return getDefaultNumbersProgressData();
-  }
-
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      return JSON.parse(stored);
-    }
-  } catch (error) {
-    console.error('Failed to load numbers progress data:', error);
-  }
-  return getDefaultNumbersProgressData();
-}
-
-function saveNumbersProgressData(data: NumbersProgressData): void {
-  if (typeof window === 'undefined') return;
-
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  } catch (error) {
-    console.error('Failed to save numbers progress data:', error);
-  }
+/**
+ * @deprecated Use the generic fields from useCategoryProgress instead.
+ * Kept for backward compatibility with existing code.
+ */
+export interface NumbersProgressData {
+  heardNumberIds: string[];
+  totalClicks: number;
 }
 
 export interface UseNumbersProgressReturn {
+  /** @deprecated Use generic progress data instead */
   numbersProgressData: NumbersProgressData;
   recordNumberHeard: (numberId: string) => void;
   hasHeardNumber: (numberId: string) => boolean;
   heardNumberIds: Set<string>;
   totalHeard: number;
-  totalClicks: number; // Total clicks for practice milestones
+  totalClicks: number;
   totalNumbers: number;
   hasHeardAll: boolean;
+  /** Storage error state - UI can show gentle feedback if needed */
+  storageError: StorageErrorType;
+  clearStorageError: () => void;
 }
 
+/**
+ * Hook for tracking numbers progress (discovery + practice).
+ * Wraps the generic useCategoryProgress with numbers-specific naming.
+ */
 export function useNumbersProgress(): UseNumbersProgressReturn {
-  const [numbersProgressData, setNumbersProgressData] = useState<NumbersProgressData>(
-    getDefaultNumbersProgressData
+  const {
+    recordItemHeard,
+    hasHeardItem,
+    heardItemIds,
+    totalHeard,
+    totalClicks,
+    totalItems,
+    hasHeardAll,
+    storageError,
+    clearStorageError,
+  } = useCategoryProgress({
+    storageKey: STORAGE_KEY,
+    totalItems: TOTAL_NUMBERS,
+    categoryName: 'numbers',
+  });
+
+  // Map to numbers-specific naming for backward compatibility
+  const recordNumberHeard = useCallback(
+    (numberId: string) => recordItemHeard(numberId),
+    [recordItemHeard]
   );
-  const [isInitialized, setIsInitialized] = useState(false);
-
-  // Load data on mount
-  useEffect(() => {
-    const data = loadNumbersProgressData();
-    setNumbersProgressData(data);
-    setIsInitialized(true);
-  }, []);
-
-  // Save whenever data changes (after initialization)
-  useEffect(() => {
-    if (isInitialized) {
-      saveNumbersProgressData(numbersProgressData);
-    }
-  }, [numbersProgressData, isInitialized]);
-
-  // Memoized Set for O(1) lookup
-  const heardNumberIds = useMemo(() => {
-    return new Set(numbersProgressData.heardNumberIds);
-  }, [numbersProgressData.heardNumberIds]);
 
   const hasHeardNumber = useCallback(
-    (numberId: string): boolean => heardNumberIds.has(numberId),
-    [heardNumberIds]
+    (numberId: string) => hasHeardItem(numberId),
+    [hasHeardItem]
   );
 
-  const recordNumberHeard = useCallback((numberId: string) => {
-    setNumbersProgressData((prev) => {
-      const isNewNumber = !prev.heardNumberIds.includes(numberId);
-      return {
-        ...prev,
-        // Add to unique numbers if new
-        heardNumberIds: isNewNumber
-          ? [...prev.heardNumberIds, numberId]
-          : prev.heardNumberIds,
-        // Always increment total clicks for practice milestones
-        totalClicks: (prev.totalClicks || 0) + 1,
-      };
-    });
-  }, []);
-
-  const totalHeard = numbersProgressData.heardNumberIds.length;
-  const totalClicks = numbersProgressData.totalClicks || 0;
-  const hasHeardAll = totalHeard >= TOTAL_NUMBERS;
+  // Create legacy data structure for backward compatibility
+  const numbersProgressData: NumbersProgressData = {
+    heardNumberIds: Array.from(heardItemIds),
+    totalClicks,
+  };
 
   return {
     numbersProgressData,
     recordNumberHeard,
     hasHeardNumber,
-    heardNumberIds,
+    heardNumberIds: heardItemIds,
     totalHeard,
     totalClicks,
-    totalNumbers: TOTAL_NUMBERS,
+    totalNumbers: totalItems,
     hasHeardAll,
+    storageError,
+    clearStorageError,
   };
 }
 
