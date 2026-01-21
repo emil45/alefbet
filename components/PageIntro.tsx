@@ -11,7 +11,7 @@ export default function PageIntro({ pageName }: PageIntroProps) {
   const t = useTranslations();
 
   return (
-    <Box sx={{ textAlign: 'center', px: 2, mb: 3 }}>
+    <Box sx={{ textAlign: 'center', px: 2, mb: { xs: 1.5, sm: 3 } }}>
       <Typography
         variant="h1"
         sx={{

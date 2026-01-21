@@ -292,6 +292,7 @@ export default function SoundMatchingContent() {
         border: '4px solid #e0e0e0',
         color: letter.color,
         animation: 'none',
+        transform: 'none',
         cursor: 'pointer',
       };
     }
@@ -302,7 +303,8 @@ export default function SoundMatchingContent() {
         backgroundColor: '#e8f5e9',
         border: '4px solid #4caf50',
         color: letter.color,
-        animation: isSelected ? `${bounce} 0.4s ease` : 'none',
+        animation: isSelected ? `${bounce} 0.4s ease forwards` : 'none',
+        transform: 'none',
         cursor: 'default',
       };
     }
@@ -313,7 +315,8 @@ export default function SoundMatchingContent() {
         backgroundColor: '#ffebee',
         border: '4px solid #f44336',
         color: letter.color,
-        animation: `${shake} 0.4s ease`,
+        animation: `${shake} 0.4s ease forwards`,
+        transform: 'none',
         cursor: 'default',
       };
     }
@@ -324,6 +327,7 @@ export default function SoundMatchingContent() {
       border: '4px solid #e0e0e0',
       color: '#bdbdbd',
       animation: 'none',
+      transform: 'none',
       cursor: 'default',
     };
   }
@@ -492,7 +496,7 @@ export default function SoundMatchingContent() {
                 p: 2,
                 borderRadius: 3,
                 textAlign: 'center',
-                transition: 'all 0.2s ease',
+                transition: 'background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease',
                 ...styles,
                 '&:hover': canSelect ? {
                   transform: 'translateY(-4px)',
