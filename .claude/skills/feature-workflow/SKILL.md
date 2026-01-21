@@ -43,6 +43,7 @@ lib/              → External integrations (firebase.ts, seo.ts, featureFlags/)
 - **Word audio files missing**: `/public/audio/words/` doesn't exist yet. `hebrewWords.ts` has `audioFile` paths but they 404. Don't add code to play these until files exist.
 - **Explorer stickers not implemented**: Page 6 (Explorer) stickers have `unlockType: 'future'`. Pages 1-5 (Letters, Numbers, Animals, Games, Streaks) ARE fully implemented.
 - **counting-game defined but not implemented**: `GameType` in `amplitudeEvents.ts` includes `'counting-game'` but no game exists. Exclude from `ALL_GAME_TYPES` until implemented.
+- **letter-tracing game disabled**: Game code exists in `app/[locale]/games/letter-tracing/` but is disabled (removed from games menu, sitemap, tests). Pixel-based and checkpoint-based validation approaches failed - checkpoint positions don't align with font-rendered letters. Needs a visual calibration tool or different approach (e.g., SVG paths instead of font rendering).
 
 ### Testing Rules
 - **Add tests**: New pages, new games, major UI changes
