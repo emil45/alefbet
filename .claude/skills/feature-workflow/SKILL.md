@@ -324,15 +324,15 @@ EOF
 
 **Goal**: Learn and improve the workflow.
 
-Quick post-mortem focused on what went wrong, not what went well.
+Quick self-reflection focused on what went wrong, not what went well.
 
-1. **Ask the user**: "Anything that didn't work well or could be improved?"
+1. **Self-reflect**: What mistakes were made? What took longer than expected?
 
 2. **If improvements identified**:
    - Update this skill file (Key Patterns, Known Gaps, Anti-Patterns, or phase instructions)
    - Commit the skill update separately from feature code
 
-3. **Keep it brief** - 2-3 minutes max. Skip if user declines.
+3. **Keep it brief** - 1-2 minutes max. Skip if nothing significant.
 
 **Good retro outputs:**
 - New anti-pattern discovered → add to Anti-Patterns
@@ -382,3 +382,4 @@ Which approach?
 - Silently reverting unrelated working directory changes without asking
 - Running review agents on entire codebase instead of scoping to changed files
 - Adding code that references missing assets (check files exist first)
+- Using `replace_all: true` without checking it won't break imports or create duplicates
