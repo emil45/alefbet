@@ -36,10 +36,11 @@ lib/              → External integrations (firebase.ts, seo.ts, featureFlags/)
 - Audio: `playSound(AudioSounds.X)` for effects, `playAudio(path)` for content
 - Celebrations: `useCelebration` hook with types: gameComplete, milestone, correctAnswer, streak
 - Feature Flags: `useFeatureFlagContext().getFlag('flagName')` - defaults to `false`, enabled via Firebase Remote Config
+- Category Progress: `useCategoryProgress` hook for tracking discovery/practice milestones. Wrap with category-specific hooks (e.g., `useLettersProgress`). Handles localStorage with proper error handling.
 
 ### Known Gaps
 - **Word audio files missing**: `/public/audio/words/` doesn't exist yet. `hebrewWords.ts` has `audioFile` paths but they 404. Don't add code to play these until files exist.
-- **Game sticker rewards not implemented**: Stickers in `data/stickers.ts` have `unlockType: 'future'` for game-specific unlocks. Don't implement game sticker rewards until the unlock system is built.
+- **Game/Explorer sticker rewards not implemented**: Stickers on pages 4 (Games) and 6 (Explorer) have `unlockType: 'future'`. Letters, numbers, and animals stickers ARE implemented using the `useCategoryProgress` pattern.
 
 ### Testing Rules
 - **Add tests**: New pages, new games, major UI changes
