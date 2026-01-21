@@ -685,7 +685,8 @@
       "super": "Super Learner"
     },
     "unlockHint": {
-      "streak": "Reach a {days} day streak to unlock"
+      "streak": "Reach a {days} day streak to unlock",
+      "letters": "Hear {count} different letters to unlock"
     },
     "comingSoon": "Coming soon!",
     "streakHint": "Keep learning every day to unlock streak stickers!"

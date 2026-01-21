@@ -8,6 +8,7 @@ import StickerCard from '@/components/StickerCard';
 import StickerPeelAnimation from '@/components/StickerPeelAnimation';
 import { useStickerContext } from '@/contexts/StickerContext';
 import { useStreakContext } from '@/contexts/StreakContext';
+import { useLettersProgressContext } from '@/contexts/LettersProgressContext';
 import {
   STICKER_PAGES,
   getStickersForPage,
@@ -26,6 +27,7 @@ export default function StickersContent() {
   const [currentPage, setCurrentPage] = useState(0); // 0-indexed tab
   const { hasSticker, earnSticker, totalEarned } = useStickerContext();
   const { streakData } = useStreakContext();
+  const { totalHeard: lettersHeard } = useLettersProgressContext();
   const t = useTranslations();
 
   // Peel animation state
@@ -39,12 +41,20 @@ export default function StickersContent() {
   // Check if a sticker meets its unlock requirements (regardless of earned status)
   const meetsUnlockRequirements = useCallback(
     (sticker: Sticker): boolean => {
-      if (sticker.unlockType === 'streak' && sticker.unlockValue !== undefined) {
-        return streakData.currentStreak >= sticker.unlockValue;
+      if (sticker.unlockValue === undefined) {
+        return false;
       }
-      return false;
+
+      switch (sticker.unlockType) {
+        case 'streak':
+          return streakData.currentStreak >= sticker.unlockValue;
+        case 'letters_progress':
+          return lettersHeard >= sticker.unlockValue;
+        default:
+          return false;
+      }
     },
-    [streakData.currentStreak]
+    [streakData.currentStreak, lettersHeard]
   );
 
   // Check if a sticker is unlocked (earned or meets requirements)
@@ -100,12 +110,16 @@ export default function StickersContent() {
   }, [peelAnimation.sticker, t, earnSticker]);
 
   // Get unlock hint for locked stickers
-  const getUnlockHint = (sticker: Sticker): string | undefined => {
-    if (sticker.unlockType === 'streak' && sticker.unlockValue !== undefined) {
-      return t('stickers.unlockHint.streak', { days: sticker.unlockValue });
+  function getUnlockHint(sticker: Sticker): string {
+    const { unlockType, unlockValue } = sticker;
+    if (unlockType === 'streak' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.streak', { days: unlockValue });
+    }
+    if (unlockType === 'letters_progress' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.letters', { count: unlockValue });
     }
     return t('stickers.comingSoon');
-  };
+  }
 
   const pageStickers = getStickersForPage(currentPage + 1); // Pages are 1-indexed
   const pageInfo = STICKER_PAGES[currentPage];

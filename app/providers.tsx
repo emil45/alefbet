@@ -9,6 +9,7 @@ import { AmplitudeEventsEnum, LocaleType } from '@/models/amplitudeEvents';
 import { StreakProvider } from '@/contexts/StreakContext';
 import { StickerProvider } from '@/contexts/StickerContext';
 import { FeatureFlagProvider } from '@/contexts/FeatureFlagContext';
+import { LettersProgressProvider } from '@/contexts/LettersProgressContext';
 import InstallPrompt from '@/components/InstallPrompt';
 import ThemeRegistry from './ThemeRegistry';
 
@@ -49,10 +50,12 @@ export default function Providers({ children, direction, locale }: ProvidersProp
         <CssBaseline />
         <FeatureFlagProvider>
           <StreakProvider>
-            <StickerProvider>
-              {children}
-              <InstallPrompt />
-            </StickerProvider>
+            <LettersProgressProvider>
+              <StickerProvider>
+                {children}
+                <InstallPrompt />
+              </StickerProvider>
+            </LettersProgressProvider>
           </StreakProvider>
         </FeatureFlagProvider>
       </ThemeProvider>

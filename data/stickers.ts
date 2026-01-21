@@ -7,9 +7,10 @@ export interface Sticker {
   translationKey: string;
   emoji: string;
   pageNumber: number;
-  // MVP: only 'streak' type unlocks, 'future' shows as locked
-  unlockType: 'streak' | 'future';
+  // Unlock types: 'streak' for daily streaks, 'letters_progress' for letter learning, 'future' shows as locked
+  unlockType: 'streak' | 'letters_progress' | 'future';
   // For streak type: the streak day required to unlock
+  // For letters_progress type: the number of unique letters heard
   unlockValue?: number;
 }
 
@@ -21,11 +22,11 @@ export interface StickerPage {
 
 // 30 stickers across 6 pages (5 per page)
 export const STICKERS: Sticker[] = [
-  // Page 1: Letters (all future/locked for MVP)
-  { id: 'letters_first', translationKey: 'stickers.letters.first', emoji: '🔤', pageNumber: 1, unlockType: 'future' },
-  { id: 'letters_five', translationKey: 'stickers.letters.five', emoji: '📝', pageNumber: 1, unlockType: 'future' },
-  { id: 'letters_ten', translationKey: 'stickers.letters.ten', emoji: '📖', pageNumber: 1, unlockType: 'future' },
-  { id: 'letters_all', translationKey: 'stickers.letters.all', emoji: '🎓', pageNumber: 1, unlockType: 'future' },
+  // Page 1: Letters (unlockable by hearing letters)
+  { id: 'letters_first', translationKey: 'stickers.letters.first', emoji: '🔤', pageNumber: 1, unlockType: 'letters_progress', unlockValue: 1 },
+  { id: 'letters_five', translationKey: 'stickers.letters.five', emoji: '📝', pageNumber: 1, unlockType: 'letters_progress', unlockValue: 5 },
+  { id: 'letters_ten', translationKey: 'stickers.letters.ten', emoji: '📖', pageNumber: 1, unlockType: 'letters_progress', unlockValue: 10 },
+  { id: 'letters_all', translationKey: 'stickers.letters.all', emoji: '🎓', pageNumber: 1, unlockType: 'letters_progress', unlockValue: 22 },
   { id: 'letters_tracer', translationKey: 'stickers.letters.tracer', emoji: '✏️', pageNumber: 1, unlockType: 'future' },
 
   // Page 2: Numbers (all future/locked for MVP)
