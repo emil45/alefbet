@@ -11,6 +11,7 @@ import { StickerProvider } from '@/contexts/StickerContext';
 import { FeatureFlagProvider } from '@/contexts/FeatureFlagContext';
 import { LettersProgressProvider } from '@/contexts/LettersProgressContext';
 import { NumbersProgressProvider } from '@/contexts/NumbersProgressContext';
+import { AnimalsProgressProvider } from '@/contexts/AnimalsProgressContext';
 import InstallPrompt from '@/components/InstallPrompt';
 import ThemeRegistry from './ThemeRegistry';
 
@@ -53,10 +54,12 @@ export default function Providers({ children, direction, locale }: ProvidersProp
           <StreakProvider>
             <LettersProgressProvider>
               <NumbersProgressProvider>
-                <StickerProvider>
-                  {children}
-                  <InstallPrompt />
-                </StickerProvider>
+                <AnimalsProgressProvider>
+                  <StickerProvider>
+                    {children}
+                    <InstallPrompt />
+                  </StickerProvider>
+                </AnimalsProgressProvider>
               </NumbersProgressProvider>
             </LettersProgressProvider>
           </StreakProvider>

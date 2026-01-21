@@ -695,7 +695,9 @@
       "letters": "Hear {count} different letters to unlock",
       "lettersTotal": "Click letters {count} times to unlock",
       "numbers": "Hear {count} different numbers to unlock",
-      "numbersTotal": "Click numbers {count} times to unlock"
+      "numbersTotal": "Click numbers {count} times to unlock",
+      "animals": "Hear {count} different animals to unlock",
+      "animalsTotal": "Click animals {count} times to unlock"
     },
     "comingSoon": "Coming soon!",
     "streakHint": "Keep learning every day to unlock streak stickers!"

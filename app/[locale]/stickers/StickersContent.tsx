@@ -10,6 +10,7 @@ import { useStickerContext } from '@/contexts/StickerContext';
 import { useStreakContext } from '@/contexts/StreakContext';
 import { useLettersProgressContext } from '@/contexts/LettersProgressContext';
 import { useNumbersProgressContext } from '@/contexts/NumbersProgressContext';
+import { useAnimalsProgressContext } from '@/contexts/AnimalsProgressContext';
 import {
   STICKER_PAGES,
   getStickersForPage,
@@ -30,6 +31,7 @@ export default function StickersContent() {
   const { streakData } = useStreakContext();
   const { totalHeard: lettersHeard, totalClicks: lettersTotalClicks } = useLettersProgressContext();
   const { totalHeard: numbersHeard, totalClicks: numbersTotalClicks } = useNumbersProgressContext();
+  const { totalHeard: animalsHeard, totalClicks: animalsTotalClicks } = useAnimalsProgressContext();
   const t = useTranslations();
 
   // Peel animation state
@@ -58,11 +60,15 @@ export default function StickersContent() {
           return numbersHeard >= sticker.unlockValue;
         case 'numbers_total':
           return numbersTotalClicks >= sticker.unlockValue;
+        case 'animals_progress':
+          return animalsHeard >= sticker.unlockValue;
+        case 'animals_total':
+          return animalsTotalClicks >= sticker.unlockValue;
         default:
           return false;
       }
     },
-    [streakData.currentStreak, lettersHeard, lettersTotalClicks, numbersHeard, numbersTotalClicks]
+    [streakData.currentStreak, lettersHeard, lettersTotalClicks, numbersHeard, numbersTotalClicks, animalsHeard, animalsTotalClicks]
   );
 
   // Check if a sticker is unlocked (earned or meets requirements)
@@ -134,6 +140,12 @@ export default function StickersContent() {
     }
     if (unlockType === 'numbers_total' && unlockValue !== undefined) {
       return t('stickers.unlockHint.numbersTotal', { count: unlockValue });
+    }
+    if (unlockType === 'animals_progress' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.animals', { count: unlockValue });
+    }
+    if (unlockType === 'animals_total' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.animalsTotal', { count: unlockValue });
     }
     return t('stickers.comingSoon');
   }

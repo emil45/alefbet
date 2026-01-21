@@ -13,8 +13,10 @@ export interface Sticker {
   // - 'letters_total': total letter clicks/listens (practice milestone)
   // - 'numbers_progress': unique numbers heard
   // - 'numbers_total': total number clicks/listens (practice milestone)
+  // - 'animals_progress': unique animals heard
+  // - 'animals_total': total animal clicks/listens (practice milestone)
   // - 'future': shows as locked
-  unlockType: 'streak' | 'letters_progress' | 'letters_total' | 'numbers_progress' | 'numbers_total' | 'future';
+  unlockType: 'streak' | 'letters_progress' | 'letters_total' | 'numbers_progress' | 'numbers_total' | 'animals_progress' | 'animals_total' | 'future';
   // For streak: the streak day required
   // For letters_progress: unique letters heard count
   // For letters_total: total letter clicks count
@@ -53,12 +55,13 @@ export const STICKERS: Sticker[] = [
   { id: 'numbers_practice_100', translationKey: 'stickers.numbers.practice100', emoji: '🚀', pageNumber: 2, unlockType: 'numbers_total', unlockValue: 100 },
   { id: 'numbers_practice_200', translationKey: 'stickers.numbers.practice200', emoji: '🏅', pageNumber: 2, unlockType: 'numbers_total', unlockValue: 200 },
 
-  // Page 3: Animals (all future/locked for MVP)
-  { id: 'animals_first', translationKey: 'stickers.animals.first', emoji: '🐾', pageNumber: 3, unlockType: 'future' },
-  { id: 'animals_five', translationKey: 'stickers.animals.five', emoji: '🦁', pageNumber: 3, unlockType: 'future' },
-  { id: 'animals_all', translationKey: 'stickers.animals.all', emoji: '🐘', pageNumber: 3, unlockType: 'future' },
-  { id: 'animals_sounds', translationKey: 'stickers.animals.sounds', emoji: '🔊', pageNumber: 3, unlockType: 'future' },
-  { id: 'animals_zoo', translationKey: 'stickers.animals.zoo', emoji: '🦓', pageNumber: 3, unlockType: 'future' },
+  // Page 3: Animals - Discovery (unique animals heard)
+  { id: 'animals_first', translationKey: 'stickers.animals.first', emoji: '🐾', pageNumber: 3, unlockType: 'animals_progress', unlockValue: 1 },
+  { id: 'animals_five', translationKey: 'stickers.animals.five', emoji: '🦁', pageNumber: 3, unlockType: 'animals_progress', unlockValue: 5 },
+  { id: 'animals_all', translationKey: 'stickers.animals.all', emoji: '🐘', pageNumber: 3, unlockType: 'animals_progress', unlockValue: 19 },
+  // Page 3: Animals - Practice (total animal clicks)
+  { id: 'animals_sounds', translationKey: 'stickers.animals.sounds', emoji: '🔊', pageNumber: 3, unlockType: 'animals_total', unlockValue: 25 },
+  { id: 'animals_zoo', translationKey: 'stickers.animals.zoo', emoji: '🦓', pageNumber: 3, unlockType: 'animals_total', unlockValue: 50 },
 
   // Page 4: Games (all future/locked for MVP)
   { id: 'games_first', translationKey: 'stickers.games.first', emoji: '🎮', pageNumber: 4, unlockType: 'future' },

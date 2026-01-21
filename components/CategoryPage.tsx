@@ -13,6 +13,7 @@ import { AmplitudeEventsEnum, CategoryType, LocaleType } from '@/models/amplitud
 import { useStreakContext } from '@/contexts/StreakContext';
 import { useLettersProgressContext } from '@/contexts/LettersProgressContext';
 import { useNumbersProgressContext } from '@/contexts/NumbersProgressContext';
+import { useAnimalsProgressContext } from '@/contexts/AnimalsProgressContext';
 import { VOICE_CHARACTERS } from '@/data/voiceCharacters';
 
 type RenderMode = 'text' | 'image' | 'element' | 'color';
@@ -61,6 +62,7 @@ export default function CategoryPage<T extends CategoryItem>({
   const { recordActivity } = useStreakContext();
   const { recordLetterHeard } = useLettersProgressContext();
   const { recordNumberHeard } = useNumbersProgressContext();
+  const { recordAnimalHeard } = useAnimalsProgressContext();
 
   const getItemName = (item: T): string => {
     if (renderMode === 'text') return t(`${translationPrefix}.${item.id}.name`);
@@ -79,6 +81,8 @@ export default function CategoryPage<T extends CategoryItem>({
       recordLetterHeard(item.id);
     } else if (category === 'numbers') {
       recordNumberHeard(item.id);
+    } else if (category === 'animals') {
+      recordAnimalHeard(item.id);
     }
 
     // Fire item_tapped event
