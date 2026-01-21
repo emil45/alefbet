@@ -11,11 +11,15 @@ export interface Sticker {
   // - 'streak': daily streaks
   // - 'letters_progress': unique letters heard
   // - 'letters_total': total letter clicks/listens (practice milestone)
+  // - 'numbers_progress': unique numbers heard
+  // - 'numbers_total': total number clicks/listens (practice milestone)
   // - 'future': shows as locked
-  unlockType: 'streak' | 'letters_progress' | 'letters_total' | 'future';
+  unlockType: 'streak' | 'letters_progress' | 'letters_total' | 'numbers_progress' | 'numbers_total' | 'future';
   // For streak: the streak day required
   // For letters_progress: unique letters heard count
   // For letters_total: total letter clicks count
+  // For numbers_progress: unique numbers heard count
+  // For numbers_total: total number clicks count
   unlockValue?: number;
 }
 
@@ -25,7 +29,7 @@ export interface StickerPage {
   color: string;
 }
 
-// 34 stickers across 6 pages
+// 36 stickers across 6 pages
 export const STICKERS: Sticker[] = [
   // Page 1: Letters - Discovery (unique letters heard)
   { id: 'letters_first', translationKey: 'stickers.letters.first', emoji: '🔤', pageNumber: 1, unlockType: 'letters_progress', unlockValue: 1 },
@@ -39,12 +43,15 @@ export const STICKERS: Sticker[] = [
   { id: 'letters_practice_200', translationKey: 'stickers.letters.practice200', emoji: '🚀', pageNumber: 1, unlockType: 'letters_total', unlockValue: 200 },
   { id: 'letters_practice_300', translationKey: 'stickers.letters.practice300', emoji: '🏅', pageNumber: 1, unlockType: 'letters_total', unlockValue: 300 },
 
-  // Page 2: Numbers (all future/locked for MVP)
-  { id: 'numbers_one', translationKey: 'stickers.numbers.one', emoji: '1️⃣', pageNumber: 2, unlockType: 'future' },
-  { id: 'numbers_five', translationKey: 'stickers.numbers.five', emoji: '5️⃣', pageNumber: 2, unlockType: 'future' },
-  { id: 'numbers_ten', translationKey: 'stickers.numbers.ten', emoji: '🔟', pageNumber: 2, unlockType: 'future' },
-  { id: 'numbers_master', translationKey: 'stickers.numbers.master', emoji: '🧮', pageNumber: 2, unlockType: 'future' },
-  { id: 'numbers_math', translationKey: 'stickers.numbers.math', emoji: '⭐', pageNumber: 2, unlockType: 'future' },
+  // Page 2: Numbers - Discovery (unique numbers heard)
+  { id: 'numbers_one', translationKey: 'stickers.numbers.one', emoji: '1️⃣', pageNumber: 2, unlockType: 'numbers_progress', unlockValue: 1 },
+  { id: 'numbers_five', translationKey: 'stickers.numbers.five', emoji: '5️⃣', pageNumber: 2, unlockType: 'numbers_progress', unlockValue: 5 },
+  { id: 'numbers_ten', translationKey: 'stickers.numbers.ten', emoji: '🔟', pageNumber: 2, unlockType: 'numbers_progress', unlockValue: 10 },
+  // Page 2: Numbers - Practice (total number clicks)
+  { id: 'numbers_practice_25', translationKey: 'stickers.numbers.practice25', emoji: '🎯', pageNumber: 2, unlockType: 'numbers_total', unlockValue: 25 },
+  { id: 'numbers_practice_50', translationKey: 'stickers.numbers.practice50', emoji: '💪', pageNumber: 2, unlockType: 'numbers_total', unlockValue: 50 },
+  { id: 'numbers_practice_100', translationKey: 'stickers.numbers.practice100', emoji: '🚀', pageNumber: 2, unlockType: 'numbers_total', unlockValue: 100 },
+  { id: 'numbers_practice_200', translationKey: 'stickers.numbers.practice200', emoji: '🏅', pageNumber: 2, unlockType: 'numbers_total', unlockValue: 200 },
 
   // Page 3: Animals (all future/locked for MVP)
   { id: 'animals_first', translationKey: 'stickers.animals.first', emoji: '🐾', pageNumber: 3, unlockType: 'future' },
@@ -86,7 +93,7 @@ export const STICKER_PAGES: StickerPage[] = [
 ];
 
 export const TOTAL_PAGES = 6;
-export const TOTAL_STICKERS = 34;
+export const TOTAL_STICKERS = 36;
 
 // Helper to get stickers for a specific page
 export function getStickersForPage(pageNumber: number): Sticker[] {

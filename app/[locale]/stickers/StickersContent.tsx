@@ -9,6 +9,7 @@ import StickerPeelAnimation from '@/components/StickerPeelAnimation';
 import { useStickerContext } from '@/contexts/StickerContext';
 import { useStreakContext } from '@/contexts/StreakContext';
 import { useLettersProgressContext } from '@/contexts/LettersProgressContext';
+import { useNumbersProgressContext } from '@/contexts/NumbersProgressContext';
 import {
   STICKER_PAGES,
   getStickersForPage,
@@ -28,6 +29,7 @@ export default function StickersContent() {
   const { hasSticker, earnSticker, totalEarned } = useStickerContext();
   const { streakData } = useStreakContext();
   const { totalHeard: lettersHeard, totalClicks: lettersTotalClicks } = useLettersProgressContext();
+  const { totalHeard: numbersHeard, totalClicks: numbersTotalClicks } = useNumbersProgressContext();
   const t = useTranslations();
 
   // Peel animation state
@@ -52,11 +54,15 @@ export default function StickersContent() {
           return lettersHeard >= sticker.unlockValue;
         case 'letters_total':
           return lettersTotalClicks >= sticker.unlockValue;
+        case 'numbers_progress':
+          return numbersHeard >= sticker.unlockValue;
+        case 'numbers_total':
+          return numbersTotalClicks >= sticker.unlockValue;
         default:
           return false;
       }
     },
-    [streakData.currentStreak, lettersHeard, lettersTotalClicks]
+    [streakData.currentStreak, lettersHeard, lettersTotalClicks, numbersHeard, numbersTotalClicks]
   );
 
   // Check if a sticker is unlocked (earned or meets requirements)
@@ -122,6 +128,12 @@ export default function StickersContent() {
     }
     if (unlockType === 'letters_total' && unlockValue !== undefined) {
       return t('stickers.unlockHint.lettersTotal', { count: unlockValue });
+    }
+    if (unlockType === 'numbers_progress' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.numbers', { count: unlockValue });
+    }
+    if (unlockType === 'numbers_total' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.numbersTotal', { count: unlockValue });
     }
     return t('stickers.comingSoon');
   }

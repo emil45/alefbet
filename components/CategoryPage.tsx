@@ -12,6 +12,7 @@ import { logEvent } from '@/utils/amplitude';
 import { AmplitudeEventsEnum, CategoryType, LocaleType } from '@/models/amplitudeEvents';
 import { useStreakContext } from '@/contexts/StreakContext';
 import { useLettersProgressContext } from '@/contexts/LettersProgressContext';
+import { useNumbersProgressContext } from '@/contexts/NumbersProgressContext';
 import { VOICE_CHARACTERS } from '@/data/voiceCharacters';
 
 type RenderMode = 'text' | 'image' | 'element' | 'color';
@@ -59,6 +60,7 @@ export default function CategoryPage<T extends CategoryItem>({
   const isRTL = forceRTL || direction === 'rtl';
   const { recordActivity } = useStreakContext();
   const { recordLetterHeard } = useLettersProgressContext();
+  const { recordNumberHeard } = useNumbersProgressContext();
 
   const getItemName = (item: T): string => {
     if (renderMode === 'text') return t(`${translationPrefix}.${item.id}.name`);
@@ -72,9 +74,11 @@ export default function CategoryPage<T extends CategoryItem>({
     // Record learning activity for streak tracking
     recordActivity();
 
-    // Track letter progress for sticker unlocks
+    // Track progress for sticker unlocks
     if (category === 'letters') {
       recordLetterHeard(item.id);
+    } else if (category === 'numbers') {
+      recordNumberHeard(item.id);
     }
 
     // Fire item_tapped event

@@ -10,6 +10,7 @@ import { StreakProvider } from '@/contexts/StreakContext';
 import { StickerProvider } from '@/contexts/StickerContext';
 import { FeatureFlagProvider } from '@/contexts/FeatureFlagContext';
 import { LettersProgressProvider } from '@/contexts/LettersProgressContext';
+import { NumbersProgressProvider } from '@/contexts/NumbersProgressContext';
 import InstallPrompt from '@/components/InstallPrompt';
 import ThemeRegistry from './ThemeRegistry';
 
@@ -51,10 +52,12 @@ export default function Providers({ children, direction, locale }: ProvidersProp
         <FeatureFlagProvider>
           <StreakProvider>
             <LettersProgressProvider>
-              <StickerProvider>
-                {children}
-                <InstallPrompt />
-              </StickerProvider>
+              <NumbersProgressProvider>
+                <StickerProvider>
+                  {children}
+                  <InstallPrompt />
+                </StickerProvider>
+              </NumbersProgressProvider>
             </LettersProgressProvider>
           </StreakProvider>
         </FeatureFlagProvider>

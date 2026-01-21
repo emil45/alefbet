@@ -654,11 +654,13 @@
       "practice300": "Practice Champion"
     },
     "numbers": {
-      "one": "Number One",
-      "five": "Number Five",
-      "ten": "Number Ten",
-      "master": "Number Master",
-      "math": "Math Star"
+      "one": "First Number",
+      "five": "Five Numbers",
+      "ten": "All Numbers",
+      "practice25": "Practice 25",
+      "practice50": "Practice 50",
+      "practice100": "Practice 100",
+      "practice200": "Practice Champion"
     },
     "animals": {
       "first": "First Animal",
@@ -691,7 +693,9 @@
     "unlockHint": {
       "streak": "Reach a {days} day streak to unlock",
       "letters": "Hear {count} different letters to unlock",
-      "lettersTotal": "Click letters {count} times to unlock"
+      "lettersTotal": "Click letters {count} times to unlock",
+      "numbers": "Hear {count} different numbers to unlock",
+      "numbersTotal": "Click numbers {count} times to unlock"
     },
     "comingSoon": "Coming soon!",
     "streakHint": "Keep learning every day to unlock streak stickers!"
