@@ -46,7 +46,8 @@ const CONFUSED_PAIRS = [
 
 const TOTAL_ROUNDS = 10;
 const SOUND_PLAY_DELAY = 600;
-const ANSWER_REVEAL_DELAY = 1500;
+const CORRECT_ANSWER_DELAY = 1200;
+const WRONG_ANSWER_DELAY = 2500; // Give kids time to see the correct answer
 
 // Pulse animation for sound button
 const pulse = keyframes`
@@ -231,7 +232,8 @@ export default function SoundMatchingContent() {
       }, 800);
     }
 
-    // Move to next round or finish
+    // Move to next round or finish (longer delay for wrong answers so kids can see correct letter)
+    const delay = correct ? CORRECT_ANSWER_DELAY : WRONG_ANSWER_DELAY;
     setTimeout(() => {
       const nextRound = round + 1;
       if (nextRound >= TOTAL_ROUNDS) {
@@ -247,7 +249,7 @@ export default function SoundMatchingContent() {
         setRound(nextRound);
         generateQuestion();
       }
-    }, ANSWER_REVEAL_DELAY);
+    }, delay);
   }, [currentLetter, canSelect, round, score, playLetterSound, celebrate, trackGameCompleted, generateQuestion]);
 
   // Start the game
@@ -384,18 +386,18 @@ export default function SoundMatchingContent() {
       <Paper
         elevation={3}
         sx={{
-          p: 1.5,
+          p: 2,
           borderRadius: 3,
           width: '100%',
-          maxWidth: 340,
+          maxWidth: 500,
           background: 'linear-gradient(135deg, #f5f5f5 0%, #eeeeee 100%)',
         }}
       >
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0.5 }}>
-          <Typography variant="body1" fontWeight="bold" color="#424242">
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+          <Typography variant="h6" fontWeight="bold" color="#424242">
             {t('soundMatching.round')} {round + 1}/{TOTAL_ROUNDS}
           </Typography>
-          <Typography variant="body1" fontWeight="bold" color="#4caf50">
+          <Typography variant="h6" fontWeight="bold" color="#4caf50">
             {t('soundMatching.score')}: {score}
           </Typography>
         </Box>
@@ -465,22 +467,6 @@ export default function SoundMatchingContent() {
           </Typography>
         </Box>
       </Paper>
-
-      {/* Answer feedback message - fixed height to prevent layout shift */}
-      <Box sx={{ height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {isCorrect !== null && (
-          <Typography
-            variant="h5"
-            sx={{
-              fontWeight: 'bold',
-              color: isCorrect ? '#4caf50' : '#f44336',
-              textAlign: 'center',
-            }}
-          >
-            {isCorrect ? t('soundMatching.correct') : t('soundMatching.tryAgainMessage')}
-          </Typography>
-        )}
-      </Box>
 
       {/* Letter options */}
       <Box
