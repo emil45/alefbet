@@ -45,6 +45,7 @@ lib/              → External integrations (firebase.ts, seo.ts, featureFlags/)
 
 ### Known Gaps
 - **Word audio files missing**: `/public/audio/words/` doesn't exist yet. `hebrewWords.ts` has `audioFile` paths but they 404. Don't add code to play these until files exist.
+- **Game sticker rewards not implemented**: Stickers in `data/stickers.ts` have `unlockType: 'future'` for game-specific unlocks. Don't implement game sticker rewards until the unlock system is built.
 
 ### Testing Rules
 - **Add tests**: New pages, new games, major UI changes
@@ -189,13 +190,18 @@ Execute phases sequentially. No approval gates. Ask for help only if stuck after
 
 2. **UI translations**: Add strings to `messages/{he,en,ru}.json` for any user-facing text
 
-3. **Feature flags**: If feature needs gradual rollout, wrap with `getFlag('flagName')`. Add flag to `lib/featureFlags/types.ts` with default `false` (enabled via Firebase Remote Config)
+3. **New game checklist**:
+   - Add to `GameType` union in `models/amplitudeEvents.ts` (required for analytics)
+   - Add button in `app/[locale]/games/GamesContent.tsx`
+   - Add route to `app/sitemap.ts`
 
-4. **Tests** (if needed per Testing Rules): Add to `e2e/app.spec.ts`
+4. **Feature flags**: If feature needs gradual rollout, wrap with `getFlag('flagName')`. Add flag to `lib/featureFlags/types.ts` with default `false` (enabled via Firebase Remote Config)
 
-5. Run **Build Command** - fix ALL errors before proceeding
+5. **Tests** (if needed per Testing Rules): Add to `e2e/app.spec.ts`
 
-6. If stuck >3 attempts: Ask for help
+6. Run **Build Command** - fix ALL errors before proceeding
+
+7. If stuck >3 attempts: Ask for help
 
 ---
 
@@ -270,15 +276,20 @@ After fixes: Re-run **Build Command**
 
 **Goal**: Verify nothing broke.
 
-1. Run **Test Command** (single worker avoids race conditions)
+1. **New game?** Add to games array in `e2e/app.spec.ts`:
+   ```typescript
+   const games = ['simon-game', 'guess-game', ..., 'your-new-game'];
+   ```
 
-2. If fails:
+2. Run **Test Command** (single worker avoids race conditions)
+
+3. If fails:
    - **Failures in files YOU modified**: Fix the issue, re-run
    - **Failures in unrelated files**: Note them and proceed (pre-existing issues)
    - Re-run reviews if fix was significant
    - After 3 failures on YOUR code: Ask for help
 
-3. If passes: Proceed to Ship
+4. If passes: Proceed to Ship
 
 **Don't**: Use `git stash` to verify if failures are pre-existing. Just check if the failing test files relate to your changes.
 
