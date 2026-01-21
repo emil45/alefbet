@@ -103,7 +103,7 @@ Add unexpected moments. Easter eggs. Playful animations. Sounds that make kids g
 ## Workflow
 
 ```
-ACQUIRE → EXPLORE → PLAN → IMPLEMENT → SEO → REVIEW → TEST → SHIP
+ACQUIRE → EXPLORE → PLAN → IMPLEMENT → SEO → REVIEW → TEST → SHIP → RETRO
 ```
 
 Execute phases sequentially. No approval gates. Ask for help only if stuck after 3 attempts.
@@ -306,6 +306,28 @@ EOF
    - Prompt: `"done <item_id>"` (use the task ID from Phase 1)
 
 5. **Summary**: Report files changed, decisions made, follow-ups
+
+---
+
+## Phase 9: Retro
+
+**Goal**: Learn and improve the workflow.
+
+Quick post-mortem focused on what went wrong, not what went well.
+
+1. **Ask the user**: "Anything that didn't work well or could be improved?"
+
+2. **If improvements identified**:
+   - Update this skill file (Key Patterns, Known Gaps, Anti-Patterns, or phase instructions)
+   - Commit the skill update separately from feature code
+
+3. **Keep it brief** - 2-3 minutes max. Skip if user declines.
+
+**Good retro outputs:**
+- New anti-pattern discovered → add to Anti-Patterns
+- New codebase pattern used → add to Key Patterns
+- Workflow step was confusing → clarify instructions
+- Missing context caused issues → add to Known Gaps
 
 ---
 
