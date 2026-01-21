@@ -591,6 +591,7 @@ export default function SoundMatchingContent() {
 
       <Box
         sx={{
+          minHeight: 'calc(100vh - 60px)',
           pt: 2,
           pb: 4,
         }}
