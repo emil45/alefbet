@@ -18,7 +18,7 @@ import {
 type RemoteConfig = import('firebase/remote-config').RemoteConfig;
 
 const DEFAULT_CONFIG: Required<FeatureFlagProviderConfig> = {
-  minimumFetchIntervalMs: 5 * 60 * 1000, // 5 minutes
+  minimumFetchIntervalMs: 1 * 60 * 1000, // 1 minute
   fetchOnInit: true,
 };
 
