@@ -42,7 +42,8 @@ export type GameType =
   | 'speed-challenge'
   | 'word-builder'
   | 'counting-game'
-  | 'letter-rain';
+  | 'letter-rain'
+  | 'sound-matching';
 
 // Locale types
 export type LocaleType = 'he' | 'en' | 'ru';

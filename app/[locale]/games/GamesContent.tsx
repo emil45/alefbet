@@ -23,6 +23,7 @@ export default function GamesContent() {
       >
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
           <FunButton to="/games/simon-game" text={t('games.buttons.simon')} />
+          <FunButton to="/games/sound-matching" text={t('games.buttons.soundMatching')} />
           <FunButton to="/games/letter-rain" text={t('games.buttons.letterRain')} />
           <FunButton to="/games/memory-match-game" text={t('games.buttons.memoryMatchGame')} />
           <FunButton to="/games/speed-challenge" text={t('games.buttons.speedChallenge')} />

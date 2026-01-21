@@ -31,6 +31,7 @@ const routes: Route[] = [
   { path: '/games/simon-game', priority: 0.6, changeFrequency: 'daily' },
   { path: '/games/speed-challenge', priority: 0.6, changeFrequency: 'daily' },
   { path: '/games/letter-rain', priority: 0.6, changeFrequency: 'daily' },
+  { path: '/games/sound-matching', priority: 0.6, changeFrequency: 'daily' },
 
   // Other
   { path: '/stickers', priority: 0.6, changeFrequency: 'daily' },

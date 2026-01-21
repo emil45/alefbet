@@ -27,7 +27,8 @@
       "speedChallenge": "Speed Challenge ⚡",
       "wordBuilder": "Word Builder 🔤",
       "countingGame": "Counting Game 🔢",
-      "letterRain": "Letter Rain 🎈"
+      "letterRain": "Letter Rain 🎈",
+      "soundMatching": "Sound Matching 🔊"
     },
     "letterRain": {
       "title": "Letter Rain",
@@ -77,6 +78,21 @@
       "finalScore": "Final Score",
       "playAgain": "Play Again"
     }
+  },
+  "soundMatching": {
+    "title": "Sound Matching",
+    "instructions": "Listen to the letter sound and tap the matching letter!",
+    "start": "Start Game",
+    "round": "Round",
+    "score": "Score",
+    "listening": "Listening...",
+    "playAgain": "Play Again",
+    "correct": "Great job!",
+    "tryAgainMessage": "Try again!",
+    "greatJob": "Amazing!",
+    "goodTry": "Good try!",
+    "accuracy": "correct",
+    "playAgainButton": "Play Again"
   },
   "speedChallenge": {
     "title": "Speed Challenge",
@@ -363,6 +379,10 @@
       "wordBuilder": {
         "title": "Build Hebrew Words - Learn to Read Hebrew for Kids",
         "description": "Interactive word building game - learn to build Hebrew words letter by letter. Help your child start reading Hebrew!"
+      },
+      "soundMatching": {
+        "title": "Hebrew Sound Matching Game - Letter Recognition for Kids",
+        "description": "Listen to Hebrew letter sounds and match them to the correct letter! Fun phonics game for kids learning the Hebrew alphabet."
       },
       "learn": {
         "title": "Learn Hebrew for Kids - How to Teach Your Child Hebrew",
