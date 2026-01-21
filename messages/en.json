@@ -671,9 +671,15 @@
     },
     "games": {
       "first": "First Game",
+      "three": "Three Games",
       "memory": "Memory Master",
-      "simon": "Simon Star",
+      "simon5": "Simon 5",
+      "simon7": "Simon 7",
+      "simon10": "Simon Star",
       "speed": "Speed Demon",
+      "words": "Word Builder",
+      "sounds": "Perfect Listener",
+      "dedicated": "Dedicated Player",
       "master": "Game Champion"
     },
     "streaks": {
@@ -697,7 +703,14 @@
       "numbers": "Hear {count} different numbers to unlock",
       "numbersTotal": "Click numbers {count} times to unlock",
       "animals": "Hear {count} different animals to unlock",
-      "animalsTotal": "Click animals {count} times to unlock"
+      "animalsTotal": "Click animals {count} times to unlock",
+      "gamesPlayed": "Play {count} different games to unlock",
+      "memoryWins": "Win memory match {count} times to unlock",
+      "simonScore": "Reach level {level} in Simon to unlock",
+      "speedChallengeHigh": "Complete speed challenge with high score {count} times to unlock",
+      "wordBuilderCompletions": "Complete word builder {count} times to unlock",
+      "soundMatchingPerfect": "Get perfect score in sound matching {count} times to unlock",
+      "totalGamesCompleted": "Complete {count} games to unlock"
     },
     "comingSoon": "Coming soon!",
     "streakHint": "Keep learning every day to unlock streak stickers!"

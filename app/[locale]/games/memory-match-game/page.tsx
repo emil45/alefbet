@@ -28,6 +28,7 @@ import { useTranslations } from 'next-intl';
 import { useGameAnalytics } from '@/hooks/useGameAnalytics';
 import { useCelebration } from '@/hooks/useCelebration';
 import Celebration from '@/components/Celebration';
+import { useGamesProgressContext } from '@/contexts/GamesProgressContext';
 
 const CARD_OPTIONS = [6, 10, 20, 40, 70, 100] as const;
 
@@ -77,6 +78,7 @@ export default function MemoryMatchGamePage() {
   const t = useTranslations();
   const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'memory-match-game' });
   const { celebrationState, celebrate, resetCelebration } = useCelebration();
+  const { recordGameCompleted } = useGamesProgressContext();
   const [numCards, setNumCards] = useState<number>(10);
   const [cards, setCards] = useState<MemoryMatchCardModel[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
@@ -114,8 +116,9 @@ export default function MemoryMatchGamePage() {
       setIsGameWon(true);
       celebrate('gameComplete');
       trackGameCompleted(numCards); // Score is number of cards matched
+      recordGameCompleted('memory-match-game', numCards);
     }
-  }, [cards, numCards, trackGameCompleted, celebrate]);
+  }, [cards, numCards, trackGameCompleted, celebrate, recordGameCompleted]);
 
   useEffect(() => {
     if (flippedCards.length === 2) {

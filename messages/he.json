@@ -671,9 +671,15 @@
     },
     "games": {
       "first": "משחק ראשון",
+      "three": "שלושה משחקים",
       "memory": "מאסטר זיכרון",
-      "simon": "כוכב סיימון",
+      "simon5": "סיימון 5",
+      "simon7": "סיימון 7",
+      "simon10": "כוכב סיימון",
       "speed": "שד מהירות",
+      "words": "בונה מילים",
+      "sounds": "מאזין מושלם",
+      "dedicated": "שחקן מסור",
       "master": "אלוף משחקים"
     },
     "streaks": {
@@ -697,7 +703,14 @@
       "numbers": "שמעו {count} מספרים שונים כדי לפתוח",
       "numbersTotal": "לחצו על מספרים {count} פעמים כדי לפתוח",
       "animals": "שמעו {count} חיות שונות כדי לפתוח",
-      "animalsTotal": "לחצו על חיות {count} פעמים כדי לפתוח"
+      "animalsTotal": "לחצו על חיות {count} פעמים כדי לפתוח",
+      "gamesPlayed": "שחקו ב-{count} משחקים שונים כדי לפתוח",
+      "memoryWins": "נצחו במשחק הזיכרון {count} פעמים כדי לפתוח",
+      "simonScore": "הגיעו לרמה {level} בסיימון כדי לפתוח",
+      "speedChallengeHigh": "סיימו את אתגר המהירות עם ציון גבוה {count} פעמים כדי לפתוח",
+      "wordBuilderCompletions": "סיימו את בונה המילים {count} פעמים כדי לפתוח",
+      "soundMatchingPerfect": "קבלו ציון מושלם בהתאמת צלילים {count} פעמים כדי לפתוח",
+      "totalGamesCompleted": "סיימו {count} משחקים כדי לפתוח"
     },
     "comingSoon": "בקרוב!",
     "streakHint": "המשיכו ללמוד כל יום כדי לפתוח מדבקות רצף!"

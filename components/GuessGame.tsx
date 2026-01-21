@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Box } from '@mui/material';
 import letters from '@/data/letters';
 import ItemCard from './ItemCard';
@@ -13,6 +13,8 @@ import colors from '@/data/colors';
 import FunButton from './FunButton';
 import { useTranslations } from 'next-intl';
 import { useDirection } from '@/hooks/useDirection';
+import { useGamesProgressContext } from '@/contexts/GamesProgressContext';
+import { useGameAnalytics } from '@/hooks/useGameAnalytics';
 
 // All items combined at module level (static data)
 const ALL_ITEMS = [...letters, ...shapes, ...colors, ...numbers, ...animals, ...food];
@@ -31,9 +33,32 @@ const GuessGame: React.FC = () => {
   const t = useTranslations();
   const direction = useDirection();
   const isRTL = direction === 'rtl';
+  const { recordGameCompleted } = useGamesProgressContext();
+  const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'guess-game' });
+  const hasTrackedSessionRef = useRef(false);
+  const itemsViewedRef = useRef(0);
 
   const getRandomItem = () => ALL_ITEMS[Math.floor(Math.random() * ALL_ITEMS.length)];
   const [currentItem, setCurrentItem] = useState(getRandomItem);
+
+  // Track game start on first mount
+  useEffect(() => {
+    if (!hasTrackedSessionRef.current) {
+      trackGameStarted();
+      hasTrackedSessionRef.current = true;
+    }
+  }, [trackGameStarted]);
+
+  const handleNextItem = () => {
+    setCurrentItem(getRandomItem());
+    itemsViewedRef.current += 1;
+
+    // Track as completed after viewing 5 items (a reasonable "session")
+    if (itemsViewedRef.current === 5) {
+      trackGameCompleted(5);
+      recordGameCompleted('guess-game', 5);
+    }
+  };
 
   const config = ITEM_CONFIG[currentItem.type as keyof typeof ITEM_CONFIG];
   const hasImage = 'hasImage' in config;
@@ -55,7 +80,7 @@ const GuessGame: React.FC = () => {
       <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 4 }}>
         <ItemCard {...itemProps} />
       </Box>
-      <FunButton onClick={() => setCurrentItem(getRandomItem())} text={t('games.guessGame.next')} />
+      <FunButton onClick={handleNextItem} text={t('games.guessGame.next')} />
     </Box>
   );
 };

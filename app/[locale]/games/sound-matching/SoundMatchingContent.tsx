@@ -12,6 +12,7 @@ import { AudioSounds, playSound } from '@/utils/audio';
 import { useGameAnalytics } from '@/hooks/useGameAnalytics';
 import { useCelebration } from '@/hooks/useCelebration';
 import { useFeatureFlagContext } from '@/contexts/FeatureFlagContext';
+import { useGamesProgressContext } from '@/contexts/GamesProgressContext';
 import Celebration from '@/components/Celebration';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import ReplayIcon from '@mui/icons-material/Replay';
@@ -75,6 +76,7 @@ export default function SoundMatchingContent() {
   const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'sound-matching' });
   const { celebrationState, celebrate, resetCelebration } = useCelebration();
   const { getFlag } = useFeatureFlagContext();
+  const { recordGameCompleted } = useGamesProgressContext();
 
   const [gameState, setGameState] = useState<'menu' | 'playing' | 'finished'>('menu');
   const [currentLetter, setCurrentLetter] = useState<LetterItem | null>(null);
@@ -240,8 +242,10 @@ export default function SoundMatchingContent() {
       const nextRound = round + 1;
       if (nextRound >= TOTAL_ROUNDS) {
         // Game complete
-        trackGameCompleted(score + (correct ? 1 : 0));
         const finalScore = score + (correct ? 1 : 0);
+        const isPerfectScore = finalScore === TOTAL_ROUNDS;
+        trackGameCompleted(finalScore);
+        recordGameCompleted('sound-matching', finalScore, { isPerfectScore });
         if (finalScore >= 7) {
           celebrate('gameComplete');
           setShowCelebration(true);

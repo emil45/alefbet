@@ -28,6 +28,7 @@ import Confetti from 'react-confetti';
 import FunButton from '@/components/FunButton';
 import { AudioSounds, playSound } from '@/utils/audio';
 import { useGameAnalytics } from '@/hooks/useGameAnalytics';
+import { useGamesProgressContext } from '@/contexts/GamesProgressContext';
 
 interface GameItem {
   id: string;
@@ -74,6 +75,7 @@ export default function SpeedChallengePage() {
   const locale = useLocale();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'speed-challenge' });
+  const { recordGameCompleted } = useGamesProgressContext();
 
   const [gameState, setGameState] = useState<'menu' | 'playing' | 'finished'>('menu');
   const [difficulty, setDifficulty] = useState<'baby' | 'easy' | 'medium' | 'hard'>('medium');
@@ -207,10 +209,13 @@ export default function SpeedChallengePage() {
     if (newQuestionNumber >= maxQuestions) {
       // Game is finished, don't update question number or generate another question
       const finalScore = (stats.correct + (isCorrect ? 1 : 0)) * 100 + stats.timeBonus + (isCorrect ? timeBonus : 0);
+      const finalCorrect = stats.correct + (isCorrect ? 1 : 0);
+      const isHighAccuracy = finalCorrect >= maxQuestions * CELEBRATION_THRESHOLD;
       trackGameCompleted(finalScore);
+      recordGameCompleted('speed-challenge', finalScore, { isHighAccuracy });
       setTimeout(() => {
         setGameState('finished');
-        if (stats.correct >= maxQuestions * 0.7) {
+        if (isHighAccuracy) {
           setShowCelebration(true);
         }
       }, 1200);
@@ -267,7 +272,9 @@ export default function SpeedChallengePage() {
           playSound(AudioSounds.GAME_OVER);
 
           if (newQuestionNumber >= maxQuestions) {
+            const isHighAccuracy = stats.correct >= maxQuestions * CELEBRATION_THRESHOLD;
             trackGameCompleted(stats.correct * 100 + stats.timeBonus);
+            recordGameCompleted('speed-challenge', stats.correct * 100 + stats.timeBonus, { isHighAccuracy });
             setTimeout(() => {
               setGameState('finished');
             }, 1200);

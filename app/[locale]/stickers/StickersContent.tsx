@@ -11,6 +11,7 @@ import { useStreakContext } from '@/contexts/StreakContext';
 import { useLettersProgressContext } from '@/contexts/LettersProgressContext';
 import { useNumbersProgressContext } from '@/contexts/NumbersProgressContext';
 import { useAnimalsProgressContext } from '@/contexts/AnimalsProgressContext';
+import { useGamesProgressContext } from '@/contexts/GamesProgressContext';
 import {
   STICKER_PAGES,
   getStickersForPage,
@@ -32,6 +33,7 @@ export default function StickersContent() {
   const { totalHeard: lettersHeard, totalClicks: lettersTotalClicks } = useLettersProgressContext();
   const { totalHeard: numbersHeard, totalClicks: numbersTotalClicks } = useNumbersProgressContext();
   const { totalHeard: animalsHeard, totalClicks: animalsTotalClicks } = useAnimalsProgressContext();
+  const { uniqueGamesPlayed, memoryWins, simonHighScore, speedChallengeHighScores, wordBuilderCompletions, soundMatchingPerfect, totalGamesCompleted } = useGamesProgressContext();
   const t = useTranslations();
 
   // Peel animation state
@@ -64,11 +66,25 @@ export default function StickersContent() {
           return animalsHeard >= sticker.unlockValue;
         case 'animals_total':
           return animalsTotalClicks >= sticker.unlockValue;
+        case 'games_played':
+          return uniqueGamesPlayed >= sticker.unlockValue;
+        case 'memory_wins':
+          return memoryWins >= sticker.unlockValue;
+        case 'simon_score':
+          return simonHighScore >= sticker.unlockValue;
+        case 'speed_challenge_high':
+          return speedChallengeHighScores >= sticker.unlockValue;
+        case 'word_builder_completions':
+          return wordBuilderCompletions >= sticker.unlockValue;
+        case 'sound_matching_perfect':
+          return soundMatchingPerfect >= sticker.unlockValue;
+        case 'total_games_completed':
+          return totalGamesCompleted >= sticker.unlockValue;
         default:
           return false;
       }
     },
-    [streakData.currentStreak, lettersHeard, lettersTotalClicks, numbersHeard, numbersTotalClicks, animalsHeard, animalsTotalClicks]
+    [streakData.currentStreak, lettersHeard, lettersTotalClicks, numbersHeard, numbersTotalClicks, animalsHeard, animalsTotalClicks, uniqueGamesPlayed, memoryWins, simonHighScore, speedChallengeHighScores, wordBuilderCompletions, soundMatchingPerfect, totalGamesCompleted]
   );
 
   // Check if a sticker is unlocked (earned or meets requirements)
@@ -146,6 +162,27 @@ export default function StickersContent() {
     }
     if (unlockType === 'animals_total' && unlockValue !== undefined) {
       return t('stickers.unlockHint.animalsTotal', { count: unlockValue });
+    }
+    if (unlockType === 'games_played' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.gamesPlayed', { count: unlockValue });
+    }
+    if (unlockType === 'memory_wins' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.memoryWins', { count: unlockValue });
+    }
+    if (unlockType === 'simon_score' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.simonScore', { level: unlockValue });
+    }
+    if (unlockType === 'speed_challenge_high' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.speedChallengeHigh', { count: unlockValue });
+    }
+    if (unlockType === 'word_builder_completions' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.wordBuilderCompletions', { count: unlockValue });
+    }
+    if (unlockType === 'sound_matching_perfect' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.soundMatchingPerfect', { count: unlockValue });
+    }
+    if (unlockType === 'total_games_completed' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.totalGamesCompleted', { count: unlockValue });
     }
     return t('stickers.comingSoon');
   }

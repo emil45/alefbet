@@ -189,9 +189,7 @@ export function useCategoryProgress(config: CategoryProgressConfig): UseCategory
   useEffect(() => {
     const { data, error } = loadProgressData(storageKey, categoryName);
     setProgressData(data);
-    if (error) {
-      setStorageError('load_failed');
-    }
+    setStorageError(error ? 'load_failed' : null);
     setIsInitialized(true);
   }, [storageKey, categoryName]);
 

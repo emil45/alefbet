@@ -13,6 +13,7 @@ import { submitScore, getTopScore } from '@/lib/firebase';
 import { useGameAnalytics } from '@/hooks/useGameAnalytics';
 import { useCelebration } from '@/hooks/useCelebration';
 import Celebration from '@/components/Celebration';
+import { useGamesProgressContext } from '@/contexts/GamesProgressContext';
 import numbers from '@/data/numbers';
 import shapes from '@/data/shapes';
 import { ModelTypesEnum } from '@/models/ModelsTypesEnum';
@@ -100,6 +101,7 @@ export default function LetterRainPage() {
   const router = useRouter();
   const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'letter-rain' });
   const { celebrationState, celebrate, resetCelebration } = useCelebration();
+  const { recordGameCompleted } = useGamesProgressContext();
 
   // Game State
   const [gameState, setGameState] = useState<GameState>('menu');
@@ -352,8 +354,9 @@ export default function LetterRainPage() {
   useEffect(() => {
     if (gameState === 'finished') {
       trackGameCompleted(score);
+      recordGameCompleted('letter-rain', score);
     }
-  }, [gameState, score, trackGameCompleted]);
+  }, [gameState, score, trackGameCompleted, recordGameCompleted]);
 
   // Submit score when game finishes (challenge mode only)
   useEffect(() => {

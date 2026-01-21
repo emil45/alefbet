@@ -10,6 +10,7 @@ import { shuffle } from '@/utils/common';
 import { AudioSounds, playSound } from '@/utils/audio';
 import Confetti from 'react-confetti';
 import { useGameAnalytics } from '@/hooks/useGameAnalytics';
+import { useGamesProgressContext } from '@/contexts/GamesProgressContext';
 import ClearIcon from '@mui/icons-material/Clear';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { getRandomWords, type HebrewWord } from '@/data/hebrewWords';
@@ -125,6 +126,7 @@ export default function WordBuilderGamePage() {
   const t = useTranslations();
   const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'word-builder' });
   const { celebrationState, celebrate, resetCelebration } = useCelebration();
+  const { recordGameCompleted } = useGamesProgressContext();
   const [gameWords] = useState<HebrewWord[]>(() => getRandomWords(WORDS_PER_GAME));
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [shuffledLetters, setShuffledLetters] = useState<string[]>([]);
@@ -198,6 +200,7 @@ export default function WordBuilderGamePage() {
           celebrate('gameComplete');
           setIsGameComplete(true);
           trackGameCompleted(score + POINTS_PER_WORD);
+          recordGameCompleted('word-builder', score + POINTS_PER_WORD);
         }
       }, WORD_TRANSITION_DELAY);
     } else {
