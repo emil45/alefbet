@@ -203,23 +203,30 @@ export default async function LocaleLayout({ children, params }: Props) {
           type="image/webp"
           media="(min-width: 1025px)"
         />
-        {/* Responsive background CSS */}
+        {/* Responsive background CSS - applied to body for consistent positioning across pages */}
         <style dangerouslySetInnerHTML={{ __html: `
-          .app-background {
+          body {
             background-color: #f0d5c8;
             background-image: url("/images/background-640.webp");
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
+            background-attachment: fixed;
           }
           @media (min-width: 641px) {
-            .app-background {
+            body {
               background-image: url("/images/background-1024.webp");
             }
           }
           @media (min-width: 1025px) {
-            .app-background {
+            body {
               background-image: url("/images/background-1920.webp");
+            }
+          }
+          /* Disable fixed attachment on mobile to avoid repaint performance issues */
+          @media (max-width: 768px) {
+            body {
+              background-attachment: scroll;
             }
           }
         `}} />
@@ -250,7 +257,6 @@ export default async function LocaleLayout({ children, params }: Props) {
           <BreadcrumbJsonLd />
           <Providers direction={direction} locale={locale as 'he' | 'en' | 'ru'}>
             <Box
-              className="app-background"
               sx={{
                 padding: '20px',
                 minHeight: '100vh',
