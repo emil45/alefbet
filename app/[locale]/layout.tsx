@@ -181,13 +181,48 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} dir={direction}>
       <head>
-        {/* Preload background image to improve LCP */}
+        {/* Responsive background preloading - load appropriate size for device */}
         <link
           rel="preload"
-          href="/images/background.jpg"
+          href="/images/background-640.webp"
           as="image"
-          type="image/jpeg"
+          type="image/webp"
+          media="(max-width: 640px)"
         />
+        <link
+          rel="preload"
+          href="/images/background-1024.webp"
+          as="image"
+          type="image/webp"
+          media="(min-width: 641px) and (max-width: 1024px)"
+        />
+        <link
+          rel="preload"
+          href="/images/background-1920.webp"
+          as="image"
+          type="image/webp"
+          media="(min-width: 1025px)"
+        />
+        {/* Responsive background CSS */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          .app-background {
+            background-color: #f0d5c8;
+            background-image: url("/images/background-640.webp");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+          }
+          @media (min-width: 641px) {
+            .app-background {
+              background-image: url("/images/background-1024.webp");
+            }
+          }
+          @media (min-width: 1025px) {
+            .app-background {
+              background-image: url("/images/background-1920.webp");
+            }
+          }
+        `}} />
         <Script
           id="json-ld"
           type="application/ld+json"
@@ -215,6 +250,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <BreadcrumbJsonLd />
           <Providers direction={direction} locale={locale as 'he' | 'en' | 'ru'}>
             <Box
+              className="app-background"
               sx={{
                 padding: '20px',
                 minHeight: '100vh',
@@ -222,11 +258,6 @@ export default async function LocaleLayout({ children, params }: Props) {
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 gap: '30px',
-                backgroundImage: 'url("/images/background.jpg")',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center center',
-                // Note: backgroundAttachment: 'fixed' removed - causes expensive repaints on mobile
                 position: 'relative',
                 overflowX: 'hidden',
               }}
