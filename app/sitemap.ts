@@ -12,8 +12,8 @@ const routes: Route[] = [
   // Homepage
   { path: '', priority: 1.0, changeFrequency: 'daily' },
 
-  // SEO Landing Page
-  { path: '/learn', priority: 0.95, changeFrequency: 'daily' },
+  // SEO Landing Page (About)
+  { path: '/about', priority: 0.95, changeFrequency: 'daily' },
 
   // Learning Categories
   { path: '/letters', priority: 0.9, changeFrequency: 'daily' },
@@ -38,7 +38,6 @@ const routes: Route[] = [
   { path: '/stickers', priority: 0.6, changeFrequency: 'daily' },
 
   // Info Pages
-  { path: '/about', priority: 0.5, changeFrequency: 'weekly' },
   { path: '/safety', priority: 0.5, changeFrequency: 'weekly' },
   { path: '/contact', priority: 0.5, changeFrequency: 'weekly' },
 ];
