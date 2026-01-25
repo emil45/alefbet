@@ -32,6 +32,7 @@ const routes: Route[] = [
   { path: '/games/speed-challenge', priority: 0.6, changeFrequency: 'daily' },
   { path: '/games/letter-rain', priority: 0.6, changeFrequency: 'daily' },
   { path: '/games/sound-matching', priority: 0.6, changeFrequency: 'daily' },
+  { path: '/games/counting-game', priority: 0.6, changeFrequency: 'daily' },
   // letter-tracing disabled - needs proper implementation
 
   // Other

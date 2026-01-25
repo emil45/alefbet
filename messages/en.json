@@ -75,9 +75,28 @@
       "incorrect": "Try again!",
       "levelComplete": "Level Complete!",
       "continue": "Continue",
-      "gameComplete": "Game Complete!",
+      "gameComplete": "Great Job!",
       "finalScore": "Final Score",
-      "playAgain": "Play Again"
+      "playAgain": "Play Again",
+      "mode": "Game Mode",
+      "difficulty": "Difficulty",
+      "start": "Let's Play!",
+      "round": "Round",
+      "howMany": "How many?",
+      "tapToCount": "Tap the items to count them",
+      "points": "Points",
+      "accuracy": "Accuracy",
+      "modes": {
+        "animals": "How Many Animals?",
+        "shapes": "How Many Shapes?",
+        "colors": "How Many Colors?",
+        "mixed": "Mixed Mode"
+      },
+      "difficulties": {
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      }
     },
     "letterTracing": {
       "title": "Letter Tracing",
@@ -408,6 +427,10 @@
         "title": "Hebrew Sound Matching Game - Letter Recognition for Kids",
         "description": "Listen to Hebrew letter sounds and match them to the correct letter! Fun phonics game for kids learning the Hebrew alphabet."
       },
+      "countingGame": {
+        "title": "Counting Game for Kids - Learn Numbers in Hebrew",
+        "description": "Count animals, shapes and colors while learning Hebrew numbers! Interactive counting game for toddlers with multiple difficulty levels."
+      },
       "letterTracing": {
         "title": "Hebrew Letter Tracing for Kids - Learn to Write Alef Bet",
         "description": "Teach your child to write Hebrew letters! Trace all 22 Alef Bet letters with guidance and authentic pronunciation. Interactive writing game for toddlers and preschoolers."
@@ -707,6 +730,7 @@
       "speed": "Speed Demon",
       "words": "Word Builder",
       "sounds": "Perfect Listener",
+      "counting": "Counting Pro",
       "dedicated": "Dedicated Player",
       "master": "Game Champion"
     },
@@ -738,6 +762,7 @@
       "speedChallengeHigh": "Complete speed challenge with high score {count} times to unlock",
       "wordBuilderCompletions": "Complete word builder {count} times to unlock",
       "soundMatchingPerfect": "Get perfect score in sound matching {count} times to unlock",
+      "countingGameCompletions": "Complete counting game {count} times to unlock",
       "totalGamesCompleted": "Complete {count} games to unlock"
     },
     "comingSoon": "Coming soon!",

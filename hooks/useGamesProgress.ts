@@ -25,6 +25,8 @@ export interface GamesProgressData {
   wordBuilderCompletions: number;
   /** Number of times sound-matching was completed with perfect score (10/10) */
   soundMatchingPerfect: number;
+  /** Number of times counting-game was completed */
+  countingGameCompletions: number;
   /** Total number of games completed across all types */
   totalGamesCompleted: number;
 }
@@ -52,6 +54,8 @@ export interface UseGamesProgressReturn {
   wordBuilderCompletions: number;
   /** Number of perfect sound matching scores */
   soundMatchingPerfect: number;
+  /** Number of counting game completions */
+  countingGameCompletions: number;
   /** Total games completed across all types */
   totalGamesCompleted: number;
   /** Storage error state - UI can show gentle feedback if needed */
@@ -69,7 +73,7 @@ export interface GameCompletionOptions {
 
 const STORAGE_KEY = 'lepdy_games_progress';
 
-// All available game types (7 games as per the app)
+// All available game types (8 games as per the app)
 const ALL_GAME_TYPES: GameType[] = [
   'guess-game',
   'memory-match-game',
@@ -78,6 +82,7 @@ const ALL_GAME_TYPES: GameType[] = [
   'word-builder',
   'letter-rain',
   'sound-matching',
+  'counting-game',
 ];
 
 const TOTAL_GAME_TYPES = ALL_GAME_TYPES.length;
@@ -90,6 +95,7 @@ function getDefaultProgressData(): GamesProgressData {
     speedChallengeHighScores: 0,
     wordBuilderCompletions: 0,
     soundMatchingPerfect: 0,
+    countingGameCompletions: 0,
     totalGamesCompleted: 0,
   };
 }
@@ -251,6 +257,11 @@ export function useGamesProgress(): UseGamesProgressReturn {
               updates.soundMatchingPerfect = (prev.soundMatchingPerfect || 0) + 1;
             }
             break;
+
+          case 'counting-game':
+            // Count completions
+            updates.countingGameCompletions = (prev.countingGameCompletions || 0) + 1;
+            break;
         }
 
         // Only update if there are changes
@@ -287,6 +298,7 @@ export function useGamesProgress(): UseGamesProgressReturn {
     speedChallengeHighScores: progressData.speedChallengeHighScores || 0,
     wordBuilderCompletions: progressData.wordBuilderCompletions || 0,
     soundMatchingPerfect: progressData.soundMatchingPerfect || 0,
+    countingGameCompletions: progressData.countingGameCompletions || 0,
     totalGamesCompleted: progressData.totalGamesCompleted || 0,
     storageError,
     clearStorageError,

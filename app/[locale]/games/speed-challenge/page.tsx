@@ -100,8 +100,8 @@ export default function SpeedChallengePage() {
   const getInputLabelSx = (isHebrew: boolean) => ({
     fontSize: '1.1rem',
     ...(isHebrew
-      ? { right: '12px', left: 'auto', transform: 'translate(0, -5px) scale()', transformOrigin: 'top right', textAlign: 'right' }
-      : { transform: 'translate(14px, -20px) scale()', transformOrigin: 'top left' }),
+      ? { right: '12px', left: 'auto', transform: 'translate(0, -5px) scale(0.75)', transformOrigin: 'top right', textAlign: 'right' }
+      : { transform: 'translate(14px, -20px) scale(0.75)', transformOrigin: 'top left' }),
   });
 
   const selectSx = {

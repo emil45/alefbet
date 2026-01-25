@@ -33,7 +33,7 @@ export default function StickersContent() {
   const { totalHeard: lettersHeard, totalClicks: lettersTotalClicks } = useLettersProgressContext();
   const { totalHeard: numbersHeard, totalClicks: numbersTotalClicks } = useNumbersProgressContext();
   const { totalHeard: animalsHeard, totalClicks: animalsTotalClicks } = useAnimalsProgressContext();
-  const { uniqueGamesPlayed, memoryWins, simonHighScore, speedChallengeHighScores, wordBuilderCompletions, soundMatchingPerfect, totalGamesCompleted } = useGamesProgressContext();
+  const { uniqueGamesPlayed, memoryWins, simonHighScore, speedChallengeHighScores, wordBuilderCompletions, soundMatchingPerfect, countingGameCompletions, totalGamesCompleted } = useGamesProgressContext();
   const t = useTranslations();
 
   // Peel animation state
@@ -78,13 +78,15 @@ export default function StickersContent() {
           return wordBuilderCompletions >= sticker.unlockValue;
         case 'sound_matching_perfect':
           return soundMatchingPerfect >= sticker.unlockValue;
+        case 'counting_game_completions':
+          return countingGameCompletions >= sticker.unlockValue;
         case 'total_games_completed':
           return totalGamesCompleted >= sticker.unlockValue;
         default:
           return false;
       }
     },
-    [streakData.currentStreak, lettersHeard, lettersTotalClicks, numbersHeard, numbersTotalClicks, animalsHeard, animalsTotalClicks, uniqueGamesPlayed, memoryWins, simonHighScore, speedChallengeHighScores, wordBuilderCompletions, soundMatchingPerfect, totalGamesCompleted]
+    [streakData.currentStreak, lettersHeard, lettersTotalClicks, numbersHeard, numbersTotalClicks, animalsHeard, animalsTotalClicks, uniqueGamesPlayed, memoryWins, simonHighScore, speedChallengeHighScores, wordBuilderCompletions, soundMatchingPerfect, countingGameCompletions, totalGamesCompleted]
   );
 
   // Check if a sticker is unlocked (earned or meets requirements)
@@ -180,6 +182,9 @@ export default function StickersContent() {
     }
     if (unlockType === 'sound_matching_perfect' && unlockValue !== undefined) {
       return t('stickers.unlockHint.soundMatchingPerfect', { count: unlockValue });
+    }
+    if (unlockType === 'counting_game_completions' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.countingGameCompletions', { count: unlockValue });
     }
     if (unlockType === 'total_games_completed' && unlockValue !== undefined) {
       return t('stickers.unlockHint.totalGamesCompleted', { count: unlockValue });

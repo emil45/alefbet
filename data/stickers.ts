@@ -21,9 +21,10 @@ export interface Sticker {
   // - 'speed_challenge_high': number of high accuracy speed challenge completions
   // - 'word_builder_completions': number of word builder game completions
   // - 'sound_matching_perfect': number of perfect sound matching scores
+  // - 'counting_game_completions': number of counting game completions
   // - 'total_games_completed': total games completed across all types
   // - 'future': shows as locked
-  unlockType: 'streak' | 'letters_progress' | 'letters_total' | 'numbers_progress' | 'numbers_total' | 'animals_progress' | 'animals_total' | 'games_played' | 'memory_wins' | 'simon_score' | 'speed_challenge_high' | 'word_builder_completions' | 'sound_matching_perfect' | 'total_games_completed' | 'future';
+  unlockType: 'streak' | 'letters_progress' | 'letters_total' | 'numbers_progress' | 'numbers_total' | 'animals_progress' | 'animals_total' | 'games_played' | 'memory_wins' | 'simon_score' | 'speed_challenge_high' | 'word_builder_completions' | 'sound_matching_perfect' | 'counting_game_completions' | 'total_games_completed' | 'future';
   // For streak: the streak day required
   // For letters_progress: unique letters heard count
   // For letters_total: total letter clicks count
@@ -80,8 +81,9 @@ export const STICKERS: Sticker[] = [
   { id: 'games_speed', translationKey: 'stickers.games.speed', emoji: '⚡', pageNumber: 4, unlockType: 'speed_challenge_high', unlockValue: 3 },
   { id: 'games_words', translationKey: 'stickers.games.words', emoji: '✏️', pageNumber: 4, unlockType: 'word_builder_completions', unlockValue: 5 },
   { id: 'games_sounds', translationKey: 'stickers.games.sounds', emoji: '🎵', pageNumber: 4, unlockType: 'sound_matching_perfect', unlockValue: 3 },
+  { id: 'games_counting', translationKey: 'stickers.games.counting', emoji: '🔢', pageNumber: 4, unlockType: 'counting_game_completions', unlockValue: 5 },
   { id: 'games_dedicated', translationKey: 'stickers.games.dedicated', emoji: '💎', pageNumber: 4, unlockType: 'total_games_completed', unlockValue: 25 },
-  { id: 'games_master', translationKey: 'stickers.games.master', emoji: '🏆', pageNumber: 4, unlockType: 'games_played', unlockValue: 7 },
+  { id: 'games_master', translationKey: 'stickers.games.master', emoji: '🏆', pageNumber: 4, unlockType: 'games_played', unlockValue: 8 },
 
   // Page 5: Streaks (THESE ARE UNLOCKABLE IN MVP!)
   { id: 'streak_day_1', translationKey: 'stickers.streaks.day1', emoji: '🔥', pageNumber: 5, unlockType: 'streak', unlockValue: 1 },
@@ -109,7 +111,7 @@ export const STICKER_PAGES: StickerPage[] = [
 ];
 
 export const TOTAL_PAGES = 6;
-export const TOTAL_STICKERS = 42;
+export const TOTAL_STICKERS = 43;
 
 // Helper to get stickers for a specific page
 export function getStickersForPage(pageNumber: number): Sticker[] {

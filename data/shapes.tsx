@@ -116,10 +116,12 @@ const shapes: ShapeConfig[] = [
     audioFile: 'moon.mp3',
     color: '#f3b817',
     element: (
-      <>
-        <circle cx="12" cy="12" r="10" stroke="black" strokeWidth="0.1" />
-        <circle cx="18" cy="12" r="10" fill="#f5ede1" />
-      </>
+      <path
+        d="M12 2 C5 2 0 7.5 0 14 C0 20.5 5 26 12 26 C7 26 3 20.5 3 14 C3 7.5 7 2 12 2 Z"
+        stroke="black"
+        strokeWidth="0.1"
+        transform="translate(2, -2) scale(0.85)"
+      />
     ),
   },
   {
