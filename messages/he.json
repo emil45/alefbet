@@ -802,7 +802,8 @@
       "recent": "אחרונים",
       "new": "חדש!",
       "category": "נושא",
-      "difficulty": "קושי"
+      "difficulty": "קושי",
+      "byCategory": "בחרו נושא..."
     },
     "difficulties": {
       "easy": "קל",

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Box, Typography, Chip, Button, keyframes } from '@mui/material';
+import { Box, Typography, Chip, Button, keyframes, FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import BackButton from '@/components/BackButton';
@@ -386,9 +386,7 @@ export default function MyWordsContent() {
             mb: 0.5,
           }}
         >
-          <Box sx={{ fontSize: { xs: '24px', sm: '32px' }, animation: `${sparkle} 2s ease-in-out infinite` }}>
-            📚
-          </Box>
+          <Box sx={{ fontSize: { xs: '24px', sm: '32px' } }}>📚</Box>
           <Typography
             variant="h4"
             component="h1"
@@ -404,9 +402,7 @@ export default function MyWordsContent() {
           >
             {t('title')}
           </Typography>
-          <Box sx={{ fontSize: { xs: '24px', sm: '32px' }, animation: `${sparkle} 2s ease-in-out infinite` }}>
-            ✨
-          </Box>
+          <Box sx={{ fontSize: { xs: '24px', sm: '32px' } }}>✨</Box>
         </Box>
 
         {/* Progress indicator */}
@@ -502,7 +498,6 @@ export default function MyWordsContent() {
               backgroundColor: activeFilter === 'new' ? '#FF6B6B' : 'rgba(255,255,255,0.7)',
               color: activeFilter === 'new' ? 'white' : '#666',
               fontWeight: 600,
-              animation: `${sparkle} 2s ease-in-out infinite`,
               '&:hover': { backgroundColor: activeFilter === 'new' ? '#FF5252' : 'rgba(255,255,255,0.9)' },
             }}
           />
@@ -541,41 +536,50 @@ export default function MyWordsContent() {
         ))}
       </Box>
 
-      {/* Category filters - scrollable */}
+      {/* Category filter - dropdown */}
       <Box
         sx={{
           display: 'flex',
-          overflowX: 'auto',
-          gap: 0.75,
+          justifyContent: 'center',
           px: 2,
           pb: 2,
-          '&::-webkit-scrollbar': { display: 'none' },
-          scrollbarWidth: 'none',
         }}
       >
-        {availableCategories.map((cat) => {
-          const count = getCollectedCountInCategory(cat);
-          const total = HEBREW_WORDS.filter((w) => w.category === cat).length;
-          return (
-            <Chip
-              key={cat}
-              label={`${t(`categories.${cat}`, { defaultValue: cat })} ${count}/${total}`}
-              size="small"
-              onClick={() => setActiveFilter(cat)}
-              sx={{
-                flexShrink: 0,
-                backgroundColor: activeFilter === cat ? (CATEGORY_COLORS[cat] || '#FF6B9D') : 'rgba(255,255,255,0.7)',
-                color: activeFilter === cat ? 'white' : '#666',
-                fontWeight: 500,
-                fontSize: '0.7rem',
-                '&:hover': {
-                  backgroundColor: CATEGORY_COLORS[cat] || '#FF6B9D',
-                  color: 'white',
-                },
-              }}
-            />
-          );
-        })}
+        <FormControl size="small" sx={{ minWidth: 200 }}>
+          <Select
+            value={availableCategories.includes(activeFilter) ? activeFilter : ''}
+            onChange={(e: SelectChangeEvent) => setActiveFilter(e.target.value)}
+            displayEmpty
+            sx={{
+              backgroundColor: 'rgba(255,255,255,0.9)',
+              borderRadius: '12px',
+              fontWeight: 500,
+              fontSize: '0.9rem',
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderColor: 'rgba(0,0,0,0.1)',
+              },
+              '&:hover .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#FF6B9D',
+              },
+              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#FF6B9D',
+              },
+            }}
+          >
+            <MenuItem value="" disabled>
+              {t('filters.byCategory')}
+            </MenuItem>
+            {availableCategories.map((cat) => {
+              const count = getCollectedCountInCategory(cat);
+              const total = HEBREW_WORDS.filter((w) => w.category === cat).length;
+              return (
+                <MenuItem key={cat} value={cat}>
+                  {t(`categories.${cat}`, { defaultValue: cat })} ({count}/{total})
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
       </Box>
 
       {/* Words Grid */}

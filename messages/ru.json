@@ -790,7 +790,8 @@
       "recent": "Недавние",
       "new": "Новое!",
       "category": "Категория",
-      "difficulty": "Сложность"
+      "difficulty": "Сложность",
+      "byCategory": "Выберите категорию..."
     },
     "difficulties": {
       "easy": "Легко",

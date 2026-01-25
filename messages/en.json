@@ -802,7 +802,8 @@
       "recent": "Recent",
       "new": "New!",
       "category": "Category",
-      "difficulty": "Difficulty"
+      "difficulty": "Difficulty",
+      "byCategory": "Select category..."
     },
     "difficulties": {
       "easy": "Easy",
