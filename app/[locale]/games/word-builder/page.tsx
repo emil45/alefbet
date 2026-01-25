@@ -11,10 +11,12 @@ import { AudioSounds, playSound } from '@/utils/audio';
 import Confetti from 'react-confetti';
 import { useGameAnalytics } from '@/hooks/useGameAnalytics';
 import { useGamesProgressContext } from '@/contexts/GamesProgressContext';
+import { useWordCollectionContext } from '@/contexts/WordCollectionContext';
 import ClearIcon from '@mui/icons-material/Clear';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { getRandomWords, type HebrewWord } from '@/data/hebrewWords';
 import { useCelebration } from '@/hooks/useCelebration';
+import { useRouter } from 'next/navigation';
 
 // Game configuration
 const WORDS_PER_GAME = 10;
@@ -124,9 +126,11 @@ const LetterCard: React.FC<LetterCardProps> = ({ letter, isUsed, onClick, isInBu
 
 export default function WordBuilderGamePage() {
   const t = useTranslations();
+  const router = useRouter();
   const { trackGameStarted, trackGameCompleted } = useGameAnalytics({ gameType: 'word-builder' });
   const { celebrationState, celebrate, resetCelebration } = useCelebration();
   const { recordGameCompleted } = useGamesProgressContext();
+  const { recordWordBuilt } = useWordCollectionContext();
   const [gameWords] = useState<HebrewWord[]>(() => getRandomWords(WORDS_PER_GAME));
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [shuffledLetters, setShuffledLetters] = useState<string[]>([]);
@@ -192,6 +196,7 @@ export default function WordBuilderGamePage() {
     if (isWordCorrect) {
       setScore((prev) => prev + POINTS_PER_WORD);
       playSound(AudioSounds.WORD_COMPLETE);
+      recordWordBuilt(currentWord); // Track word collection
       setTimeout(() => {
         if (currentWordIndex < gameWords.length - 1) {
           playSound(AudioSounds.LEVEL_UP);
@@ -564,12 +569,20 @@ export default function WordBuilderGamePage() {
                 </Typography>
               </Box>
 
-              <FunButton
-                text={t('wordBuilder.playAgain')}
-                onClick={resetGame}
-                fontSize={24}
-                backgroundColor="#4caf50"
-              />
+              <Box display="flex" flexDirection="column" gap={2}>
+                <FunButton
+                  text={t('wordBuilder.playAgain')}
+                  onClick={resetGame}
+                  fontSize={24}
+                  backgroundColor="#4caf50"
+                />
+                <FunButton
+                  text={t('wordBuilder.viewMyWords')}
+                  onClick={() => router.push('/my-words')}
+                  fontSize={18}
+                  backgroundColor="#45B7D1"
+                />
+              </Box>
             </Box>
           </Modal>
         )}

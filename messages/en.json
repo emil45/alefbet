@@ -8,7 +8,8 @@
       "animals": "Animals 🐶 🐱",
       "food": "Food 🍎 🍌",
       "games": "Games 🧩 🎲",
-      "stickers": "Stickers 🏆 ⭐"
+      "stickers": "Stickers 🏆 ⭐",
+      "myWords": "My Words 📚 ✨"
     },
     "settings": {
       "title": "Settings",
@@ -454,6 +455,10 @@
       "stickers": {
         "title": "Sticker Rewards for Kids - Fun Hebrew Learning",
         "description": "Earn stickers while learning Hebrew! Fun reward system with letter, number, animal and achievement stickers for kids."
+      },
+      "myWords": {
+        "title": "My Word Collection - Learn Hebrew Words for Kids",
+        "description": "Collect Hebrew words through play! Track your child's progress, discover new words, and collect words from every category in Hebrew."
       }
     },
     "pageTitle": "Hebrew for Kids - Learn Alef Bet, Numbers & Colors",
@@ -607,7 +612,8 @@
     "gameComplete": "Game Complete",
     "finalScore": "Final Score",
     "congratulations": "Congratulations! You completed all words",
-    "playAgain": "Play Again"
+    "playAgain": "Play Again",
+    "viewMyWords": "View My Words"
   },
   "footer": {
     "about": "About",
@@ -691,7 +697,7 @@
       "animals": "Animals",
       "games": "Games",
       "streaks": "Streaks",
-      "explorer": "Explorer"
+      "words": "Words"
     },
     "letters": {
       "first": "First Letter",
@@ -741,12 +747,14 @@
       "day14": "Two Weeks",
       "day30": "One Month"
     },
-    "explorer": {
-      "colors": "Color Explorer",
-      "shapes": "Shape Explorer",
-      "food": "Food Explorer",
-      "words": "Word Builder",
-      "super": "Super Learner"
+    "words": {
+      "first": "First Word",
+      "five": "Five Words",
+      "ten": "Ten Words",
+      "twenty": "Twenty Words",
+      "fifty": "Fifty Words",
+      "hundred": "Hundred Words",
+      "collector": "Word Collector"
     },
     "unlockHint": {
       "streak": "Reach a {days} day streak to unlock",
@@ -763,7 +771,8 @@
       "wordBuilderCompletions": "Complete word builder {count} times to unlock",
       "soundMatchingPerfect": "Get perfect score in sound matching {count} times to unlock",
       "countingGameCompletions": "Complete counting game {count} times to unlock",
-      "totalGamesCompleted": "Complete {count} games to unlock"
+      "totalGamesCompleted": "Complete {count} games to unlock",
+      "wordsCollected": "Collect {count} words to unlock"
     },
     "comingSoon": "Coming soon!",
     "streakHint": "Keep learning every day to unlock streak stickers!"
@@ -781,5 +790,69 @@
   "common": {
     "voiceName": "Noa",
     "animalSound": "Animal sound"
+  },
+  "myWords": {
+    "title": "My Word Collection",
+    "collected": "{count} of {total} words",
+    "empty": "No words collected yet!",
+    "emptyHint": "Play Word Builder to collect words",
+    "playWordBuilder": "Play Word Builder",
+    "filters": {
+      "all": "All",
+      "recent": "Recent",
+      "new": "New!",
+      "category": "Category",
+      "difficulty": "Difficulty"
+    },
+    "difficulties": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "categories": {
+      "basic": "Basic",
+      "family": "Family",
+      "animals": "Animals",
+      "food": "Food",
+      "weather": "Weather",
+      "nature": "Nature",
+      "body": "Body",
+      "questions": "Questions",
+      "objects": "Objects",
+      "actions": "Actions",
+      "locations": "Locations",
+      "colors": "Colors",
+      "numbers": "Numbers",
+      "adjectives": "Adjectives",
+      "time": "Time",
+      "toys": "Toys",
+      "manners": "Manners",
+      "greetings": "Greetings",
+      "professions": "Professions",
+      "social": "Social",
+      "celebration": "Celebration",
+      "places": "Places",
+      "technology": "Technology",
+      "appliances": "Appliances",
+      "emotions": "Emotions"
+    },
+    "card": {
+      "timesBuilt": "Built {count} times",
+      "firstBuilt": "Collected on",
+      "new": "New!"
+    },
+    "challenges": {
+      "title": "Challenges",
+      "collectAll": "Collect all {category} words!",
+      "progress": "{current} of {total}"
+    },
+    "stats": {
+      "totalBuilt": "Total words built",
+      "uniqueWords": "Unique words",
+      "categories": "Categories"
+    },
+    "storageError": "Progress may not save",
+    "noNewWords": "No new words - you've practiced them all!",
+    "noWordsInCategory": "No words in this category yet"
   }
 }

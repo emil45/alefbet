@@ -23,8 +23,10 @@ export interface Sticker {
   // - 'sound_matching_perfect': number of perfect sound matching scores
   // - 'counting_game_completions': number of counting game completions
   // - 'total_games_completed': total games completed across all types
+  // - 'words_collected': unique Hebrew words collected in word builder
+  // - 'words_category_complete': complete collection of a category (category specified in unlockValue as string e.g., "animals")
   // - 'future': shows as locked
-  unlockType: 'streak' | 'letters_progress' | 'letters_total' | 'numbers_progress' | 'numbers_total' | 'animals_progress' | 'animals_total' | 'games_played' | 'memory_wins' | 'simon_score' | 'speed_challenge_high' | 'word_builder_completions' | 'sound_matching_perfect' | 'counting_game_completions' | 'total_games_completed' | 'future';
+  unlockType: 'streak' | 'letters_progress' | 'letters_total' | 'numbers_progress' | 'numbers_total' | 'animals_progress' | 'animals_total' | 'games_played' | 'memory_wins' | 'simon_score' | 'speed_challenge_high' | 'word_builder_completions' | 'sound_matching_perfect' | 'counting_game_completions' | 'total_games_completed' | 'words_collected' | 'future';
   // For streak: the streak day required
   // For letters_progress: unique letters heard count
   // For letters_total: total letter clicks count
@@ -39,7 +41,7 @@ export interface StickerPage {
   color: string;
 }
 
-// 42 stickers across 6 pages
+// 45 stickers across 6 pages
 export const STICKERS: Sticker[] = [
   // Page 1: Letters - Discovery (unique letters heard)
   { id: 'letters_first', translationKey: 'stickers.letters.first', emoji: '🔤', pageNumber: 1, unlockType: 'letters_progress', unlockValue: 1 },
@@ -92,12 +94,14 @@ export const STICKERS: Sticker[] = [
   { id: 'streak_day_14', translationKey: 'stickers.streaks.day14', emoji: '💫', pageNumber: 5, unlockType: 'streak', unlockValue: 14 },
   { id: 'streak_day_30', translationKey: 'stickers.streaks.day30', emoji: '👑', pageNumber: 5, unlockType: 'streak', unlockValue: 30 },
 
-  // Page 6: Explorer (all future/locked for MVP)
-  { id: 'explorer_colors', translationKey: 'stickers.explorer.colors', emoji: '🎨', pageNumber: 6, unlockType: 'future' },
-  { id: 'explorer_shapes', translationKey: 'stickers.explorer.shapes', emoji: '🔷', pageNumber: 6, unlockType: 'future' },
-  { id: 'explorer_food', translationKey: 'stickers.explorer.food', emoji: '🍎', pageNumber: 6, unlockType: 'future' },
-  { id: 'explorer_words', translationKey: 'stickers.explorer.words', emoji: '📚', pageNumber: 6, unlockType: 'future' },
-  { id: 'explorer_super', translationKey: 'stickers.explorer.super', emoji: '🌈', pageNumber: 6, unlockType: 'future' },
+  // Page 6: Word Collection - milestones for collecting words
+  { id: 'words_first', translationKey: 'stickers.words.first', emoji: '📖', pageNumber: 6, unlockType: 'words_collected', unlockValue: 1 },
+  { id: 'words_five', translationKey: 'stickers.words.five', emoji: '📝', pageNumber: 6, unlockType: 'words_collected', unlockValue: 5 },
+  { id: 'words_ten', translationKey: 'stickers.words.ten', emoji: '📚', pageNumber: 6, unlockType: 'words_collected', unlockValue: 10 },
+  { id: 'words_twenty', translationKey: 'stickers.words.twenty', emoji: '📕', pageNumber: 6, unlockType: 'words_collected', unlockValue: 20 },
+  { id: 'words_fifty', translationKey: 'stickers.words.fifty', emoji: '📗', pageNumber: 6, unlockType: 'words_collected', unlockValue: 50 },
+  { id: 'words_hundred', translationKey: 'stickers.words.hundred', emoji: '📘', pageNumber: 6, unlockType: 'words_collected', unlockValue: 100 },
+  { id: 'words_collector', translationKey: 'stickers.words.collector', emoji: '🏅', pageNumber: 6, unlockType: 'words_collected', unlockValue: 150 },
 ];
 
 // Page themes with colors
@@ -107,11 +111,11 @@ export const STICKER_PAGES: StickerPage[] = [
   { pageNumber: 3, titleKey: 'stickers.pages.animals', color: '#FF8C42' },
   { pageNumber: 4, titleKey: 'stickers.pages.games', color: '#45B7D1' },
   { pageNumber: 5, titleKey: 'stickers.pages.streaks', color: '#FFD93D' },
-  { pageNumber: 6, titleKey: 'stickers.pages.explorer', color: '#9B59B6' },
+  { pageNumber: 6, titleKey: 'stickers.pages.words', color: '#9B59B6' },
 ];
 
 export const TOTAL_PAGES = 6;
-export const TOTAL_STICKERS = 43;
+export const TOTAL_STICKERS = 45;
 
 // Helper to get stickers for a specific page
 export function getStickersForPage(pageNumber: number): Sticker[] {

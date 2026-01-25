@@ -13,6 +13,7 @@ import { LettersProgressProvider } from '@/contexts/LettersProgressContext';
 import { NumbersProgressProvider } from '@/contexts/NumbersProgressContext';
 import { AnimalsProgressProvider } from '@/contexts/AnimalsProgressContext';
 import { GamesProgressProvider } from '@/contexts/GamesProgressContext';
+import { WordCollectionProvider } from '@/contexts/WordCollectionContext';
 import InstallPrompt from '@/components/InstallPrompt';
 import ThemeRegistry from './ThemeRegistry';
 
@@ -57,10 +58,12 @@ export default function Providers({ children, direction, locale }: ProvidersProp
               <NumbersProgressProvider>
                 <AnimalsProgressProvider>
                   <GamesProgressProvider>
-                    <StickerProvider>
-                      {children}
-                      <InstallPrompt />
-                    </StickerProvider>
+                    <WordCollectionProvider>
+                      <StickerProvider>
+                        {children}
+                        <InstallPrompt />
+                      </StickerProvider>
+                    </WordCollectionProvider>
                   </GamesProgressProvider>
                 </AnimalsProgressProvider>
               </NumbersProgressProvider>

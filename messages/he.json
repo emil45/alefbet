@@ -8,7 +8,8 @@
       "animals": "חיות 🐶 🐱",
       "food": "אוכל 🍎 🍌",
       "games": "משחקים 🧩 🎲",
-      "stickers": "מדבקות 🏆 ⭐"
+      "stickers": "מדבקות 🏆 ⭐",
+      "myWords": "המילים שלי 📚 ✨"
     },
     "settings": {
       "title": "הגדרות",
@@ -474,6 +475,10 @@
       "stickers": {
         "title": "מדבקות פרסים לילדים - לימוד עברית בכיף",
         "description": "צברו מדבקות תוך לימוד עברית! מערכת פרסים כיפית עם מדבקות אותיות, מספרים, חיות והישגים."
+      },
+      "myWords": {
+        "title": "אוסף המילים שלי - לימוד קריאה בעברית לילדים",
+        "description": "אספו מילים בעברית תוך כדי משחק! עקבו אחר התקדמות הילד, גלו מילים חדשות ואספו מילים מכל הנושאים בעברית."
       }
     },
     "pageTitle": "לימוד עברית לילדים - אלף בית, מספרים וצבעים",
@@ -607,7 +612,8 @@
     "gameComplete": "המשחק הושלם",
     "finalScore": "ניקוד סופי",
     "congratulations": "כל הכבוד! השלמתם את כל המילים",
-    "playAgain": "שחקו שוב"
+    "playAgain": "שחקו שוב",
+    "viewMyWords": "צפה באוסף המילים"
   },
   "footer": {
     "about": "אודות",
@@ -691,7 +697,7 @@
       "animals": "חיות",
       "games": "משחקים",
       "streaks": "רצפים",
-      "explorer": "חוקר"
+      "words": "מילים"
     },
     "letters": {
       "first": "אות ראשונה",
@@ -741,12 +747,14 @@
       "day14": "שבועיים",
       "day30": "חודש שלם"
     },
-    "explorer": {
-      "colors": "חוקר צבעים",
-      "shapes": "חוקר צורות",
-      "food": "חוקר אוכל",
-      "words": "בונה מילים",
-      "super": "לומד סופר"
+    "words": {
+      "first": "מילה ראשונה",
+      "five": "חמש מילים",
+      "ten": "עשר מילים",
+      "twenty": "עשרים מילים",
+      "fifty": "חמישים מילים",
+      "hundred": "מאה מילים",
+      "collector": "אספן מילים"
     },
     "unlockHint": {
       "streak": "השיגו רצף של {days} ימים כדי לפתוח",
@@ -763,7 +771,8 @@
       "wordBuilderCompletions": "סיימו את בונה המילים {count} פעמים כדי לפתוח",
       "soundMatchingPerfect": "קבלו ציון מושלם בהתאמת צלילים {count} פעמים כדי לפתוח",
       "countingGameCompletions": "סיימו את משחק הספירה {count} פעמים כדי לפתוח",
-      "totalGamesCompleted": "סיימו {count} משחקים כדי לפתוח"
+      "totalGamesCompleted": "סיימו {count} משחקים כדי לפתוח",
+      "wordsCollected": "אספו {count} מילים כדי לפתוח"
     },
     "comingSoon": "בקרוב!",
     "streakHint": "המשיכו ללמוד כל יום כדי לפתוח מדבקות רצף!"
@@ -781,5 +790,69 @@
   "common": {
     "voiceName": "נעה",
     "animalSound": "קול החיה"
+  },
+  "myWords": {
+    "title": "אוסף המילים שלי",
+    "collected": "{count} מתוך {total} מילים",
+    "empty": "עוד לא אספתם מילים!",
+    "emptyHint": "שחקו בבונה המילים כדי לאסוף מילים",
+    "playWordBuilder": "לשחק בונה מילים",
+    "filters": {
+      "all": "הכל",
+      "recent": "אחרונים",
+      "new": "חדש!",
+      "category": "נושא",
+      "difficulty": "קושי"
+    },
+    "difficulties": {
+      "easy": "קל",
+      "medium": "בינוני",
+      "hard": "קשה"
+    },
+    "categories": {
+      "basic": "בסיסי",
+      "family": "משפחה",
+      "animals": "חיות",
+      "food": "אוכל",
+      "weather": "מזג אוויר",
+      "nature": "טבע",
+      "body": "גוף",
+      "questions": "שאלות",
+      "objects": "חפצים",
+      "actions": "פעולות",
+      "locations": "מקומות",
+      "colors": "צבעים",
+      "numbers": "מספרים",
+      "adjectives": "תארים",
+      "time": "זמן",
+      "toys": "צעצועים",
+      "manners": "נימוסים",
+      "greetings": "ברכות",
+      "professions": "מקצועות",
+      "social": "חברתי",
+      "celebration": "חגיגה",
+      "places": "מקומות",
+      "technology": "טכנולוגיה",
+      "appliances": "מכשירים",
+      "emotions": "רגשות"
+    },
+    "card": {
+      "timesBuilt": "נבנה {count} פעמים",
+      "firstBuilt": "נאסף בתאריך",
+      "new": "חדש!"
+    },
+    "challenges": {
+      "title": "אתגרים",
+      "collectAll": "אספו את כל מילות ה{category}!",
+      "progress": "{current} מתוך {total}"
+    },
+    "stats": {
+      "totalBuilt": "סה\"כ מילים שנבנו",
+      "uniqueWords": "מילים ייחודיות",
+      "categories": "קטגוריות"
+    },
+    "storageError": "ייתכן שההתקדמות לא תישמר",
+    "noNewWords": "אין מילים חדשות - תרגלתם את כולן!",
+    "noWordsInCategory": "עדיין אין מילים בקטגוריה זו"
   }
 }

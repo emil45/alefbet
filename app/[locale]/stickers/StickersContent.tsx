@@ -12,6 +12,7 @@ import { useLettersProgressContext } from '@/contexts/LettersProgressContext';
 import { useNumbersProgressContext } from '@/contexts/NumbersProgressContext';
 import { useAnimalsProgressContext } from '@/contexts/AnimalsProgressContext';
 import { useGamesProgressContext } from '@/contexts/GamesProgressContext';
+import { useWordCollectionContext } from '@/contexts/WordCollectionContext';
 import {
   STICKER_PAGES,
   getStickersForPage,
@@ -34,6 +35,7 @@ export default function StickersContent() {
   const { totalHeard: numbersHeard, totalClicks: numbersTotalClicks } = useNumbersProgressContext();
   const { totalHeard: animalsHeard, totalClicks: animalsTotalClicks } = useAnimalsProgressContext();
   const { uniqueGamesPlayed, memoryWins, simonHighScore, speedChallengeHighScores, wordBuilderCompletions, soundMatchingPerfect, countingGameCompletions, totalGamesCompleted } = useGamesProgressContext();
+  const { uniqueWordsCollected } = useWordCollectionContext();
   const t = useTranslations();
 
   // Peel animation state
@@ -82,11 +84,13 @@ export default function StickersContent() {
           return countingGameCompletions >= sticker.unlockValue;
         case 'total_games_completed':
           return totalGamesCompleted >= sticker.unlockValue;
+        case 'words_collected':
+          return uniqueWordsCollected >= sticker.unlockValue;
         default:
           return false;
       }
     },
-    [streakData.currentStreak, lettersHeard, lettersTotalClicks, numbersHeard, numbersTotalClicks, animalsHeard, animalsTotalClicks, uniqueGamesPlayed, memoryWins, simonHighScore, speedChallengeHighScores, wordBuilderCompletions, soundMatchingPerfect, countingGameCompletions, totalGamesCompleted]
+    [streakData.currentStreak, lettersHeard, lettersTotalClicks, numbersHeard, numbersTotalClicks, animalsHeard, animalsTotalClicks, uniqueGamesPlayed, memoryWins, simonHighScore, speedChallengeHighScores, wordBuilderCompletions, soundMatchingPerfect, countingGameCompletions, totalGamesCompleted, uniqueWordsCollected]
   );
 
   // Check if a sticker is unlocked (earned or meets requirements)
@@ -188,6 +192,9 @@ export default function StickersContent() {
     }
     if (unlockType === 'total_games_completed' && unlockValue !== undefined) {
       return t('stickers.unlockHint.totalGamesCompleted', { count: unlockValue });
+    }
+    if (unlockType === 'words_collected' && unlockValue !== undefined) {
+      return t('stickers.unlockHint.wordsCollected', { count: unlockValue });
     }
     return t('stickers.comingSoon');
   }

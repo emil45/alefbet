@@ -37,6 +37,7 @@ const routes: Route[] = [
 
   // Other
   { path: '/stickers', priority: 0.6, changeFrequency: 'daily' },
+  { path: '/my-words', priority: 0.6, changeFrequency: 'daily' },
 
   // Info Pages
   { path: '/safety', priority: 0.5, changeFrequency: 'weekly' },

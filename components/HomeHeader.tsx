@@ -5,6 +5,7 @@ import { Box } from '@mui/material';
 import RoundFunButton from '@/components/RoundFunButton';
 import SettingsIcon from '@mui/icons-material/Settings';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import SettingsDrawer from '@/components/SettingsDrawer';
 import { useRouter } from 'next/navigation';
 import { getLanguageSpecificRoute } from '@/utils/languageRoutes';
@@ -42,10 +43,15 @@ export default function HomeHeader({ locale }: HomeHeaderProps) {
             top: { xs: '10px', sm: '20px' },
             ...(isRTL ? { right: { xs: '10px', sm: '20px' } } : { left: { xs: '10px', sm: '20px' } }),
             zIndex: 10,
+            display: 'flex',
+            gap: { xs: '8px', sm: '12px' },
           }}
         >
           <RoundFunButton onClick={() => router.push(getLanguageSpecificRoute('/stickers', locale))}>
             <EmojiEventsIcon />
+          </RoundFunButton>
+          <RoundFunButton onClick={() => router.push(getLanguageSpecificRoute('/my-words', locale))}>
+            <MenuBookIcon />
           </RoundFunButton>
         </Box>
       )}

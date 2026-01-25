@@ -54,6 +54,19 @@ test.describe('Info pages load', () => {
   }
 });
 
+test.describe('Collection pages load', () => {
+  test('stickers page loads', async ({ page }) => {
+    await page.goto('/stickers');
+    await expect(page.locator('h1').first()).toBeVisible();
+  });
+
+  test('my-words page loads', async ({ page }) => {
+    await page.goto('/my-words');
+    // Page should have either the empty state or the collection title
+    await expect(page.locator('body')).not.toBeEmpty();
+  });
+});
+
 test.describe('Navigation', () => {
   test('can navigate to letters and back', async ({ page }) => {
     await page.goto('/');
