@@ -788,15 +788,7 @@
     "filters": {
       "all": "Все",
       "recent": "Недавние",
-      "new": "Новое!",
-      "category": "Категория",
-      "difficulty": "Сложность",
       "byCategory": "Выберите категорию..."
-    },
-    "difficulties": {
-      "easy": "Легко",
-      "medium": "Средне",
-      "hard": "Сложно"
     },
     "categories": {
       "basic": "Базовые",

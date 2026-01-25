@@ -800,15 +800,7 @@
     "filters": {
       "all": "הכל",
       "recent": "אחרונים",
-      "new": "חדש!",
-      "category": "נושא",
-      "difficulty": "קושי",
       "byCategory": "בחרו נושא..."
-    },
-    "difficulties": {
-      "easy": "קל",
-      "medium": "בינוני",
-      "hard": "קשה"
     },
     "categories": {
       "basic": "בסיסי",

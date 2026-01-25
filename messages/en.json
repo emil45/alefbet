@@ -800,15 +800,7 @@
     "filters": {
       "all": "All",
       "recent": "Recent",
-      "new": "New!",
-      "category": "Category",
-      "difficulty": "Difficulty",
       "byCategory": "Select category..."
-    },
-    "difficulties": {
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard"
     },
     "categories": {
       "basic": "Basic",
