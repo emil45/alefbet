@@ -9,11 +9,6 @@ import { useWordCollectionContext } from '@/contexts/WordCollectionContext';
 import { HEBREW_WORDS, HebrewWord } from '@/data/hebrewWords';
 
 // Animations
-const sparkle = keyframes`
-  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
-  50% { transform: scale(1.2) rotate(180deg); opacity: 0.8; }
-`;
-
 const float = keyframes`
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
@@ -24,7 +19,7 @@ const shimmer = keyframes`
   100% { background-position: 200% center; }
 `;
 
-type FilterType = 'all' | 'recent' | 'new' | 'easy' | 'medium' | 'hard' | string;
+type FilterType = 'all' | 'recent' | string;
 
 // Category colors for visual variety
 const CATEGORY_COLORS: Record<string, string> = {
@@ -158,7 +153,6 @@ function WordCard({ word, isCollected, timesBuilt = 0, isNew = false }: WordCard
             px: 1,
             py: 0.3,
             borderRadius: '8px',
-            animation: `${sparkle} 1.5s ease-in-out infinite`,
           }}
         >
           {t('card.new')}
@@ -248,7 +242,6 @@ export default function MyWordsContent() {
     uniqueWordsCollected,
     totalAvailableWords,
     getRecentlyCollected,
-    getNewWords,
     availableCategories,
     getCollectedCountInCategory,
     hasStorageError,
@@ -256,24 +249,16 @@ export default function MyWordsContent() {
 
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
 
-  const newWords = useMemo(() => getNewWords(), [getNewWords]);
-
   const filteredWords = useMemo(() => {
     switch (activeFilter) {
       case 'all':
         return HEBREW_WORDS;
       case 'recent':
         return getRecentlyCollected(20).map((w) => w.word);
-      case 'new':
-        return newWords.map((w) => w.word);
-      case 'easy':
-      case 'medium':
-      case 'hard':
-        return HEBREW_WORDS.filter((w) => w.difficulty === activeFilter);
       default:
         return HEBREW_WORDS.filter((w) => w.category === activeFilter);
     }
-  }, [activeFilter, getRecentlyCollected, newWords]);
+  }, [activeFilter, getRecentlyCollected]);
 
   const collectedMap = useMemo(() => {
     const map = new Map<string, { timesBuilt: number; isNew: boolean }>();
@@ -286,9 +271,6 @@ export default function MyWordsContent() {
     }
     return map;
   }, [collectedWordsWithData]);
-
-  // Difficulty filters
-  const difficultyFilters: FilterType[] = ['easy', 'medium', 'hard'];
 
   // Empty state
   if (uniqueWordsCollected === 0) {
@@ -481,7 +463,7 @@ export default function MyWordsContent() {
           }}
         />
         <Chip
-          label={`${t('filters.recent')}`}
+          label={t('filters.recent')}
           onClick={() => setActiveFilter('recent')}
           sx={{
             backgroundColor: activeFilter === 'recent' ? '#45B7D1' : 'rgba(255,255,255,0.7)',
@@ -490,50 +472,6 @@ export default function MyWordsContent() {
             '&:hover': { backgroundColor: activeFilter === 'recent' ? '#3AA3BD' : 'rgba(255,255,255,0.9)' },
           }}
         />
-        {newWords.length > 0 && (
-          <Chip
-            label={`${t('filters.new')} (${newWords.length})`}
-            onClick={() => setActiveFilter('new')}
-            sx={{
-              backgroundColor: activeFilter === 'new' ? '#FF6B6B' : 'rgba(255,255,255,0.7)',
-              color: activeFilter === 'new' ? 'white' : '#666',
-              fontWeight: 600,
-              '&:hover': { backgroundColor: activeFilter === 'new' ? '#FF5252' : 'rgba(255,255,255,0.9)' },
-            }}
-          />
-        )}
-      </Box>
-
-      {/* Difficulty filters */}
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-          gap: 0.75,
-          px: 2,
-          pb: 1,
-        }}
-      >
-        {difficultyFilters.map((diff) => (
-          <Chip
-            key={diff}
-            label={t(`difficulties.${diff}`)}
-            size="small"
-            onClick={() => setActiveFilter(diff)}
-            sx={{
-              backgroundColor: activeFilter === diff ? DIFFICULTY_COLORS[diff] : 'transparent',
-              color: activeFilter === diff ? 'white' : DIFFICULTY_COLORS[diff],
-              border: `2px solid ${DIFFICULTY_COLORS[diff]}`,
-              fontWeight: 600,
-              fontSize: '0.75rem',
-              '&:hover': {
-                backgroundColor: DIFFICULTY_COLORS[diff],
-                color: 'white',
-              },
-            }}
-          />
-        ))}
       </Box>
 
       {/* Category filter - dropdown */}
