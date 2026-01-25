@@ -42,8 +42,14 @@ lib/              → External integrations (firebase.ts, seo.ts, featureFlags/)
 ### Known Gaps
 - **Word audio files missing**: `/public/audio/words/` doesn't exist yet. `hebrewWords.ts` has `audioFile` paths but they 404. Don't add code to play these until files exist.
 - **Explorer stickers not implemented**: Page 6 (Explorer) stickers have `unlockType: 'future'`. Pages 1-5 (Letters, Numbers, Animals, Games, Streaks) ARE fully implemented.
-- **counting-game defined but not implemented**: `GameType` in `amplitudeEvents.ts` includes `'counting-game'` but no game exists. Exclude from `ALL_GAME_TYPES` until implemented.
 - **letter-tracing game disabled**: Game code exists in `app/[locale]/games/letter-tracing/` but is disabled (removed from games menu, sitemap, tests). Pixel-based and checkpoint-based validation approaches failed - checkpoint positions don't align with font-rendered letters. Needs a visual calibration tool or different approach (e.g., SVG paths instead of font rendering).
+
+### Translation Key Patterns
+Game translations have **inconsistent paths** - check before using:
+- `speedChallenge`, `simonGame`, `letterRain` → Root level: `t('speedChallenge.xyz')`
+- `countingGame` → Under games: `t('games.countingGame.xyz')`
+
+Always verify the actual path in `messages/he.json` before writing translation calls.
 
 ### Testing Rules
 - **Add tests**: New pages, new games, major UI changes
@@ -185,8 +191,10 @@ Execute phases sequentially. No approval gates. Ask for help only if stuck after
 
 3. **New game checklist**:
    - Add to `GameType` union in `models/amplitudeEvents.ts` (required for analytics)
+   - Add to `ALL_GAME_TYPES` array in `hooks/useGamesProgress.ts` (for sticker tracking)
    - Add button in `app/[locale]/games/GamesContent.tsx`
    - Add route to `app/sitemap.ts`
+   - Add to games array in `e2e/app.spec.ts`
 
 4. **Feature flags**: If feature needs gradual rollout, wrap with `getFlag('flagName')`. Add flag to `lib/featureFlags/types.ts` with default `false` (enabled via Firebase Remote Config)
 
@@ -384,3 +392,4 @@ Which approach?
 - Running review agents on entire codebase instead of scoping to changed files
 - Adding code that references missing assets (check files exist first)
 - Using `replace_all: true` without checking it won't break imports or create duplicates
+- Copying code patterns from existing files without reviewing them (existing code may have bugs - e.g., `scale()` without value)
