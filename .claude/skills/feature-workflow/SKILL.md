@@ -118,6 +118,86 @@ When adding stickers:
 
 ---
 
+## Engineering Principles
+
+### Efficiency & UX Impact
+
+Before implementing, consider how code affects the user:
+- **Bundle size**: Will this add significant JS to the client? Can it be server-side?
+- **Load time**: Are images optimized? Can assets be lazy-loaded?
+- **Runtime performance**: Avoid unnecessary re-renders, expensive computations in render
+- **Memory**: Clean up intervals, listeners, subscriptions in useEffect returns
+- **Perceived speed**: Use loading states, optimistic updates, skeleton screens
+
+### Open/Closed Principle (SOLID)
+
+This codebase constantly grows - new pages, games, categories. Design for extension without modification:
+
+**Good patterns already in this codebase:**
+- `CategoryPage` component renders any category via props - new category = add data file, not new component
+- `AudioSounds` enum - new sound = add enum value, not new playback logic
+- `ALL_GAME_TYPES` array - new game = add to array, tracking works automatically
+- `FeatureFlags` interface - new flag = add property, infrastructure handles the rest
+
+**When adding functionality:**
+1. **First**: Can an existing component/hook handle this with a prop/config change?
+2. **If creating new**: Can it be generalized for future similar needs?
+3. **Red flag**: If you're writing `if (type === 'specificThing')`, consider data-driven design
+
+**Data-driven over conditionals:**
+```typescript
+// ❌ Closed for extension - must modify to add new game
+if (game === 'simon') { playSimonSound(); }
+else if (game === 'memory') { playMemorySound(); }
+
+// ✅ Open for extension - just add to config
+const gameSounds: Record<GameType, AudioSounds> = { simon: AudioSounds.SIMON, memory: AudioSounds.FLIP };
+playSound(gameSounds[game]);
+```
+
+### Clean Code
+
+**Naming:**
+- Components: `PascalCase`, descriptive (`GameProgressTracker` not `GPT`)
+- Hooks: `useCamelCase` (`useGameProgress`)
+- Files: Match main export (`GameProgressTracker.tsx` → `GameProgressTracker`)
+- Translation keys: Hierarchical (`games.simon.instructions`)
+
+**Single Responsibility:**
+- One component = one clear job
+- File exceeds ~200 lines? Consider splitting
+- Extract complex logic into hooks
+
+**DRY pragmatically:**
+- Duplicate twice = OK
+- Duplicate three times = extract
+- Don't abstract for hypothetical "what if"
+
+### Architecture Awareness
+
+**Before creating a new file, ask:**
+1. Does similar functionality exist? Search first.
+2. Where do similar things live? Follow existing patterns.
+3. Will others know where to find this? Use conventional locations.
+
+**File organization:**
+| What | Where |
+|------|-------|
+| New page | `app/[locale]/your-page/` |
+| Shared UI | `components/` |
+| Business logic | `hooks/` |
+| Global state | `contexts/` |
+| External services | `lib/` |
+| Static data | `data/` |
+| Pure helpers | `utils/` |
+
+**Dependency direction:**
+- Pages → Components → Hooks → Utils
+- Never: Utils → Hooks, Components → Pages
+- Contexts are accessed via hooks, not imported directly in components
+
+---
+
 ## Workflow
 
 ```
@@ -158,10 +238,16 @@ Execute phases sequentially. No approval gates. Ask for help only if stuck after
    - Similar features and patterns
    - Files that need changes
    - Existing utilities/hooks to reuse
+   - Extension points (arrays, configs, types to add to instead of modifying)
 
 2. Read all identified key files
 
-3. Update TodoWrite with specific files to modify/create
+3. **Evaluate architecture fit:**
+   - Can existing components handle this with props/config?
+   - If new code needed, where does it belong? (see Architecture Awareness)
+   - What's the minimal change that solves the problem?
+
+4. Update TodoWrite with specific files to modify/create
 
 ---
 
@@ -393,3 +479,8 @@ Which approach?
 - Adding code that references missing assets (check files exist first)
 - Using `replace_all: true` without checking it won't break imports or create duplicates
 - Copying code patterns from existing files without reviewing them (existing code may have bugs - e.g., `scale()` without value)
+- Creating a new component when an existing one could handle it with props
+- Hardcoding values that should be in config/data files
+- Adding conditionals for specific cases instead of data-driven design
+- Ignoring performance (large bundles, unoptimized images, no cleanup in useEffect)
+- Creating files in wrong directories (e.g., business logic in `components/` instead of `hooks/`)
