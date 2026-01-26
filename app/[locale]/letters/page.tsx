@@ -18,7 +18,7 @@ export default async function LettersPage({ params }: Props) {
   return (
     <>
       <Script id="letters-conversion" strategy="afterInteractive">
-        {`gtag('event', 'conversion', {'send_to': 'AW-17878894842/yb27COTis-cbEPqRqc1C'});`}
+        {`if(typeof gtag !== 'undefined') gtag('event', 'conversion', {'send_to': 'AW-17878894842/yb27COTis-cbEPqRqc1C'});`}
       </Script>
       <CategoryPage
         pageName="letters"
