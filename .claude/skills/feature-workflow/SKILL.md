@@ -177,19 +177,8 @@ playSound(gameSounds[game]);
 
 **Before creating a new file, ask:**
 1. Does similar functionality exist? Search first.
-2. Where do similar things live? Follow existing patterns.
+2. Where do similar things live? Follow existing patterns (see File Structure in Context).
 3. Will others know where to find this? Use conventional locations.
-
-**File organization:**
-| What | Where |
-|------|-------|
-| New page | `app/[locale]/your-page/` |
-| Shared UI | `components/` |
-| Business logic | `hooks/` |
-| Global state | `contexts/` |
-| External services | `lib/` |
-| Static data | `data/` |
-| Pure helpers | `utils/` |
 
 **Dependency direction:**
 - Pages → Components → Hooks → Utils
@@ -224,7 +213,7 @@ Execute phases sequentially. No approval gates. Ask for help only if stuck after
    - List specific issues found before planning fixes
    - If still unclear after exploration, ask user for clarification
 
-4. Create TodoWrite with task breakdown
+4. Create task list with TaskCreate for task breakdown
 
 5. If no tasks: Report "No pending tasks" and stop
 
@@ -247,7 +236,7 @@ Execute phases sequentially. No approval gates. Ask for help only if stuck after
    - If new code needed, where does it belong? (see Architecture Awareness)
    - What's the minimal change that solves the problem?
 
-4. Update TodoWrite with specific files to modify/create
+4. Update task list with specific files to modify/create
 
 ---
 
@@ -255,10 +244,10 @@ Execute phases sequentially. No approval gates. Ask for help only if stuck after
 
 **Goal**: Break down into concrete steps.
 
-1. Create detailed TodoWrite:
-   - Each todo = one logical change
+1. Create detailed task list (TaskCreate):
+   - Each task = one logical change
    - Order by dependency
-   - Include build verification
+   - Include build verification step
 
 2. Prefer editing existing files over creating new ones
 
@@ -279,16 +268,14 @@ Execute phases sequentially. No approval gates. Ask for help only if stuck after
    - Add to `GameType` union in `models/amplitudeEvents.ts` (required for analytics)
    - Add to `ALL_GAME_TYPES` array in `hooks/useGamesProgress.ts` (for sticker tracking)
    - Add button in `app/[locale]/games/GamesContent.tsx`
-   - Add route to `app/sitemap.ts`
    - Add to games array in `e2e/app.spec.ts`
+   - SEO: handled in Phase 5
 
 4. **Feature flags**: If feature needs gradual rollout, wrap with `getFlag('flagName')`. Add flag to `lib/featureFlags/types.ts` with default `false` (enabled via Firebase Remote Config)
 
 5. **Tests** (if needed per Testing Rules): Add to `e2e/app.spec.ts`
 
-6. Run **Build Command** - fix ALL errors before proceeding
-
-7. If stuck >3 attempts: Ask for help
+6. Run **Build Command** - fix ALL errors before proceeding. If stuck, see Error Handling.
 
 ---
 
@@ -365,20 +352,15 @@ After fixes: Re-run **Build Command**
 
 **Goal**: Verify nothing broke.
 
-1. **New game?** Add to games array in `e2e/app.spec.ts`:
-   ```typescript
-   const games = ['simon-game', 'guess-game', ..., 'your-new-game'];
-   ```
+1. Run **Test Command** (single worker avoids race conditions)
 
-2. Run **Test Command** (single worker avoids race conditions)
-
-3. If fails:
+2. If fails:
    - **Failures in files YOU modified**: Fix the issue, re-run
    - **Failures in unrelated files**: Note them and proceed (pre-existing issues)
    - Re-run reviews if fix was significant
-   - After 3 failures on YOUR code: Ask for help
+   - After 3 failures on YOUR code: Ask for help (see Error Handling)
 
-4. If passes: Proceed to Ship
+3. If passes: Proceed to Ship
 
 **Don't**: Use `git stash` to verify if failures are pre-existing. Just check if the failing test files relate to your changes.
 
