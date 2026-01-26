@@ -126,3 +126,92 @@ export function getStickersForPage(pageNumber: number): Sticker[] {
 export function getPageInfo(pageNumber: number): StickerPage | undefined {
   return STICKER_PAGES.find((p) => p.pageNumber === pageNumber);
 }
+
+/**
+ * Progress values needed to check sticker unlock conditions.
+ * This interface defines the contract between progress contexts and sticker logic.
+ */
+export interface StickerProgressValues {
+  // Streaks
+  currentStreak: number;
+  // Letters
+  lettersHeard: number;
+  lettersTotalClicks: number;
+  // Numbers
+  numbersHeard: number;
+  numbersTotalClicks: number;
+  // Animals
+  animalsHeard: number;
+  animalsTotalClicks: number;
+  // Games
+  uniqueGamesPlayed: number;
+  memoryWins: number;
+  simonHighScore: number;
+  speedChallengeHighScores: number;
+  wordBuilderCompletions: number;
+  soundMatchingPerfect: number;
+  countingGameCompletions: number;
+  totalGamesCompleted: number;
+  // Words
+  uniqueWordsCollected: number;
+}
+
+/**
+ * Pure function to check if a sticker's unlock requirements are met.
+ * No React dependencies - can be used anywhere.
+ */
+export function checkStickerUnlock(sticker: Sticker, progress: StickerProgressValues): boolean {
+  if (sticker.unlockValue === undefined) {
+    return false;
+  }
+
+  switch (sticker.unlockType) {
+    case 'streak':
+      return progress.currentStreak >= sticker.unlockValue;
+    case 'letters_progress':
+      return progress.lettersHeard >= sticker.unlockValue;
+    case 'letters_total':
+      return progress.lettersTotalClicks >= sticker.unlockValue;
+    case 'numbers_progress':
+      return progress.numbersHeard >= sticker.unlockValue;
+    case 'numbers_total':
+      return progress.numbersTotalClicks >= sticker.unlockValue;
+    case 'animals_progress':
+      return progress.animalsHeard >= sticker.unlockValue;
+    case 'animals_total':
+      return progress.animalsTotalClicks >= sticker.unlockValue;
+    case 'games_played':
+      return progress.uniqueGamesPlayed >= sticker.unlockValue;
+    case 'memory_wins':
+      return progress.memoryWins >= sticker.unlockValue;
+    case 'simon_score':
+      return progress.simonHighScore >= sticker.unlockValue;
+    case 'speed_challenge_high':
+      return progress.speedChallengeHighScores >= sticker.unlockValue;
+    case 'word_builder_completions':
+      return progress.wordBuilderCompletions >= sticker.unlockValue;
+    case 'sound_matching_perfect':
+      return progress.soundMatchingPerfect >= sticker.unlockValue;
+    case 'counting_game_completions':
+      return progress.countingGameCompletions >= sticker.unlockValue;
+    case 'total_games_completed':
+      return progress.totalGamesCompleted >= sticker.unlockValue;
+    case 'words_collected':
+      return progress.uniqueWordsCollected >= sticker.unlockValue;
+    case 'future':
+      // Future stickers are placeholders that cannot be unlocked yet
+      return false;
+    default:
+      console.warn(`[checkStickerUnlock] Unknown unlock type: "${sticker.unlockType}"`);
+      return false;
+  }
+}
+
+/**
+ * Get all stickers that are currently unlocked based on progress.
+ */
+export function getUnlockedStickerIds(progress: StickerProgressValues): Set<string> {
+  return new Set(
+    STICKERS.filter((sticker) => checkStickerUnlock(sticker, progress)).map((s) => s.id)
+  );
+}

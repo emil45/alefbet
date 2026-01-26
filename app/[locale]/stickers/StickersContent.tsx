@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import BackButton from '@/components/BackButton';
@@ -18,6 +18,8 @@ import {
   getStickersForPage,
   TOTAL_STICKERS,
   Sticker,
+  StickerProgressValues,
+  checkStickerUnlock,
 } from '@/data/stickers';
 
 interface PeelAnimationState {
@@ -46,51 +48,50 @@ export default function StickersContent() {
     originY: 0,
   });
 
-  // Check if a sticker meets its unlock requirements (regardless of earned status)
-  const meetsUnlockRequirements = useCallback(
-    (sticker: Sticker): boolean => {
-      if (sticker.unlockValue === undefined) {
-        return false;
-      }
+  // Memoized progress values for sticker unlock checks
+  const progressValues: StickerProgressValues = useMemo(
+    () => ({
+      currentStreak: streakData.currentStreak,
+      lettersHeard,
+      lettersTotalClicks,
+      numbersHeard,
+      numbersTotalClicks,
+      animalsHeard,
+      animalsTotalClicks,
+      uniqueGamesPlayed,
+      memoryWins,
+      simonHighScore,
+      speedChallengeHighScores,
+      wordBuilderCompletions,
+      soundMatchingPerfect,
+      countingGameCompletions,
+      totalGamesCompleted,
+      uniqueWordsCollected,
+    }),
+    [
+      streakData.currentStreak,
+      lettersHeard,
+      lettersTotalClicks,
+      numbersHeard,
+      numbersTotalClicks,
+      animalsHeard,
+      animalsTotalClicks,
+      uniqueGamesPlayed,
+      memoryWins,
+      simonHighScore,
+      speedChallengeHighScores,
+      wordBuilderCompletions,
+      soundMatchingPerfect,
+      countingGameCompletions,
+      totalGamesCompleted,
+      uniqueWordsCollected,
+    ]
+  );
 
-      switch (sticker.unlockType) {
-        case 'streak':
-          return streakData.currentStreak >= sticker.unlockValue;
-        case 'letters_progress':
-          return lettersHeard >= sticker.unlockValue;
-        case 'letters_total':
-          return lettersTotalClicks >= sticker.unlockValue;
-        case 'numbers_progress':
-          return numbersHeard >= sticker.unlockValue;
-        case 'numbers_total':
-          return numbersTotalClicks >= sticker.unlockValue;
-        case 'animals_progress':
-          return animalsHeard >= sticker.unlockValue;
-        case 'animals_total':
-          return animalsTotalClicks >= sticker.unlockValue;
-        case 'games_played':
-          return uniqueGamesPlayed >= sticker.unlockValue;
-        case 'memory_wins':
-          return memoryWins >= sticker.unlockValue;
-        case 'simon_score':
-          return simonHighScore >= sticker.unlockValue;
-        case 'speed_challenge_high':
-          return speedChallengeHighScores >= sticker.unlockValue;
-        case 'word_builder_completions':
-          return wordBuilderCompletions >= sticker.unlockValue;
-        case 'sound_matching_perfect':
-          return soundMatchingPerfect >= sticker.unlockValue;
-        case 'counting_game_completions':
-          return countingGameCompletions >= sticker.unlockValue;
-        case 'total_games_completed':
-          return totalGamesCompleted >= sticker.unlockValue;
-        case 'words_collected':
-          return uniqueWordsCollected >= sticker.unlockValue;
-        default:
-          return false;
-      }
-    },
-    [streakData.currentStreak, lettersHeard, lettersTotalClicks, numbersHeard, numbersTotalClicks, animalsHeard, animalsTotalClicks, uniqueGamesPlayed, memoryWins, simonHighScore, speedChallengeHighScores, wordBuilderCompletions, soundMatchingPerfect, countingGameCompletions, totalGamesCompleted, uniqueWordsCollected]
+  // Check if a sticker meets its unlock requirements (uses shared utility)
+  const meetsUnlockRequirements = useCallback(
+    (sticker: Sticker): boolean => checkStickerUnlock(sticker, progressValues),
+    [progressValues]
   );
 
   // Check if a sticker is unlocked (earned or meets requirements)
