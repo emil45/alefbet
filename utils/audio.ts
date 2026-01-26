@@ -80,7 +80,11 @@ export const playSound = (sound: AudioSounds) => {
   const audio = refs[sound];
   if (audio) {
     audio.currentTime = 0;
-    audio.play().catch((error) => console.error('Error playing sound:', error));
+    audio.play().catch((error) => {
+      if (error.name !== 'AbortError') {
+        console.error('Error playing sound:', error);
+      }
+    });
   }
 };
 
@@ -89,7 +93,12 @@ export const playAudio = (audioPath: string) => {
   if (typeof window === 'undefined') return;
 
   const audio = new Audio(`/audio/${audioPath}`);
-  audio.play().catch((error) => console.error('Error playing audio:', error));
+  audio.play().catch((error) => {
+    // AbortError is expected when clicking rapidly (previous play interrupted by new one)
+    if (error.name !== 'AbortError') {
+      console.error('Error playing audio:', error);
+    }
+  });
 };
 
 export const preloadSounds = () => {
@@ -139,6 +148,10 @@ export const playRandomCelebration = () => {
   const audio = refs[sound];
   if (audio) {
     audio.currentTime = 0;
-    audio.play().catch((error) => console.error('Error playing celebration sound:', error));
+    audio.play().catch((error) => {
+      if (error.name !== 'AbortError') {
+        console.error('Error playing celebration sound:', error);
+      }
+    });
   }
 };
