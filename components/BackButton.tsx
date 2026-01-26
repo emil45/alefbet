@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import RoundFunButton from './RoundFunButton';
 import { Box } from '@mui/material';
@@ -13,25 +12,12 @@ interface BackButtonProps {
 }
 
 const BackButton: React.FC<BackButtonProps> = ({ href = '/' }) => {
-  const router = useRouter();
   const locale = useLocale();
-
-  const getLocalizedHref = (path: string): string => {
-    if (locale === defaultLocale) {
-      return path;
-    }
-    return `/${locale}${path}`;
-  };
-
-  const handleClick = () => {
-    setTimeout(() => {
-      router.push(getLocalizedHref(href));
-    }, 500);
-  };
+  const localizedHref = locale === defaultLocale ? href : `/${locale}${href}`;
 
   return (
     <Box sx={{ textAlign: 'left' }}>
-      <RoundFunButton onClick={handleClick}>
+      <RoundFunButton to={localizedHref}>
         <ArrowBackIcon />
       </RoundFunButton>
     </Box>

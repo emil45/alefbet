@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import Button from '@mui/material/Button';
-import { useRouter } from 'next/navigation';
 import { Box, Typography } from '@mui/material';
 
 interface RoundFunButtonProps {
@@ -13,7 +13,6 @@ interface RoundFunButtonProps {
 }
 
 const RoundFunButton: React.FC<RoundFunButtonProps> = (props) => {
-  const router = useRouter();
 
   const commonStyles = (theme: any) => ({
     color: 'white',
@@ -90,24 +89,19 @@ const RoundFunButton: React.FC<RoundFunButtonProps> = (props) => {
     },
   });
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    if (props.to) {
-      setTimeout(() => {
-        router.push(props.to!);
-      }, 500);
-    } else if (props.onClick) {
-      props.onClick();
-    }
-  };
-
-  return (
-    <Button disableElevation sx={commonStyles} onClick={handleClick}>
+  const button = (
+    <Button disableElevation sx={commonStyles} onClick={props.onClick}>
       <Box className="shadow" />
       <Box className="edge" />
       <Typography className="front">{props.children}</Typography>
     </Button>
   );
+
+  if (props.to) {
+    return <Link href={props.to} style={{ textDecoration: 'none' }}>{button}</Link>;
+  }
+
+  return button;
 };
 
 export default RoundFunButton;

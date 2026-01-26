@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import Button from '@mui/material/Button';
-import { useRouter } from 'next/navigation';
 import { Box, Typography } from '@mui/material';
 import { useLocale } from 'next-intl';
 import { getLanguageSpecificRoute } from '@/utils/languageRoutes';
@@ -27,7 +27,6 @@ const FunButton: React.FC<FunButtonProps> = ({
   paddingX,
   ...rest
 }) => {
-  const router = useRouter();
   const locale = useLocale();
 
   const commonStyles = (theme: any) => ({
@@ -108,20 +107,12 @@ const FunButton: React.FC<FunButtonProps> = ({
     },
   });
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+  const handleClick = () => {
     logEvent(AmplitudeEventsEnum.BUTTON_CLICK, { button_name: text });
-    if (to) {
-      const languageRoute = getLanguageSpecificRoute(to, locale);
-      setTimeout(() => {
-        router.push(languageRoute);
-      }, 200);
-    } else if (onClick) {
-      onClick();
-    }
+    onClick?.();
   };
 
-  return (
+  const button = (
     <Button disableElevation sx={commonStyles} onClick={handleClick} {...rest}>
       <Box className="shadow" />
       <Box className="edge" />
@@ -130,6 +121,13 @@ const FunButton: React.FC<FunButtonProps> = ({
       </Typography>
     </Button>
   );
+
+  if (to) {
+    const href = getLanguageSpecificRoute(to, locale);
+    return <Link href={href} style={{ textDecoration: 'none' }}>{button}</Link>;
+  }
+
+  return button;
 };
 
 export default FunButton;
