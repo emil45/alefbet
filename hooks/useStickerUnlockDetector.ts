@@ -8,6 +8,7 @@ import {
   getUnlockedStickerIds,
 } from '@/data/stickers';
 import { useStickerContext } from '@/contexts/StickerContext';
+import { useStickerToastContext } from '@/contexts/StickerToastContext';
 import { useStreakContext } from '@/contexts/StreakContext';
 import { useLettersProgressContext } from '@/contexts/LettersProgressContext';
 import { useNumbersProgressContext } from '@/contexts/NumbersProgressContext';
@@ -80,20 +81,21 @@ function useProgressValues(): StickerProgressValues {
 }
 
 /**
- * Hook that automatically detects when stickers become unlocked
- * and triggers earnSticker to award them + show toast notification.
+ * Hook that detects when stickers become unlocked and shows a toast notification.
+ * Does NOT auto-earn the sticker - kids enjoy peeling them in the sticker album!
  *
  * Should be used once at the app level (in providers).
  */
 export function useStickerUnlockDetector(): void {
   const t = useTranslations();
-  const { hasSticker, earnSticker } = useStickerContext();
+  const { hasSticker } = useStickerContext();
+  const { showStickerToast } = useStickerToastContext();
   const progress = useProgressValues();
 
   // Track stickers that were unlocked at mount time (to avoid toasting them)
   const initialUnlockedRef = useRef<Set<string> | null>(null);
-  // Track which stickers we've already processed to avoid duplicate toasts
-  const processedRef = useRef<Set<string>>(new Set());
+  // Track which stickers we've already notified about to avoid duplicate toasts
+  const notifiedRef = useRef<Set<string>>(new Set());
 
   // Get currently unlocked sticker IDs
   const currentlyUnlocked = useMemo(
@@ -105,31 +107,31 @@ export function useStickerUnlockDetector(): void {
     // First render: capture initial state, don't toast anything
     if (initialUnlockedRef.current === null) {
       initialUnlockedRef.current = new Set(currentlyUnlocked);
-      // Also mark already-earned stickers as processed
+      // Also mark already-earned stickers as notified
       STICKERS.forEach((s) => {
         if (hasSticker(s.id)) {
-          processedRef.current.add(s.id);
+          notifiedRef.current.add(s.id);
         }
       });
       return;
     }
 
     // Find stickers that are:
-    // 1. Currently unlocked
-    // 2. Not already earned
+    // 1. Currently unlocked (meets requirements)
+    // 2. Not already earned (still peelable)
     // 3. Not in our initial set (i.e., newly unlocked this session)
-    // 4. Not already processed
+    // 4. Not already notified
     const newlyUnlocked = STICKERS.filter((sticker) => {
       if (!currentlyUnlocked.has(sticker.id)) return false;
       if (hasSticker(sticker.id)) return false;
       if (initialUnlockedRef.current?.has(sticker.id)) return false;
-      if (processedRef.current.has(sticker.id)) return false;
+      if (notifiedRef.current.has(sticker.id)) return false;
       return true;
     });
 
-    // Award each newly unlocked sticker
+    // Show toast for each newly unlocked sticker (but don't earn it)
     for (const sticker of newlyUnlocked) {
-      processedRef.current.add(sticker.id);
+      notifiedRef.current.add(sticker.id);
 
       let name: string;
       try {
@@ -142,7 +144,12 @@ export function useStickerUnlockDetector(): void {
         name = sticker.id;
       }
 
-      earnSticker(sticker.id, name, sticker.pageNumber);
+      // Just show the toast - let kids peel the sticker themselves!
+      showStickerToast({
+        emoji: sticker.emoji,
+        name,
+        pageNumber: sticker.pageNumber,
+      });
     }
-  }, [currentlyUnlocked, hasSticker, earnSticker, t]);
+  }, [currentlyUnlocked, hasSticker, showStickerToast, t]);
 }
