@@ -1,8 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, ReactNode, useCallback } from 'react';
-import { useStickers, UseStickersReturn, StickerEarnedInfo } from '@/hooks/useStickers';
-import { useStickerToastContext } from '@/contexts/StickerToastContext';
+import React, { createContext, useContext, ReactNode } from 'react';
+import { useStickers, UseStickersReturn } from '@/hooks/useStickers';
 import { useStickerUnlockDetector } from '@/hooks/useStickerUnlockDetector';
 
 const StickerContext = createContext<UseStickersReturn | null>(null);
@@ -21,20 +20,9 @@ interface StickerProviderProps {
 }
 
 export function StickerProvider({ children }: StickerProviderProps) {
-  const { showStickerToast } = useStickerToastContext();
-
-  const handleStickerEarned = useCallback(
-    (info: StickerEarnedInfo) => {
-      showStickerToast({
-        emoji: info.emoji,
-        name: info.stickerName,
-        pageNumber: info.pageNumber,
-      });
-    },
-    [showStickerToast]
-  );
-
-  const stickerValue = useStickers({ onStickerEarned: handleStickerEarned });
+  // No toast callback here - toast only shows from unlock detector,
+  // not when peeling (user is already looking at the sticker!)
+  const stickerValue = useStickers();
 
   return (
     <StickerContext.Provider value={stickerValue}>
