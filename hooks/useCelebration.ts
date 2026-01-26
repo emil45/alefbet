@@ -7,7 +7,7 @@ import {
   triggerScreenShake,
   getCelebrationColors,
 } from '@/utils/celebrations';
-import { playSound, AudioSounds } from '@/utils/audio';
+import { playSound, playRandomCelebration, AudioSounds } from '@/utils/audio';
 
 export interface CelebrationState {
   isActive: boolean;
@@ -47,10 +47,14 @@ export function useCelebration() {
       triggerScreenShake(config.shakeDuration, config.shakeIntensity);
     }
 
-    // Play celebration sound
-    const sound = CELEBRATION_SOUNDS[type];
-    if (sound) {
-      playSound(sound);
+    // Play celebration sound (random variety for gameComplete)
+    if (type === 'gameComplete') {
+      playRandomCelebration();
+    } else {
+      const sound = CELEBRATION_SOUNDS[type];
+      if (sound) {
+        playSound(sound);
+      }
     }
 
     // Update confetti state if pieces > 0

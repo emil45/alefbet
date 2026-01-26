@@ -20,6 +20,11 @@ export enum AudioSounds {
   POP,
   DING,
   SPARKLE,
+  // Celebration variety sounds
+  CELEBRATION_CHIME,
+  CELEBRATION_SPARKLE,
+  CELEBRATION_FANFARE,
+  CELEBRATION_APPLAUSE,
 }
 
 const AUDIO_PATHS: Record<AudioSounds, string> = {
@@ -44,6 +49,11 @@ const AUDIO_PATHS: Record<AudioSounds, string> = {
   [AudioSounds.POP]: '/audio/common/pop.mp3',
   [AudioSounds.DING]: '/audio/common/ding.mp3',
   [AudioSounds.SPARKLE]: '/audio/common/sparkle.mp3',
+  // Celebration variety sounds
+  [AudioSounds.CELEBRATION_CHIME]: '/audio/common/celebrations/chime.m4a',
+  [AudioSounds.CELEBRATION_SPARKLE]: '/audio/common/celebrations/sparkle.m4a',
+  [AudioSounds.CELEBRATION_FANFARE]: '/audio/common/celebrations/fanfare.m4a',
+  [AudioSounds.CELEBRATION_APPLAUSE]: '/audio/common/celebrations/applause.m4a',
 };
 
 // Lazy-initialized audio refs (only created on client)
@@ -100,5 +110,35 @@ export const stopAllSounds = () => {
     const audio = refs[key as unknown as AudioSounds];
     audio.pause();
     audio.currentTime = 0;
+  }
+};
+
+// Celebration sounds for variety
+const CELEBRATION_SOUNDS: AudioSounds[] = [
+  AudioSounds.CELEBRATION, // yay-kids.mp3
+  AudioSounds.CELEBRATION_CHIME,
+  AudioSounds.CELEBRATION_SPARKLE,
+  AudioSounds.CELEBRATION_FANFARE,
+  AudioSounds.CELEBRATION_APPLAUSE,
+];
+
+let lastCelebrationSound: AudioSounds | null = null;
+
+// Play a random celebration sound (no repeats)
+export const playRandomCelebration = () => {
+  const refs = getAudioRefs();
+  if (!refs) return;
+
+  // Filter out the last played sound to prevent repetition
+  const availableSounds = CELEBRATION_SOUNDS.filter((s) => s !== lastCelebrationSound);
+  const randomIndex = Math.floor(Math.random() * availableSounds.length);
+  const sound = availableSounds[randomIndex];
+
+  lastCelebrationSound = sound;
+
+  const audio = refs[sound];
+  if (audio) {
+    audio.currentTime = 0;
+    audio.play().catch((error) => console.error('Error playing celebration sound:', error));
   }
 };
