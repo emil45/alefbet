@@ -5,6 +5,7 @@
   },
   "permissions": {
     "allow": [
+      "WebFetch",
       "mcp__monday-mcp__*",
       "mcp__amplitude__*",
       "Bash(npm uninstall:*)",
@@ -48,7 +49,19 @@
       "Bash(git log:*)",
       "Bash(npx eslint:*)",
       "Bash(git checkout:*)",
-      "Bash(claude:*)"
+      "Bash(claude:*)",
+      "mcp__playwright:*",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_type",
+      "mcp__playwright__browser_close",
+      "Bash(pkill:*)",
+      "mcp__playwright__browser_resize",
+      "mcp__playwright__browser_network_requests",
+      "Bash(gh repo view:*)",
+      "Bash(node -e \"\nconst data = require\\(''/Users/emil/code/lepdy/data/hebrewWords.ts''\\);\n\")"
     ],
     "deny": []
   },

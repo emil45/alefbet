@@ -8,6 +8,7 @@ import { initAmplitude, logEvent } from '@/utils/amplitude';
 import { AmplitudeEventsEnum, LocaleType } from '@/models/amplitudeEvents';
 import { StreakProvider } from '@/contexts/StreakContext';
 import { StickerProvider } from '@/contexts/StickerContext';
+import { StickerToastProvider } from '@/contexts/StickerToastContext';
 import { FeatureFlagProvider } from '@/contexts/FeatureFlagContext';
 import { LettersProgressProvider } from '@/contexts/LettersProgressContext';
 import { NumbersProgressProvider } from '@/contexts/NumbersProgressContext';
@@ -59,10 +60,12 @@ export default function Providers({ children, direction, locale }: ProvidersProp
                 <AnimalsProgressProvider>
                   <GamesProgressProvider>
                     <WordCollectionProvider>
-                      <StickerProvider>
-                        {children}
-                        <InstallPrompt />
-                      </StickerProvider>
+                      <StickerToastProvider>
+                        <StickerProvider>
+                          {children}
+                          <InstallPrompt />
+                        </StickerProvider>
+                      </StickerToastProvider>
                     </WordCollectionProvider>
                   </GamesProgressProvider>
                 </AnimalsProgressProvider>

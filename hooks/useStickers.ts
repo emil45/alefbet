@@ -1,9 +1,19 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { logEvent } from '@/utils/amplitude';
 import { AmplitudeEventsEnum } from '@/models/amplitudeEvents';
 import { useCelebration } from '@/hooks/useCelebration';
+import { STICKERS } from '@/data/stickers';
+
+export interface StickerEarnedInfo {
+  stickerId: string;
+  stickerName: string;
+  emoji: string;
+  pageNumber: number;
+}
+
+export type OnStickerEarnedCallback = (info: StickerEarnedInfo) => void;
 
 export interface StickerData {
   earnedStickerIds: string[];
@@ -51,10 +61,20 @@ export interface UseStickersReturn {
   earnedStickerIds: Set<string>;
 }
 
-export function useStickers(): UseStickersReturn {
+export interface UseStickersOptions {
+  onStickerEarned?: OnStickerEarnedCallback;
+}
+
+export function useStickers(options?: UseStickersOptions): UseStickersReturn {
   const [stickerData, setStickerData] = useState<StickerData>(getDefaultStickerData);
   const [isInitialized, setIsInitialized] = useState(false);
   const { celebrate } = useCelebration();
+
+  // Use ref for callback to avoid stale closures and maintain stable earnSticker reference
+  const onStickerEarnedRef = useRef(options?.onStickerEarned);
+  useEffect(() => {
+    onStickerEarnedRef.current = options?.onStickerEarned;
+  }, [options?.onStickerEarned]);
 
   // Load sticker data on mount
   useEffect(() => {
@@ -84,6 +104,13 @@ export function useStickers(): UseStickersReturn {
 
   const earnSticker = useCallback(
     (stickerId: string, stickerName: string, pageNumber: number) => {
+      // Validate sticker exists
+      const sticker = STICKERS.find((s) => s.id === stickerId);
+      if (!sticker) {
+        console.warn(`[useStickers] Sticker not found: "${stickerId}". Skipping.`);
+        return;
+      }
+
       // Don't award if already earned
       if (earnedStickerIds.has(stickerId)) {
         return;
@@ -107,6 +134,20 @@ export function useStickers(): UseStickersReturn {
         page_number: pageNumber,
         total_stickers: earnedStickerIds.size + 1,
       });
+
+      // Notify callback with sticker info (for toast)
+      if (onStickerEarnedRef.current) {
+        try {
+          onStickerEarnedRef.current({
+            stickerId,
+            stickerName,
+            emoji: sticker.emoji,
+            pageNumber,
+          });
+        } catch (error) {
+          console.error('[useStickers] onStickerEarned callback error:', error);
+        }
+      }
     },
     [earnedStickerIds, celebrate]
   );

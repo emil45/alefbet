@@ -1,7 +1,8 @@
 'use client';
 
-import React, { createContext, useContext, ReactNode } from 'react';
-import { useStickers, UseStickersReturn } from '@/hooks/useStickers';
+import React, { createContext, useContext, ReactNode, useCallback } from 'react';
+import { useStickers, UseStickersReturn, StickerEarnedInfo } from '@/hooks/useStickers';
+import { useStickerToastContext } from '@/contexts/StickerToastContext';
 
 const StickerContext = createContext<UseStickersReturn | null>(null);
 
@@ -10,7 +11,20 @@ interface StickerProviderProps {
 }
 
 export function StickerProvider({ children }: StickerProviderProps) {
-  const stickerValue = useStickers();
+  const { showStickerToast } = useStickerToastContext();
+
+  const handleStickerEarned = useCallback(
+    (info: StickerEarnedInfo) => {
+      showStickerToast({
+        emoji: info.emoji,
+        name: info.stickerName,
+        pageNumber: info.pageNumber,
+      });
+    },
+    [showStickerToast]
+  );
+
+  const stickerValue = useStickers({ onStickerEarned: handleStickerEarned });
 
   return (
     <StickerContext.Provider value={stickerValue}>
