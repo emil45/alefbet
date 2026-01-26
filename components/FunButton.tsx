@@ -30,6 +30,7 @@ const FunButton: React.FC<FunButtonProps> = ({
   const locale = useLocale();
 
   const commonStyles = (theme: any) => ({
+    width: '100%',
     position: 'relative',
     border: 'none',
     background: 'transparent',
@@ -124,7 +125,7 @@ const FunButton: React.FC<FunButtonProps> = ({
 
   if (to) {
     const href = getLanguageSpecificRoute(to, locale);
-    return <Link href={href} style={{ textDecoration: 'none' }}>{button}</Link>;
+    return <Link href={href} style={{ textDecoration: 'none', display: 'block' }}>{button}</Link>;
   }
 
   return button;
