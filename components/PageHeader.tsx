@@ -4,10 +4,13 @@ import React from 'react';
 import { Box } from '@mui/material';
 import RoundFunButton from '@/components/RoundFunButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { defaultLocale } from '@/i18n/config';
-import HomeHeader from '@/components/HomeHeader';
+import { getLanguageSpecificRoute } from '@/utils/languageRoutes';
+import { useFeatureFlagContext } from '@/contexts/FeatureFlagContext';
 
 interface PageHeaderProps {
   backHref?: string;
@@ -17,6 +20,8 @@ export default function PageHeader({ backHref = '/' }: PageHeaderProps) {
   const router = useRouter();
   const locale = useLocale();
   const isRTL = locale === 'he';
+  const { getFlag } = useFeatureFlagContext();
+  const showStickersButton = getFlag('showStickersButton');
 
   const handleBackClick = () => {
     const path = locale === defaultLocale ? backHref : `/${locale}${backHref}`;
@@ -27,17 +32,12 @@ export default function PageHeader({ backHref = '/' }: PageHeaderProps) {
 
   return (
     <>
-      {/* Back button - positioned on same side as settings button, next to it */}
-      {/* RTL: settings on left, so back button also on left (with gap) */}
-      {/* LTR: settings on right, so back button also on right (with gap) */}
+      {/* Back button - absolute positioned */}
       <Box
         sx={{
           position: 'absolute',
           top: { xs: '10px', sm: '20px' },
-          // Position next to settings: RTL = left side at ~70px, LTR = right side at ~70px
-          ...(isRTL
-            ? { left: { xs: '60px', sm: '80px' } }
-            : { right: { xs: '60px', sm: '80px' } }),
+          ...(isRTL ? { right: { xs: '10px', sm: '20px' } } : { left: { xs: '10px', sm: '20px' } }),
           zIndex: 10,
         }}
       >
@@ -46,8 +46,26 @@ export default function PageHeader({ backHref = '/' }: PageHeaderProps) {
         </RoundFunButton>
       </Box>
 
-      {/* Reuse HomeHeader for settings/stickers/my-words buttons */}
-      <HomeHeader locale={locale} />
+      {/* Stickers and My Words buttons - opposite side from back */}
+      {showStickersButton && (
+        <Box
+          sx={{
+            position: 'absolute',
+            top: { xs: '10px', sm: '20px' },
+            ...(isRTL ? { left: { xs: '10px', sm: '20px' } } : { right: { xs: '10px', sm: '20px' } }),
+            zIndex: 10,
+            display: 'flex',
+            gap: { xs: '8px', sm: '12px' },
+          }}
+        >
+          <RoundFunButton onClick={() => router.push(getLanguageSpecificRoute('/stickers', locale))}>
+            <EmojiEventsIcon />
+          </RoundFunButton>
+          <RoundFunButton onClick={() => router.push(getLanguageSpecificRoute('/my-words', locale))}>
+            <MenuBookIcon />
+          </RoundFunButton>
+        </Box>
+      )}
     </>
   );
 }
