@@ -16,6 +16,29 @@ import { useAnimalsProgressContext } from '@/contexts/AnimalsProgressContext';
 import { useGamesProgressContext } from '@/contexts/GamesProgressContext';
 import { useWordCollectionContext } from '@/contexts/WordCollectionContext';
 
+const NOTIFIED_STORAGE_KEY = 'lepdy_sticker_toasts_shown';
+
+function loadNotifiedStickers(): Set<string> {
+  if (typeof window === 'undefined') return new Set();
+  try {
+    const stored = localStorage.getItem(NOTIFIED_STORAGE_KEY);
+    return stored ? new Set(JSON.parse(stored)) : new Set();
+  } catch {
+    return new Set();
+  }
+}
+
+function saveNotifiedSticker(stickerId: string): void {
+  if (typeof window === 'undefined') return;
+  try {
+    const current = loadNotifiedStickers();
+    current.add(stickerId);
+    localStorage.setItem(NOTIFIED_STORAGE_KEY, JSON.stringify([...current]));
+  } catch {
+    // Ignore storage errors
+  }
+}
+
 /**
  * Gathers all progress values from contexts into a single object.
  * Memoized to prevent unnecessary recalculations.
@@ -82,6 +105,7 @@ function useProgressValues(): StickerProgressValues {
 
 /**
  * Hook that detects when stickers become unlocked and shows a toast notification.
+ * Shows each toast only ONCE ever (persisted in localStorage).
  * Does NOT auto-earn the sticker - kids enjoy peeling them in the sticker album!
  *
  * Should be used once at the app level (in providers).
@@ -92,10 +116,8 @@ export function useStickerUnlockDetector(): void {
   const { showStickerToast } = useStickerToastContext();
   const progress = useProgressValues();
 
-  // Track stickers that were unlocked at mount time (to avoid toasting them)
-  const initialUnlockedRef = useRef<Set<string> | null>(null);
-  // Track which stickers we've already notified about to avoid duplicate toasts
-  const notifiedRef = useRef<Set<string>>(new Set());
+  // Track which stickers we've shown toasts for in this render cycle
+  const shownThisRenderRef = useRef<Set<string>>(new Set());
 
   // Get currently unlocked sticker IDs
   const currentlyUnlocked = useMemo(
@@ -104,47 +126,34 @@ export function useStickerUnlockDetector(): void {
   );
 
   useEffect(() => {
-    // First render: capture initial state, don't toast anything
-    if (initialUnlockedRef.current === null) {
-      initialUnlockedRef.current = new Set(currentlyUnlocked);
-      // Also mark already-earned stickers as notified
-      STICKERS.forEach((s) => {
-        if (hasSticker(s.id)) {
-          notifiedRef.current.add(s.id);
-        }
-      });
-      return;
-    }
+    // Load already-notified stickers from localStorage
+    const alreadyNotified = loadNotifiedStickers();
 
     // Find stickers that are:
     // 1. Currently unlocked (meets requirements)
-    // 2. Not already earned (still peelable)
-    // 3. Not in our initial set (i.e., newly unlocked this session)
-    // 4. Not already notified
-    const newlyUnlocked = STICKERS.filter((sticker) => {
+    // 2. Not already earned (peeled)
+    // 3. Never shown a toast before (persisted in localStorage)
+    // 4. Not shown in this render cycle (prevents duplicates during hydration)
+    const toNotify = STICKERS.filter((sticker) => {
       if (!currentlyUnlocked.has(sticker.id)) return false;
       if (hasSticker(sticker.id)) return false;
-      if (initialUnlockedRef.current?.has(sticker.id)) return false;
-      if (notifiedRef.current.has(sticker.id)) return false;
+      if (alreadyNotified.has(sticker.id)) return false;
+      if (shownThisRenderRef.current.has(sticker.id)) return false;
       return true;
     });
 
-    // Show toast for each newly unlocked sticker (but don't earn it)
-    for (const sticker of newlyUnlocked) {
-      notifiedRef.current.add(sticker.id);
+    // Show toast for each newly unlocked sticker
+    for (const sticker of toNotify) {
+      shownThisRenderRef.current.add(sticker.id);
+      saveNotifiedSticker(sticker.id);
 
       let name: string;
       try {
         name = t(sticker.translationKey);
-      } catch (error) {
-        console.warn(
-          `[useStickerUnlockDetector] Translation failed for "${sticker.translationKey}". Using sticker ID.`,
-          error
-        );
+      } catch {
         name = sticker.id;
       }
 
-      // Just show the toast - let kids peel the sticker themselves!
       showStickerToast({
         emoji: sticker.emoji,
         name,
