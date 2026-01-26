@@ -32,12 +32,12 @@ export default function PageHeader({ backHref = '/' }: PageHeaderProps) {
 
   return (
     <>
-      {/* Back button - absolute positioned */}
+      {/* Back button - same position as settings on homepage (RTL: left, LTR: right) */}
       <Box
         sx={{
           position: 'absolute',
           top: { xs: '10px', sm: '20px' },
-          ...(isRTL ? { right: { xs: '10px', sm: '20px' } } : { left: { xs: '10px', sm: '20px' } }),
+          ...(isRTL ? { left: { xs: '10px', sm: '20px' } } : { right: { xs: '10px', sm: '20px' } }),
           zIndex: 10,
         }}
       >
@@ -46,13 +46,13 @@ export default function PageHeader({ backHref = '/' }: PageHeaderProps) {
         </RoundFunButton>
       </Box>
 
-      {/* Stickers and My Words buttons - opposite side from back */}
+      {/* Stickers and My Words buttons - same position as homepage (RTL: right, LTR: left) */}
       {showStickersButton && (
         <Box
           sx={{
             position: 'absolute',
             top: { xs: '10px', sm: '20px' },
-            ...(isRTL ? { left: { xs: '10px', sm: '20px' } } : { right: { xs: '10px', sm: '20px' } }),
+            ...(isRTL ? { right: { xs: '10px', sm: '20px' } } : { left: { xs: '10px', sm: '20px' } }),
             zIndex: 10,
             display: 'flex',
             gap: { xs: '8px', sm: '12px' },
