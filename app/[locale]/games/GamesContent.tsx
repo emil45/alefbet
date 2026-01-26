@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import BackButton from '@/components/BackButton';
 import FunButton from '@/components/FunButton';
 import PageIntro from '@/components/PageIntro';
+import PageHeader from '@/components/PageHeader';
 import { Box } from '@mui/material';
 import { useTranslations } from 'next-intl';
 
@@ -11,14 +11,15 @@ export default function GamesContent() {
   const t = useTranslations();
 
   return (
-    <>
-      <BackButton />
+    <Box sx={{ position: 'relative' }}>
+      <PageHeader />
       <PageIntro pageName="games" />
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          pt: { xs: 8, sm: 6 },
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
@@ -33,6 +34,6 @@ export default function GamesContent() {
           {/* letter-tracing game disabled - needs proper implementation */}
         </Box>
       </Box>
-    </>
+    </Box>
   );
 }
