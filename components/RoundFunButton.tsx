@@ -98,7 +98,11 @@ const RoundFunButton: React.FC<RoundFunButtonProps> = (props) => {
   );
 
   if (props.to) {
-    return <Link href={props.to} style={{ textDecoration: 'none' }}>{button}</Link>;
+    return (
+      <Link href={props.to} prefetch={true} style={{ textDecoration: 'none' }}>
+        {button}
+      </Link>
+    );
   }
 
   return button;
